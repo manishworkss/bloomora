@@ -22,6 +22,9 @@ import {
 import { Button } from '@/components/ui/Button';
 import { ProductCard } from '@/components/storefront/ProductCard';
 import { FAQAccordion, FAQItem } from '@/components/storefront/FAQAccordion';
+import { FloatingPetalsCanvas } from '@/components/storefront/FloatingPetalsCanvas';
+import { CraftHoopShowcase } from '@/components/storefront/CraftHoopShowcase';
+import { YarnThreadDivider } from '@/components/storefront/YarnThreadDivider';
 import { DEFAULT_WHATSAPP_NUMBER, getCustomOrderInquiryLink } from '@/lib/whatsapp';
 import { getProducts } from '@/lib/products-store';
 
@@ -199,9 +202,12 @@ export default function HomePage() {
 
   return (
     <div className="space-y-20 sm:space-y-28 pb-20 w-full max-w-full overflow-x-hidden">
-      {/* 1. EDITORIAL HERO SECTION (Mobile Optimized) */}
+      {/* 1. EDITORIAL HERO SECTION (With Three.js Floating Petals & Interactive 3D Craft Hoop) */}
       <section className="relative overflow-hidden pt-6 pb-12 lg:pt-14 lg:pb-20 w-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        {/* Subtle Three.js Floating Petals Canvas Background */}
+        <FloatingPetalsCanvas />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
             {/* Left Narrative Column */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left min-w-0">
@@ -261,38 +267,16 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right Editorial Showcase (No Horizontal Overflow) */}
+            {/* Right Editorial Showcase (Interactive 3D Craft Hoop) */}
             <div className="lg:col-span-5 relative flex justify-center items-center w-full">
-              <div className="relative w-full max-w-[280px] sm:max-w-md aspect-square flex items-center justify-center">
-                {/* Soft ambient blush aura */}
-                <div className="absolute inset-2 rounded-full bg-blush/40 blur-3xl" />
-
-                <div className="relative w-full h-full p-2 sm:p-4">
-                  <Image
-                    src="/images/bloomora-hoop.png"
-                    alt="Bloomora Handcrafted Creations Embroidery Showcase"
-                    fill
-                    priority
-                    className="object-contain drop-shadow-md hover:scale-[1.02] transition-transform duration-500 ease-out"
-                    sizes="(max-width: 640px) 280px, (max-width: 1024px) 400px, 480px"
-                  />
-                </div>
-
-                {/* Floating Artisan Seal */}
-                <div className="absolute -bottom-2 sm:bottom-3 left-2 sm:left-4 bg-surface/95 backdrop-blur-md border border-border-subtle p-2.5 sm:p-3 rounded-xl shadow-subtle flex items-center gap-2 max-w-[calc(100%-1rem)]">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blush/60 flex items-center justify-center text-rose shrink-0">
-                    <Heart className="w-3.5 h-3.5 fill-rose" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-[11px] sm:text-xs font-bold text-ink truncate">Handmade with Love</p>
-                    <p className="text-[9px] sm:text-[10px] text-ink-muted truncate">Vadodara, Gujarat</p>
-                  </div>
-                </div>
-              </div>
+              <CraftHoopShowcase />
             </div>
           </div>
         </div>
       </section>
+
+      {/* Handcrafted Looping Crochet Yarn Thread Divider */}
+      <YarnThreadDivider label="Little Creations • Endless Emotions" />
 
       {/* 2. BRAND VALUES TICKER (Mobile Safe Overflow) */}
       <section className="border-y border-border-subtle bg-surface/60 py-3.5 w-full overflow-hidden">
@@ -531,7 +515,106 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. CUSTOM ORDERS & COMMISSIONS */}
+      {/* 8. WHY EVERLASTING BLOOMS? (Editorial Comparison Matrix) */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 w-full">
+        <div className="text-center space-y-2 max-w-xl mx-auto">
+          <span className="text-xs uppercase font-bold tracking-widest text-rose">
+            Thoughtful Gifting
+          </span>
+          <h2 className="font-serif text-2xl sm:text-4xl text-ink font-normal">
+            Why Handmade Flowers?
+          </h2>
+          <p className="text-xs sm:text-sm text-ink-muted">
+            The enduring emotional difference between commercial cut flowers and Bloomora handcrafted keepsakes.
+          </p>
+        </div>
+
+        <div className="bg-surface rounded-3xl border border-border-subtle p-6 sm:p-10 shadow-subtle overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 divide-y md:divide-y-0 md:divide-x divide-border-subtle/80">
+            {/* Bloomora Column */}
+            <div className="space-y-6 md:pr-8">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-full bg-blush flex items-center justify-center text-rose shrink-0">
+                  <Sparkles className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-xl font-bold text-ink">Bloomora Handmade Blooms</h3>
+                  <p className="text-xs text-rose font-medium">Endless Memories & Emotion</p>
+                </div>
+              </div>
+
+              <ul className="space-y-4 text-xs sm:text-sm text-ink-muted">
+                <li className="flex items-start gap-2.5">
+                  <span className="text-rose font-bold text-base leading-none">✓</span>
+                  <div>
+                    <strong className="text-ink font-semibold">Forever Lifespan:</strong> Hand-crocheted from milk-cotton yarn that never fades, withers, or sheds.
+                  </div>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-rose font-bold text-base leading-none">✓</span>
+                  <div>
+                    <strong className="text-ink font-semibold">Zero Maintenance:</strong> Requires no water changes, pruning, or sunlight. Sits pretty on any desk.
+                  </div>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-rose font-bold text-base leading-none">✓</span>
+                  <div>
+                    <strong className="text-ink font-semibold">100% Hypoallergenic:</strong> Completely pollen-free and pet-safe for sensitive recipients.
+                  </div>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-rose font-bold text-base leading-none">✓</span>
+                  <div>
+                    <strong className="text-ink font-semibold">Slow Craftsmanship:</strong> 4–6 hours of patient needlework and heartfelt human energy in each piece.
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            {/* Standard Fresh Cut Flowers Column */}
+            <div className="space-y-6 pt-6 md:pt-0 md:pl-8 opacity-75">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-full bg-canvas flex items-center justify-center text-ink-muted shrink-0">
+                  <Clock className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-xl font-bold text-ink-muted">Standard Cut Flowers</h3>
+                  <p className="text-xs text-ink-muted font-medium">Temporary & Disposable</p>
+                </div>
+              </div>
+
+              <ul className="space-y-4 text-xs sm:text-sm text-ink-muted">
+                <li className="flex items-start gap-2.5">
+                  <span className="text-ink-muted font-bold text-base leading-none">✕</span>
+                  <div>
+                    <strong className="text-ink font-semibold">Withers in 3–5 Days:</strong> Petals drop, turn brown, and end up in the trash bin quickly.
+                  </div>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-ink-muted font-bold text-base leading-none">✕</span>
+                  <div>
+                    <strong className="text-ink font-semibold">Daily Care Hassle:</strong> Stagnant water trimming and mess on table surfaces.
+                  </div>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-ink-muted font-bold text-base leading-none">✕</span>
+                  <div>
+                    <strong className="text-ink font-semibold">Pollen & Allergens:</strong> Can trigger sneezing or allergic reactions indoors.
+                  </div>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-ink-muted font-bold text-base leading-none">✕</span>
+                  <div>
+                    <strong className="text-ink font-semibold">Fast Commercial Waste:</strong> Mass commercial farming with heavy transit emissions.
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 9. CUSTOM ORDERS & COMMISSIONS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="relative rounded-3xl bg-blush/30 border border-border-subtle p-6 sm:p-14 overflow-hidden">
           <div className="max-w-2xl space-y-5 text-center sm:text-left">
