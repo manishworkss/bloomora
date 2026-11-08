@@ -1,6 +1,6 @@
 # 02_UX_UI_GUIDE.md — Design System & User Experience Guidelines
 
-> **The Handmade Craft** — Customer Storefront & Admin Console  
+> **Bloomora** — Customer Storefront & Admin Console  
 > **Aesthetic Theme:** Handcrafted Warmth, Artisanal Elegance, Mindful Gifting  
 > **Working Brand Line:** *"Little Creations. Endless Emotions."*  
 > **Accessibility Standard:** WCAG 2.2 Level AA Compliance
@@ -9,7 +9,7 @@
 
 ## 1. Aesthetic Philosophy & Brand Voice
 
-The Handmade Craft is an artisanal studio creating intimate, emotion-driven gifts—crochet flowers, beaded keychains, floral bouquets, and bespoke keepsakes. The visual identity must feel:
+Bloomora is an artisanal studio creating intimate, emotion-driven gifts—crochet flowers, beaded keychains, floral bouquets, and bespoke keepsakes. The visual identity must feel:
 
 - **Warm & Tactile:** Reminiscent of natural textures (linen, unbleached cotton, warm paper, soft yarn).
 - **Unhurried & Mindful:** Generous whitespace, soft transitions, and gentle shadows; rejecting the sterile, frantic look of drop-shipping or ultra-fast-fashion storefronts.

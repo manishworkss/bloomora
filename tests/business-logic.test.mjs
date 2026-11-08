@@ -122,3 +122,4 @@ test('TC-STATE-02: Blocks illegal skipping of order states', () => {
   assert.equal(isValidStateTransition('CANCELLED', 'CONFIRMED'), false);
   assert.equal(isValidStateTransition('DELIVERED', 'PROCESSING'), false);
 });
+

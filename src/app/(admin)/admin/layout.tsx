@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard,
@@ -18,6 +19,7 @@ const ADMIN_LINKS = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/admin/orders', label: 'Orders & Fulfillment', icon: ShoppingBag },
   { href: '/admin/products', label: 'Product Catalog', icon: Package },
+  { href: '/admin/enquiries', label: 'Custom Enquiries', icon: MessageSquare },
   { href: '/admin/delivery-zones', label: 'Vadodara Zones & PINs', icon: MapPin },
   { href: '/admin/settings', label: 'Site & WhatsApp Settings', icon: Settings },
 ];
@@ -34,13 +36,24 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <div className="min-h-screen bg-canvas flex">
       {/* Sidebar */}
       <aside className="w-64 bg-surface border-r border-border-subtle flex flex-col shrink-0 hidden md:flex">
-        {/* Brand Header */}
-        <div className="p-6 border-b border-border-subtle">
-          <Link href="/admin/dashboard" className="block">
-            <h2 className="font-serif text-lg font-bold text-ink">The Handmade Craft</h2>
-            <span className="text-[10px] tracking-widest uppercase font-semibold text-primary">
-              Admin Back-Office
-            </span>
+        {/* Brand Header with Melting Logo */}
+        <div className="p-5 border-b border-border-subtle">
+          <Link href="/admin/dashboard" className="flex items-center gap-3">
+            <div className="relative w-12 h-12 shrink-0">
+              <Image
+                src="/images/bloomora-logo.png"
+                alt="Bloomora Admin Logo"
+                fill
+                className="object-contain mix-blend-multiply"
+                sizes="48px"
+              />
+            </div>
+            <div>
+              <h2 className="font-serif text-lg font-bold text-ink leading-tight">Bloomora</h2>
+              <span className="text-[10px] tracking-widest uppercase font-semibold text-primary block">
+                Admin Console
+              </span>
+            </div>
           </Link>
         </div>
 
@@ -74,7 +87,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-ink-muted hover:text-ink hover:bg-canvas transition-colors"
           >
             <ExternalLink className="w-4 h-4" />
-            <span>Open Customer Storefront</span>
+            <span>Open Bloomora Storefront</span>
           </Link>
 
           <Link
@@ -91,9 +104,21 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <div className="flex-1 flex flex-col min-w-0">
         {/* Mobile Header */}
         <header className="md:hidden bg-surface border-b border-border-subtle p-4 flex items-center justify-between">
-          <Link href="/admin/dashboard" className="font-serif font-bold text-base text-ink">
-            THC Admin
-          </Link>
+          <div className="flex items-center gap-2">
+            <div className="relative w-8 h-8 rounded-full overflow-hidden">
+              <Image
+                src="/images/bloomora-logo.png"
+                alt="Bloomora Logo"
+                fill
+                className="object-cover mix-blend-multiply"
+                sizes="32px"
+              />
+            </div>
+            <Link href="/admin/dashboard" className="font-serif font-bold text-base text-ink">
+              Bloomora Admin
+            </Link>
+          </div>
+
           <div className="flex items-center gap-3">
             <Link href="/" target="_blank" className="text-xs text-primary font-semibold">
               Storefront ↗
@@ -111,4 +136,3 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     </div>
   );
 }
-

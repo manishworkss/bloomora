@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ShoppingBag, Menu, X, Heart, MessageCircle } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp';
@@ -11,9 +12,9 @@ export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 bg-canvas/90 backdrop-blur-md border-b border-border-subtle transition-all duration-200">
+    <header className="sticky top-0 z-40 bg-canvas/95 backdrop-blur-md border-b border-border-subtle transition-all duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-20 sm:h-24">
           {/* Mobile Menu Button */}
           <div className="flex items-center lg:hidden">
             <button
@@ -26,15 +27,24 @@ export const Header: React.FC = () => {
             </button>
           </div>
 
-          {/* Brand Identity / Logo */}
-          <div className="flex-1 lg:flex-none text-center lg:text-left">
-            <Link href="/" className="inline-block group focus-visible:outline-none">
-              <span className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-ink group-hover:text-primary transition-colors block">
-                The Handmade Craft
-              </span>
-              <span className="text-[11px] sm:text-xs text-ink-muted tracking-widest uppercase font-medium block -mt-0.5">
-                Little Creations. Endless Emotions.
-              </span>
+          {/* Brand Identity / Big Bold Logo (text name removed as it's within the logo artwork) */}
+          <div className="flex-1 lg:flex-none flex items-center justify-center lg:justify-start">
+            <Link
+              href="/"
+              aria-label="Bloomora - Handcrafted Creations"
+              className="inline-flex items-center group focus-visible:outline-none py-1"
+            >
+              {/* Logo with mix-blend-multiply to melt seamlessly into the background */}
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 shrink-0 transition-transform duration-300 group-hover:scale-105">
+                <Image
+                  src="/images/bloomora-logo.png"
+                  alt="Bloomora Handcrafted Creations"
+                  fill
+                  priority
+                  className="object-contain mix-blend-multiply drop-shadow-sm"
+                  sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, 112px"
+                />
+              </div>
             </Link>
           </div>
 
@@ -62,7 +72,7 @@ export const Header: React.FC = () => {
               href="/shop?category=flowers"
               className="text-sm font-medium text-ink hover:text-primary transition-colors py-1"
             >
-              Flowers
+              Desk Pots
             </Link>
             <Link
               href="/custom-orders"
@@ -84,12 +94,12 @@ export const Header: React.FC = () => {
             {/* WhatsApp Quick Link */}
             <Link
               href={`https://wa.me/${DEFAULT_WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                "Hi The Handmade Craft! 👋 I'm browsing your website and have a question."
+                "Hi Bloomora! 🌸 I'm browsing your website and have a question."
               )}`}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200 text-xs font-semibold tracking-wide transition-all shadow-sm"
-              title="Chat with owner on WhatsApp"
+              title="Chat with Bloomora creator on WhatsApp"
             >
               <MessageCircle className="w-4 h-4 text-whatsapp fill-whatsapp" />
               <span>WhatsApp Us</span>
@@ -143,7 +153,7 @@ export const Header: React.FC = () => {
               onClick={() => setMobileMenuOpen(false)}
               className="block text-base font-medium text-ink hover:text-primary py-2 border-b border-border-subtle/50"
             >
-              Crochet Flower Pots
+              Crochet Desk Pots
             </Link>
             <Link
               href="/custom-orders"
@@ -157,14 +167,14 @@ export const Header: React.FC = () => {
               onClick={() => setMobileMenuOpen(false)}
               className="block text-base font-medium text-ink hover:text-primary py-2 border-b border-border-subtle/50"
             >
-              About The Artisan
+              About Bloomora
             </Link>
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
               className="block text-base font-medium text-ink hover:text-primary py-2"
             >
-              Contact & Delivery Areas
+              Contact & Vadodara Delivery
             </Link>
 
             <div className="pt-2">
@@ -184,4 +194,3 @@ export const Header: React.FC = () => {
     </header>
   );
 };
-

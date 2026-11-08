@@ -1,6 +1,6 @@
 # 08_DEPLOYMENT_RUNBOOK.md — Operations & Deployment Runbook
 
-> **The Handmade Craft** — Customer Storefront & Admin Console  
+> **Bloomora** — Customer Storefront & Admin Console  
 > **Target Hosting:** Vercel Global Edge Network  
 > **Database:** Supabase Managed Cloud (Region: `ap-south-1` Mumbai)  
 > **Media CDN:** Cloudinary Managed Asset Pipeline  

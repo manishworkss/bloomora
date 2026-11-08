@@ -1,6 +1,6 @@
 # 05_API_SPEC.md — API & Route Handler Specifications
 
-> **The Handmade Craft** — Customer Storefront & Admin Console  
+> **Bloomora** — Customer Storefront & Admin Console  
 > **API Protocol:** REST over HTTPS | JSON Request & Response Bodies  
 > **Base Path:** `/api`  
 > **Security Schemes:** Public Storefront (CORS-restricted, Rate-Limited) & Admin (Supabase Session Token)

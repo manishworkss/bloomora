@@ -1,6 +1,6 @@
 # 10_OPEN_DECISIONS.md — Owner Decisions & Business Assumptions Registry
 
-> **The Handmade Craft** — Customer Storefront & Admin Console  
+> **Bloomora** — Customer Storefront & Admin Console  
 > **Status:** ✅ OWNER DECISIONS RECORDED & RESOLVED (Nov 9, 2026)  
 > **Rule of Engagement:** Real business data only. Zero fake scarcity or artificial urgency.
 
@@ -44,7 +44,7 @@
   3. Clicking **"Place Order via WhatsApp"** or **"Enquire to Order"**:
      - Creates the order record in the database with status `PENDING` and a high-entropy `lookup_token`.
      - Opens WhatsApp chat directly with `+91 8271735190` with a pre-filled, formatted order summary:
-       > *"Hi The Handmade Craft! 👋 I'd like to place an order on your website:*  
+       > *"Hi Bloomora! 👋 I'd like to place an order on your website:*  
        > *Order: THC-202611-0001*  
        > *Items: [Product Title] x 2 (₹798)*  
        > *Delivery To: [Customer Name], [Address], Vadodara - [PIN]*  

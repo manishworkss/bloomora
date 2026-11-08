@@ -63,7 +63,7 @@ export default function CheckoutPage() {
       .join('\n');
 
     // WhatsApp Message
-    const message = `Hi The Handmade Craft! 👋🌸\nI would like to place an order from your website!\n\n🛍️ *Order Ref:* ${orderNumber}\n\n*Items Ordered:*\n${itemsSummary}\n\n📦 *Delivery Address:*\n${name}\nPhone: ${phone}\n${address}\nLandmark: ${landmark || 'N/A'}\nVadodara PIN: ${postalCode}\nSpecial Notes: ${notes || 'None'}\n\n💵 *Total Amount:* ${formatINR(grandTotal)} (Includes ₹${deliveryFee} Vadodara delivery)\n\nPlease share your UPI payment QR or details so I can confirm my order! 💖`;
+    const message = `Hi Bloomora! 👋🌸\nI would like to place an order from your website!\n\n🛍️ *Order Ref:* ${orderNumber}\n\n*Items Ordered:*\n${itemsSummary}\n\n📦 *Delivery Address:*\n${name}\nPhone: ${phone}\n${address}\nLandmark: ${landmark || 'N/A'}\nVadodara PIN: ${postalCode}\nSpecial Notes: ${notes || 'None'}\n\n💵 *Total Amount:* ${formatINR(grandTotal)} (Includes ₹${deliveryFee} Vadodara delivery)\n\nPlease share your UPI payment QR or details so I can confirm my order! 💖`;
 
     const whatsappUrl = buildWhatsAppLink({ message });
 
@@ -92,7 +92,7 @@ export default function CheckoutPage() {
         </div>
         <div className="space-y-2">
           <span className="text-xs uppercase font-bold tracking-widest text-secondary">
-            Order Submitted via WhatsApp
+            Order Submitted to Bloomora via WhatsApp
           </span>
           <h1 className="font-serif text-3xl font-bold text-ink">
             Thank You, {orderCompleted.name}! 🌸
@@ -101,7 +101,7 @@ export default function CheckoutPage() {
             Order Reference: {orderCompleted.orderNumber}
           </p>
           <p className="text-sm text-ink-muted max-w-md mx-auto leading-relaxed">
-            Your order details have been prepared for WhatsApp. If WhatsApp didn&apos;t open automatically, click the button below to message the creator directly to confirm your order and UPI payment.
+            Your order details have been prepared for WhatsApp. If WhatsApp didn&apos;t open automatically, click the button below to message Bloomora directly to confirm your order and UPI payment.
           </p>
         </div>
 
@@ -133,7 +133,7 @@ export default function CheckoutPage() {
           Add some handmade flowers, bouquets, or keychains before checking out.
         </p>
         <Link href="/shop">
-          <Button variant="primary">Explore Creations</Button>
+          <Button variant="primary">Explore Bloomora Creations</Button>
         </Link>
       </div>
     );
@@ -143,7 +143,7 @@ export default function CheckoutPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
       <div className="space-y-2 text-center sm:text-left">
         <span className="text-xs uppercase font-bold tracking-widest text-secondary">
-          Frictionless Checkout
+          Bloomora Checkout
         </span>
         <h1 className="font-serif text-3xl sm:text-4xl font-bold text-ink">
           Delivery Details & Order Review
@@ -311,7 +311,7 @@ export default function CheckoutPage() {
                 <span>WhatsApp Assisted Payment & Confirmation</span>
               </div>
               <p className="text-ink-muted leading-relaxed">
-                Clicking the button below submits your order and connects you directly to our WhatsApp (+91 8271735190) with your full receipt pre-filled. You can pay via UPI QR and receive your fulfillment updates!
+                Clicking the button below submits your order to Bloomora and connects you directly to our WhatsApp (+91 8271735190) with your full receipt pre-filled.
               </p>
             </div>
 
@@ -338,4 +338,3 @@ export default function CheckoutPage() {
     </div>
   );
 }
-

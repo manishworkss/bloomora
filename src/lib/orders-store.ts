@@ -138,3 +138,4 @@ export function updateOrderStatus(orderId: string, newStatus: OrderStatus, notes
 
   return ordersRegistry[index];
 }
+

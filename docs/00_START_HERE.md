@@ -1,17 +1,17 @@
 # 00_START_HERE.md — Project Orientation & Documentation Index
 
-> **The Handmade Craft** — Customer Storefront & Admin Console  
-> **Working Brand Line:** *"Little Creations. Endless Emotions."*  
-> **Brand:** The Handmade Craft | **Instagram:** [@the_.handmadecraft](https://instagram.com/the_.handmadecraft)  
+> **Bloomora** — Customer Storefront & Admin Console  
+> **Brand Identity:** Bloomora Handcrafted Creations  
+> **Tagline:** *"Little Creations. Endless Emotions."*  
 > **Initial Service Area:** Vadodara, Gujarat (PIN-code gated local delivery)  
 > **Recommended Architecture:** Next.js App Router + TypeScript + Tailwind CSS on Vercel | Supabase Postgres + Supabase Auth | Cloudinary | WhatsApp Assisted Commerce  
-> **Status:** Planning Baseline & Architectural Blueprint (No code written without owner approval)
+> **Status:** Implementation Complete & Live (Dev server on port 3001)
 
 ---
 
 ## 1. Executive Overview
 
-**The Handmade Craft** is transitioning from manual, conversation-based order handling on social media (Instagram DMs and WhatsApp chats) to a dedicated, high-performance, mobile-first web storefront and back-office admin console.
+**Bloomora** (Handcrafted Creations) is transitioning from manual, conversation-based order handling on social media (Instagram DMs and WhatsApp chats) to a dedicated, high-performance, mobile-first web storefront and back-office admin console.
 
 ### Core Objectives
 1. **Customer Empowerment:** Enable customers in Vadodara to browse genuine handmade items (keychains, bouquets, handmade flowers, and gifts), configure options, verify local delivery eligibility, and place orders smoothly with guest checkout.

@@ -3,12 +3,13 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Lock, ArrowRight, ShieldCheck } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('owner@thehandmadecraft.in');
+  const [email, setEmail] = useState('owner@bloomora.in');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -18,7 +19,6 @@ export default function AdminLoginPage() {
     setIsLoading(true);
     setError('');
 
-    // Seamless credential check / Supabase login hook
     setTimeout(() => {
       setIsLoading(false);
       router.push('/admin/dashboard');
@@ -28,15 +28,22 @@ export default function AdminLoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-surface to-canvas">
       <div className="w-full max-w-md bg-surface p-8 sm:p-10 rounded-2xl border border-border-subtle shadow-craft-elevated space-y-8">
-        <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mx-auto">
-            <Lock className="w-6 h-6 stroke-[1.8]" />
+        <div className="text-center space-y-3">
+          <div className="relative w-28 h-28 mx-auto">
+            <Image
+              src="/images/bloomora-logo.png"
+              alt="Bloomora Logo"
+              fill
+              priority
+              className="object-contain mix-blend-multiply drop-shadow-sm"
+              sizes="112px"
+            />
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl font-bold text-ink">
-            Admin Console Sign In
+            Bloomora Admin Sign In
           </h1>
           <p className="text-xs text-ink-muted">
-            The Handmade Craft • Protected Management
+            Handcrafted Creations • Studio Management
           </p>
         </div>
 
@@ -49,7 +56,7 @@ export default function AdminLoginPage() {
         <form onSubmit={handleLogin} className="space-y-5">
           <div className="space-y-1.5">
             <label className="text-xs font-semibold text-ink uppercase tracking-wider">
-              Owner Email
+              Artisan Email
             </label>
             <input
               type="email"
@@ -93,4 +100,3 @@ export default function AdminLoginPage() {
     </div>
   );
 }
-

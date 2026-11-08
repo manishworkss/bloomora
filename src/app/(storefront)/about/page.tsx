@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Heart, Instagram, Sparkles, MessageCircle, MapPin } from 'lucide-react';
 import { DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp';
 import { Button } from '@/components/ui/Button';
@@ -13,33 +14,30 @@ export default function AboutPage() {
           Our Story & Philosophy
         </span>
         <h1 className="font-serif text-4xl sm:text-5xl font-bold text-ink leading-tight">
-          Crafting Warmth, One Stitch at a Time
+          Crafting Warmth at Bloomora
         </h1>
         <p className="text-base text-ink-muted leading-relaxed">
-          Welcome to <strong className="text-ink">The Handmade Craft</strong>. We are an artisan studio based in Vadodara, Gujarat, devoted to creating emotional, handcrafted keepsakes.
+          Welcome to <strong className="text-ink">Bloomora — Handcrafted Creations</strong>. We are an artisan studio based in Vadodara, Gujarat, devoted to creating emotional, handcrafted keepsakes.
         </p>
       </div>
 
-      {/* Visual & Quote */}
-      <div className="relative rounded-2xl overflow-hidden aspect-[16/9] bg-surface border border-border-subtle shadow-craft">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=1200&auto=format&fit=crop"
-          alt="Artisanal yarn and flowers"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent flex items-end p-8">
-          <p className="font-serif text-xl sm:text-2xl text-white italic font-normal max-w-xl">
-            &ldquo;Little Creations. Endless Emotions. In every knot, we weave a feeling.&rdquo;
-          </p>
+      {/* Visual with Melting Logo */}
+      <div className="relative rounded-2xl overflow-hidden aspect-[16/9] bg-surface border border-border-subtle shadow-craft flex items-center justify-center p-8">
+        <div className="relative w-64 h-64 max-w-full">
+          <Image
+            src="/images/bloomora-logo.png"
+            alt="Bloomora Handcrafted Creations Logo"
+            fill
+            className="object-contain mix-blend-multiply"
+          />
         </div>
       </div>
 
       {/* Narrative Story */}
       <div className="prose prose-stone text-base text-ink-muted leading-relaxed space-y-6">
-        <h2 className="font-serif text-2xl font-bold text-ink">Why We Started</h2>
+        <h2 className="font-serif text-2xl font-bold text-ink">The Bloomora Journey</h2>
         <p>
-          In a world increasingly driven by mass manufacturing, fast-fashion trends, and disposable plastic novelties, thoughtful human connection often gets lost. We began <strong>The Handmade Craft</strong> on Instagram (<Link href="https://instagram.com/the_.handmadecraft" target="_blank" rel="noopener noreferrer" className="text-primary font-semibold hover:underline">@the_.handmadecraft</Link>) to bring back the magic of slow, intentional craftsmanship.
+          In a world increasingly driven by mass manufacturing, fast-fashion trends, and disposable plastic novelties, thoughtful human connection often gets lost. We created <strong>Bloomora</strong> to bring back the magic of slow, intentional craftsmanship.
         </p>
         <p>
           Whether it is a smiling sunflower desk pot to cheer up a loved one, a customized pastel bouquet for an anniversary, or a personalized keychain carried every day, each creation has a soul of its own. Unlike natural fresh flowers that wither away after three days, our everlasting crochet blooms remain vibrant forever.
@@ -81,7 +79,7 @@ export default function AboutPage() {
 
       {/* Connect Banner */}
       <div className="rounded-2xl bg-surface border border-border-subtle p-8 text-center space-y-4 shadow-craft">
-        <h3 className="font-serif text-2xl font-bold text-ink">Follow Our Creative Journey</h3>
+        <h3 className="font-serif text-2xl font-bold text-ink">Follow Bloomora on Instagram</h3>
         <p className="text-sm text-ink-muted max-w-md mx-auto">
           See behind-the-scenes knotting videos, new collection previews, and customer appreciation on our Instagram.
         </p>
@@ -111,4 +109,3 @@ export default function AboutPage() {
     </div>
   );
 }
-

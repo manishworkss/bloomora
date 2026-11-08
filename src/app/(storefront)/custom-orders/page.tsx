@@ -18,13 +18,11 @@ export default function CustomOrdersPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Build personalized WhatsApp prefill message
-    const message = `Hi The Handmade Craft! 🌸\nI'd like to commission a custom handcrafted gift!\n\nName: ${name}\nPhone: ${phone}\nOccasion: ${occasion || 'Special Gift'}\nNeeded By: ${neededByDate || 'Flexible'}\nBudget: ${budget || 'Flexible'}\nDetails: ${details}\n\nCould we discuss design ideas and pricing? 💖`;
+    const message = `Hi Bloomora! 🌸\nI'd like to commission a custom handcrafted gift!\n\nName: ${name}\nPhone: ${phone}\nOccasion: ${occasion || 'Special Gift'}\nNeeded By: ${neededByDate || 'Flexible'}\nBudget: ${budget || 'Flexible'}\nDetails: ${details}\n\nCould we discuss design ideas and pricing? 💖`;
 
     const whatsappUrl = buildWhatsAppLink({ message });
     setSubmitted(true);
 
-    // Open WhatsApp in a new tab
     if (typeof window !== 'undefined') {
       window.open(whatsappUrl, '_blank');
     }
@@ -39,10 +37,10 @@ export default function CustomOrdersPage() {
           <span>Personalized Artisanal Commissions</span>
         </div>
         <h1 className="font-serif text-3xl sm:text-5xl font-bold text-ink">
-          Bring Your Dream Creation to Life
+          Custom Bloomora Creations
         </h1>
         <p className="text-sm sm:text-base text-ink-muted max-w-xl mx-auto leading-relaxed">
-          Whether you want a bouquet of favorite flowers, a personalized name keychain, or bulk favors for an anniversary, we handcraft bespoke pieces with love in Vadodara.
+          Whether you want a bouquet of favorite flowers, a personalized name keychain, or bulk favors for an anniversary, Bloomora handcrafts bespoke pieces with love in Vadodara.
         </p>
       </div>
 
@@ -55,7 +53,7 @@ export default function CustomOrdersPage() {
             </div>
             <h3 className="font-serif text-2xl font-bold text-ink">Opening WhatsApp...</h3>
             <p className="text-sm text-ink-muted max-w-md mx-auto">
-              Your inquiry has been formulated. If WhatsApp didn&apos;t open automatically, click the button below to send your request directly to the creator.
+              Your inquiry has been formulated. If WhatsApp didn&apos;t open automatically, click the button below to send your request directly to Bloomora.
             </p>
             <div className="pt-2">
               <Link
@@ -151,7 +149,7 @@ export default function CustomOrdersPage() {
                 rows={4}
                 value={details}
                 onChange={(e) => setDetails(e.target.value)}
-                placeholder="Tell us what flowers, colors, or personalized charms you'd love! Feel free to mention any reference photos you have."
+                placeholder="Tell Bloomora what flowers, colors, or personalized charms you'd love!"
                 className="w-full px-4 py-2.5 rounded-lg bg-canvas border border-border-subtle text-sm text-ink focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
@@ -182,10 +180,9 @@ export default function CustomOrdersPage() {
           className="inline-flex items-center gap-1.5 text-sm font-semibold text-whatsapp hover:underline"
         >
           <MessageCircle className="w-4 h-4 fill-current" />
-          <span>Message the Artisan on WhatsApp (+91 8271735190)</span>
+          <span>Message Bloomora on WhatsApp (+91 8271735190)</span>
         </Link>
       </div>
     </div>
   );
 }
-

@@ -2,25 +2,39 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'The Handmade Craft | Little Creations. Endless Emotions.',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001'),
+  title: 'Bloomora | Handcrafted Creations • Little Creations. Endless Emotions.',
   description:
-    'Thoughtful, authentic handmade keychains, floral bouquets, and bespoke handmade gifts crafted with love in Vadodara, Gujarat.',
+    'Thoughtful, authentic handmade keychains, everlasting floral bouquets, and bespoke gifts crafted with love in Vadodara, Gujarat by Bloomora.',
   keywords: [
-    'handmade craft',
-    'handmade gifts vadodara',
+    'bloomora',
+    'bloomora vadodara',
+    'handmade craft vadodara',
     'crochet bouquets',
     'handmade flowers',
     'personalized keychains',
     'vadodara gifts',
   ],
-  authors: [{ name: 'The Handmade Craft' }],
+  authors: [{ name: 'Bloomora' }],
+  icons: {
+    icon: '/images/bloomora-logo.png',
+    apple: '/images/bloomora-logo.png',
+  },
   openGraph: {
-    title: 'The Handmade Craft | Little Creations. Endless Emotions.',
+    title: 'Bloomora | Handcrafted Creations',
     description:
       'Artisanal handmade gifts, keychains, and floral creations in Vadodara, Gujarat.',
-    siteName: 'The Handmade Craft',
+    siteName: 'Bloomora',
     locale: 'en_IN',
     type: 'website',
+    images: [
+      {
+        url: '/images/bloomora-logo.png',
+        width: 1024,
+        height: 1024,
+        alt: 'Bloomora Handcrafted Creations Logo',
+      },
+    ],
   },
 };
 

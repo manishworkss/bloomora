@@ -1,6 +1,6 @@
 # 03_TECHNICAL_ARCHITECTURE.md — System & Technical Architecture
 
-> **The Handmade Craft** — Customer Storefront & Admin Console  
+> **Bloomora** — Customer Storefront & Admin Console  
 > **Architecture Pattern:** Full-Stack Next.js App Router on Vercel Serverless  
 > **Data Layer:** Supabase Managed PostgreSQL with Row-Level Security (RLS)  
 > **Media Layer:** Cloudinary Image Pipeline & CDN Delivery  

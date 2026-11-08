@@ -1,16 +1,16 @@
 # 01_PRD.md — Product Requirements Document (PRD)
 
-> **Project:** The Handmade Craft — Customer Storefront & Admin Console  
+> **Project:** Bloomora Handcrafted Creations — Customer Storefront & Admin Console  
 > **Brand Working Line:** *"Little Creations. Endless Emotions."*  
-> **Version:** 1.0 (Planning Baseline)  
+> **Version:** 1.0 (Live Implementation)  
 > **Target Deployment:** Vercel Full-Stack Architecture (Next.js App Router)  
-> **Open Decisions:** Tracked in [`10_OPEN_DECISIONS.md`](file:///Users/manishkumar/Desktop/craft/docs/10_OPEN_DECISIONS.md)
+> **Decisions & Specs:** Finalized in [`10_OPEN_DECISIONS.md`](file:///Users/manishkumar/Desktop/craft/docs/10_OPEN_DECISIONS.md)
 
 ---
 
 ## 1. Executive Summary
 
-**The Handmade Craft** is an artisan business based in Vadodara, Gujarat, specializing in handmade keychains, bouquets, handmade flowers, and bespoke personalized gifts. The business currently relies on Instagram direct messages (`@the_.handmadecraft`) and personal WhatsApp chats for product discovery, pricing discussions, payment collection, and delivery coordination.
+**Bloomora** (Handcrafted Creations) is an artisan business based in Vadodara, Gujarat, specializing in handmade keychains, bouquets, handmade flowers, and bespoke personalized gifts. The business is transitioning from social chats to a high-performance, mobile-first web storefront and back-office admin console.
 
 While social commerce provides a direct personal touch, manual order processing suffers from:
 - Inconsistent catalog visibility and price confusion.

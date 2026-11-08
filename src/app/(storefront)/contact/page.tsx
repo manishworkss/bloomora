@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { MessageCircle, Instagram, MapPin, Send, Mail } from 'lucide-react';
+import { MessageCircle, Instagram, MapPin, Send } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { DEFAULT_WHATSAPP_NUMBER, buildWhatsAppLink } from '@/lib/whatsapp';
 
@@ -14,7 +14,7 @@ export default function ContactPage() {
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
-    const formatted = `Hi The Handmade Craft! 👋\n\nName: ${name}\nPhone: ${phone}\nTopic: ${subject || 'General Inquiry'}\nMessage: ${message}`;
+    const formatted = `Hi Bloomora! 👋🌸\n\nName: ${name}\nPhone: ${phone}\nTopic: ${subject || 'General Inquiry'}\nMessage: ${message}`;
     const url = buildWhatsAppLink({ message: formatted });
     if (typeof window !== 'undefined') {
       window.open(url, '_blank');
@@ -28,7 +28,7 @@ export default function ContactPage() {
           We&apos;d Love to Hear From You
         </span>
         <h1 className="font-serif text-3xl sm:text-5xl font-bold text-ink">
-          Contact & Studio Support
+          Contact Bloomora Studio
         </h1>
         <p className="text-sm text-ink-muted leading-relaxed">
           Have questions about a custom bouquet, order delivery in Vadodara, or want to discuss a personalized idea? Reach out to us directly!
@@ -59,7 +59,7 @@ export default function ContactPage() {
               <Instagram className="w-5 h-5" />
             </div>
             <h3 className="font-serif text-base font-bold text-ink">Instagram DMs</h3>
-            <p className="text-xs text-ink-muted">Follow our daily stories and knotting reels.</p>
+            <p className="text-xs text-ink-muted">Follow our daily knotting reels & stories.</p>
             <Link
               href="https://instagram.com/the_.handmadecraft"
               target="_blank"
@@ -124,7 +124,7 @@ export default function ContactPage() {
                 type="text"
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
-                placeholder="e.g. Question about bouquet customization"
+                placeholder="e.g. Custom bouquet question"
                 className="w-full px-4 py-2.5 rounded-lg bg-canvas border border-border-subtle text-sm text-ink focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
@@ -138,14 +138,14 @@ export default function ContactPage() {
                 rows={4}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                placeholder="How can we help make your gift special?"
+                placeholder="How can Bloomora make your gift special?"
                 className="w-full px-4 py-2.5 rounded-lg bg-canvas border border-border-subtle text-sm text-ink focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
 
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
               <p className="text-xs text-ink-muted">
-                📲 Submitting connects you directly to our WhatsApp chat.
+                📲 Submitting connects you directly to Bloomora&apos;s WhatsApp chat.
               </p>
               <Button type="submit" variant="whatsapp" size="lg" className="w-full sm:w-auto font-semibold">
                 <Send className="w-4 h-4 mr-2" />
@@ -158,4 +158,3 @@ export default function ContactPage() {
     </div>
   );
 }
-

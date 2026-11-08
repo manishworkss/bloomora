@@ -1,6 +1,6 @@
 # 07_TEST_PLAN.md — Quality Assurance & Verification Plan
 
-> **The Handmade Craft** — Customer Storefront & Admin Console  
+> **Bloomora** — Customer Storefront & Admin Console  
 > **Testing Frameworks:** Vitest (Unit/Integration) + React Testing Library + Playwright (E2E)  
 > **Target Coverage:** $>85\%$ on Core Commerce Logic (Checkout, Stock Locks, Pricing, State Machine)
 
@@ -8,7 +8,7 @@
 
 ## 1. Testing Philosophy & Test Pyramid
 
-Quality assurance for The Handmade Craft focuses heavily on **business-critical failure modes**: ensuring stock is never oversold, orders are never duplicated, delivery fees are calculated accurately, and customer PII is never exposed through order enumeration.
+Quality assurance for Bloomora focuses heavily on **business-critical failure modes**: ensuring stock is never oversold, orders are never duplicated, delivery fees are calculated accurately, and customer PII is never exposed through order enumeration.
 
 ```
                   / \

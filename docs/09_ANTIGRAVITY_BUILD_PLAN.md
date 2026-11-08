@@ -1,6 +1,6 @@
 # 09_ANTIGRAVITY_BUILD_PLAN.md — Implementation Roadmap & Execution Plan
 
-> **The Handmade Craft** — Customer Storefront & Admin Console  
+> **Bloomora** — Customer Storefront & Admin Console  
 > **Execution Strategy:** Phased, Test-Driven, Incremental Verification  
 > **Architecture:** Full-Stack Next.js (App Router) on Vercel + Supabase Postgres + Cloudinary + WhatsApp  
 > **Status:** Planning Baseline (Awaiting User/Owner Approval to Begin Phase 1)

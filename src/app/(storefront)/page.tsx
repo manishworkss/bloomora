@@ -1,185 +1,20 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Sparkles, Heart, ArrowRight, MessageCircle, Truck, Flower2, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { ProductCard } from '@/components/storefront/ProductCard';
 import { DEFAULT_WHATSAPP_NUMBER, getCustomOrderInquiryLink } from '@/lib/whatsapp';
-import { Product } from '@/types';
-
-// Curated Initial Catalog Baseline for Vadodara Storefront
-const FEATURED_PRODUCTS: Product[] = [
-  {
-    id: 'prod-001',
-    categoryId: 'cat-bouquets',
-    category: {
-      id: 'cat-bouquets',
-      name: 'Floral Bouquets',
-      slug: 'bouquets',
-      displayOrder: 1,
-      isActive: true,
-      createdAt: '2026-11-09',
-    },
-    title: 'Everlasting Crochet Lavender & Tulip Bouquet',
-    slug: 'everlasting-lavender-tulip-bouquet',
-    shortDescription:
-      'Handcrafted with soft milk-cotton yarn in pastel lilac and cream, tied with natural jute twine.',
-    fullDescription:
-      'A timeless arrangement of handcrafted lavender sprigs and pastel tulips. Hand-knitted with love in Vadodara, this bouquet never withers and stays vibrant forever.',
-    basePrice: 899,
-    compareAtPrice: 1049,
-    productType: 'READY_MADE',
-    preparationDays: 0,
-    isPublished: true,
-    isFeatured: true,
-    hasVariants: false,
-    stockQuantity: 6,
-    lowStockThreshold: 2,
-    images: [
-      {
-        id: 'img-001',
-        productId: 'prod-001',
-        cloudinaryPublicId: 'the-handmade-craft/sample-1',
-        imageUrl:
-          'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=800&auto=format&fit=crop',
-        altText: 'Handmade crochet bouquet with lavender and cream tulips',
-        displayOrder: 0,
-        isPrimary: true,
-      },
-    ],
-    createdAt: '2026-11-09',
-    updatedAt: '2026-11-09',
-  },
-  {
-    id: 'prod-002',
-    categoryId: 'cat-flowers',
-    category: {
-      id: 'cat-flowers',
-      name: 'Flower Pots',
-      slug: 'flowers',
-      displayOrder: 2,
-      isActive: true,
-      createdAt: '2026-11-09',
-    },
-    title: 'Mini Smiling Sunflower Crochet Desk Pot',
-    slug: 'mini-smiling-sunflower-crochet-pot',
-    shortDescription:
-      'Adorable handmade yellow sunflower with a joyful face sitting in a cozy terracotta yarn pot.',
-    fullDescription:
-      'Brighten any work desk, study table, or gifting occasion with this cheerful smiling sunflower. Hand-crocheted stitch-by-stitch.',
-    basePrice: 399,
-    compareAtPrice: 450,
-    productType: 'READY_MADE',
-    preparationDays: 0,
-    isPublished: true,
-    isFeatured: true,
-    hasVariants: false,
-    stockQuantity: 10,
-    lowStockThreshold: 3,
-    images: [
-      {
-        id: 'img-002',
-        productId: 'prod-002',
-        cloudinaryPublicId: 'the-handmade-craft/sample-2',
-        imageUrl:
-          'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?q=80&w=800&auto=format&fit=crop',
-        altText: 'Cute crochet sunflower desk pot',
-        displayOrder: 0,
-        isPrimary: true,
-      },
-    ],
-    createdAt: '2026-11-09',
-    updatedAt: '2026-11-09',
-  },
-  {
-    id: 'prod-003',
-    categoryId: 'cat-keychains',
-    category: {
-      id: 'cat-keychains',
-      name: 'Keychains',
-      slug: 'keychains',
-      displayOrder: 3,
-      isActive: true,
-      createdAt: '2026-11-09',
-    },
-    title: 'Handmade Daisy Flower Charm Keychain',
-    slug: 'handmade-daisy-flower-charm-keychain',
-    shortDescription:
-      'Delicate white daisy with yellow pistil charm, durable alloy golden ring, and ribbon bow.',
-    fullDescription:
-      'A lightweight yet durable handmade keychain to keep keys organized or attach to your favorite handbag or backpack.',
-    basePrice: 199,
-    compareAtPrice: 249,
-    productType: 'READY_MADE',
-    preparationDays: 0,
-    isPublished: true,
-    isFeatured: true,
-    hasVariants: false,
-    stockQuantity: 15,
-    lowStockThreshold: 5,
-    images: [
-      {
-        id: 'img-003',
-        productId: 'prod-003',
-        cloudinaryPublicId: 'the-handmade-craft/sample-3',
-        imageUrl:
-          'https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=800&auto=format&fit=crop',
-        altText: 'Handmade daisy crochet keychain charm',
-        displayOrder: 0,
-        isPrimary: true,
-      },
-    ],
-    createdAt: '2026-11-09',
-    updatedAt: '2026-11-09',
-  },
-  {
-    id: 'prod-004',
-    categoryId: 'cat-bouquets',
-    category: {
-      id: 'cat-bouquets',
-      name: 'Floral Bouquets',
-      slug: 'bouquets',
-      displayOrder: 1,
-      isActive: true,
-      createdAt: '2026-11-09',
-    },
-    title: 'Customizable Pastel Rose & Daisy Keepsake Bouquet',
-    slug: 'customizable-pastel-rose-daisy-keepsake-bouquet',
-    shortDescription:
-      'Bespoke bouquet customized with your favorite color palette. Handcrafted to order.',
-    fullDescription:
-      'Select your personalized colors and let our artisan craft an exclusive floral bouquet just for your special person.',
-    basePrice: 1199,
-    productType: 'MADE_TO_ORDER',
-    preparationDays: 3,
-    isPublished: true,
-    isFeatured: true,
-    hasVariants: false,
-    stockQuantity: 99,
-    lowStockThreshold: 1,
-    images: [
-      {
-        id: 'img-004',
-        productId: 'prod-004',
-        cloudinaryPublicId: 'the-handmade-craft/sample-4',
-        imageUrl:
-          'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=800&auto=format&fit=crop',
-        altText: 'Customizable handmade rose bouquet in Vadodara',
-        displayOrder: 0,
-        isPrimary: true,
-      },
-    ],
-    createdAt: '2026-11-09',
-    updatedAt: '2026-11-09',
-  },
-];
+import { getProducts } from '@/lib/products-store';
 
 export default function HomePage() {
   const customWhatsAppUrl = getCustomOrderInquiryLink();
+  const featuredProducts = getProducts(true).slice(0, 4);
 
   return (
     <div className="space-y-20 pb-20">
-      {/* 1. HERO SECTION */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-surface via-canvas to-canvas pt-12 pb-20 lg:pt-20 lg:pb-28">
+      {/* 1. HERO SECTION WITH MELTING BLOOMORA EMBROIDERY LOGO */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-surface via-canvas to-canvas pt-10 pb-20 lg:pt-16 lg:pb-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             {/* Left Copy */}
@@ -189,13 +24,17 @@ export default function HomePage() {
                 <span>Vadodara&apos;s Artisan Studio • Delivering City-Wide</span>
               </div>
 
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-ink tracking-tight leading-[1.15]">
-                Little Creations. <br />
-                <span className="text-primary italic font-normal">Endless Emotions.</span>
-              </h1>
+              <div className="space-y-2">
+                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-ink tracking-tight leading-[1.12]">
+                  Bloomora <br />
+                  <span className="text-primary italic font-normal text-3xl sm:text-4xl lg:text-5xl">
+                    Little Creations. Endless Emotions.
+                  </span>
+                </h1>
+              </div>
 
               <p className="text-base sm:text-lg text-ink-muted leading-relaxed max-w-xl mx-auto lg:mx-0">
-                Thoughtfully crocheted flowers, eternal bouquets, and handcrafted keychains.
+                Thoughtfully crocheted flowers, everlasting bouquets, and personalized keychains.
                 Every piece is made slowly with care, warmth, and emotion right here in Vadodara.
               </p>
 
@@ -215,7 +54,7 @@ export default function HomePage() {
                 >
                   <Button variant="whatsapp" size="lg" className="w-full sm:w-auto">
                     <MessageCircle className="w-4 h-4 fill-current mr-1" />
-                    <span>WhatsApp Order / Inquiry</span>
+                    <span>WhatsApp Order (+91 8271735190)</span>
                   </Button>
                 </Link>
               </div>
@@ -232,40 +71,37 @@ export default function HomePage() {
                 </div>
                 <div className="text-center lg:text-left">
                   <p className="font-serif text-lg font-bold text-ink">Vadodara</p>
-                  <p className="text-xs text-ink-muted">Local Delivery</p>
+                  <p className="text-xs text-ink-muted">City-Wide Delivery</p>
                 </div>
               </div>
             </div>
 
-            {/* Right Visual Collage */}
-            <div className="relative">
-              <div className="relative mx-auto max-w-md lg:max-w-none">
-                <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-surface relative">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=1000&auto=format&fit=crop"
-                    alt="Handcrafted bouquet by The Handmade Craft"
-                    className="w-full h-full object-cover"
+            {/* Right Visual Collage featuring the Melting Bloomora Logo */}
+            <div className="relative flex justify-center items-center">
+              <div className="relative w-full max-w-md lg:max-w-lg aspect-square flex items-center justify-center">
+                {/* Background decorative warm ring */}
+                <div className="absolute inset-4 rounded-full bg-gradient-to-tr from-secondary/20 via-primary/5 to-transparent blur-2xl" />
+
+                {/* Melting Bloomora Logo with mix-blend-multiply */}
+                <div className="relative w-full h-full p-2 sm:p-4">
+                  <Image
+                    src="/images/bloomora-logo.png"
+                    alt="Bloomora Handcrafted Creations Embroidery Logo"
+                    fill
+                    priority
+                    className="object-contain mix-blend-multiply drop-shadow-sm hover:scale-[1.02] transition-transform duration-500 ease-out"
+                    sizes="(max-width: 768px) 100vw, 500px"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent flex items-end p-6">
-                    <div className="text-white space-y-1">
-                      <p className="text-xs uppercase tracking-widest text-secondary font-semibold">
-                        Artisan Spotlight
-                      </p>
-                      <p className="font-serif text-xl font-bold">Pastel Dreams Crochet Bouquet</p>
-                      <p className="text-xs text-white/80">Available across all Vadodara PIN codes</p>
-                    </div>
-                  </div>
                 </div>
 
-                {/* Floating Artisan Quote */}
-                <div className="hidden sm:flex absolute -bottom-6 -left-6 bg-surface/95 backdrop-blur-md border border-border-subtle p-4 rounded-xl shadow-craft-elevated items-center gap-3 max-w-xs">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                    <Heart className="w-5 h-5 fill-primary" />
+                {/* Floating Artisan Badge */}
+                <div className="absolute -bottom-2 sm:bottom-4 left-2 sm:left-4 bg-surface/95 backdrop-blur-md border border-border-subtle p-3.5 rounded-xl shadow-craft-elevated flex items-center gap-3 max-w-[240px]">
+                  <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                    <Heart className="w-4 h-4 fill-primary" />
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-ink">Handmade with Endless Love</p>
-                    <p className="text-[11px] text-ink-muted">No machines. Real handmade craftsmanship.</p>
+                    <p className="text-xs font-bold text-ink">Handmade with Love</p>
+                    <p className="text-[10px] text-ink-muted">Vadodara, Gujarat</p>
                   </div>
                 </div>
               </div>
@@ -284,7 +120,7 @@ export default function HomePage() {
             Crafted for Every Heartfelt Moment
           </h2>
           <p className="text-sm text-ink-muted">
-            Explore our signature handmade categories, designed for birthdays, anniversaries, desk decor, and thoughtful keepsakes.
+            Explore Bloomora&apos;s signature handmade creations, designed for birthdays, anniversaries, desk decor, and thoughtful keepsakes.
           </p>
         </div>
 
@@ -370,21 +206,21 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {FEATURED_PRODUCTS.map((product) => (
+          {featuredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </section>
 
-      {/* 4. WHY HANDMADE? — ARTISANAL VALUE PROPOSITION */}
+      {/* 4. WHY BLOOMORA? — ARTISANAL VALUE PROPOSITION */}
       <section className="bg-surface border-y border-border-subtle py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-3 max-w-xl mx-auto mb-14">
             <span className="text-xs uppercase font-bold tracking-widest text-secondary">
-              The Artisan Promise
+              The Bloomora Promise
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink">
-              Why Choose The Handmade Craft?
+              Why Choose Bloomora?
             </h2>
             <p className="text-sm text-ink-muted">
               In a world of mass-produced plastic, we believe in the human soul behind every loop of yarn.
@@ -464,4 +300,3 @@ export default function HomePage() {
     </div>
   );
 }
-

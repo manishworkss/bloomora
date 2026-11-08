@@ -86,3 +86,4 @@ INSERT INTO products (
     1199.00, NULL, 'MADE_TO_ORDER', 3, true, true, 99, 1
   )
 ON CONFLICT (slug) DO NOTHING;
+

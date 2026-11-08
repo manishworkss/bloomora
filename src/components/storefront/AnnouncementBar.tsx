@@ -10,7 +10,7 @@ export const AnnouncementBar: React.FC = () => {
     >
       <Sparkles className="w-3.5 h-3.5 text-secondary animate-pulse" />
       <span>
-        Handcrafted with love in Vadodara • Delivering across all of Vadodara • WhatsApp:{' '}
+        Bloomora • Handcrafted with love in Vadodara • Delivering across all Vadodara PIN codes • WhatsApp:{' '}
         <Link
           href="https://wa.me/918271735190"
           target="_blank"
@@ -23,4 +23,3 @@ export const AnnouncementBar: React.FC = () => {
     </aside>
   );
 };
-

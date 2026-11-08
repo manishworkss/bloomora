@@ -1,6 +1,6 @@
 # 04_DATABASE_SCHEMA.md — PostgreSQL Schema & Data Architecture
 
-> **The Handmade Craft** — Customer Storefront & Admin Console  
+> **Bloomora** — Customer Storefront & Admin Console  
 > **Database Engine:** PostgreSQL 16 (Supabase Managed Cloud)  
 > **Security Model:** Row-Level Security (RLS) with Service Role & Authenticated Admin Policies  
 > **Integrity Guarantees:** Transaction-safe inventory locks, idempotent order keys, and immutable order item snapshots

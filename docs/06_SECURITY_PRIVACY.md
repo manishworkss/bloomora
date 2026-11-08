@@ -1,6 +1,6 @@
 # 06_SECURITY_PRIVACY.md — Security, Privacy & Compliance Guidelines
 
-> **The Handmade Craft** — Customer Storefront & Admin Console  
+> **Bloomora** — Customer Storefront & Admin Console  
 > **Security Posture:** Defense-in-Depth, Zero-Trust Admin Routes, Cryptographic Token Isolation  
 > **Compliance Standard:** PII Minimization, Digital Personal Data Protection (DPDP) Act Readiness
 
