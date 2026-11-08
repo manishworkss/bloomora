@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ShoppingBag, MessageCircle } from 'lucide-react';
+import { ShoppingBag, MessageCircle, ArrowRight } from 'lucide-react';
 import { Product } from '@/types';
 import { formatINR } from '@/lib/formatters';
 import { Badge } from '@/components/ui/Badge';
@@ -42,8 +42,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const whatsappInquiryUrl = getProductInquiryLink(product.title);
 
   return (
-    <div className="group relative bg-surface rounded-xl border border-border-subtle overflow-hidden shadow-craft hover:shadow-craft-elevated transition-all duration-300 flex flex-col">
-      {/* Image Container */}
+    <div className="group relative bg-surface rounded-xl border border-border-subtle overflow-hidden shadow-subtle hover:border-primary/40 hover:shadow-craft transition-all duration-300 flex flex-col">
+      {/* Image Container with Editorial Ratio */}
       <Link href={`/shop/${product.slug}`} className="block relative aspect-[4/5] bg-canvas overflow-hidden">
         <Image
           src={primaryImage.imageUrl}
@@ -58,16 +58,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           {product.productType === 'READY_MADE' ? (
             <Badge variant="sage">In Ready Stock</Badge>
           ) : (
-            <Badge variant="terracotta">Made to Order ({product.preparationDays || 2}d)</Badge>
+            <Badge variant="terracotta">Made to Order ({product.preparationDays || 3}d)</Badge>
           )}
         </div>
 
-        {/* Floating Quick Action Overlay on Desktop */}
+        {/* Floating Quick Add Overlay on Desktop */}
         <div className="absolute inset-x-3 bottom-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
           <button
             type="button"
             onClick={handleQuickAdd}
-            className="flex-1 py-2 px-3 rounded-lg bg-white/95 text-ink hover:bg-primary hover:text-white text-xs font-semibold shadow-md backdrop-blur-sm transition-colors flex items-center justify-center gap-1.5"
+            className="flex-1 py-2 px-3 rounded-lg bg-surface/95 text-ink hover:bg-primary hover:text-white text-xs font-semibold shadow-subtle backdrop-blur-sm transition-colors flex items-center justify-center gap-1.5"
           >
             <ShoppingBag className="w-3.5 h-3.5" />
             <span>Add to Bag</span>
@@ -77,58 +77,52 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="p-2 rounded-lg bg-whatsapp text-white hover:brightness-110 shadow-md transition-all flex items-center justify-center"
-            title="Enquire on WhatsApp"
+            className="p-2 rounded-lg bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200 shadow-subtle transition-all flex items-center justify-center"
+            title="Inquire on WhatsApp"
+            aria-label="Inquire on WhatsApp"
           >
-            <MessageCircle className="w-4 h-4 fill-current" />
+            <MessageCircle className="w-4 h-4 text-whatsapp fill-whatsapp" />
           </Link>
         </div>
       </Link>
 
-      {/* Info Container */}
-      <div className="p-4 flex-1 flex flex-col justify-between space-y-2">
+      {/* Content Meta */}
+      <div className="p-4 flex flex-col flex-1 justify-between space-y-2">
         <div className="space-y-1">
-          {product.category && (
-            <span className="text-[11px] font-semibold text-secondary uppercase tracking-wider block">
-              {product.category.name}
-            </span>
-          )}
+          <span className="text-[10px] uppercase font-bold tracking-wider text-rose">
+            {product.category?.name || 'Handmade Creation'}
+          </span>
           <Link href={`/shop/${product.slug}`} className="block group-hover:text-primary transition-colors">
-            <h3 className="font-serif text-base font-semibold text-ink line-clamp-1">
+            <h3 className="font-serif text-base font-semibold text-ink line-clamp-1 leading-snug">
               {product.title}
             </h3>
           </Link>
-          {product.shortDescription && (
-            <p className="text-xs text-ink-muted line-clamp-2 leading-relaxed">
-              {product.shortDescription}
-            </p>
-          )}
+          <p className="text-xs text-ink-muted line-clamp-1">
+            {product.shortDescription}
+          </p>
         </div>
 
-        <div className="pt-2 flex items-center justify-between border-t border-border-subtle/50">
+        <div className="flex items-center justify-between pt-2 border-t border-border-subtle/40">
           <div className="flex items-baseline gap-2">
-            <span className="font-serif text-lg font-bold text-ink">
+            <span className="font-serif text-base font-bold text-ink">
               {formatINR(product.basePrice)}
             </span>
-            {product.compareAtPrice && product.compareAtPrice > product.basePrice && (
-              <span className="text-xs text-ink-muted line-through">
+            {product.compareAtPrice && (
+              <span className="text-xs text-ink-muted/70 line-through">
                 {formatINR(product.compareAtPrice)}
               </span>
             )}
           </div>
 
-          {/* Mobile Direct Add Button */}
-          <button
-            type="button"
-            onClick={handleQuickAdd}
-            className="lg:hidden p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors"
-            aria-label={`Add ${product.title} to bag`}
+          <Link
+            href={`/shop/${product.slug}`}
+            className="text-xs text-primary font-semibold flex items-center gap-1 hover:translate-x-0.5 transition-transform"
           >
-            <ShoppingBag className="w-4 h-4" />
-          </button>
+            <span>Details</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
       </div>
     </div>
   );
 };
-

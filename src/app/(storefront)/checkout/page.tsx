@@ -54,7 +54,7 @@ export default function CheckoutPage() {
     setIsSubmitting(true);
 
     const randomSuffix = Math.floor(1000 + Math.random() * 9000);
-    const orderNumber = `THC-${new Date().getFullYear()}${String(
+    const orderNumber = `BLM-${new Date().getFullYear()}${String(
       new Date().getMonth() + 1
     ).padStart(2, '0')}-${randomSuffix}`;
 

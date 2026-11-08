@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useParams, notFound } from 'next/navigation';
@@ -284,14 +284,37 @@ export default function ProductDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
 
-  const product = ALL_PRODUCTS.find((p) => p.slug === slug);
+  const [product, setProduct] = useState<Product | undefined>(() =>
+    ALL_PRODUCTS.find((p) => p.slug === slug)
+  );
+  const [loading, setLoading] = useState(!product);
+
+  useEffect(() => {
+    fetch(`/api/store/products/${slug}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && data.product) {
+          setProduct(data.product);
+        }
+      })
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
+  }, [slug]);
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const { addItem } = useCart();
 
-  if (!product) {
+  if (!product && !loading) {
     notFound();
+  }
+
+  if (!product) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 py-24 text-center text-xs text-ink-muted">
+        Loading creation details...
+      </div>
+    );
   }
 
   const images = product.images.length > 0 ? product.images : [
