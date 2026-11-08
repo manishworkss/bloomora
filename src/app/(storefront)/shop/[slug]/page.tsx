@@ -14,13 +14,51 @@ import {
   ChevronRight,
   Plus,
   Minus,
+  Check,
+  Sparkles,
+  Gift,
 } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { useCart } from '@/context/CartContext';
 import { formatINR } from '@/lib/formatters';
 import { getProductInquiryLink } from '@/lib/whatsapp';
 import { Product } from '@/types';
+
+interface AddOnOption {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+}
+
+const AVAILABLE_ADDONS: AddOnOption[] = [
+  {
+    id: 'card',
+    name: 'Handwritten Calligraphy Card',
+    price: 0,
+    description: 'Sealed kraft envelope with your personal message penned by hand',
+  },
+  {
+    id: 'lights',
+    name: 'Warm Fairy Lights Wrap',
+    price: 69,
+    description: 'Delicate warm-white micro-LEDs wrapped around the blooms',
+  },
+  {
+    id: 'box',
+    name: 'Signature Satin Ribbon & Gift Box',
+    price: 49,
+    description: 'Elevated presentation in our boutique kraft keepsake box',
+  },
+  {
+    id: 'charm',
+    name: 'Mini Crochet Heart Charm',
+    price: 99,
+    description: 'Matching handmade amigurumi heart charm tied with ribbon',
+  },
+];
 
 // Baseline Catalog Database
 const ALL_PRODUCTS: Product[] = [
@@ -303,6 +341,9 @@ export default function ProductDetailPage() {
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
+  const [giftMessage, setGiftMessage] = useState('');
+  const [justAdded, setJustAdded] = useState(false);
   const { addItem } = useCart();
 
   if (!product && !loading) {
@@ -331,20 +372,48 @@ export default function ProductDetailPage() {
 
   const currentImage = images[selectedImageIndex] || images[0];
 
+  const addOnsTotal = selectedAddOns.reduce(
+    (sum, id) => sum + (AVAILABLE_ADDONS.find((a) => a.id === id)?.price || 0),
+    0
+  );
+  const effectiveUnitPrice = product.basePrice + addOnsTotal;
+  const totalPrice = effectiveUnitPrice * quantity;
+
+  const toggleAddOn = (id: string) => {
+    setSelectedAddOns((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
+
   const handleAddToCart = () => {
+    const chosenAddOns = AVAILABLE_ADDONS.filter((a) => selectedAddOns.includes(a.id)).map((a) => ({
+      id: a.id,
+      name: a.name,
+      price: a.price,
+    }));
+
     addItem({
       productId: product.id,
       title: product.title,
-      unitPrice: product.basePrice,
+      unitPrice: effectiveUnitPrice,
       quantity,
       imageUrl: currentImage.imageUrl,
       maxAvailableStock: product.stockQuantity,
       productType: product.productType,
+      addOns: chosenAddOns.length > 0 ? chosenAddOns : undefined,
+      giftMessage: selectedAddOns.includes('card') && giftMessage.trim() ? giftMessage.trim() : undefined,
     });
+
+    setJustAdded(true);
+    setTimeout(() => setJustAdded(false), 1500);
   };
 
+  const chosenAddonNames = AVAILABLE_ADDONS.filter((a) => selectedAddOns.includes(a.id))
+    .map((a) => a.name)
+    .join(', ');
+
   const whatsappInquiryUrl = getProductInquiryLink(
-    product.title,
+    `${product.title}${chosenAddonNames ? ` (+ ${chosenAddonNames})` : ''}`,
     undefined,
     typeof window !== 'undefined' ? window.location.href : undefined
   );
@@ -377,19 +446,31 @@ export default function ProductDetailPage() {
 
       {/* Main Detail Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        {/* Left Column: Image Gallery */}
+        {/* Left Column: Image Gallery with Framer Motion Crossfade */}
         <div className="space-y-4">
           {/* Main Large Image */}
           <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-surface border border-border-subtle shadow-craft">
-            <Image
-              src={currentImage.imageUrl}
-              alt={currentImage.altText || product.title}
-              fill
-              priority
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-            <div className="absolute top-4 left-4">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentImage.imageUrl}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35, ease: 'easeOut' }}
+                className="relative w-full h-full"
+              >
+                <Image
+                  src={currentImage.imageUrl}
+                  alt={currentImage.altText || product.title}
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="absolute top-4 left-4 z-10">
               {product.productType === 'READY_MADE' ? (
                 <Badge variant="sage">In Ready Stock</Badge>
               ) : (
@@ -398,13 +479,15 @@ export default function ProductDetailPage() {
             </div>
           </div>
 
-          {/* Thumbnail Strip */}
+          {/* Thumbnail Strip with Spring Hover */}
           {images.length > 1 && (
             <div className="flex items-center gap-3 overflow-x-auto pb-1">
               {images.map((img, idx) => (
-                <button
+                <motion.button
                   key={img.id}
                   type="button"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => setSelectedImageIndex(idx)}
                   className={`relative w-20 h-20 rounded-lg overflow-hidden border-2 transition-all shrink-0 ${
                     selectedImageIndex === idx
@@ -413,7 +496,7 @@ export default function ProductDetailPage() {
                   }`}
                 >
                   <Image src={img.imageUrl} alt={img.altText} fill className="object-cover" sizes="80px" />
-                </button>
+                </motion.button>
               ))}
             </div>
           )}
@@ -432,11 +515,16 @@ export default function ProductDetailPage() {
             </h1>
             <div className="flex items-baseline gap-3 pt-1">
               <span className="font-serif text-3xl font-bold text-ink">
-                {formatINR(product.basePrice)}
+                {formatINR(effectiveUnitPrice)}
               </span>
               {product.compareAtPrice && product.compareAtPrice > product.basePrice && (
                 <span className="text-base text-ink-muted line-through">
-                  {formatINR(product.compareAtPrice)}
+                  {formatINR(product.compareAtPrice + addOnsTotal)}
+                </span>
+              )}
+              {addOnsTotal > 0 && (
+                <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-blush text-rose">
+                  +{formatINR(addOnsTotal)} add-ons included
                 </span>
               )}
             </div>
@@ -452,58 +540,148 @@ export default function ProductDetailPage() {
             </p>
           </div>
 
+          {/* Interactive Boutique Gifting Add-ons */}
+          <div className="space-y-3 bg-canvas/60 p-5 rounded-2xl border border-border-subtle">
+            <div className="flex items-center gap-2">
+              <Gift className="w-4 h-4 text-rose" />
+              <h3 className="font-serif text-sm font-bold text-ink uppercase tracking-wider">
+                Boutique Gifting Add-ons
+              </h3>
+            </div>
+            <p className="text-xs text-ink-muted">
+              Personalise your gift with optional handwritten notes, fairy lights, and presentation boxes:
+            </p>
+
+            <div className="space-y-2 pt-1">
+              {AVAILABLE_ADDONS.map((addon) => {
+                const isSelected = selectedAddOns.includes(addon.id);
+                return (
+                  <motion.div
+                    key={addon.id}
+                    whileTap={{ scale: 0.99 }}
+                    onClick={() => toggleAddOn(addon.id)}
+                    className={`p-3 rounded-xl border transition-all cursor-pointer flex flex-col gap-2 ${
+                      isSelected
+                        ? 'bg-surface border-rose shadow-sm ring-1 ring-rose/20'
+                        : 'bg-surface/80 border-border-subtle hover:border-border'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2.5">
+                        <div
+                          className={`w-4 h-4 rounded flex items-center justify-center transition-colors ${
+                            isSelected ? 'bg-rose text-white' : 'border border-border-subtle bg-canvas'
+                          }`}
+                        >
+                          {isSelected && <Check className="w-3 h-3 stroke-[2.5]" />}
+                        </div>
+                        <span className="text-xs font-semibold text-ink">{addon.name}</span>
+                      </div>
+                      <span className="text-xs font-bold text-rose">
+                        {addon.price === 0 ? 'Free' : `+${formatINR(addon.price)}`}
+                      </span>
+                    </div>
+
+                    <p className="text-[11px] text-ink-muted pl-6">{addon.description}</p>
+
+                    {/* Animated Expandable Note Area for Handwritten Card */}
+                    {addon.id === 'card' && isSelected && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="pl-6 pt-2"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-ink block mb-1">
+                          Your Custom Handwritten Message:
+                        </label>
+                        <textarea
+                          rows={2}
+                          value={giftMessage}
+                          onChange={(e) => setGiftMessage(e.target.value)}
+                          placeholder="e.g. Happy Birthday Diya! May your days always be in full bloom 🌸 Love, Rohan"
+                          className="w-full p-2.5 rounded-lg bg-canvas border border-border-subtle text-xs text-ink placeholder:text-ink-muted/60 focus:outline-none focus:ring-1 focus:ring-rose resize-none"
+                        />
+                      </motion.div>
+                    )}
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
           {/* Quantity and Actions */}
           <div className="space-y-4">
             <div className="flex items-center gap-4">
               <span className="text-xs font-semibold text-ink uppercase tracking-wider">Quantity:</span>
               <div className="flex items-center border border-border-subtle rounded-lg bg-surface">
-                <button
+                <motion.button
                   type="button"
+                  whileTap={{ scale: 0.85 }}
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
                   className="p-2 hover:text-primary transition-colors text-ink-muted"
                   aria-label="Decrease quantity"
                 >
                   <Minus className="w-4 h-4" />
-                </button>
+                </motion.button>
                 <span className="w-10 text-center text-sm font-bold text-ink">{quantity}</span>
-                <button
+                <motion.button
                   type="button"
+                  whileTap={{ scale: 0.85 }}
                   onClick={() => setQuantity(quantity + 1)}
                   className="p-2 hover:text-primary transition-colors text-ink-muted"
                   aria-label="Increase quantity"
                 >
                   <Plus className="w-4 h-4" />
-                </button>
+                </motion.button>
               </div>
             </div>
 
-            {/* CTAs */}
+            {/* CTAs with Framer Motion Physics */}
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              <Button
-                variant="primary"
-                size="lg"
+              <motion.button
+                type="button"
+                whileHover={{ scale: 1.015 }}
+                whileTap={{ scale: 0.97 }}
                 onClick={handleAddToCart}
-                className="flex-1 font-semibold"
+                className={`flex-1 py-3 px-6 rounded-xl font-semibold text-sm shadow-subtle flex items-center justify-center gap-2 transition-colors ${
+                  justAdded
+                    ? 'bg-emerald-600 text-white'
+                    : 'bg-primary text-white hover:bg-primary/95'
+                }`}
               >
-                <ShoppingBag className="w-5 h-5 mr-1.5" />
-                <span>Add to Bag • {formatINR(product.basePrice * quantity)}</span>
-              </Button>
+                {justAdded ? (
+                  <>
+                    <Check className="w-5 h-5" />
+                    <span>Added to Bag!</span>
+                  </>
+                ) : (
+                  <>
+                    <ShoppingBag className="w-5 h-5 mr-1" />
+                    <span>Add to Bag • {formatINR(totalPrice)}</span>
+                  </>
+                )}
+              </motion.button>
 
-              <Link
-                href={whatsappInquiryUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto"
-              >
-                <Button variant="whatsapp" size="lg" className="w-full font-semibold">
-                  <MessageCircle className="w-5 h-5 fill-current mr-1.5" />
-                  <span>Ask on WhatsApp</span>
-                </Button>
-              </Link>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
+                <Link
+                  href={whatsappInquiryUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto block"
+                >
+                  <Button variant="whatsapp" size="lg" className="w-full font-semibold">
+                    <MessageCircle className="w-5 h-5 fill-current mr-1.5" />
+                    <span>Ask on WhatsApp</span>
+                  </Button>
+                </Link>
+              </motion.div>
             </div>
           </div>
 
-          {/* Local Guarantees & vadodara Delivery Banner */}
+          {/* Local Guarantees & Vadodara Delivery Banner */}
           <div className="space-y-3 bg-surface p-5 rounded-xl border border-border-subtle">
             <div className="flex items-start gap-3">
               <Truck className="w-5 h-5 text-primary shrink-0 mt-0.5" />

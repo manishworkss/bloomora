@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ShoppingBag, MessageCircle, ArrowRight } from 'lucide-react';
+import { ShoppingBag, MessageCircle, ArrowRight, Check } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Product } from '@/types';
 import { formatINR } from '@/lib/formatters';
 import { Badge } from '@/components/ui/Badge';
@@ -16,6 +17,7 @@ export interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addItem } = useCart();
+  const [justAdded, setJustAdded] = useState(false);
 
   const primaryImage =
     product.images?.find((img) => img.isPrimary) ||
@@ -37,12 +39,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       maxAvailableStock: product.stockQuantity,
       productType: product.productType,
     });
+    setJustAdded(true);
+    setTimeout(() => setJustAdded(false), 1400);
   };
 
   const whatsappInquiryUrl = getProductInquiryLink(product.title);
 
   return (
-    <div className="group relative bg-surface rounded-xl border border-border-subtle overflow-hidden shadow-subtle hover:border-primary/40 hover:shadow-craft transition-all duration-300 flex flex-col">
+    <motion.div
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      whileHover={{ y: -5 }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      className="group relative bg-surface rounded-xl border border-border-subtle overflow-hidden shadow-subtle hover:border-primary/40 hover:shadow-craft-elevated transition-colors duration-300 flex flex-col"
+    >
       {/* Image Container with Editorial Ratio */}
       <Link href={`/shop/${product.slug}`} className="block relative aspect-[4/5] bg-canvas overflow-hidden">
         <Image
@@ -50,7 +61,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           alt={primaryImage.altText || product.title}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+          className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
         />
 
         {/* Product Type / Stock Pill */}
@@ -64,25 +75,43 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
         {/* Floating Quick Add Overlay on Desktop */}
         <div className="absolute inset-x-3 bottom-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
-          <button
+          <motion.button
             type="button"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.94 }}
             onClick={handleQuickAdd}
-            className="flex-1 py-2 px-3 rounded-lg bg-surface/95 text-ink hover:bg-primary hover:text-white text-xs font-semibold shadow-subtle backdrop-blur-sm transition-colors flex items-center justify-center gap-1.5"
+            className={`flex-1 py-2 px-3 rounded-lg text-xs font-semibold shadow-subtle backdrop-blur-sm transition-colors flex items-center justify-center gap-1.5 ${
+              justAdded
+                ? 'bg-emerald-600 text-white'
+                : 'bg-surface/95 text-ink hover:bg-primary hover:text-white'
+            }`}
           >
-            <ShoppingBag className="w-3.5 h-3.5" />
-            <span>Add to Bag</span>
-          </button>
-          <Link
-            href={whatsappInquiryUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="p-2 rounded-lg bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200 shadow-subtle transition-all flex items-center justify-center"
-            title="Inquire on WhatsApp"
-            aria-label="Inquire on WhatsApp"
-          >
-            <MessageCircle className="w-4 h-4 text-whatsapp fill-whatsapp" />
-          </Link>
+            {justAdded ? (
+              <>
+                <Check className="w-3.5 h-3.5" />
+                <span>Added to Bag!</span>
+              </>
+            ) : (
+              <>
+                <ShoppingBag className="w-3.5 h-3.5" />
+                <span>Quick Add</span>
+              </>
+            )}
+          </motion.button>
+
+          <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.92 }}>
+            <Link
+              href={whatsappInquiryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="p-2 rounded-lg bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200 shadow-subtle transition-all flex items-center justify-center h-full"
+              title="Inquire on WhatsApp"
+              aria-label="Inquire on WhatsApp"
+            >
+              <MessageCircle className="w-4 h-4 text-whatsapp fill-whatsapp" />
+            </Link>
+          </motion.div>
         </div>
       </Link>
 
@@ -116,13 +145,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
           <Link
             href={`/shop/${product.slug}`}
-            className="text-xs text-primary font-semibold flex items-center gap-1 hover:translate-x-0.5 transition-transform"
+            className="text-xs text-primary font-semibold flex items-center gap-1 group/btn hover:translate-x-0.5 transition-transform"
           >
             <span>Details</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5" />
           </Link>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
+
