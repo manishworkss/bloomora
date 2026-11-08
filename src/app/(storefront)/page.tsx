@@ -82,14 +82,14 @@ export default function HomePage() {
                 {/* Background decorative warm ring */}
                 <div className="absolute inset-4 rounded-full bg-gradient-to-tr from-secondary/20 via-primary/5 to-transparent blur-2xl" />
 
-                {/* Melting Bloomora Logo with mix-blend-multiply */}
+                {/* Clean Transparent Bloomora Logo */}
                 <div className="relative w-full h-full p-2 sm:p-4">
                   <Image
                     src="/images/bloomora-logo.png"
                     alt="Bloomora Handcrafted Creations Embroidery Logo"
                     fill
                     priority
-                    className="object-contain mix-blend-multiply drop-shadow-sm hover:scale-[1.02] transition-transform duration-500 ease-out"
+                    className="object-contain drop-shadow-md hover:scale-[1.02] transition-transform duration-500 ease-out"
                     sizes="(max-width: 768px) 100vw, 500px"
                   />
                 </div>

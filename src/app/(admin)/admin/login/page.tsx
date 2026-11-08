@@ -35,7 +35,7 @@ export default function AdminLoginPage() {
               alt="Bloomora Logo"
               fill
               priority
-              className="object-contain mix-blend-multiply drop-shadow-sm"
+              className="object-contain drop-shadow-sm"
               sizes="112px"
             />
           </div>

@@ -14,7 +14,7 @@ export const Header: React.FC = () => {
   return (
     <header className="sticky top-0 z-40 bg-canvas/95 backdrop-blur-md border-b border-border-subtle transition-all duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 sm:h-24">
+        <div className="flex items-center justify-between h-20">
           {/* Mobile Menu Button */}
           <div className="flex items-center lg:hidden">
             <button
@@ -27,22 +27,22 @@ export const Header: React.FC = () => {
             </button>
           </div>
 
-          {/* Brand Identity / Big Bold Logo (text name removed as it's within the logo artwork) */}
+          {/* Brand Identity / Logo - Sized to fit comfortably inside the header box */}
           <div className="flex-1 lg:flex-none flex items-center justify-center lg:justify-start">
             <Link
               href="/"
               aria-label="Bloomora - Handcrafted Creations"
               className="inline-flex items-center group focus-visible:outline-none py-1"
             >
-              {/* Logo with mix-blend-multiply to melt seamlessly into the background */}
-              <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 shrink-0 transition-transform duration-300 group-hover:scale-105">
+              {/* Perfectly fitting transparent logo without overflowing the header box */}
+              <div className="relative w-14 h-14 sm:w-16 sm:h-16 shrink-0 transition-transform duration-300 group-hover:scale-105">
                 <Image
                   src="/images/bloomora-logo.png"
                   alt="Bloomora Handcrafted Creations"
                   fill
                   priority
-                  className="object-contain mix-blend-multiply drop-shadow-sm"
-                  sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, 112px"
+                  className="object-contain drop-shadow-sm"
+                  sizes="(max-width: 640px) 56px, 64px"
                 />
               </div>
             </Link>

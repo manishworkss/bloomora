@@ -44,7 +44,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 src="/images/bloomora-logo.png"
                 alt="Bloomora Admin Logo"
                 fill
-                className="object-contain mix-blend-multiply"
+                className="object-contain"
                 sizes="48px"
               />
             </div>

@@ -9,20 +9,20 @@ export const Footer: React.FC = () => {
     <footer className="bg-surface border-t border-border-subtle mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
-          {/* Brand Info with Big Bold Melting Logo */}
+          {/* Brand Info with Transparent Clean Logo */}
           <div className="space-y-4">
             <Link
               href="/"
               aria-label="Bloomora - Handcrafted Creations"
               className="inline-block group focus-visible:outline-none"
             >
-              <div className="relative w-32 h-32 sm:w-36 sm:h-36 md:w-44 md:h-44 shrink-0 transition-transform duration-300 group-hover:scale-105">
+              <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 shrink-0 transition-transform duration-300 group-hover:scale-105">
                 <Image
                   src="/images/bloomora-logo.png"
                   alt="Bloomora Handcrafted Creations"
                   fill
-                  className="object-contain mix-blend-multiply drop-shadow-sm"
-                  sizes="(max-width: 640px) 128px, 176px"
+                  className="object-contain drop-shadow-sm"
+                  sizes="(max-width: 640px) 112px, 144px"
                 />
               </div>
             </Link>
