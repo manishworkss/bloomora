@@ -409,7 +409,7 @@ export default function ProductDetailPage() {
                   className={`relative w-20 h-20 rounded-lg overflow-hidden border-2 transition-all shrink-0 ${
                     selectedImageIndex === idx
                       ? 'border-primary ring-2 ring-primary/20'
-                      : 'border-border-subtle hover:border-secondary'
+                      : 'border-border-subtle hover:border-rose'
                   }`}
                 >
                   <Image src={img.imageUrl} alt={img.altText} fill className="object-cover" sizes="80px" />
@@ -423,7 +423,7 @@ export default function ProductDetailPage() {
         <div className="space-y-8">
           <div className="space-y-3">
             {product.category && (
-              <span className="text-xs uppercase font-bold tracking-widest text-secondary block">
+              <span className="text-xs uppercase font-bold tracking-widest text-rose block">
                 {product.category.name}
               </span>
             )}
@@ -530,7 +530,7 @@ export default function ProductDetailPage() {
             </div>
 
             <div className="flex items-start gap-3 pt-2 border-t border-border-subtle/50">
-              <ShieldCheck className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
+              <ShieldCheck className="w-5 h-5 text-rose shrink-0 mt-0.5" />
               <div className="text-xs space-y-0.5">
                 <p className="font-semibold text-ink">Handmade & Non-Refundable</p>
                 <p className="text-ink-muted">
