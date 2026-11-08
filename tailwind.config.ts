@@ -11,50 +11,55 @@ const config: Config = {
     extend: {
       colors: {
         canvas: {
-          DEFAULT: '#FFF9F2', // Warm Cream
-          dark: '#1D1A18',
+          DEFAULT: '#FAF7F2', // Rich Warm Ivory Silk
+          dark: '#1A1513',
         },
         surface: {
-          DEFAULT: '#FFFFFF', // Pure White
-          tint: '#FAF4ED',    // Cream White
-          dark: '#262220',
+          DEFAULT: '#FFFFFF', // Pure Crisp White
+          tint: '#F4ECE4',    // Soft Linen Warm White
+          dark: '#241E1C',
         },
         blush: {
-          DEFAULT: '#F4DDE3', // Pastel Blush Pink
-          light: '#FAEEF1',
-          dark: '#E2BDC6',
+          DEFAULT: '#EEDADF', // Cashmere Rose Blush
+          light: '#F8EEF1',
+          dark: '#D9C2C8',
         },
         rose: {
-          DEFAULT: '#C88F9D', // Dusty Rose
-          hover: '#B57887',
-          dark: '#9B5F6E',
+          DEFAULT: '#A85261', // Deep Antique Berry Rose (High-Reach Luxury)
+          hover: '#944453',
+          dark: '#7E3744',
         },
         primary: {
-          DEFAULT: '#C88F9D', // Dusty Rose Primary
-          hover: '#B57887',
-          light: '#F4DDE3',
-          dark: '#9B5F6E',
+          DEFAULT: '#A85261',
+          hover: '#944453',
+          light: '#EEDADF',
+          dark: '#7E3744',
         },
         secondary: {
-          DEFAULT: '#F4DDE3', // Pastel Blush Pink
-          hover: '#E9C7D0',
-          dark: '#D8A7B3',
+          DEFAULT: '#EEDADF',
+          hover: '#DFCAD0',
+          dark: '#C8AEB5',
         },
         sage: {
-          DEFAULT: '#A9B99F', // Soft Sage Green
-          light: '#EFF4EC',
-          dark: '#85967B',
+          DEFAULT: '#6A8062', // Deep Antique Olive Sage
+          light: '#EAF0E8',
+          dark: '#55684E',
+        },
+        gold: {
+          DEFAULT: '#C39953', // Warm Artisan Gold
+          light: '#E8D4A8',
+          dark: '#A37C35',
         },
         ink: {
-          DEFAULT: '#65504B', // Deep Warm Brown
-          muted: '#8E7A75',   // Soft Warm Cocoa
-          light: '#B7A9A5',
-          heading: '#4C3B37',
+          DEFAULT: '#2D211E', // Deep Espresso Roast
+          muted: '#6E5D57',   // Warm Truffle Slate
+          light: '#9E8C86',
+          heading: '#201614',
         },
         border: {
-          subtle: '#EFE4DC',  // Subtle Warm Border
-          blush: '#F4DDE3',
-          dark: '#3A3330',
+          subtle: '#EBE2D9',  // Whisper Linen
+          blush: '#EEDADF',
+          dark: '#352B28',
         },
         whatsapp: '#25D366',
       },
@@ -69,9 +74,9 @@ const config: Config = {
         none: '0px',
       },
       boxShadow: {
-        craft: '0 2px 8px -1px rgba(101, 80, 75, 0.05), 0 1px 3px -1px rgba(101, 80, 75, 0.03)',
-        'craft-elevated': '0 8px 24px -4px rgba(101, 80, 75, 0.08), 0 2px 6px -1px rgba(101, 80, 75, 0.04)',
-        subtle: '0 1px 3px 0 rgba(101, 80, 75, 0.04)',
+        craft: '0 2px 8px -1px rgba(45, 33, 30, 0.05), 0 1px 3px -1px rgba(45, 33, 30, 0.03)',
+        'craft-elevated': '0 10px 25px -4px rgba(45, 33, 30, 0.08), 0 3px 8px -2px rgba(45, 33, 30, 0.04)',
+        subtle: '0 1px 3px 0 rgba(45, 33, 30, 0.04)',
       },
     },
   },

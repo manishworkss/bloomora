@@ -54,3 +54,4 @@ export const FAQAccordion: React.FC<FAQAccordionProps> = ({ items }) => {
     </div>
   );
 };
+

@@ -12,10 +12,10 @@ export default function StorefrontLayout({
 }) {
   return (
     <CartProvider>
-      <div className="min-h-screen flex flex-col bg-canvas">
+      <div className="min-h-screen flex flex-col bg-canvas w-full max-w-full overflow-x-hidden">
         <AnnouncementBar />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
         <CartDrawer />
         <Footer />
       </div>

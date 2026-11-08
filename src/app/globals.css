@@ -3,17 +3,24 @@
 @tailwind utilities;
 
 :root {
-  /* Urban Ethnicity Inspired Boutique Palette */
-  --color-canvas: #FFF9F2;       /* Warm Cream */
-  --color-surface: #FFFFFF;      /* Pure White */
-  --color-blush: #F4DDE3;        /* Pastel Blush Pink */
-  --color-rose: #C88F9D;         /* Dusty Rose */
-  --color-primary: #C88F9D;      /* Dusty Rose Primary Accent */
-  --color-secondary: #F4DDE3;    /* Pastel Blush Pink */
-  --color-text: #65504B;         /* Deep Warm Brown */
-  --color-text-muted: #8E7A75;   /* Soft Warm Cocoa */
-  --color-border: #EFE4DC;       /* Subtle Warm Linen Border */
-  --color-sage: #A9B99F;         /* Soft Sage Green */
+  /* High-End Luxury Boutique Palette */
+  --color-canvas: #FAF7F2;       /* Rich Warm Ivory Silk */
+  --color-surface: #FFFFFF;      /* Pure Crisp White */
+  --color-blush: #EEDADF;        /* Cashmere Rose Blush */
+  --color-rose: #A85261;         /* Deep Antique Berry Rose (High-Reach Primary) */
+  --color-primary: #A85261;      /* Deep Antique Berry Rose */
+  --color-secondary: #EEDADF;    /* Cashmere Blush */
+  --color-text: #2D211E;         /* Deep Espresso Roast (High Contrast & Clear) */
+  --color-text-muted: #6E5D57;   /* Warm Truffle Slate */
+  --color-border: #EBE2D9;       /* Whisper Linen Architectural Border */
+  --color-sage: #6A8062;         /* Deep Antique Olive Sage */
+  --color-gold: #C39953;         /* Subtle Warm Gold Luster */
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
 }
 
 body {
@@ -25,25 +32,25 @@ body {
 }
 
 ::selection {
-  background-color: #F4DDE3;
-  color: #65504B;
+  background-color: #EEDADF;
+  color: #2D211E;
 }
 
 /* Custom Artisan Scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FFF9F2;
+  background: #FAF7F2;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #E0C7CC;
+  background: #D9C2C8;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #C88F9D;
+  background: #A85261;
 }

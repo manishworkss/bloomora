@@ -7,7 +7,7 @@ export const AnnouncementBar: React.FC = () => {
   return (
     <aside
       aria-label="Announcement"
-      className="bg-blush/60 text-ink text-[11px] sm:text-xs py-2 px-4 text-center tracking-wider font-medium border-b border-border-subtle flex items-center justify-center gap-2"
+      className="bg-blush/60 text-ink text-[10px] sm:text-xs py-2 px-3 sm:px-4 text-center tracking-wider font-medium border-b border-border-subtle flex items-center justify-center gap-1.5 flex-wrap w-full max-w-full overflow-hidden"
     >
       <Sparkles className="w-3.5 h-3.5 text-rose shrink-0" />
       <span>

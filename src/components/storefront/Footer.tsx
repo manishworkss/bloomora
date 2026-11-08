@@ -6,7 +6,7 @@ import { DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-surface border-t border-border-subtle mt-auto">
+    <footer className="bg-surface border-t border-border-subtle mt-auto w-full max-w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Brand Info with Transparent Clean Logo */}
@@ -80,6 +80,12 @@ export const Footer: React.FC = () => {
               <li>
                 <Link href="/custom-orders" className="hover:text-primary font-medium text-primary transition-colors">
                   Custom Gift Inquiries
+                </Link>
+              </li>
+              <li>
+                <Link href="/happy-family" className="hover:text-primary transition-colors flex items-center gap-1.5 font-medium text-rose">
+                  <span>Our Happy Family</span>
+                  <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-blush">Stories</span>
                 </Link>
               </li>
             </ul>
