@@ -91,7 +91,7 @@ export default function CheckoutPage() {
           <CheckCircle2 className="w-8 h-8" />
         </div>
         <div className="space-y-2">
-          <span className="text-xs uppercase font-bold tracking-widest text-secondary">
+          <span className="text-xs uppercase font-bold tracking-widest text-rose">
             Order Submitted to Bloomora via WhatsApp
           </span>
           <h1 className="font-serif text-3xl font-bold text-ink">
@@ -142,7 +142,7 @@ export default function CheckoutPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
       <div className="space-y-2 text-center sm:text-left">
-        <span className="text-xs uppercase font-bold tracking-widest text-secondary">
+        <span className="text-xs uppercase font-bold tracking-widest text-rose">
           Bloomora Checkout
         </span>
         <h1 className="font-serif text-3xl sm:text-4xl font-bold text-ink">

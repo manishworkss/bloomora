@@ -10,7 +10,6 @@ export default function CustomOrdersPage() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [occasion, setOccasion] = useState('');
-  const [neededByDate, setNeededByDate] = useState('');
   const [budget, setBudget] = useState('');
   const [details, setDetails] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -18,7 +17,7 @@ export default function CustomOrdersPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const message = `Hi Bloomora! 🌸\nI'd like to commission a custom handcrafted gift!\n\nName: ${name}\nPhone: ${phone}\nOccasion: ${occasion || 'Special Gift'}\nNeeded By: ${neededByDate || 'Flexible'}\nBudget: ${budget || 'Flexible'}\nDetails: ${details}\n\nCould we discuss design ideas and pricing? 💖`;
+    const message = `Hi Bloomora! 🌸\nI'd like to commission a custom handcrafted gift!\n\nName: ${name}\nPhone: ${phone}\nOccasion: ${occasion || 'Special Gift'}\nBudget: ${budget || 'Flexible'}\nDetails: ${details}\n\nCould we discuss design ideas and pricing? 💖`;
 
     const whatsappUrl = buildWhatsAppLink({ message });
     setSubmitted(true);
@@ -100,7 +99,7 @@ export default function CustomOrdersPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-ink uppercase tracking-wider">
                   Occasion / Purpose
@@ -109,32 +108,20 @@ export default function CustomOrdersPage() {
                   type="text"
                   value={occasion}
                   onChange={(e) => setOccasion(e.target.value)}
-                  placeholder="e.g. Birthday, Anniversary"
+                  placeholder="e.g. Birthday, Anniversary, Home Decor"
                   className="w-full px-4 py-2.5 rounded-lg bg-canvas border border-border-subtle text-sm text-ink focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
 
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-ink uppercase tracking-wider">
-                  Needed By Date
-                </label>
-                <input
-                  type="date"
-                  value={neededByDate}
-                  onChange={(e) => setNeededByDate(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-lg bg-canvas border border-border-subtle text-sm text-ink focus:outline-none focus:ring-2 focus:ring-primary"
-                />
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-ink uppercase tracking-wider">
-                  Estimated Budget
+                  Estimated Budget (Optional)
                 </label>
                 <input
                   type="text"
                   value={budget}
                   onChange={(e) => setBudget(e.target.value)}
-                  placeholder="e.g. ₹500 - ₹1,500"
+                  placeholder="e.g. ₹500 - ₹1,500 / Flexible"
                   className="w-full px-4 py-2.5 rounded-lg bg-canvas border border-border-subtle text-sm text-ink focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>

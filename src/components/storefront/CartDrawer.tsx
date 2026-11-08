@@ -100,6 +100,20 @@ export const CartDrawer: React.FC = () => {
                           {item.variantTitle}
                         </p>
                       )}
+                      {item.addOns && item.addOns.length > 0 && (
+                        <div className="text-[10px] text-ink-muted/90 flex flex-wrap gap-1 mt-1">
+                          {item.addOns.map((addon) => (
+                            <span key={addon.id} className="px-1.5 py-0.5 rounded bg-canvas border border-border-subtle text-[10px]">
+                              +{addon.name} ({formatINR(addon.price)})
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                      {item.giftMessage && (
+                        <p className="text-[10px] text-rose italic mt-1 line-clamp-1">
+                          💌 &ldquo;{item.giftMessage}&rdquo;
+                        </p>
+                      )}
                       <p className="text-xs text-primary font-bold mt-1">
                         {formatINR(item.unitPrice)}
                       </p>

@@ -76,6 +76,12 @@ export interface Product {
   updatedAt: string;
 }
 
+export interface GiftAddOn {
+  id: string;
+  name: string;
+  price: number;
+}
+
 export interface CartItem {
   productId: string;
   variantId?: string;
@@ -86,6 +92,8 @@ export interface CartItem {
   imageUrl: string;
   maxAvailableStock: number;
   productType: ProductType;
+  giftMessage?: string;
+  addOns?: GiftAddOn[];
 }
 
 export interface DeliveryZone {

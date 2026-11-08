@@ -123,7 +123,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Do you deliver all across Vadodara?',
     answer:
-      'Yes, we deliver across all 17 Vadodara PIN codes (390001 through 390025) with a flat ₹50 local courier fee. Ready-made items ship within 24–48 hours.',
+      'Yes, we deliver across all 17 Vadodara PIN codes (390001 through 390025) with a flat ₹50 local courier fee. We coordinate delivery directly with you on WhatsApp once your handcrafted creation is wrapped.',
   },
   {
     question: 'Can I request a custom color palette or flower type?',

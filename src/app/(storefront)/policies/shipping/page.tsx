@@ -28,17 +28,17 @@ export default function ShippingPolicyPage() {
         </div>
 
         <section className="space-y-3">
-          <h2 className="font-serif text-xl font-bold text-ink">1. Fulfillment & Delivery Timelines</h2>
+          <h2 className="font-serif text-xl font-bold text-ink">1. Fulfillment & Delivery Coordination</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 not-prose pt-1">
             <div className="p-4 rounded-lg bg-surface border border-border-subtle space-y-1.5">
-              <span className="text-xs font-bold text-sage uppercase tracking-wider">Ready to Ship Items</span>
-              <p className="text-sm font-semibold text-ink">Dispatched in 24–48 Hours</p>
-              <p className="text-xs text-ink-muted">Items currently in shelf stock are packaged and dispatched swiftly.</p>
+              <span className="text-xs font-bold text-sage uppercase tracking-wider">Ready Stock Items</span>
+              <p className="text-sm font-semibold text-ink">Carefully Packaged & Gift Boxed</p>
+              <p className="text-xs text-ink-muted">Items in stock are gift-wrapped and delivery is coordinated directly on WhatsApp.</p>
             </div>
             <div className="p-4 rounded-lg bg-surface border border-border-subtle space-y-1.5">
               <span className="text-xs font-bold text-primary uppercase tracking-wider">Made to Order Creations</span>
-              <p className="text-sm font-semibold text-ink">Handmade in 2–4 Days</p>
-              <p className="text-xs text-ink-muted">Customized bouquets or colors are crocheted fresh upon order confirmation.</p>
+              <p className="text-sm font-semibold text-ink">Stitch-by-Stitch Craftsmanship</p>
+              <p className="text-xs text-ink-muted">Customized bouquets or colors are crocheted fresh; we keep you updated throughout the process.</p>
             </div>
           </div>
         </section>

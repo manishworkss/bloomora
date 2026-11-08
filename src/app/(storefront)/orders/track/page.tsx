@@ -74,7 +74,7 @@ function OrderTrackingContent() {
             required
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="e.g. THC-202611-0042..."
+            placeholder="e.g. BLOOM-202611-0042..."
             className="w-full pl-10 pr-4 py-3 rounded-lg bg-surface border border-border-subtle text-sm text-ink focus:outline-none focus:ring-2 focus:ring-primary shadow-sm font-mono"
           />
         </div>
@@ -96,7 +96,7 @@ function OrderTrackingContent() {
           {/* Header */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-border-subtle pb-6">
             <div>
-              <p className="text-xs text-secondary font-bold uppercase tracking-wider">Order Reference</p>
+              <p className="text-xs text-rose font-bold uppercase tracking-wider">Order Reference</p>
               <h2 className="font-serif text-2xl font-bold text-ink">{order.orderNumber}</h2>
               <p className="text-xs text-ink-muted mt-1">Placed on {formatDateIST(order.createdAt)}</p>
             </div>

@@ -48,7 +48,7 @@ export default function TermsPage() {
         <section className="space-y-2">
           <h2 className="font-serif text-lg font-bold text-ink">3. Delivery & Fulfillment</h2>
           <p>
-            Delivery is available across all 17 serviceable PIN codes in Vadodara city (390001–390025). Ready-to-ship items ship within 24–48 hours; custom made-to-order commissions require 3–5 working days for crafting.
+            Delivery is available across all 17 serviceable PIN codes in Vadodara city (390001–390025). Delivery timing and dispatch coordination are arranged directly with the customer via WhatsApp once crafting and gift wrapping are complete.
           </p>
         </section>
 

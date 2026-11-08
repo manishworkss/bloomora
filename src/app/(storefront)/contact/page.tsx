@@ -24,7 +24,7 @@ export default function ContactPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
       <div className="text-center space-y-3 max-w-xl mx-auto">
-        <span className="text-xs uppercase font-bold tracking-widest text-secondary">
+        <span className="text-xs uppercase font-bold tracking-widest text-rose">
           We&apos;d Love to Hear From You
         </span>
         <h1 className="font-serif text-3xl sm:text-5xl font-bold text-ink">

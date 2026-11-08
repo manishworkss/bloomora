@@ -10,7 +10,7 @@ export default function AboutPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
       {/* Intro Header */}
       <div className="text-center space-y-4 max-w-2xl mx-auto">
-        <span className="text-xs uppercase font-bold tracking-widest text-secondary">
+        <span className="text-xs uppercase font-bold tracking-widest text-rose">
           Our Story & Philosophy
         </span>
         <h1 className="font-serif text-4xl sm:text-5xl font-bold text-ink leading-tight">
@@ -57,7 +57,7 @@ export default function AboutPage() {
         </div>
 
         <div className="p-6 rounded-xl bg-surface border border-border-subtle space-y-2 text-center">
-          <div className="w-10 h-10 rounded-full bg-secondary/20 text-secondary flex items-center justify-center mx-auto">
+          <div className="w-10 h-10 rounded-full bg-blush text-rose flex items-center justify-center mx-auto">
             <Sparkles className="w-5 h-5" />
           </div>
           <h3 className="font-serif text-lg font-bold text-ink">Premium Yarns</h3>

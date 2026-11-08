@@ -393,7 +393,7 @@ export default function ProductDetailPage() {
               {product.productType === 'READY_MADE' ? (
                 <Badge variant="sage">In Ready Stock</Badge>
               ) : (
-                <Badge variant="terracotta">Made to Order ({product.preparationDays} days)</Badge>
+                <Badge variant="terracotta">Handcrafted to Order</Badge>
               )}
             </div>
           </div>
@@ -520,11 +520,11 @@ export default function ProductDetailPage() {
               <div className="text-xs space-y-0.5">
                 <p className="font-semibold text-ink">
                   {product.productType === 'READY_MADE'
-                    ? 'Ready for Quick Local Dispatch'
-                    : `Handcrafted in ${product.preparationDays || 3} Days`}
+                    ? 'Handcrafted Ready Stock'
+                    : 'Handcrafted to Order with Love'}
                 </p>
                 <p className="text-ink-muted">
-                  Knitted with premium anti-pilling milk cotton yarn that retains color forever.
+                  Every creation is slow-knitted stitch-by-stitch with hypoallergenic milk-cotton yarn.
                 </p>
               </div>
             </div>

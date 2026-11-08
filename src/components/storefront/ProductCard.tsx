@@ -58,7 +58,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           {product.productType === 'READY_MADE' ? (
             <Badge variant="sage">In Ready Stock</Badge>
           ) : (
-            <Badge variant="terracotta">Made to Order ({product.preparationDays || 3}d)</Badge>
+            <Badge variant="terracotta">Handcrafted to Order</Badge>
           )}
         </div>
 
