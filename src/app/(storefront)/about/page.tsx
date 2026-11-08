@@ -21,14 +21,14 @@ export default function AboutPage() {
         </p>
       </div>
 
-      {/* Visual with Melting Logo */}
-      <div className="relative rounded-2xl overflow-hidden aspect-[16/9] bg-surface border border-border-subtle shadow-craft flex items-center justify-center p-8">
-        <div className="relative w-64 h-64 max-w-full">
+      {/* Visual Showcase */}
+      <div className="relative rounded-3xl overflow-hidden aspect-[16/9] sm:aspect-[21/9] bg-surface border border-border-subtle shadow-subtle flex items-center justify-center p-8">
+        <div className="relative w-64 h-24 sm:w-80 sm:h-28 max-w-full">
           <Image
             src="/images/bloomora-logo.png"
             alt="Bloomora Handcrafted Creations Logo"
             fill
-            className="object-contain mix-blend-multiply"
+            className="object-contain"
           />
         </div>
       </div>

@@ -43,7 +43,7 @@ export default function CartPage() {
   const whatsappInquiryUrl = getOrderInquiryLink('BAG-INQUIRY', formatINR(subtotal), itemsSummary);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10 w-full max-w-full overflow-hidden">
       <div className="space-y-2 text-center sm:text-left">
         <span className="text-xs uppercase font-bold tracking-widest text-secondary">
           Review Your Selections

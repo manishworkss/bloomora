@@ -30,7 +30,7 @@ export default function ReturnsPolicyPage() {
         <section className="space-y-3">
           <h2 className="font-serif text-xl font-bold text-ink">1. Non-Refundable Nature</h2>
           <p>
-            Each piece at <strong>The Handmade Craft</strong> requires individual hours of manual hand-knitting, personalized yarn selection, and careful packaging. Unlike mass-manufactured plastic goods, bespoke artisan items cannot be restocked or returned once prepared.
+            Each piece at <strong>Bloomora</strong> requires individual hours of manual hand-knitting, personalized yarn selection, and careful packaging. Unlike mass-manufactured plastic goods, bespoke artisan items cannot be restocked or returned once prepared.
           </p>
         </section>
 
