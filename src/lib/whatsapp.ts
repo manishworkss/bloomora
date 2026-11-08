@@ -32,3 +32,4 @@ export function getCustomOrderInquiryLink(): string {
   const message = `Hi The Handmade Craft! 🌷\nI'm looking for a custom handcrafted gift (keychain, bouquet, or flowers). Could you help me with design options and pricing?`;
   return buildWhatsAppLink({ message });
 }
+

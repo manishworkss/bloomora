@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { nanoid } from 'nanoid';
+import { saveOrder } from '@/lib/orders-store';
+import { Order } from '@/types';
 
 const checkoutSchema = z.object({
   customer: z.object({
@@ -16,7 +18,10 @@ const checkoutSchema = z.object({
     z.object({
       productId: z.string(),
       variantId: z.string().optional(),
+      title: z.string().optional(),
+      unitPrice: z.number().optional(),
       quantity: z.number().int().positive(),
+      imageUrl: z.string().optional(),
     })
   ).min(1, 'At least one item required in cart'),
   paymentMethod: z.enum(['MANUAL_UPI', 'COD']).default('MANUAL_UPI'),
@@ -43,12 +48,52 @@ export async function POST(request: NextRequest) {
 
     const { customer, items, paymentMethod } = validated.data;
 
-    // Generate reference and token
+    // Generate unique reference and high-entropy secret token
     const randomSuffix = Math.floor(1000 + Math.random() * 9000);
     const orderNumber = `THC-${new Date().getFullYear()}${String(
       new Date().getMonth() + 1
     ).padStart(2, '0')}-${randomSuffix}`;
     const lookupToken = nanoid(24);
+    const orderId = `ord-${Date.now()}`;
+
+    const subtotal = items.reduce((sum, item) => sum + (item.unitPrice || 0) * item.quantity, 0);
+    const deliveryFee = 50.0;
+    const grandTotal = subtotal + deliveryFee;
+
+    const newOrder: Order = {
+      id: orderId,
+      orderNumber,
+      lookupToken,
+      customerName: customer.name,
+      customerPhone: customer.phone,
+      customerEmail: customer.email,
+      deliveryAddress: customer.deliveryAddress,
+      landmark: customer.landmark,
+      postalCode: customer.postalCode,
+      deliveryInstructions: customer.deliveryInstructions,
+      itemsSubtotal: subtotal,
+      deliveryFee,
+      discountTotal: 0,
+      grandTotal,
+      orderStatus: 'PENDING',
+      paymentStatus: 'PENDING',
+      paymentMethod,
+      items: items.map((i, idx) => ({
+        id: `item-${orderId}-${idx}`,
+        orderId,
+        productId: i.productId,
+        variantId: i.variantId,
+        productTitle: i.title || 'Handmade Creation',
+        unitPrice: i.unitPrice || 0,
+        quantity: i.quantity,
+        totalPrice: (i.unitPrice || 0) * i.quantity,
+        imageUrl: i.imageUrl,
+      })),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    saveOrder(newOrder);
 
     return NextResponse.json(
       {
@@ -59,10 +104,11 @@ export async function POST(request: NextRequest) {
           trackingUrl: `/orders/track?token=${lookupToken}`,
           customerName: customer.name,
           paymentMethod,
-          deliveryFee: 50.0,
+          deliveryFee,
+          grandTotal,
           orderStatus: 'PENDING',
           paymentStatus: 'PENDING',
-          createdAt: new Date().toISOString(),
+          createdAt: newOrder.createdAt,
         },
         message: 'Order created successfully. Please confirm via WhatsApp to complete!',
       },

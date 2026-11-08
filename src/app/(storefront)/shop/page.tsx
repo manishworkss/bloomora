@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Search, SlidersHorizontal } from 'lucide-react';
 import { ProductCard } from '@/components/storefront/ProductCard';
 import { Product } from '@/types';
@@ -254,29 +255,42 @@ const CATALOG_PRODUCTS: Product[] = [
 ];
 
 const CATEGORIES = [
-  { id: 'all', name: 'All Creations' },
-  { id: 'cat-bouquets', name: 'Bouquets' },
-  { id: 'cat-keychains', name: 'Keychains' },
-  { id: 'cat-flowers', name: 'Flower Pots' },
+  { id: 'all', slug: 'all', name: 'All Creations' },
+  { id: 'cat-bouquets', slug: 'bouquets', name: 'Bouquets' },
+  { id: 'cat-keychains', slug: 'keychains', name: 'Keychains' },
+  { id: 'cat-flowers', slug: 'flowers', name: 'Flower Pots' },
 ];
 
-export default function ShopPage() {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+function ShopContent() {
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get('category');
+
+  const initialCat = useMemo(() => {
+    if (!categoryParam) return 'all';
+    const found = CATEGORIES.find((c) => c.slug === categoryParam);
+    return found ? found.id : 'all';
+  }, [categoryParam]);
+
+  const [selectedCategory, setSelectedCategory] = useState<string>(initialCat);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortBy, setSortBy] = useState<string>('featured');
   const [filterType, setFilterType] = useState<string>('all');
 
+  useEffect(() => {
+    if (categoryParam) {
+      const found = CATEGORIES.find((c) => c.slug === categoryParam);
+      if (found) setSelectedCategory(found.id);
+    }
+  }, [categoryParam]);
+
   const filteredProducts = useMemo(() => {
     return CATALOG_PRODUCTS.filter((product) => {
-      // Category filter
       if (selectedCategory !== 'all' && product.categoryId !== selectedCategory) {
         return false;
       }
-      // Product type filter
       if (filterType !== 'all' && product.productType !== filterType) {
         return false;
       }
-      // Search query
       if (searchQuery.trim()) {
         const query = searchQuery.toLowerCase();
         const matchesTitle = product.title.toLowerCase().includes(query);
@@ -287,25 +301,12 @@ export default function ShopPage() {
     }).sort((a, b) => {
       if (sortBy === 'price-low') return a.basePrice - b.basePrice;
       if (sortBy === 'price-high') return b.basePrice - a.basePrice;
-      return 0; // default featured
+      return 0;
     });
   }, [selectedCategory, searchQuery, sortBy, filterType]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
-      {/* Header & Page Title */}
-      <div className="space-y-3 text-center sm:text-left">
-        <span className="text-xs uppercase font-bold tracking-widest text-secondary">
-          Artisanal Catalog
-        </span>
-        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-ink">
-          Handcrafted Gifts & Eternal Blooms
-        </h1>
-        <p className="text-sm text-ink-muted max-w-2xl">
-          Every piece is carefully made in Vadodara with love. Available for quick dispatch or custom personalization.
-        </p>
-      </div>
-
+    <div className="space-y-10">
       {/* Filter and Search Bar */}
       <div className="space-y-4 bg-surface p-5 rounded-xl border border-border-subtle shadow-craft">
         {/* Top Controls: Search and Sort */}
@@ -396,6 +397,29 @@ export default function ShopPage() {
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+export default function ShopPage() {
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+      {/* Header & Page Title */}
+      <div className="space-y-3 text-center sm:text-left">
+        <span className="text-xs uppercase font-bold tracking-widest text-secondary">
+          Artisanal Catalog
+        </span>
+        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-ink">
+          Handcrafted Gifts & Eternal Blooms
+        </h1>
+        <p className="text-sm text-ink-muted max-w-2xl">
+          Every piece is carefully made in Vadodara with love. Available for quick dispatch or custom personalization.
+        </p>
+      </div>
+
+      <Suspense fallback={<div className="text-center py-12 text-xs text-ink-muted">Loading creations...</div>}>
+        <ShopContent />
+      </Suspense>
     </div>
   );
 }

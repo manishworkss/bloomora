@@ -36,3 +36,4 @@ export function formatShortDateIST(dateInput: string | Date | null | undefined):
     year: 'numeric',
   }).format(date);
 }
+
