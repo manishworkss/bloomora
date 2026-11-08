@@ -85,8 +85,8 @@ export default function HomePage() {
                 {/* Clean Transparent Bloomora Logo */}
                 <div className="relative w-full h-full p-2 sm:p-4">
                   <Image
-                    src="/images/bloomora-logo.png"
-                    alt="Bloomora Handcrafted Creations Embroidery Logo"
+                    src="/images/bloomora-hoop.png"
+                    alt="Bloomora Handcrafted Creations Embroidery Showcase"
                     fill
                     priority
                     className="object-contain drop-shadow-md hover:scale-[1.02] transition-transform duration-500 ease-out"

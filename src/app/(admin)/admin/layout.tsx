@@ -38,22 +38,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <aside className="w-64 bg-surface border-r border-border-subtle flex flex-col shrink-0 hidden md:flex">
         {/* Brand Header with Melting Logo */}
         <div className="p-5 border-b border-border-subtle">
-          <Link href="/admin/dashboard" className="flex items-center gap-3">
-            <div className="relative w-12 h-12 shrink-0">
+          <Link href="/admin/dashboard" className="block">
+            <div className="relative w-40 h-14">
               <Image
                 src="/images/bloomora-logo.png"
                 alt="Bloomora Admin Logo"
                 fill
                 className="object-contain"
-                sizes="48px"
+                sizes="160px"
               />
             </div>
-            <div>
-              <h2 className="font-serif text-lg font-bold text-ink leading-tight">Bloomora</h2>
-              <span className="text-[10px] tracking-widest uppercase font-semibold text-primary block">
-                Admin Console
-              </span>
-            </div>
+            <span className="text-[10px] tracking-widest uppercase font-semibold text-primary block mt-1">
+              Admin Console
+            </span>
           </Link>
         </div>
 

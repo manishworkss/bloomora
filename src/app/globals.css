@@ -3,14 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --color-canvas: #FDFBF7;
-  --color-surface: #F7F3EE;
-  --color-primary: #C06C54;
-  --color-secondary: #D4A396;
-  --color-text: #2C2420;
-  --color-text-muted: #70645D;
-  --color-border: #E8DFD5;
-  --color-sage: #5B7A5F;
+  /* Urban Ethnicity Inspired Boutique Palette */
+  --color-canvas: #FFF9F2;       /* Warm Cream */
+  --color-surface: #FFFFFF;      /* Pure White */
+  --color-blush: #F4DDE3;        /* Pastel Blush Pink */
+  --color-rose: #C88F9D;         /* Dusty Rose */
+  --color-primary: #C88F9D;      /* Dusty Rose Primary Accent */
+  --color-secondary: #F4DDE3;    /* Pastel Blush Pink */
+  --color-text: #65504B;         /* Deep Warm Brown */
+  --color-text-muted: #8E7A75;   /* Soft Warm Cocoa */
+  --color-border: #EFE4DC;       /* Subtle Warm Linen Border */
+  --color-sage: #A9B99F;         /* Soft Sage Green */
 }
 
 body {
@@ -22,26 +25,25 @@ body {
 }
 
 ::selection {
-  background-color: #E5A493;
-  color: #2C2420;
+  background-color: #F4DDE3;
+  color: #65504B;
 }
 
 /* Custom Artisan Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F7F3EE;
+  background: #FFF9F2;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D4A396;
+  background: #E0C7CC;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #C06C54;
+  background: #C88F9D;
 }
-

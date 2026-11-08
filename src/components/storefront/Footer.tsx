@@ -16,13 +16,13 @@ export const Footer: React.FC = () => {
               aria-label="Bloomora - Handcrafted Creations"
               className="inline-block group focus-visible:outline-none"
             >
-              <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 shrink-0 transition-transform duration-300 group-hover:scale-105">
+              <div className="relative w-48 h-16 sm:w-56 sm:h-20 shrink-0 transition-transform duration-300 group-hover:scale-[1.02]">
                 <Image
                   src="/images/bloomora-logo.png"
                   alt="Bloomora Handcrafted Creations"
                   fill
-                  className="object-contain drop-shadow-sm"
-                  sizes="(max-width: 640px) 112px, 144px"
+                  className="object-contain"
+                  sizes="(max-width: 640px) 192px, 224px"
                 />
               </div>
             </Link>

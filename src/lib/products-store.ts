@@ -246,6 +246,10 @@ export function getProductBySlug(slug: string): Product | undefined {
   return productsRegistry.find((p) => p.slug === slug);
 }
 
+export function getProductById(id: string): Product | undefined {
+  return productsRegistry.find((p) => p.id === id);
+}
+
 export function saveProduct(product: Product): Product {
   const index = productsRegistry.findIndex((p) => p.id === product.id);
   if (index > -1) {

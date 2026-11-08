@@ -29,14 +29,14 @@ export default function AdminLoginPage() {
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-surface to-canvas">
       <div className="w-full max-w-md bg-surface p-8 sm:p-10 rounded-2xl border border-border-subtle shadow-craft-elevated space-y-8">
         <div className="text-center space-y-3">
-          <div className="relative w-28 h-28 mx-auto">
+          <div className="relative w-56 h-20 mx-auto">
             <Image
               src="/images/bloomora-logo.png"
               alt="Bloomora Logo"
               fill
               priority
-              className="object-contain drop-shadow-sm"
-              sizes="112px"
+              className="object-contain"
+              sizes="224px"
             />
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl font-bold text-ink">

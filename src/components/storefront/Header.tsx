@@ -27,22 +27,22 @@ export const Header: React.FC = () => {
             </button>
           </div>
 
-          {/* Brand Identity / Logo - Sized to fit comfortably inside the header box */}
+          {/* Brand Identity / New Bloomora Wordmark Logo */}
           <div className="flex-1 lg:flex-none flex items-center justify-center lg:justify-start">
             <Link
               href="/"
               aria-label="Bloomora - Handcrafted Creations"
               className="inline-flex items-center group focus-visible:outline-none py-1"
             >
-              {/* Perfectly fitting transparent logo without overflowing the header box */}
-              <div className="relative w-14 h-14 sm:w-16 sm:h-16 shrink-0 transition-transform duration-300 group-hover:scale-105">
+              {/* Responsive 3:1 aspect ratio wordmark, fits cleanly inside the header */}
+              <div className="relative w-36 h-12 sm:w-44 sm:h-14 md:w-48 md:h-15 shrink-0 transition-transform duration-300 group-hover:scale-[1.02]">
                 <Image
                   src="/images/bloomora-logo.png"
                   alt="Bloomora Handcrafted Creations"
                   fill
                   priority
-                  className="object-contain drop-shadow-sm"
-                  sizes="(max-width: 640px) 56px, 64px"
+                  className="object-contain"
+                  sizes="(max-width: 640px) 144px, (max-width: 768px) 176px, 192px"
                 />
               </div>
             </Link>
