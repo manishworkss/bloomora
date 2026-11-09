@@ -114,6 +114,15 @@ export const Footer: React.FC = () => {
                   Contact Us & WhatsApp Support
                 </Link>
               </li>
+              <li className="pt-1">
+                <Link
+                  href="/admin/login"
+                  className="hover:text-primary transition-colors inline-flex items-center gap-1.5 text-xs font-semibold text-rose"
+                >
+                  <span>Artisan Studio Admin</span>
+                  <span className="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-blush text-rose">Portal ↗</span>
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -151,7 +160,16 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-border-subtle/80 flex flex-col sm:flex-row items-center justify-between text-xs text-ink-muted gap-4">
-          <p>© {new Date().getFullYear()} Bloomora. All rights reserved.</p>
+          <div className="flex items-center gap-3">
+            <p>© {new Date().getFullYear()} Bloomora. All rights reserved.</p>
+            <span className="text-border-subtle">•</span>
+            <Link
+              href="/admin/login"
+              className="hover:text-primary text-[11px] font-medium text-ink-muted transition-colors"
+            >
+              Admin Portal
+            </Link>
+          </div>
           <p className="flex items-center gap-1">
             <span>Handmade with</span>
             <Heart className="w-3.5 h-3.5 fill-primary text-primary" />

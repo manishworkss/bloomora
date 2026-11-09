@@ -195,7 +195,7 @@ export default function AdminEnquiriesPage() {
                   <div>
                     <Link
                       href={`https://wa.me/91${enquiry.customerPhone}?text=${encodeURIComponent(
-                        `Hi ${enquiry.customerName}! 🌸 This is The Handmade Craft regarding your custom gift request. We'd love to help you bring this to life!`
+                        `Hi ${enquiry.customerName}! 🌸 This is Bloomora regarding your custom gift inquiry on our website. We'd love to help you design and handcraft this special creation in our Vadodara studio!`
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"

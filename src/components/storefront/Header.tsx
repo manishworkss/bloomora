@@ -336,9 +336,18 @@ export const Header: React.FC = () => {
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block text-sm font-semibold text-ink hover:text-primary py-2.5"
+                className="block text-sm font-semibold text-ink hover:text-primary py-2.5 border-b border-border-subtle/50"
               >
                 Contact & Vadodara Delivery
+              </Link>
+
+              <Link
+                href="/admin/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block text-xs font-semibold text-rose hover:text-primary py-2.5 flex items-center justify-between"
+              >
+                <span>Studio Admin Portal</span>
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-blush text-rose uppercase font-bold">Sign In ↗</span>
               </Link>
 
               <div className="pt-4">

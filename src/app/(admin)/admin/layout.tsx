@@ -36,8 +36,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <div className="min-h-screen bg-canvas flex">
       {/* Sidebar */}
       <aside className="w-64 bg-surface border-r border-border-subtle flex flex-col shrink-0 hidden md:flex">
-        {/* Brand Header with Melting Logo */}
-        <div className="p-5 border-b border-border-subtle">
+        {/* Brand Header with Clean Logo */}
+        <div className="p-5 border-b border-border-subtle space-y-3">
           <Link href="/admin/dashboard" className="block">
             <div className="relative w-40 h-14">
               <Image
@@ -48,9 +48,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 sizes="160px"
               />
             </div>
-            <span className="text-[10px] tracking-widest uppercase font-semibold text-primary block mt-1">
+            <span className="text-[10px] tracking-widest uppercase font-semibold text-rose block mt-1">
               Admin Console
             </span>
+          </Link>
+
+          <Link
+            href="/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg bg-blush/40 hover:bg-blush text-rose text-xs font-semibold border border-border-subtle transition-colors w-full"
+          >
+            <ExternalLink className="w-3.5 h-3.5" />
+            <span>Open Live Storefront</span>
           </Link>
         </div>
 
@@ -121,6 +131,37 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               Storefront ↗
             </Link>
             <Link href="/admin/login" className="text-xs text-red-600 font-semibold">
+              Sign Out
+            </Link>
+          </div>
+        </header>
+
+        {/* Desktop Sticky Header */}
+        <header className="hidden md:flex bg-surface/90 backdrop-blur-md border-b border-border-subtle px-8 py-3.5 items-center justify-between sticky top-0 z-30">
+          <div className="flex items-center gap-3">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-xs font-semibold text-ink">
+              Bloomora Studio Management • Vadodara, Gujarat
+            </span>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <Link
+              href="/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-canvas hover:bg-blush/40 border border-border-subtle text-xs font-semibold text-ink transition-colors"
+            >
+              <span>View Live Storefront</span>
+              <ExternalLink className="w-3.5 h-3.5 text-rose" />
+            </Link>
+
+            <span className="text-xs text-ink-muted">owner@bloomora.in</span>
+
+            <Link
+              href="/admin/login"
+              className="text-xs font-semibold text-red-600 hover:text-red-700 hover:underline"
+            >
               Sign Out
             </Link>
           </div>
