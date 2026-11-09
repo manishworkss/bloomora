@@ -59,7 +59,7 @@ export const CartDrawer: React.FC = () => {
               <div className="p-6 border-b border-border-subtle flex items-center justify-between bg-surface">
                 <div className="flex items-center gap-2">
                   <ShoppingBag className="w-5 h-5 text-primary" />
-                  <h2 className="font-serif text-xl font-bold text-ink">Your Shopping Bag</h2>
+                  <h2 className="font-serif text-xl font-bold text-ink">Your Shopping Box</h2>
                   <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-primary/10 text-primary">
                     {totalItems}
                   </span>
@@ -82,7 +82,7 @@ export const CartDrawer: React.FC = () => {
                       <ShoppingBag className="w-8 h-8 stroke-[1.5]" />
                     </div>
                     <div className="space-y-1">
-                      <p className="font-serif text-lg font-medium text-ink">Your bag is empty</p>
+                      <p className="font-serif text-lg font-medium text-ink">Your box is empty</p>
                       <p className="text-sm text-ink-muted">
                         Explore our handmade flowers, bouquets, and bespoke keychains.
                       </p>
