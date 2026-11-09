@@ -199,19 +199,19 @@ export default function HomePage() {
   const featuredProducts = getProducts(true).slice(0, 6);
 
   return (
-    <div className="space-y-20 sm:space-y-28 pb-20 w-full max-w-full overflow-x-hidden">
-      {/* 1. EDITORIAL HERO SECTION (Mobile Optimized) */}
-      <section className="relative overflow-hidden pt-6 pb-12 lg:pt-14 lg:pb-20 w-full">
+    <div className="space-y-8 sm:space-y-12 pb-12 w-full max-w-full overflow-x-hidden">
+      {/* 1. EDITORIAL HERO SECTION (Snug, Balanced Spacing) */}
+      <section className="relative overflow-hidden pt-2 pb-4 lg:pt-5 lg:pb-5 w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
             {/* Left Narrative Column */}
-            <div className="lg:col-span-7 space-y-6 text-center lg:text-left min-w-0">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blush/40 border border-border-subtle text-[11px] font-semibold text-ink tracking-wider uppercase max-w-full">
+            <div className="lg:col-span-7 space-y-4 text-center lg:text-left min-w-0">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blush/40 border border-border-subtle text-[11px] font-semibold text-ink tracking-wider uppercase max-w-full">
                 <Sparkles className="w-3.5 h-3.5 text-rose shrink-0" />
                 <span className="truncate">Vadodara&apos;s Artisan Studio • Delivering City-Wide</span>
               </div>
 
-              <div className="space-y-3.5">
+              <div className="space-y-2.5">
                 <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-ink font-normal tracking-tight leading-[1.12]">
                   Little details. <br />
                   <span className="italic font-light text-rose">
@@ -224,7 +224,7 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-1 w-full sm:w-auto">
                 <Link href="/shop" className="w-full sm:w-auto">
                   <Button variant="primary" size="lg" className="w-full sm:w-auto">
                     <span>Explore Collection</span>
@@ -240,7 +240,7 @@ export default function HomePage() {
               </div>
 
               {/* Quiet Trust Attributes */}
-              <div className="pt-6 grid grid-cols-3 gap-3 sm:gap-6 border-t border-border-subtle/80 max-w-md mx-auto lg:mx-0 text-center lg:text-left">
+              <div className="pt-3 grid grid-cols-3 gap-3 sm:gap-6 border-t border-border-subtle/80 max-w-md mx-auto lg:mx-0 text-center lg:text-left">
                 <div>
                   <p className="font-serif text-lg sm:text-2xl font-bold text-ink">100%</p>
                   <p className="text-[10px] sm:text-[11px] uppercase tracking-wider text-ink-muted mt-0.5">
@@ -270,8 +270,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. BRAND VALUES TICKER (Mobile Safe Overflow) */}
-      <section className="border-y border-border-subtle bg-surface/60 py-3.5 w-full overflow-hidden">
+      {/* 2. BRAND VALUES TICKER (Seamlessly Attached Below Hero) */}
+      <section className="border-y border-border-subtle bg-surface/60 py-2.5 w-full overflow-hidden !mt-0">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-center sm:justify-around flex-wrap gap-x-6 gap-y-2 text-[11px] sm:text-xs font-medium text-ink-muted uppercase tracking-widest text-center">
           <span className="flex items-center gap-1.5 whitespace-nowrap">
             <span className="w-1.5 h-1.5 rounded-full bg-rose shrink-0" />
@@ -297,8 +297,8 @@ export default function HomePage() {
       </section>
 
       {/* 3. SHOP BY CATEGORY */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 w-full">
-        <div className="text-center space-y-2 max-w-xl mx-auto">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6 w-full">
+        <div className="text-center space-y-1.5 max-w-xl mx-auto">
           <span className="text-xs uppercase font-bold tracking-widest text-rose">
             Curated Collections
           </span>
@@ -343,9 +343,9 @@ export default function HomePage() {
       </section>
 
       {/* 4. FEATURED COLLECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 w-full">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border-subtle pb-5">
-          <div className="space-y-1.5">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 w-full">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border-subtle pb-4">
+          <div className="space-y-1">
             <span className="text-xs uppercase font-bold tracking-widest text-rose">
               Signature Works
             </span>
@@ -365,7 +365,7 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {featuredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -374,7 +374,7 @@ export default function HomePage() {
 
       {/* 5. OUR STORY / FOUNDER SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="bg-surface rounded-3xl border border-border-subtle p-6 sm:p-12 lg:p-16 shadow-subtle">
+        <div className="bg-surface rounded-3xl border border-border-subtle p-6 sm:p-8 lg:p-10 shadow-subtle">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div className="relative aspect-square sm:aspect-[4/3] rounded-2xl overflow-hidden bg-canvas border border-border-subtle w-full">
               <Image
@@ -419,9 +419,9 @@ export default function HomePage() {
       </section>
 
       {/* 6. OUR HAPPY FAMILY (Featured Community Module) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 w-full">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border-subtle pb-5">
-          <div className="space-y-1.5 text-center sm:text-left">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 w-full">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border-subtle pb-4">
+          <div className="space-y-1 text-center sm:text-left">
             <span className="text-xs uppercase font-bold tracking-widest text-rose">
               Real Gifting Moments
             </span>
@@ -442,13 +442,13 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {TESTIMONIALS.map((t, idx) => (
             <div
               key={idx}
-              className="bg-surface rounded-2xl border border-border-subtle p-6 space-y-4 shadow-subtle flex flex-col justify-between"
+              className="bg-surface rounded-2xl border border-border-subtle p-5 sm:p-6 space-y-3 shadow-subtle flex flex-col justify-between"
             >
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 <div className="flex gap-1 text-amber-500">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-3.5 h-3.5 fill-current" />
@@ -459,7 +459,7 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-border-subtle/50">
+              <div className="pt-3 border-t border-border-subtle/50">
                 <p className="font-serif text-sm font-semibold text-ink">{t.name}</p>
                 <p className="text-[11px] text-ink-muted">{t.location} • {t.item}</p>
               </div>
@@ -469,8 +469,8 @@ export default function HomePage() {
       </section>
 
       {/* 7. THE ART OF HANDMADE */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 w-full">
-        <div className="text-center space-y-2 max-w-xl mx-auto">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 w-full">
+        <div className="text-center space-y-1.5 max-w-xl mx-auto">
           <span className="text-xs uppercase font-bold tracking-widest text-rose">
             Craftsmanship
           </span>
@@ -488,7 +488,7 @@ export default function HomePage() {
             return (
               <div
                 key={step.number}
-                className="bg-surface rounded-2xl border border-border-subtle p-6 space-y-3 shadow-subtle"
+                className="bg-surface rounded-2xl border border-border-subtle p-5 sm:p-6 space-y-2.5 shadow-subtle"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-serif text-2xl font-bold text-blush-dark">
@@ -508,8 +508,8 @@ export default function HomePage() {
       </section>
 
       {/* 8. WHY EVERLASTING BLOOMS? (Editorial Comparison Matrix) */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 w-full">
-        <div className="text-center space-y-2 max-w-xl mx-auto">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 w-full">
+        <div className="text-center space-y-1.5 max-w-xl mx-auto">
           <span className="text-xs uppercase font-bold tracking-widest text-rose">
             Thoughtful Gifting
           </span>
@@ -521,10 +521,10 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="bg-surface rounded-3xl border border-border-subtle p-6 sm:p-10 shadow-subtle overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 divide-y md:divide-y-0 md:divide-x divide-border-subtle/80">
+        <div className="bg-surface rounded-3xl border border-border-subtle p-6 sm:p-8 shadow-subtle overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 divide-y md:divide-y-0 md:divide-x divide-border-subtle/80">
             {/* Bloomora Column */}
-            <div className="space-y-6 md:pr-8">
+            <div className="space-y-5 md:pr-6">
               <div className="flex items-center gap-2.5">
                 <div className="w-9 h-9 rounded-full bg-blush flex items-center justify-center text-rose shrink-0">
                   <Sparkles className="w-4 h-4" />
@@ -535,7 +535,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <ul className="space-y-4 text-xs sm:text-sm text-ink-muted">
+              <ul className="space-y-3.5 text-xs sm:text-sm text-ink-muted">
                 <li className="flex items-start gap-2.5">
                   <span className="text-rose font-bold text-base leading-none">✓</span>
                   <div>
@@ -564,7 +564,7 @@ export default function HomePage() {
             </div>
 
             {/* Standard Fresh Cut Flowers Column */}
-            <div className="space-y-6 pt-6 md:pt-0 md:pl-8 opacity-75">
+            <div className="space-y-5 pt-6 md:pt-0 md:pl-6 opacity-75">
               <div className="flex items-center gap-2.5">
                 <div className="w-9 h-9 rounded-full bg-canvas flex items-center justify-center text-ink-muted shrink-0">
                   <Clock className="w-4 h-4" />
@@ -575,7 +575,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <ul className="space-y-4 text-xs sm:text-sm text-ink-muted">
+              <ul className="space-y-3.5 text-xs sm:text-sm text-ink-muted">
                 <li className="flex items-start gap-2.5">
                   <span className="text-ink-muted font-bold text-base leading-none">✕</span>
                   <div>
@@ -608,8 +608,8 @@ export default function HomePage() {
 
       {/* 9. CUSTOM ORDERS & COMMISSIONS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="relative rounded-3xl bg-blush/30 border border-border-subtle p-6 sm:p-14 overflow-hidden">
-          <div className="max-w-2xl space-y-5 text-center sm:text-left">
+        <div className="relative rounded-3xl bg-blush/30 border border-border-subtle p-6 sm:p-10 overflow-hidden">
+          <div className="max-w-2xl space-y-4 text-center sm:text-left">
             <span className="text-xs uppercase font-bold tracking-widest text-rose">
               Bespoke Gifting
             </span>
@@ -620,7 +620,7 @@ export default function HomePage() {
               Tell us your idea, and let&apos;s create something meaningful together. We customize colors, bouquet sizes, flower combinations, and personalized tags.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
+            <div className="flex flex-col sm:flex-row items-center gap-3 pt-1">
               <Link href="/custom-orders" className="w-full sm:w-auto">
                 <Button variant="primary" size="md" className="w-full sm:w-auto">
                   <span>Create Your Custom Gift</span>
@@ -644,9 +644,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 9. HOW TO ORDER (4-Step Responsive Guide) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 w-full">
-        <div className="text-center space-y-2 max-w-xl mx-auto">
+      {/* 10. HOW TO ORDER (4-Step Responsive Guide) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 w-full">
+        <div className="text-center space-y-1.5 max-w-xl mx-auto">
           <span className="text-xs uppercase font-bold tracking-widest text-rose">
             Simple & Transparent
           </span>
@@ -674,8 +674,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 10. INSTAGRAM / SOCIAL GALLERY */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 w-full">
+      {/* 11. INSTAGRAM / SOCIAL GALLERY */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-5 w-full">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           <div>
             <span className="text-xs uppercase font-bold tracking-widest text-rose">
@@ -723,9 +723,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 11. FAQ ACCORDION */}
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 space-y-6 w-full">
-        <div className="text-center space-y-2">
+      {/* 12. FAQ ACCORDION */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 space-y-4 sm:space-y-5 w-full">
+        <div className="text-center space-y-1.5">
           <span className="text-xs uppercase font-bold tracking-widest text-rose">
             Got Questions?
           </span>
