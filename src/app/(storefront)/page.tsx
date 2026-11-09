@@ -211,64 +211,95 @@ export default function HomePage() {
 
   return (
     <div className="space-y-8 sm:space-y-12 pb-12 w-full max-w-full overflow-x-hidden">
-      {/* 1. EDITORIAL HERO SECTION (Snug, Balanced Spacing) */}
-      <section className="relative overflow-hidden pt-2 pb-4 lg:pt-5 lg:pb-5 w-full">
+      {/* 1. EDITORIAL HERO SECTION (Atmospheric Boutique Aesthetics) */}
+      <section className="relative overflow-hidden pt-3 pb-6 lg:pt-8 lg:pb-8 w-full bg-gradient-to-b from-blush/25 via-canvas/60 to-canvas">
+        {/* Soft diffused ambient lighting circles */}
+        <div className="pointer-events-none absolute -top-20 -right-20 w-80 sm:w-[28rem] h-80 sm:h-[28rem] rounded-full bg-blush/40 blur-3xl -z-10" />
+        <div className="pointer-events-none absolute top-1/3 -left-24 w-72 sm:w-80 h-72 sm:h-80 rounded-full bg-[#F4ECE4]/80 blur-3xl -z-10" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             {/* Left Narrative Column */}
             <div className="lg:col-span-7 space-y-4 text-center lg:text-left min-w-0">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blush/40 border border-border-subtle text-[11px] font-semibold text-ink tracking-wider uppercase max-w-full">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface/90 backdrop-blur-md border border-rose/25 shadow-subtle text-[11px] font-semibold text-rose tracking-wider uppercase max-w-full">
                 <Sparkles className="w-3.5 h-3.5 text-rose shrink-0" />
-                <span className="truncate">Vadodara&apos;s Artisan Studio • Delivering City-Wide</span>
+                <span className="truncate">Vadodara&apos;s Artisan Studio • Slow Handcrafted Blooms</span>
               </div>
 
-              <div className="space-y-2.5">
-                <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-ink font-normal tracking-tight leading-[1.12]">
+              <div className="space-y-3">
+                <h1 className="font-serif text-3xl sm:text-5xl lg:text-[3.5rem] xl:text-[3.85rem] text-ink font-normal tracking-tight leading-[1.12]">
                   Little details. <br />
                   <span className="italic font-light text-rose">
                     Beautiful emotions.
                   </span>
                 </h1>
-                <p className="text-xs sm:text-base text-ink-muted leading-relaxed max-w-xl mx-auto lg:mx-0">
-                  Thoughtfully crocheted everlasting flowers, handcrafted bouquets, and keepsake charms.
-                  Each piece is slow-crafted stitch by stitch with warmth, care, and emotion in Vadodara, Gujarat.
+                <p className="text-xs sm:text-base text-ink-muted leading-relaxed max-w-xl mx-auto lg:mx-0 font-normal">
+                  Thoughtfully crocheted everlasting flowers, bespoke bouquets, and keepsake charms.
+                  Each piece is slow-crafted stitch by stitch with warmth, patient care, and genuine feeling in Vadodara, Gujarat.
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-1 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-1.5 w-full sm:w-auto">
                 <Link href="/shop" className="w-full sm:w-auto">
-                  <Button variant="primary" size="lg" className="w-full sm:w-auto">
+                  <Button variant="primary" size="lg" className="w-full sm:w-auto shadow-craft hover:shadow-craft-elevated transition-all">
                     <span>Explore Collection</span>
                     <ArrowRight className="w-4 h-4 ml-1.5" />
                   </Button>
                 </Link>
 
                 <Link href="/custom-orders" className="w-full sm:w-auto">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto bg-surface/85 hover:bg-surface border-border-subtle hover:border-primary/50 transition-all">
                     <span>Customise Your Gift</span>
                   </Button>
                 </Link>
               </div>
 
-              {/* Quiet Trust Attributes */}
-              <div className="pt-3 grid grid-cols-3 gap-3 sm:gap-6 border-t border-border-subtle/80 max-w-md mx-auto lg:mx-0 text-center lg:text-left">
-                <div>
-                  <p className="font-serif text-lg sm:text-2xl font-bold text-ink">100%</p>
-                  <p className="text-[10px] sm:text-[11px] uppercase tracking-wider text-ink-muted mt-0.5">
-                    Slow Handmade
+              {/* Social Proof & Local Trust */}
+              <div className="flex items-center justify-center lg:justify-start gap-3 pt-1">
+                <div className="flex -space-x-2 overflow-hidden">
+                  <div className="inline-block h-7 w-7 rounded-full ring-2 ring-canvas bg-blush flex items-center justify-center text-[10px] font-bold text-rose">
+                    MD
+                  </div>
+                  <div className="inline-block h-7 w-7 rounded-full ring-2 ring-canvas bg-surface border border-border-subtle flex items-center justify-center text-[10px] font-bold text-ink">
+                    AP
+                  </div>
+                  <div className="inline-block h-7 w-7 rounded-full ring-2 ring-canvas bg-rose/15 flex items-center justify-center text-[10px] font-bold text-rose">
+                    PS
+                  </div>
+                </div>
+                <div className="text-left">
+                  <div className="flex items-center gap-1 text-amber-500">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3 h-3 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-[11px] text-ink-muted">
+                    <strong className="text-ink font-semibold">500+ smiles</strong> delivered across Vadodara
                   </p>
                 </div>
-                <div>
-                  <p className="font-serif text-lg sm:text-2xl font-bold text-ink">Forever</p>
-                  <p className="text-[10px] sm:text-[11px] uppercase tracking-wider text-ink-muted mt-0.5">
-                    Never Withers
-                  </p>
-                </div>
-                <div>
-                  <p className="font-serif text-lg sm:text-2xl font-bold text-ink">Vadodara</p>
-                  <p className="text-[10px] sm:text-[11px] uppercase tracking-wider text-ink-muted mt-0.5">
-                    City Delivery
-                  </p>
+              </div>
+
+              {/* Quiet Trust Attributes Card */}
+              <div className="pt-2">
+                <div className="bg-surface/85 backdrop-blur-sm rounded-2xl border border-border-subtle/80 p-3 sm:p-4 grid grid-cols-3 divide-x divide-border-subtle/70 text-center shadow-subtle max-w-md mx-auto lg:mx-0">
+                  <div className="px-2">
+                    <p className="font-serif text-lg sm:text-2xl font-bold text-ink">100%</p>
+                    <p className="text-[10px] sm:text-[11px] uppercase tracking-wider text-ink-muted mt-0.5">
+                      Slow Crochet
+                    </p>
+                  </div>
+                  <div className="px-2">
+                    <p className="font-serif text-lg sm:text-2xl font-bold text-rose">Forever</p>
+                    <p className="text-[10px] sm:text-[11px] uppercase tracking-wider text-ink-muted mt-0.5">
+                      Never Withers
+                    </p>
+                  </div>
+                  <div className="px-2">
+                    <p className="font-serif text-lg sm:text-2xl font-bold text-ink">Vadodara</p>
+                    <p className="text-[10px] sm:text-[11px] uppercase tracking-wider text-ink-muted mt-0.5">
+                      City Delivery
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

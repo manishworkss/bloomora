@@ -45,15 +45,19 @@ export const CraftHoopShowcase: React.FC = () => {
       <motion.div
         animate={{
           scale: isHovered ? 1.05 : [1, 1.03, 1],
-          opacity: isHovered ? 0.55 : [0.35, 0.45, 0.35],
+          opacity: isHovered ? 0.6 : [0.35, 0.45, 0.35],
         }}
         transition={{
           duration: 6,
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        className="absolute inset-6 rounded-full bg-blush/50 blur-3xl pointer-events-none"
+        className="absolute inset-4 rounded-full bg-blush/60 blur-3xl pointer-events-none"
       />
+
+      {/* Artisanal Stitched Halo Frame */}
+      <div className="absolute inset-2 sm:inset-3 rounded-full border border-dashed border-rose/30 pointer-events-none" />
+      <div className="absolute inset-5 sm:inset-7 rounded-full border border-border-subtle/80 bg-gradient-to-tr from-blush/25 via-surface/40 to-canvas/15 pointer-events-none" />
 
       {/* Main Organic 3D Tilting Wooden Hoop */}
       <motion.div
@@ -81,7 +85,7 @@ export const CraftHoopShowcase: React.FC = () => {
           alt="Bloomora Handcrafted Creations Embroidery Showcase"
           fill
           priority
-          className="object-contain drop-shadow-xl pointer-events-none"
+          className="object-contain drop-shadow-2xl pointer-events-none"
           sizes="(max-width: 640px) 280px, (max-width: 1024px) 400px, 480px"
         />
 
@@ -101,18 +105,38 @@ export const CraftHoopShowcase: React.FC = () => {
           <span>Hand-Stitched Milk Cotton</span>
         </motion.div>
 
-        {/* Tactile Swing Tag 2: Artisan Seal */}
+        {/* Tactile Swing Tag 2: Everlasting Keepsake Tag */}
+        <motion.div
+          animate={{
+            y: [-2, 2, -2],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: 1,
+          }}
+          className="absolute top-1/2 -right-1 sm:-right-3 -translate-y-1/2 bg-surface/95 backdrop-blur-md border border-border-subtle py-1 px-2.5 rounded-full shadow-subtle text-[10px] font-semibold text-ink flex items-center gap-1.5 z-20 pointer-events-none"
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+          <span>Never Withers</span>
+        </motion.div>
+
+        {/* Tactile Swing Tag 3: Artisan Seal */}
         <motion.div
           whileHover={{ scale: 1.03 }}
           transition={{ duration: 0.25 }}
-          className="absolute -bottom-2 sm:bottom-4 left-2 sm:left-6 bg-surface/95 backdrop-blur-md border border-border-subtle p-2.5 sm:p-3 rounded-2xl shadow-craft flex items-center gap-2.5 max-w-[calc(100%-1.5rem)] z-20"
+          className="absolute -bottom-2 sm:bottom-3 left-2 sm:left-4 bg-surface/95 backdrop-blur-md border border-border-subtle p-2.5 sm:p-3 rounded-2xl shadow-craft flex items-center gap-2.5 max-w-[calc(100%-1.5rem)] z-20"
         >
-          <div className="w-8 h-8 rounded-xl bg-blush flex items-center justify-center text-rose shrink-0">
+          <div className="w-8 h-8 rounded-xl bg-blush flex items-center justify-center text-rose shrink-0 shadow-inner">
             <Heart className="w-4 h-4 fill-rose" />
           </div>
           <div className="min-w-0 pr-1 text-left">
-            <p className="text-xs font-bold text-ink truncate">Handmade in Vadodara</p>
-            <p className="text-[10px] text-ink-muted truncate">Zero Machines • Pure Craft</p>
+            <div className="flex items-center gap-1">
+              <p className="text-xs font-bold text-ink truncate">Handmade in Vadodara</p>
+              <span className="text-[10px] text-rose font-serif">✦</span>
+            </div>
+            <p className="text-[10px] text-ink-muted truncate">100% Slow Craft • Zero Machines</p>
           </div>
         </motion.div>
       </motion.div>
