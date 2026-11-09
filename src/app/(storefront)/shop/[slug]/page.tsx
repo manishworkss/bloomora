@@ -30,6 +30,7 @@ import { useCart } from '@/context/CartContext';
 import { formatINR } from '@/lib/formatters';
 import { getProductInquiryLink } from '@/lib/whatsapp';
 import { CustomerReviewModal } from '@/components/storefront/CustomerReviewModal';
+import { ProductCard } from '@/components/storefront/ProductCard';
 import { Product, CustomerReview } from '@/types';
 
 interface AddOnOption {
@@ -98,6 +99,7 @@ export default function ProductDetailPage() {
   const [giftMessage, setGiftMessage] = useState('');
   const [justAdded, setJustAdded] = useState(false);
   const [reviews, setReviews] = useState<CustomerReview[]>([]);
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [activeMediaModal, setActiveMediaModal] = useState<{
     type: 'image' | 'video';
@@ -119,7 +121,15 @@ export default function ProductDetailPage() {
 
   useEffect(() => {
     loadReviews();
-  }, []);
+    fetch('/api/store/products')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && Array.isArray(data.products)) {
+          setRelatedProducts(data.products.filter((p: Product) => p.slug !== slug).slice(0, 4));
+        }
+      })
+      .catch(() => {});
+  }, [slug]);
 
   if (!product && !loading) {
     notFound();
@@ -636,6 +646,31 @@ export default function ProductDetailPage() {
             )}
           </div>
         </div>
+      )}
+
+      {/* More Handcrafted Creations (2-col mobile, 4-col desktop matching Image 1) */}
+      {relatedProducts.length > 0 && (
+        <section className="pt-12 sm:pt-16 border-t border-border-subtle space-y-6">
+          <div className="flex items-center justify-between">
+            <div className="space-y-1">
+              <span className="text-xs uppercase font-bold tracking-widest text-rose">
+                You May Also Love
+              </span>
+              <h2 className="font-serif text-2xl sm:text-3xl text-ink font-normal">
+                More Handcrafted Creations
+              </h2>
+            </div>
+            <Link href="/shop" className="text-xs font-semibold text-rose hover:underline">
+              View All ↗
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+            {relatedProducts.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
+        </section>
       )}
     </div>
   );
