@@ -181,7 +181,7 @@ export default function AdminDashboardPage() {
             <TrendingUp className="w-4 h-4 text-sage" />
           </div>
           <p className="font-serif text-2xl sm:text-3xl font-bold text-ink">
-            {loading ? '...' : formatINR(totalSales || 2474)}
+            {loading ? '...' : formatINR(totalSales || 0)}
           </p>
           <p className="text-[11px] text-sage font-semibold">
             {orders.length} orders recorded
