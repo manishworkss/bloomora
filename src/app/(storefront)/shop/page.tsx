@@ -4,6 +4,7 @@ import React, { useState, useMemo, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Search, SlidersHorizontal, Loader2, Sparkles } from 'lucide-react';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'motion/react';
 import { ProductCard } from '@/components/storefront/ProductCard';
 import { Product } from '@/types';
 
@@ -325,9 +326,10 @@ function ShopContent() {
         {/* Category Pills */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
           {CATEGORIES.map((cat) => (
-            <button
+            <motion.button
               key={cat.id}
               type="button"
+              whileTap={{ scale: 0.95 }}
               onClick={() => setSelectedCategory(cat.id)}
               className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
                 selectedCategory === cat.id
@@ -336,15 +338,17 @@ function ShopContent() {
               }`}
             >
               {cat.name}
-            </button>
+            </motion.button>
           ))}
-          <Link
-            href="/custom-orders"
-            className="px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap bg-blush/40 border border-border-subtle text-rose hover:bg-blush/70 transition-colors inline-flex items-center gap-1.5"
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Personalised Commissions</span>
-          </Link>
+          <motion.div whileTap={{ scale: 0.95 }}>
+            <Link
+              href="/custom-orders"
+              className="px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap bg-blush/40 border border-border-subtle text-rose hover:bg-blush/70 transition-colors inline-flex items-center gap-1.5"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Personalised Commissions</span>
+            </Link>
+          </motion.div>
         </div>
 
         {/* Filter Toolbar */}

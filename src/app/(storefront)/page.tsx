@@ -22,9 +22,7 @@ import {
 import { Button } from '@/components/ui/Button';
 import { ProductCard } from '@/components/storefront/ProductCard';
 import { FAQAccordion, FAQItem } from '@/components/storefront/FAQAccordion';
-import { FloatingPetalsCanvas } from '@/components/storefront/FloatingPetalsCanvas';
 import { CraftHoopShowcase } from '@/components/storefront/CraftHoopShowcase';
-import { YarnThreadDivider } from '@/components/storefront/YarnThreadDivider';
 import { DEFAULT_WHATSAPP_NUMBER, getCustomOrderInquiryLink } from '@/lib/whatsapp';
 import { getProducts } from '@/lib/products-store';
 
@@ -202,12 +200,9 @@ export default function HomePage() {
 
   return (
     <div className="space-y-20 sm:space-y-28 pb-20 w-full max-w-full overflow-x-hidden">
-      {/* 1. EDITORIAL HERO SECTION (With Three.js Floating Petals & Interactive 3D Craft Hoop) */}
+      {/* 1. EDITORIAL HERO SECTION (Mobile Optimized) */}
       <section className="relative overflow-hidden pt-6 pb-12 lg:pt-14 lg:pb-20 w-full">
-        {/* Subtle Three.js Floating Petals Canvas Background */}
-        <FloatingPetalsCanvas />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
             {/* Left Narrative Column */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left min-w-0">
@@ -274,9 +269,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Handcrafted Looping Crochet Yarn Thread Divider */}
-      <YarnThreadDivider label="Little Creations • Endless Emotions" />
 
       {/* 2. BRAND VALUES TICKER (Mobile Safe Overflow) */}
       <section className="border-y border-border-subtle bg-surface/60 py-3.5 w-full overflow-hidden">
