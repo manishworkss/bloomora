@@ -15,7 +15,11 @@ export async function GET(request: Request) {
 
     if (category) {
       products = products.filter(
-        (p) => p.category?.slug === category || p.categoryId === `cat-${category}`
+        (p) =>
+          p.category?.slug === category ||
+          p.category?.id === category ||
+          p.categoryId === category ||
+          p.categoryId === `cat-${category}`
       );
     }
 
@@ -66,16 +70,30 @@ export async function POST(request: Request) {
       );
     }
 
-    const id = `prod-${Date.now()}`;
+    const id = crypto.randomUUID();
     const slug = title
       .toLowerCase()
       .trim()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '');
 
+    const images = imageUrl?.trim()
+      ? [
+          {
+            id: crypto.randomUUID(),
+            productId: id,
+            cloudinaryPublicId: 'upload',
+            imageUrl: imageUrl.trim(),
+            altText: title,
+            displayOrder: 0,
+            isPrimary: true,
+          },
+        ]
+      : [];
+
     const newProduct: Product = {
       id,
-      categoryId: categoryId || 'cat-bouquets',
+      categoryId: categoryId || '',
       title,
       slug,
       shortDescription: shortDescription || `${title} crafted with care in Vadodara.`,
@@ -91,28 +109,16 @@ export async function POST(request: Request) {
       hasVariants: false,
       stockQuantity: Number(stockQuantity || 5),
       lowStockThreshold: Number(lowStockThreshold || 2),
-      images: [
-        {
-          id: `img-${Date.now()}`,
-          productId: id,
-          cloudinaryPublicId: 'custom',
-          imageUrl:
-            imageUrl?.trim() ||
-            'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=600&auto=format&fit=crop',
-          altText: title,
-          displayOrder: 0,
-          isPrimary: true,
-        },
-      ],
+      images,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
 
-    await saveProductAsync(newProduct);
+    const saved = await saveProductAsync(newProduct);
 
     return NextResponse.json({
       success: true,
-      product: newProduct,
+      product: saved,
     });
   } catch (error) {
     return NextResponse.json(

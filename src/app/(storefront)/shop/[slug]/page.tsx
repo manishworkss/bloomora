@@ -22,6 +22,7 @@ import {
   Video,
   CheckCircle2,
   X,
+  Flower2,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '@/components/ui/Button';
@@ -143,18 +144,7 @@ export default function ProductDetailPage() {
     );
   }
 
-  const images = product.images.length > 0 ? product.images : [
-    {
-      id: 'fallback',
-      productId: product.id,
-      cloudinaryPublicId: 'fallback',
-      imageUrl: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=1200&auto=format&fit=crop',
-      altText: product.title,
-      displayOrder: 0,
-      isPrimary: true,
-    }
-  ];
-
+  const images = (product.images || []).filter((img) => img.imageUrl && img.imageUrl.trim());
   const currentImage = images[selectedImageIndex] || images[0];
 
   const addOnsTotal = selectedAddOns.reduce(
@@ -182,7 +172,7 @@ export default function ProductDetailPage() {
       title: product.title,
       unitPrice: effectiveUnitPrice,
       quantity,
-      imageUrl: currentImage.imageUrl,
+      imageUrl: currentImage?.imageUrl || '',
       maxAvailableStock: product.stockQuantity,
       productType: product.productType,
       addOns: chosenAddOns.length > 0 ? chosenAddOns : undefined,
@@ -235,25 +225,33 @@ export default function ProductDetailPage() {
         <div className="space-y-4">
           {/* Main Large Image */}
           <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-surface border border-border-subtle shadow-craft">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentImage.imageUrl}
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.35, ease: 'easeOut' }}
-                className="relative w-full h-full"
-              >
-                <Image
-                  src={currentImage.imageUrl}
-                  alt={currentImage.altText || product.title}
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </motion.div>
-            </AnimatePresence>
+            {currentImage?.imageUrl ? (
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentImage.imageUrl}
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.35, ease: 'easeOut' }}
+                  className="relative w-full h-full"
+                >
+                  <Image
+                    src={currentImage.imageUrl}
+                    alt={currentImage.altText || product.title}
+                    fill
+                    priority
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </motion.div>
+              </AnimatePresence>
+            ) : (
+              <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-blush/30 via-canvas to-surface text-rose p-8 text-center select-none">
+                <Flower2 className="w-16 h-16 text-rose/60 mb-3 stroke-[1.5]" />
+                <p className="font-serif text-lg text-ink font-semibold">{product.title}</p>
+                <p className="text-xs text-ink-muted mt-1">Handcrafted with care in Vadodara</p>
+              </div>
+            )}
 
             <div className="absolute top-4 left-4 z-10">
               {product.productType === 'READY_MADE' ? (

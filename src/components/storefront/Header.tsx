@@ -22,6 +22,18 @@ export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [shopDropdownOpen, setShopDropdownOpen] = useState(false);
   const [mobileShopOpen, setMobileShopOpen] = useState(true);
+  const [categories, setCategories] = useState<{ id: string; name: string; slug: string }[]>([]);
+
+  useEffect(() => {
+    fetch('/api/store/categories')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && Array.isArray(data.categories)) {
+          setCategories(data.categories.filter((c: any) => c.isActive !== false));
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   // Lock body scroll when mobile menu drawer is open
   useEffect(() => {
@@ -105,24 +117,15 @@ export const Header: React.FC = () => {
                       >
                         All Handmade Creations
                       </Link>
-                      <Link
-                        href="/shop?category=flowers"
-                        className="block px-3.5 py-2.5 rounded-xl text-xs text-ink-muted hover:text-ink hover:bg-canvas transition-colors"
-                      >
-                        Handmade Flowers & Desk Pots
-                      </Link>
-                      <Link
-                        href="/shop?category=bouquets"
-                        className="block px-3.5 py-2.5 rounded-xl text-xs text-ink-muted hover:text-ink hover:bg-canvas transition-colors"
-                      >
-                        Everlasting Floral Bouquets
-                      </Link>
-                      <Link
-                        href="/shop?category=keychains"
-                        className="block px-3.5 py-2.5 rounded-xl text-xs text-ink-muted hover:text-ink hover:bg-canvas transition-colors"
-                      >
-                        Handmade Crochet Keychains
-                      </Link>
+                      {categories.map((cat) => (
+                        <Link
+                          key={cat.id}
+                          href={`/shop?category=${cat.slug}`}
+                          className="block px-3.5 py-2.5 rounded-xl text-xs text-ink-muted hover:text-ink hover:bg-canvas transition-colors"
+                        >
+                          {cat.name}
+                        </Link>
+                      ))}
                       <Link
                         href="/custom-orders"
                         className="block px-3.5 py-2.5 rounded-xl text-xs text-primary font-semibold hover:bg-blush/40 transition-colors"
@@ -269,31 +272,20 @@ export const Header: React.FC = () => {
                     <Link
                       href="/shop"
                       onClick={() => setMobileMenuOpen(false)}
-                      className="block text-ink-muted hover:text-primary py-1.5"
+                      className="block text-ink font-semibold hover:text-primary py-1.5"
                     >
                       • All Handmade Creations
                     </Link>
-                    <Link
-                      href="/shop?category=flowers"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="block text-ink-muted hover:text-primary py-1.5"
-                    >
-                      • Handmade Flowers & Desk Pots
-                    </Link>
-                    <Link
-                      href="/shop?category=bouquets"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="block text-ink-muted hover:text-primary py-1.5"
-                    >
-                      • Everlasting Floral Bouquets
-                    </Link>
-                    <Link
-                      href="/shop?category=keychains"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="block text-ink-muted hover:text-primary py-1.5"
-                    >
-                      • Handmade Crochet Keychains
-                    </Link>
+                    {categories.map((cat) => (
+                      <Link
+                        key={cat.id}
+                        href={`/shop?category=${cat.slug}`}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block text-ink-muted hover:text-primary py-1.5"
+                      >
+                        • {cat.name}
+                      </Link>
+                    ))}
                     <Link
                       href="/custom-orders"
                       onClick={() => setMobileMenuOpen(false)}

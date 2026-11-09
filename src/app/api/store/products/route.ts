@@ -14,7 +14,11 @@ export async function GET(request: Request) {
 
     if (category) {
       products = products.filter(
-        (p) => p.category?.slug === category || p.categoryId === `cat-${category}`
+        (p) =>
+          p.category?.slug === category ||
+          p.category?.id === category ||
+          p.categoryId === category ||
+          p.categoryId === `cat-${category}`
       );
     }
 

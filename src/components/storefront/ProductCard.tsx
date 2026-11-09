@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Star, Check } from 'lucide-react';
+import { Star, Check, Flower2 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Product } from '@/types';
 import { formatINR } from '@/lib/formatters';
@@ -32,12 +32,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [justAdded, setJustAdded] = useState(false);
 
   const primaryImage =
-    product.images?.find((img) => img.isPrimary) ||
-    product.images?.[0] || {
-      imageUrl:
-        'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=800&auto=format&fit=crop',
-      altText: product.title,
-    };
+    product.images?.find((img) => img.isPrimary && img.imageUrl) ||
+    product.images?.find((img) => !!img.imageUrl);
+  const imageUrl = primaryImage?.imageUrl;
 
   const { rating, count } = getProductRating(product.id || product.title);
 
@@ -49,7 +46,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       title: product.title,
       unitPrice: product.basePrice,
       quantity: 1,
-      imageUrl: primaryImage.imageUrl,
+      imageUrl: imageUrl || '',
       maxAvailableStock: product.stockQuantity,
       productType: product.productType,
     });
@@ -66,13 +63,22 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         href={`/shop/${product.slug}`}
         className="block relative aspect-[4/5] bg-canvas overflow-hidden border-b border-gray-100 select-none rounded-t-2xl"
       >
-        <Image
-          src={primaryImage.imageUrl}
-          alt={primaryImage.altText || product.title}
-          fill
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out"
-        />
+        {imageUrl ? (
+          <Image
+            src={imageUrl}
+            alt={primaryImage?.altText || product.title}
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out"
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-blush/30 via-canvas to-surface text-rose p-4 select-none">
+            <Flower2 className="w-10 h-10 text-rose/60 mb-2 stroke-[1.5]" />
+            <span className="text-[11px] font-medium text-ink-muted text-center tracking-wide">
+              Handcrafted Bloom
+            </span>
+          </div>
+        )}
 
         {/* Top-Left Pill Badge: Bestseller (Light khaki/beige warm pill) */}
         {isBestseller && (

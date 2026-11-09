@@ -95,7 +95,7 @@ export async function getCategoriesAsync(activeOnly: boolean = false): Promise<C
         query = query.eq('is_active', true);
       }
       const { data, error } = await query.order('display_order', { ascending: true });
-      if (!error && data && data.length > 0) {
+      if (!error && Array.isArray(data)) {
         return data.map((row: any) => ({
           id: row.id,
           name: row.name,
@@ -107,44 +107,64 @@ export async function getCategoriesAsync(activeOnly: boolean = false): Promise<C
           createdAt: row.created_at || new Date().toISOString(),
         }));
       }
-    } catch {
-      // Fallback to local JSON
+    } catch (err) {
+      console.error('Supabase getCategoriesAsync error:', err);
     }
   }
   return getCategories(activeOnly);
 }
 
 export async function saveCategoryAsync(category: Category): Promise<Category> {
-  const saved = saveCategory(category);
+  const isUuid = category.id && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(category.id);
+  const catId = isUuid ? category.id : crypto.randomUUID();
+
+  const toSave: Category = {
+    ...category,
+    id: catId,
+  };
+
+  saveCategory(toSave);
+
   if (isSupabaseConfigured()) {
     try {
       const supabase = createAdminClient();
       const row = {
-        name: category.name,
-        slug: category.slug,
-        description: category.description || null,
-        image_url: category.imageUrl || null,
-        display_order: category.displayOrder || 0,
-        is_active: category.isActive !== undefined ? category.isActive : true,
+        id: catId,
+        name: toSave.name,
+        slug: toSave.slug,
+        description: toSave.description || null,
+        image_url: toSave.imageUrl || null,
+        display_order: toSave.displayOrder || 0,
+        is_active: toSave.isActive !== undefined ? toSave.isActive : true,
         updated_at: new Date().toISOString(),
       };
       await supabase.from('categories').upsert(row, { onConflict: 'slug' });
-    } catch {
-      // Local JSON already persisted
+    } catch (err) {
+      console.error('Supabase saveCategoryAsync error:', err);
     }
   }
-  return saved;
+  return toSave;
 }
 
 export async function deleteCategoryAsync(id: string): Promise<boolean> {
-  const success = deleteCategory(id);
+  let deletedSupabase = false;
   if (isSupabaseConfigured()) {
     try {
       const supabase = createAdminClient();
-      await supabase.from('categories').delete().eq('id', id);
-    } catch {
-      // Local JSON already updated
+      const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+      let query = supabase.from('categories').delete();
+      if (isUuid) {
+        query = query.eq('id', id);
+      } else {
+        query = query.eq('slug', id);
+      }
+      const { error } = await query;
+      if (!error) deletedSupabase = true;
+    } catch (err) {
+      console.error('Supabase deleteCategoryAsync error:', err);
     }
   }
-  return success;
+  const deletedLocal = deleteCategory(id);
+  return deletedSupabase || deletedLocal;
 }
+

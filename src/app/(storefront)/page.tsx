@@ -125,30 +125,26 @@ const FAQ_ITEMS: FAQItem[] = [
   },
 ];
 
-const INSTAGRAM_POSTS = [
+const STUDIO_MOMENTS = [
   {
-    id: 'ig-1',
-    imageUrl:
-      'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=400&auto=format&fit=crop',
-    caption: 'Pastel lilac tulips crafted for an anniversary celebration in Alkapuri.',
+    id: 'sm-1',
+    imageUrl: '/images/bloomora-hero-bouquet.jpg',
+    caption: 'Lilac & pink handcrafted keepsake bouquet with wooden crochet hook.',
   },
   {
-    id: 'ig-2',
-    imageUrl:
-      'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?q=80&w=400&auto=format&fit=crop',
-    caption: 'Smiling sunflower desk pot bringing cheer to a home office table.',
+    id: 'sm-2',
+    imageUrl: '/images/bloomora-hero-artisan-workbench.jpg',
+    caption: 'Artisan crafting table stitch-by-stitch with soft milk-cotton yarn in Vadodara.',
   },
   {
-    id: 'ig-3',
-    imageUrl:
-      'https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=400&auto=format&fit=crop',
-    caption: 'Daisy charm keychains hand-crocheted for bridesmaid return favors.',
+    id: 'sm-3',
+    imageUrl: '/images/bloomora-hero-handcrafted.jpg',
+    caption: 'Handcrafted with Love — everlasting crochet floral creations.',
   },
   {
-    id: 'ig-4',
-    imageUrl:
-      'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=400&auto=format&fit=crop',
-    caption: 'Custom pastel rose bouquet ready for gift wrapping with satin ribbon.',
+    id: 'sm-4',
+    imageUrl: '/images/bloomora-hero-bouquet.jpg',
+    caption: 'Customised color palette prepared for delivery across Vadodara.',
   },
 ];
 
@@ -430,7 +426,7 @@ export default async function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div className="relative aspect-square sm:aspect-[4/3] rounded-2xl overflow-hidden bg-canvas border border-border-subtle w-full">
               <Image
-                src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=800&auto=format&fit=crop"
+                src="/images/bloomora-hero-artisan-workbench.jpg"
                 alt="Bloomora handmade crafting studio in Vadodara"
                 fill
                 className="object-cover"
@@ -705,7 +701,7 @@ export default async function HomePage() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-          {INSTAGRAM_POSTS.map((post) => (
+          {STUDIO_MOMENTS.map((post) => (
             <Link
               key={post.id}
               href="https://instagram.com/bloomora.creation"

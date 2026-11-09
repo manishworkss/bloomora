@@ -26,33 +26,6 @@ import { Badge } from '@/components/ui/Badge';
 import { formatINR } from '@/lib/formatters';
 import { Product, Category } from '@/types';
 
-const SAMPLE_PHOTO_PRESETS = [
-  {
-    label: 'Studio Bouquet',
-    url: '/images/bloomora-hero-handcrafted.jpg',
-  },
-  {
-    label: 'Sunflower Pot',
-    url: 'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    label: 'Lavender Bouquet',
-    url: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    label: 'Daisy Keychain',
-    url: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    label: 'Strawberry Charm',
-    url: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    label: 'Rose Desk Pot',
-    url: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=800&auto=format&fit=crop',
-  },
-];
-
 function AdminProductsContent() {
   const searchParams = useSearchParams();
   const categoryIdParam = searchParams?.get('categoryId');
@@ -227,7 +200,7 @@ function AdminProductsContent() {
             stockQuantity: Number(stock),
             shortDescription,
             fullDescription,
-            imageUrl: imageUrl || SAMPLE_PHOTO_PRESETS[0].url,
+            imageUrl: imageUrl?.trim() || '',
             isFeatured,
           }),
         });
@@ -296,7 +269,12 @@ function AdminProductsContent() {
     if (!confirm('Are you sure you want to remove this creation from the catalog?')) return;
     try {
       setProducts(products.filter((p) => p.id !== id));
-      await fetch(`/api/admin/products/${id}`, { method: 'DELETE' });
+      const res = await fetch(`/api/admin/products/${id}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (!data.success) {
+        alert(data.error || 'Failed to delete creation');
+        fetchProducts();
+      }
     } catch (err) {
       console.error('Failed to delete product:', err);
       fetchProducts();
@@ -307,6 +285,8 @@ function AdminProductsContent() {
     const matchCategory =
       selectedCategoryFilter === 'all' ||
       p.categoryId === selectedCategoryFilter ||
+      p.category?.id === selectedCategoryFilter ||
+      p.category?.slug === selectedCategoryFilter ||
       p.category?.slug === selectedCategoryFilter.replace('cat-', '');
 
     const matchSearch =
@@ -418,14 +398,20 @@ function AdminProductsContent() {
                     {/* Creation & Photo */}
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-3">
-                        <div className="relative w-12 h-12 rounded-lg overflow-hidden bg-canvas border border-border-subtle shrink-0">
-                          <Image
-                            src={product.images?.[0]?.imageUrl || SAMPLE_PHOTO_PRESETS[0].url}
-                            alt={product.title}
-                            fill
-                            className="object-cover"
-                            sizes="48px"
-                          />
+                        <div className="relative w-12 h-12 rounded-lg overflow-hidden bg-canvas border border-border-subtle shrink-0 flex items-center justify-center">
+                          {product.images?.[0]?.imageUrl ? (
+                            <Image
+                              src={product.images[0].imageUrl}
+                              alt={product.title}
+                              fill
+                              className="object-cover"
+                              sizes="48px"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center bg-blush/40 text-rose">
+                              <Package className="w-5 h-5" />
+                            </div>
+                          )}
                         </div>
                         <div className="min-w-0">
                           <p className="font-semibold text-ink truncate max-w-[200px]">{product.title}</p>

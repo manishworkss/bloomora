@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getProductById, saveProductAsync, deleteProductAsync } from '@/lib/products-store';
+import { getProductByIdAsync, saveProductAsync, deleteProductAsync } from '@/lib/products-store';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -10,7 +10,7 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    const product = getProductById(id);
+    const product = await getProductByIdAsync(id);
 
     if (!product) {
       return NextResponse.json(
@@ -34,7 +34,7 @@ export async function PATCH(
 ) {
   try {
     const { id } = await params;
-    const existing = getProductById(id);
+    const existing = await getProductByIdAsync(id);
 
     if (!existing) {
       return NextResponse.json(
@@ -51,11 +51,11 @@ export async function PATCH(
       updatedAt: new Date().toISOString(),
     };
 
-    await saveProductAsync(updatedProduct);
+    const saved = await saveProductAsync(updatedProduct);
 
     return NextResponse.json({
       success: true,
-      product: updatedProduct,
+      product: saved,
     });
   } catch (error) {
     return NextResponse.json(
@@ -82,7 +82,7 @@ export async function DELETE(
 
     return NextResponse.json({
       success: true,
-      message: 'Product archived successfully',
+      message: 'Product deleted successfully',
     });
   } catch (error) {
     return NextResponse.json(

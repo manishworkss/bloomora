@@ -3,8 +3,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Instagram, MessageCircle, MapPin, Heart, ShieldCheck } from 'lucide-react';
 import { DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp';
+import { getCategoriesAsync } from '@/lib/categories-store';
 
-export const Footer: React.FC = () => {
+export async function Footer() {
+  const categories = await getCategoriesAsync(true);
   return (
     <footer className="bg-surface border-t border-border-subtle mt-auto w-full max-w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
@@ -62,21 +64,13 @@ export const Footer: React.FC = () => {
                   All Handmade Gifts
                 </Link>
               </li>
-              <li>
-                <Link href="/shop?category=bouquets" className="hover:text-primary transition-colors">
-                  Floral Bouquets
-                </Link>
-              </li>
-              <li>
-                <Link href="/shop?category=keychains" className="hover:text-primary transition-colors">
-                  Crochet Keychains
-                </Link>
-              </li>
-              <li>
-                <Link href="/shop?category=flowers" className="hover:text-primary transition-colors">
-                  Desk Flower Pots
-                </Link>
-              </li>
+              {categories.map((cat) => (
+                <li key={cat.id}>
+                  <Link href={`/shop?category=${cat.slug}`} className="hover:text-primary transition-colors">
+                    {cat.name}
+                  </Link>
+                </li>
+              ))}
               <li>
                 <Link href="/custom-orders" className="hover:text-primary font-medium text-primary transition-colors">
                   Custom Gift Inquiries
