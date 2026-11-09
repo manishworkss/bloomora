@@ -107,7 +107,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 src="/images/bloomora-logo.png"
                 alt="Bloomora Logo"
                 fill
-                className="object-cover mix-blend-multiply"
+                className="object-contain"
                 sizes="32px"
               />
             </div>
