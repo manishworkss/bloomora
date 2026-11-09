@@ -145,3 +145,22 @@ export interface Order {
   updatedAt: string;
 }
 
+export interface CustomerReview {
+  id: string;
+  customerName: string;
+  customerLocation: string;
+  customerPhone?: string;
+  rating: number; // 1-5
+  title?: string;
+  reviewText: string;
+  productName: string;
+  occasion?: string;
+  images: string[];
+  videoUrl?: string;
+  isVerifiedBuyer: boolean;
+  isFeatured: boolean;
+  status: 'APPROVED' | 'PENDING' | 'REJECTED';
+  createdAt: string;
+  updatedAt: string;
+}
+

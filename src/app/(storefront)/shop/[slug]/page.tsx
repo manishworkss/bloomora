@@ -17,6 +17,11 @@ import {
   Check,
   Sparkles,
   Gift,
+  Star,
+  Camera,
+  Video,
+  CheckCircle2,
+  X,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '@/components/ui/Button';
@@ -24,7 +29,8 @@ import { Badge } from '@/components/ui/Badge';
 import { useCart } from '@/context/CartContext';
 import { formatINR } from '@/lib/formatters';
 import { getProductInquiryLink } from '@/lib/whatsapp';
-import { Product } from '@/types';
+import { CustomerReviewModal } from '@/components/storefront/CustomerReviewModal';
+import { Product, CustomerReview } from '@/types';
 
 interface AddOnOption {
   id: string;
@@ -91,7 +97,29 @@ export default function ProductDetailPage() {
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
   const [giftMessage, setGiftMessage] = useState('');
   const [justAdded, setJustAdded] = useState(false);
+  const [reviews, setReviews] = useState<CustomerReview[]>([]);
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+  const [activeMediaModal, setActiveMediaModal] = useState<{
+    type: 'image' | 'video';
+    url: string;
+    caption?: string;
+  } | null>(null);
   const { addItem } = useCart();
+
+  const loadReviews = () => {
+    fetch('/api/store/reviews')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && Array.isArray(data.reviews)) {
+          setReviews(data.reviews);
+        }
+      })
+      .catch((err) => console.error('Failed to load reviews:', err));
+  };
+
+  useEffect(() => {
+    loadReviews();
+  }, []);
 
   if (!product && !loading) {
     notFound();
@@ -466,6 +494,149 @@ export default function ProductDetailPage() {
           </div>
         </div>
       </div>
+
+      {/* Customer Reviews & Unboxing Stories Section */}
+      <section className="pt-12 sm:pt-16 border-t border-border-subtle space-y-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div className="space-y-1.5">
+            <span className="text-xs uppercase font-bold tracking-widest text-rose">
+              Verified Client Stories
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl text-ink font-bold">
+              Customer Reviews & Unboxings
+            </h2>
+            <p className="text-xs sm:text-sm text-ink-muted">
+              Real smiles and keepsake moments for this handcrafted bloom.
+            </p>
+          </div>
+
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={() => setIsReviewModalOpen(true)}
+            className="gap-1.5 shadow-craft text-xs font-semibold"
+          >
+            <Star className="w-3.5 h-3.5 fill-current" />
+            <span>Write a Review</span>
+          </Button>
+        </div>
+
+        {/* Reviews Grid */}
+        {reviews.length === 0 ? (
+          <div className="py-8 text-center bg-surface rounded-2xl border border-border-subtle p-6 space-y-2">
+            <p className="text-xs text-ink-muted">Be the first to share your keepsake story for this creation!</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {(
+              reviews.filter((r) => r.productName.toLowerCase().includes(product.title.toLowerCase()) || product.title.toLowerCase().includes(r.productName.toLowerCase())).length > 0
+                ? reviews.filter((r) => r.productName.toLowerCase().includes(product.title.toLowerCase()) || product.title.toLowerCase().includes(r.productName.toLowerCase()))
+                : reviews
+            ).slice(0, 3).map((story) => (
+              <div
+                key={story.id}
+                className="bg-surface rounded-2xl border border-border-subtle p-5 space-y-3 shadow-subtle flex flex-col justify-between"
+              >
+                <div className="space-y-2.5">
+                  {/* Media if available */}
+                  {story.videoUrl ? (
+                    <div className="relative aspect-video rounded-xl bg-ink overflow-hidden">
+                      <video src={story.videoUrl} controls playsInline className="w-full h-full object-cover" />
+                    </div>
+                  ) : story.images && story.images.length > 0 ? (
+                    <div
+                      className="relative aspect-video rounded-xl bg-canvas overflow-hidden cursor-pointer"
+                      onClick={() =>
+                        setActiveMediaModal({
+                          type: 'image',
+                          url: story.images[0],
+                          caption: `${story.customerName} • ${story.productName}`,
+                        })
+                      }
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={story.images[0]} alt={story.productName} className="w-full h-full object-cover" />
+                    </div>
+                  ) : null}
+
+                  <div className="flex items-center justify-between">
+                    <div className="flex gap-0.5 text-amber-400">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-3.5 h-3.5 ${
+                            i < story.rating ? 'fill-amber-400' : 'text-border-default'
+                          }`}
+                        />
+                      ))}
+                    </div>
+
+                    {story.isVerifiedBuyer && (
+                      <span className="text-[9px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                        Verified Buyer
+                      </span>
+                    )}
+                  </div>
+
+                  {story.title && (
+                    <h4 className="font-serif text-sm font-bold text-ink leading-snug">
+                      &ldquo;{story.title}&rdquo;
+                    </h4>
+                  )}
+
+                  <p className="text-xs text-ink leading-relaxed">
+                    &ldquo;{story.reviewText}&rdquo;
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-border-subtle/50">
+                  <p className="font-serif text-xs font-bold text-ink">{story.customerName}</p>
+                  <p className="text-[10px] text-ink-muted">{story.customerLocation} {story.occasion && `• ${story.occasion}`}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* Review Modal */}
+      <CustomerReviewModal
+        isOpen={isReviewModalOpen}
+        onClose={() => setIsReviewModalOpen(false)}
+        onSubmitted={loadReviews}
+        defaultProductName={product.title}
+      />
+
+      {/* Lightbox Modal */}
+      {activeMediaModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/80 backdrop-blur-sm animate-in fade-in"
+          onClick={() => setActiveMediaModal(null)}
+        >
+          <div
+            className="relative max-w-2xl max-h-[85vh] bg-surface rounded-2xl overflow-hidden p-2 shadow-2xl space-y-2"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setActiveMediaModal(null)}
+              className="absolute top-3 right-3 z-10 w-7 h-7 rounded-full bg-ink/70 text-white flex items-center justify-center hover:bg-ink"
+            >
+              <X className="w-4 h-4" />
+            </button>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={activeMediaModal.url}
+              alt="Enlarged review photo"
+              className="max-h-[75vh] w-auto max-w-full rounded-xl object-contain mx-auto"
+            />
+            {activeMediaModal.caption && (
+              <p className="text-center text-xs font-semibold text-ink pt-1 pb-1">
+                {activeMediaModal.caption}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

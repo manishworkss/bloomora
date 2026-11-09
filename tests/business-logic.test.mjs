@@ -123,3 +123,62 @@ test('TC-STATE-02: Blocks illegal skipping of order states', () => {
   assert.equal(isValidStateTransition('DELIVERED', 'PROCESSING'), false);
 });
 
+// 6. Customer Review & Media Filtering Logic
+const SAMPLE_REVIEWS = [
+  {
+    id: 'rev-1',
+    customerName: 'Ananya S.',
+    rating: 5,
+    images: ['https://example.com/p1.jpg'],
+    videoUrl: '',
+    status: 'APPROVED',
+    isFeatured: true,
+  },
+  {
+    id: 'rev-2',
+    customerName: 'Pooja D.',
+    rating: 5,
+    images: [],
+    videoUrl: 'https://example.com/video.mp4',
+    status: 'APPROVED',
+    isFeatured: true,
+  },
+  {
+    id: 'rev-3',
+    customerName: 'Karan M.',
+    rating: 4,
+    images: [],
+    videoUrl: '',
+    status: 'PENDING',
+    isFeatured: false,
+  },
+];
+
+function filterReviews(reviews, filterTab) {
+  return reviews.filter((r) => {
+    if (filterTab === 'photos') return r.images && r.images.length > 0;
+    if (filterTab === 'videos') return !!r.videoUrl && r.videoUrl.trim() !== '';
+    if (filterTab === '5stars') return r.rating === 5;
+    if (filterTab === 'featured') return r.isFeatured;
+    return true;
+  });
+}
+
+test('TC-REVIEW-01: Filters reviews by media type (photos and videos)', () => {
+  const photoReviews = filterReviews(SAMPLE_REVIEWS, 'photos');
+  assert.equal(photoReviews.length, 1);
+  assert.equal(photoReviews[0].id, 'rev-1');
+
+  const videoReviews = filterReviews(SAMPLE_REVIEWS, 'videos');
+  assert.equal(videoReviews.length, 1);
+  assert.equal(videoReviews[0].id, 'rev-2');
+});
+
+test('TC-REVIEW-02: Filters reviews by 5-star rating and featured status', () => {
+  const fiveStars = filterReviews(SAMPLE_REVIEWS, '5stars');
+  assert.equal(fiveStars.length, 2);
+
+  const featured = filterReviews(SAMPLE_REVIEWS, 'featured');
+  assert.equal(featured.length, 2);
+});
+

@@ -13,12 +13,14 @@ import {
   Settings,
   ExternalLink,
   LogOut,
+  Star,
 } from 'lucide-react';
 
 const ADMIN_LINKS = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/admin/orders', label: 'Orders & Fulfillment', icon: ShoppingBag },
   { href: '/admin/products', label: 'Product Catalog', icon: Package },
+  { href: '/admin/reviews', label: 'Reviews & Stories', icon: Star },
   { href: '/admin/enquiries', label: 'Custom Enquiries', icon: MessageSquare },
   { href: '/admin/delivery-zones', label: 'Vadodara Zones & PINs', icon: MapPin },
   { href: '/admin/settings', label: 'Site & WhatsApp Settings', icon: Settings },

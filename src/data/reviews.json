@@ -1,0 +1,123 @@
+[
+  {
+    "id": "rev-101",
+    "customerName": "Ananya & Sahil",
+    "customerLocation": "Alkapuri, Vadodara",
+    "customerPhone": "9876543210",
+    "rating": 5,
+    "title": "Keepsake of our 1st Anniversary",
+    "reviewText": "I wanted a bouquet that wouldn’t wither in three days. Sahil surprised me with the crochet lavender and tulip bouquet from Bloomora. It now sits proudly on our bedroom console and brings back all the wedding memories! Every petal is woven with so much love.",
+    "productName": "Everlasting Lavender & Tulip Bouquet",
+    "occasion": "1st Wedding Anniversary Surprise",
+    "images": [
+      "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=800&auto=format&fit=crop",
+      "/images/bloomora-hero-handcrafted.jpg"
+    ],
+    "videoUrl": "",
+    "isVerifiedBuyer": true,
+    "isFeatured": true,
+    "status": "APPROVED",
+    "createdAt": "2026-11-07T14:30:00Z",
+    "updatedAt": "2026-11-07T14:30:00Z"
+  },
+  {
+    "id": "rev-102",
+    "customerName": "Pooja Dave",
+    "customerLocation": "Gotri Road, Vadodara",
+    "customerPhone": "9825012345",
+    "rating": 5,
+    "title": "Cutest desk companion ever! 🌻",
+    "reviewText": "The mini smiling sunflower is the absolute cutest thing on my entire work desk. The unboxing was so sweet with kraft paper wrapping and a handwritten note. Every colleague who passes my desk smiles at it!",
+    "productName": "Mini Smiling Sunflower Crochet Pot",
+    "occasion": "Promotion Desk Gift",
+    "images": [
+      "https://images.unsplash.com/photo-1597848212624-a19eb35e2651?q=80&w=800&auto=format&fit=crop"
+    ],
+    "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    "isVerifiedBuyer": true,
+    "isFeatured": true,
+    "status": "APPROVED",
+    "createdAt": "2026-11-08T09:15:00Z",
+    "updatedAt": "2026-11-08T09:15:00Z"
+  },
+  {
+    "id": "rev-103",
+    "customerName": "Meera Desai",
+    "customerLocation": "Fatehgunj, Vadodara",
+    "customerPhone": "9898098765",
+    "rating": 5,
+    "title": "Bespoke Bridesmaid Favors",
+    "reviewText": "We ordered 12 custom daisy keychains with personalized color tags for my bridesmaids. The creator at Bloomora hand-packaged each one with satin ribbon and little handwritten cards. Unbelievable attention to detail and so lightweight on our bags!",
+    "productName": "Handmade Daisy Flower Charm Keychain",
+    "occasion": "Bridesmaid Keepsakes",
+    "images": [
+      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=800&auto=format&fit=crop"
+    ],
+    "videoUrl": "",
+    "isVerifiedBuyer": true,
+    "isFeatured": true,
+    "status": "APPROVED",
+    "createdAt": "2026-11-08T16:20:00Z",
+    "updatedAt": "2026-11-08T16:20:00Z"
+  },
+  {
+    "id": "rev-104",
+    "customerName": "Kavita Patel",
+    "customerLocation": "Akota, Vadodara",
+    "customerPhone": "9727011223",
+    "rating": 5,
+    "title": "Mom’s 60th Birthday Highlight",
+    "reviewText": "My mom appreciates traditional handmade textiles and slow crafts. When she opened the custom pastel rose keepsake bouquet, she was in tears. She couldn't believe every single rose petal was hand-crocheted stitch by stitch. Truly an unforgettable gift.",
+    "productName": "Customizable Pastel Rose Keepsake Bouquet",
+    "occasion": "Mom’s 60th Birthday Celebration",
+    "images": [
+      "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=800&auto=format&fit=crop"
+    ],
+    "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    "isVerifiedBuyer": true,
+    "isFeatured": true,
+    "status": "APPROVED",
+    "createdAt": "2026-11-09T03:00:00Z",
+    "updatedAt": "2026-11-09T03:00:00Z"
+  },
+  {
+    "id": "rev-105",
+    "customerName": "Riddhi Shah",
+    "customerLocation": "Manjalpur, Vadodara",
+    "customerPhone": "9879009988",
+    "rating": 5,
+    "title": "Forever Fresh Desk Blossom",
+    "reviewText": "The blooming pink crochet flower pot brightens up late-night study sessions. It never needs watering and stays vibrant every single morning. Best gift I got for myself!",
+    "productName": "Everlasting Crochet Lavender & Tulip Bouquet",
+    "occasion": "Self-Care & Study Desk Decor",
+    "images": [
+      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=800&auto=format&fit=crop"
+    ],
+    "videoUrl": "",
+    "isVerifiedBuyer": true,
+    "isFeatured": false,
+    "status": "APPROVED",
+    "createdAt": "2026-11-09T04:30:00Z",
+    "updatedAt": "2026-11-09T04:30:00Z"
+  },
+  {
+    "id": "rev-106",
+    "customerName": "Devanshi & Priya",
+    "customerLocation": "Karelibaug, Vadodara",
+    "customerPhone": "9909012345",
+    "rating": 5,
+    "title": "Hometown warmth in Bengaluru",
+    "reviewText": "Priya moved to Bengaluru for her new job, so I gifted her the strawberry amigurumi keychain to hang on her backpack. She loved that it came directly from our hometown in Vadodara! Dense, sturdy stitches that don't fray.",
+    "productName": "Handmade Daisy Flower Charm Keychain",
+    "occasion": "Best Friend Farewell Gift",
+    "images": [
+      "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=800&auto=format&fit=crop"
+    ],
+    "videoUrl": "",
+    "isVerifiedBuyer": true,
+    "isFeatured": true,
+    "status": "APPROVED",
+    "createdAt": "2026-11-09T05:00:00Z",
+    "updatedAt": "2026-11-09T05:00:00Z"
+  }
+]

@@ -26,6 +26,8 @@ import { CraftHoopShowcase } from '@/components/storefront/CraftHoopShowcase';
 import { DEFAULT_WHATSAPP_NUMBER, getCustomOrderInquiryLink } from '@/lib/whatsapp';
 import { getProductsAsync } from '@/lib/products-store';
 import { getSettingsAsync } from '@/lib/settings-store';
+import { getReviewsAsync } from '@/lib/reviews-store';
+import { HappyFamilySection } from '@/components/storefront/HappyFamilySection';
 
 export const dynamic = 'force-dynamic';
 
@@ -184,34 +186,13 @@ const INSTAGRAM_POSTS = [
   },
 ];
 
-const TESTIMONIALS = [
-  {
-    quote:
-      'The lavender & tulip bouquet looks even more gorgeous in person than in photos. My wife was genuinely touched because it will stay on her dresser forever.',
-    name: 'Ananya S.',
-    location: 'Alkapuri, Vadodara',
-    item: 'Lavender & Tulip Bouquet',
-  },
-  {
-    quote:
-      'Ordered the smiling sunflower pot for my friend’s new job desk. The stitching detail and packaging with the handwritten note was pure perfection!',
-    name: 'Rohan P.',
-    location: 'Gotri, Vadodara',
-    item: 'Smiling Sunflower Desk Pot',
-  },
-  {
-    quote:
-      'The daisy charm keychains are so delicate yet sturdy. Super quick WhatsApp coordination and delivered right on time.',
-    name: 'Meera D.',
-    location: 'Manjalpur, Vadodara',
-    item: 'Handmade Daisy Keychain',
-  },
-];
-
 export default async function HomePage() {
   const customWhatsAppUrl = getCustomOrderInquiryLink();
-  const settings = await getSettingsAsync();
-  const allPublished = await getProductsAsync(true);
+  const [settings, allPublished, reviews] = await Promise.all([
+    getSettingsAsync(),
+    getProductsAsync(true),
+    getReviewsAsync(true),
+  ]);
   const featured = allPublished.filter((p) => p.isFeatured);
   const featuredProducts = (featured.length > 0 ? featured : allPublished).slice(0, 8);
 
@@ -470,55 +451,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 6. OUR HAPPY FAMILY (Featured Community Module) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 w-full">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border-subtle pb-4">
-          <div className="space-y-1 text-center sm:text-left">
-            <span className="text-xs uppercase font-bold tracking-widest text-rose">
-              Real Gifting Moments
-            </span>
-            <h2 className="font-serif text-2xl sm:text-4xl text-ink font-normal">
-              Our Happy Family
-            </h2>
-            <p className="text-xs sm:text-sm text-ink-muted">
-              Heartfelt smiles and unboxing moments from homes across Vadodara.
-            </p>
-          </div>
-
-          <Link href="/happy-family" className="w-full sm:w-auto">
-            <Button variant="outline" size="sm" className="w-full sm:w-auto gap-1.5">
-              <Users className="w-3.5 h-3.5 text-rose" />
-              <span>View All Family Stories</span>
-              <ArrowRight className="w-3.5 h-3.5 ml-1" />
-            </Button>
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {TESTIMONIALS.map((t, idx) => (
-            <div
-              key={idx}
-              className="bg-surface rounded-2xl border border-border-subtle p-5 sm:p-6 space-y-3 shadow-subtle flex flex-col justify-between"
-            >
-              <div className="space-y-2.5">
-                <div className="flex gap-1 text-amber-500">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                  ))}
-                </div>
-                <p className="text-xs sm:text-sm text-ink leading-relaxed italic">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-              </div>
-
-              <div className="pt-3 border-t border-border-subtle/50">
-                <p className="font-serif text-sm font-semibold text-ink">{t.name}</p>
-                <p className="text-[11px] text-ink-muted">{t.location} • {t.item}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* 6. OUR HAPPY FAMILY (Real Unboxings, Photos, Videos & Stories) */}
+      <HappyFamilySection initialReviews={reviews} />
 
       {/* 7. THE ART OF HANDMADE */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 w-full">

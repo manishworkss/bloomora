@@ -16,6 +16,7 @@ import {
   Plus,
   HelpCircle,
   ExternalLink,
+  Star,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
@@ -26,6 +27,7 @@ export default function AdminDashboardPage() {
   const [orders, setOrders] = useState<any[]>([]);
   const [products, setProducts] = useState<any[]>([]);
   const [enquiries, setEnquiries] = useState<any[]>([]);
+  const [reviews, setReviews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -33,11 +35,13 @@ export default function AdminDashboardPage() {
       fetch('/api/admin/orders', { cache: 'no-store' }).then((res) => res.json()).catch(() => ({ data: [] })),
       fetch('/api/admin/products', { cache: 'no-store' }).then((res) => res.json()).catch(() => ({ products: [] })),
       fetch('/api/admin/enquiries', { cache: 'no-store' }).then((res) => res.json()).catch(() => ({ data: [] })),
+      fetch('/api/admin/reviews', { cache: 'no-store' }).then((res) => res.json()).catch(() => ({ reviews: [] })),
     ])
-      .then(([ordersRes, productsRes, enquiriesRes]) => {
+      .then(([ordersRes, productsRes, enquiriesRes, reviewsRes]) => {
         if (ordersRes.data) setOrders(ordersRes.data);
         if (productsRes.products) setProducts(productsRes.products);
         if (enquiriesRes.data) setEnquiries(enquiriesRes.data);
+        if (reviewsRes.reviews) setReviews(reviewsRes.reviews);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -118,8 +122,8 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* 3. Live KPI Cards Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        <Link href="/admin/orders" className="p-5 rounded-2xl bg-surface border border-border-subtle shadow-subtle hover:border-primary/50 transition-all space-y-2 block">
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+        <Link href="/admin/orders" className="p-4 sm:p-5 rounded-2xl bg-surface border border-border-subtle shadow-subtle hover:border-primary/50 transition-all space-y-2 block">
           <div className="flex items-center justify-between text-ink-muted">
             <span className="text-xs font-semibold uppercase tracking-wider">Action Needed</span>
             <Clock className="w-4 h-4 text-amber-600" />
@@ -132,35 +136,48 @@ export default function AdminDashboardPage() {
           </p>
         </Link>
 
-        <Link href="/admin/orders" className="p-5 rounded-2xl bg-surface border border-border-subtle shadow-subtle hover:border-primary/50 transition-all space-y-2 block">
+        <Link href="/admin/orders" className="p-4 sm:p-5 rounded-2xl bg-surface border border-border-subtle shadow-subtle hover:border-primary/50 transition-all space-y-2 block">
           <div className="flex items-center justify-between text-ink-muted">
-            <span className="text-xs font-semibold uppercase tracking-wider">In Crafting / Packing</span>
+            <span className="text-xs font-semibold uppercase tracking-wider">In Crafting</span>
             <Package className="w-4 h-4 text-rose" />
           </div>
           <p className="font-serif text-2xl sm:text-3xl font-bold text-ink">
             {loading ? '...' : inCraftingOrders.length}
           </p>
-          <p className="text-[11px] text-ink-muted">Handmade items in progress</p>
+          <p className="text-[11px] text-ink-muted">Handmade in progress</p>
         </Link>
 
-        <Link href="/admin/products" className="p-5 rounded-2xl bg-surface border border-border-subtle shadow-subtle hover:border-primary/50 transition-all space-y-2 block">
+        <Link href="/admin/products" className="p-4 sm:p-5 rounded-2xl bg-surface border border-border-subtle shadow-subtle hover:border-primary/50 transition-all space-y-2 block">
           <div className="flex items-center justify-between text-ink-muted">
-            <span className="text-xs font-semibold uppercase tracking-wider">Catalog Inventory</span>
+            <span className="text-xs font-semibold uppercase tracking-wider">Catalog Items</span>
             <AlertTriangle className={`w-4 h-4 ${lowStockProducts.length > 0 ? 'text-red-500' : 'text-sage'}`} />
           </div>
           <p className="font-serif text-2xl sm:text-3xl font-bold text-ink">
-            {loading ? '...' : products.length} items
+            {loading ? '...' : products.length}
           </p>
           <p className="text-[11px] text-ink-muted">
             {lowStockProducts.length > 0
-              ? `${lowStockProducts.length} low in stock (<2 units)`
-              : 'All items well stocked'}
+              ? `${lowStockProducts.length} low stock`
+              : 'All items stocked'}
           </p>
         </Link>
 
-        <div className="p-5 rounded-2xl bg-surface border border-border-subtle shadow-subtle space-y-2">
+        <Link href="/admin/reviews" className="p-4 sm:p-5 rounded-2xl bg-surface border border-border-subtle shadow-subtle hover:border-primary/50 transition-all space-y-2 block">
           <div className="flex items-center justify-between text-ink-muted">
-            <span className="text-xs font-semibold uppercase tracking-wider">Total Sales Volume</span>
+            <span className="text-xs font-semibold uppercase tracking-wider">Client Reviews</span>
+            <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
+          </div>
+          <p className="font-serif text-2xl sm:text-3xl font-bold text-ink">
+            {loading ? '...' : reviews.length}
+          </p>
+          <p className="text-[11px] text-rose font-medium">
+            {reviews.filter((r) => r.isFeatured).length} featured on home
+          </p>
+        </Link>
+
+        <div className="p-4 sm:p-5 rounded-2xl bg-surface border border-border-subtle shadow-subtle space-y-2 col-span-2 lg:col-span-1">
+          <div className="flex items-center justify-between text-ink-muted">
+            <span className="text-xs font-semibold uppercase tracking-wider">Sales Volume</span>
             <TrendingUp className="w-4 h-4 text-sage" />
           </div>
           <p className="font-serif text-2xl sm:text-3xl font-bold text-ink">
