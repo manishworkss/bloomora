@@ -142,7 +142,7 @@ function ShopContent() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
           {[...Array(6)].map((_, i) => (
             <div key={i} className="bg-surface rounded-2xl border border-border-subtle p-4 space-y-4 animate-pulse">
-              <div className="aspect-square bg-canvas rounded-xl" />
+              <div className="aspect-[4/5] bg-canvas rounded-t-xl" />
               <div className="h-4 bg-canvas rounded w-3/4" />
               <div className="h-3 bg-canvas rounded w-1/2" />
             </div>

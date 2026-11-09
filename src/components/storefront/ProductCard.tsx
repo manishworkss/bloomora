@@ -61,28 +61,28 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div className="group relative bg-white rounded-2xl border border-gray-200/90 overflow-hidden shadow-xs hover:shadow-md hover:border-gray-300 transition-all duration-300 flex flex-col justify-between h-full">
-      {/* Top Image Section (Square 1:1, centered product shot matching Image 1) */}
+      {/* Top Image Section (Taller Portrait aspect-[4/5] fully fitted edge-to-edge, NOT squared) */}
       <Link
         href={`/shop/${product.slug}`}
-        className="block relative aspect-square bg-[#FFFFFF] overflow-hidden p-2.5 sm:p-3 border-b border-gray-100 select-none"
+        className="block relative aspect-[4/5] bg-canvas overflow-hidden border-b border-gray-100 select-none rounded-t-2xl"
       >
         <Image
           src={primaryImage.imageUrl}
           alt={primaryImage.altText || product.title}
           fill
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className="object-contain p-2 group-hover:scale-105 transition-transform duration-500 ease-out"
+          className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out"
         />
 
         {/* Top-Left Pill Badge: Bestseller (Light khaki/beige warm pill) */}
         {isBestseller && (
-          <div className="absolute top-2.5 left-2.5 bg-[#EFE4D8] text-[#4A3B32] font-semibold text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-full tracking-wide shadow-2xs z-10">
+          <div className="absolute top-2.5 left-2.5 bg-[#EFE4D8] text-[#4A3B32] font-semibold text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-full tracking-wide shadow-xs z-10">
             Bestseller
           </div>
         )}
 
         {/* Bottom-Left Rating Badge: ★ 4.9 (440) */}
-        <div className="absolute bottom-2.5 left-2.5 bg-white/95 backdrop-blur-xs border border-gray-200/70 text-ink text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow-2xs z-10">
+        <div className="absolute bottom-2.5 left-2.5 bg-white/95 backdrop-blur-xs border border-gray-200/70 text-ink text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow-xs z-10">
           <Star className="w-3 h-3 text-amber-500 fill-amber-500" />
           <span>
             {rating} <span className="font-normal text-ink-muted">({count})</span>
