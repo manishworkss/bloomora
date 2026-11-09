@@ -1,0 +1,104 @@
+[
+  {
+    "pin": "390001",
+    "area": "Alkapuri / Central Vadodara",
+    "fee": 50,
+    "active": true
+  },
+  {
+    "pin": "390002",
+    "area": "Mandvi / Old City",
+    "fee": 50,
+    "active": true
+  },
+  {
+    "pin": "390004",
+    "area": "Fatehgunj / MS University Area",
+    "fee": 50,
+    "active": true
+  },
+  {
+    "pin": "390007",
+    "area": "Race Course / Inox Area",
+    "fee": 50,
+    "active": true
+  },
+  {
+    "pin": "390008",
+    "area": "Waghodia Road",
+    "fee": 50,
+    "active": true
+  },
+  {
+    "pin": "390010",
+    "area": "Karelibaug",
+    "fee": 50,
+    "active": true
+  },
+  {
+    "pin": "390011",
+    "area": "Sayajigunj / Station Area",
+    "fee": 50,
+    "active": true
+  },
+  {
+    "pin": "390012",
+    "area": "Gorwa / BIDC",
+    "fee": 50,
+    "active": true
+  },
+  {
+    "pin": "390015",
+    "area": "Sama / New Sama Road",
+    "fee": 50,
+    "active": true
+  },
+  {
+    "pin": "390018",
+    "area": "Gotri",
+    "fee": 50,
+    "active": true
+  },
+  {
+    "pin": "390019",
+    "area": "Harni / Airport Area",
+    "fee": 50,
+    "active": true
+  },
+  {
+    "pin": "390020",
+    "area": "Manjalpur / Makarpura",
+    "fee": 50,
+    "active": true
+  },
+  {
+    "pin": "390021",
+    "area": "Gotri Road / Sevasi",
+    "fee": 50,
+    "active": true
+  },
+  {
+    "pin": "390022",
+    "area": "Vasna / Bhayli Road",
+    "fee": 50,
+    "active": true
+  },
+  {
+    "pin": "390023",
+    "area": "Subhanpura",
+    "fee": 50,
+    "active": true
+  },
+  {
+    "pin": "390024",
+    "area": "Akota",
+    "fee": 50,
+    "active": true
+  },
+  {
+    "pin": "390025",
+    "area": "Tarsali",
+    "fee": 50,
+    "active": true
+  }
+]
