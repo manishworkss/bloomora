@@ -26,6 +26,17 @@ import { CraftHoopShowcase } from '@/components/storefront/CraftHoopShowcase';
 import { DEFAULT_WHATSAPP_NUMBER, getCustomOrderInquiryLink } from '@/lib/whatsapp';
 import { getProducts } from '@/lib/products-store';
 
+const BRAND_VALUES_MARQUEE = [
+  'Made with Love',
+  'Thoughtfully Handmade',
+  'Unique Creations',
+  'Personalised Gifting',
+  'Crafted with Care',
+  '100% Slow Crochet',
+  'Vadodara Artisan Studio',
+  'Everlasting Memories',
+];
+
 const CATEGORIES = [
   {
     id: 'flowers',
@@ -270,29 +281,33 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. BRAND VALUES TICKER (Seamlessly Attached Below Hero) */}
-      <section className="border-y border-border-subtle bg-surface/60 py-2.5 w-full overflow-hidden !mt-0">
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-center sm:justify-around flex-wrap gap-x-6 gap-y-2 text-[11px] sm:text-xs font-medium text-ink-muted uppercase tracking-widest text-center">
-          <span className="flex items-center gap-1.5 whitespace-nowrap">
-            <span className="w-1.5 h-1.5 rounded-full bg-rose shrink-0" />
-            Made with Love
-          </span>
-          <span className="flex items-center gap-1.5 whitespace-nowrap">
-            <span className="w-1.5 h-1.5 rounded-full bg-rose shrink-0" />
-            Thoughtfully Handmade
-          </span>
-          <span className="flex items-center gap-1.5 whitespace-nowrap">
-            <span className="w-1.5 h-1.5 rounded-full bg-rose shrink-0" />
-            Unique Creations
-          </span>
-          <span className="flex items-center gap-1.5 whitespace-nowrap">
-            <span className="w-1.5 h-1.5 rounded-full bg-rose shrink-0" />
-            Personalised Gifting
-          </span>
-          <span className="flex items-center gap-1.5 whitespace-nowrap">
-            <span className="w-1.5 h-1.5 rounded-full bg-rose shrink-0" />
-            Crafted with Care
-          </span>
+      {/* 2. BRAND VALUES MARQUEE (Primary Theme Ribbon) */}
+      <section className="relative bg-primary text-canvas py-2.5 sm:py-3 w-full overflow-hidden !mt-0 border-y border-rose-dark/30 shadow-sm select-none">
+        {/* Soft edge fade masks for seamless luxury appearance */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-8 sm:w-16 bg-gradient-to-r from-primary to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-8 sm:w-16 bg-gradient-to-l from-primary to-transparent z-10" />
+
+        <div className="flex overflow-hidden w-full">
+          <div className="animate-marquee flex items-center whitespace-nowrap text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em]">
+            {/* Set 1 */}
+            <div className="flex items-center gap-8 sm:gap-12 shrink-0 pr-8 sm:pr-12">
+              {BRAND_VALUES_MARQUEE.map((item, idx) => (
+                <span key={`val-1-${idx}`} className="flex items-center gap-2.5 sm:gap-3 whitespace-nowrap">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blush shrink-0" />
+                  <span className="text-canvas tracking-[0.2em]">{item}</span>
+                </span>
+              ))}
+            </div>
+            {/* Set 2 (Seamless loop copy) */}
+            <div className="flex items-center gap-8 sm:gap-12 shrink-0 pr-8 sm:pr-12" aria-hidden="true">
+              {BRAND_VALUES_MARQUEE.map((item, idx) => (
+                <span key={`val-2-${idx}`} className="flex items-center gap-2.5 sm:gap-3 whitespace-nowrap">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blush shrink-0" />
+                  <span className="text-canvas tracking-[0.2em]">{item}</span>
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
