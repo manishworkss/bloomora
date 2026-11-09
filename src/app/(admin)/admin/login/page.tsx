@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { ArrowRight, ShieldCheck, Lock, Mail, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
-export default function AdminLoginPage() {
+function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get('redirectTo') || '/admin/dashboard';
@@ -143,5 +143,19 @@ export default function AdminLoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function AdminLoginPage() {
+  return (
+    <React.Suspense
+      fallback={
+        <div className="min-h-screen bg-canvas flex items-center justify-center">
+          <div className="w-8 h-8 rounded-full border-2 border-rose border-t-transparent animate-spin" />
+        </div>
+      }
+    >
+      <LoginForm />
+    </React.Suspense>
   );
 }

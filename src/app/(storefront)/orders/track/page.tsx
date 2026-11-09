@@ -203,7 +203,7 @@ export default function OrderTrackingPage() {
           Track Your Handmade Order
         </h1>
         <p className="text-sm text-ink-muted leading-relaxed">
-          Enter your Order Reference Number (e.g. <code>THC-202611-0042</code>) or your tracking token received after purchase.
+          Enter your Order Reference Number (e.g. <code>BLOOM-202611-0042</code>) or your tracking token received after purchase.
         </p>
       </div>
 
