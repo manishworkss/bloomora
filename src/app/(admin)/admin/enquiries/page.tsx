@@ -16,7 +16,7 @@ export default function AdminEnquiriesPage() {
 
   const loadEnquiries = async () => {
     try {
-      const res = await fetch('/api/admin/enquiries');
+      const res = await fetch('/api/admin/enquiries', { cache: 'no-store' });
       const data = await res.json();
       if (data.success && data.data) {
         setEnquiries(data.data);

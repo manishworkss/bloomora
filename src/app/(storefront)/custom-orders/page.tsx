@@ -13,14 +13,33 @@ export default function CustomOrdersPage() {
   const [budget, setBudget] = useState('');
   const [details, setDetails] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      await fetch('/api/store/enquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          customerName: name.trim(),
+          customerPhone: phone.trim().replace(/\D/g, ''),
+          occasion: occasion || 'Custom Commission',
+          budgetEstimate: budget || 'Flexible',
+          message: details,
+        }),
+      });
+    } catch (err) {
+      console.error('Failed to record inquiry:', err);
+    }
 
     const message = `Hi Bloomora! 🌸\nI'd like to commission a custom handcrafted gift!\n\nName: ${name}\nPhone: ${phone}\nOccasion: ${occasion || 'Special Gift'}\nBudget: ${budget || 'Flexible'}\nDetails: ${details}\n\nCould we discuss design ideas and pricing? 💖`;
 
     const whatsappUrl = buildWhatsAppLink({ message });
     setSubmitted(true);
+    setIsSubmitting(false);
 
     if (typeof window !== 'undefined') {
       window.open(whatsappUrl, '_blank');

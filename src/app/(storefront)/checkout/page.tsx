@@ -47,40 +47,77 @@ export default function CheckoutPage() {
     postalCode.length === 6 &&
     (VADODARA_PINS.includes(postalCode) || postalCode.startsWith('390'));
 
-  const handlePlaceOrder = (e: React.FormEvent) => {
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     if (items.length === 0) return;
 
     setIsSubmitting(true);
+    setErrorMsg('');
 
-    const randomSuffix = Math.floor(1000 + Math.random() * 9000);
-    const orderNumber = `BLM-${new Date().getFullYear()}${String(
-      new Date().getMonth() + 1
-    ).padStart(2, '0')}-${randomSuffix}`;
+    try {
+      const cleanPhone = phone.replace(/\D/g, '');
+      const orderPayload = {
+        customer: {
+          name: name.trim(),
+          phone: cleanPhone,
+          deliveryAddress: address.trim(),
+          landmark: landmark.trim() || undefined,
+          postalCode: postalCode.trim(),
+          deliveryInstructions: notes.trim() || undefined,
+        },
+        items: items.map((i) => ({
+          productId: i.productId,
+          variantId: i.variantId,
+          title: i.title,
+          unitPrice: i.unitPrice,
+          quantity: i.quantity,
+          imageUrl: i.imageUrl,
+        })),
+        paymentMethod: 'MANUAL_UPI' as const,
+      };
 
-    const itemsSummary = items
-      .map((i) => `• ${i.title}${i.variantTitle ? ` (${i.variantTitle})` : ''} x ${i.quantity} (${formatINR(i.unitPrice * i.quantity)})`)
-      .join('\n');
+      const res = await fetch('/api/store/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderPayload),
+      });
 
-    // WhatsApp Message
-    const message = `Hi Bloomora! 👋🌸\nI would like to place an order from your website!\n\n🛍️ *Order Ref:* ${orderNumber}\n\n*Items Ordered:*\n${itemsSummary}\n\n📦 *Delivery Address:*\n${name}\nPhone: ${phone}\n${address}\nLandmark: ${landmark || 'N/A'}\nVadodara PIN: ${postalCode}\nSpecial Notes: ${notes || 'None'}\n\n💵 *Total Amount:* ${formatINR(grandTotal)} (Includes ₹${deliveryFee} Vadodara delivery)\n\nPlease share your UPI payment QR or details so I can confirm my order! 💖`;
+      const data = await res.json();
 
-    const whatsappUrl = buildWhatsAppLink({ message });
+      const finalOrderNumber = data?.data?.orderNumber || `BLM-${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, '0')}-${Math.floor(1000 + Math.random() * 9000)}`;
+      const lookupToken = data?.data?.lookupToken;
 
-    setOrderCompleted({
-      orderNumber,
-      whatsappUrl,
-      grandTotal,
-      name,
-    });
+      const itemsSummary = items
+        .map((i) => `• ${i.title}${i.variantTitle ? ` (${i.variantTitle})` : ''} x ${i.quantity} (${formatINR(i.unitPrice * i.quantity)})`)
+        .join('\n');
 
-    // Clear cart
-    clearCart();
-    setIsSubmitting(false);
+      // WhatsApp Message
+      const message = `Hi Bloomora! 👋🌸\nI have placed an order on your website!\n\n🛍️ *Order Ref:* ${finalOrderNumber}\n\n*Items Ordered:*\n${itemsSummary}\n\n📦 *Delivery Address:*\n${name}\nPhone: ${phone}\n${address}\nLandmark: ${landmark || 'N/A'}\nVadodara PIN: ${postalCode}\nSpecial Notes: ${notes || 'None'}\n\n💵 *Total Amount:* ${formatINR(grandTotal)} (Includes ₹${deliveryFee} Vadodara delivery)\n\nPlease share your UPI QR so I can complete payment and you can start handcrafting! 💖`;
 
-    // Open WhatsApp in new tab
-    if (typeof window !== 'undefined') {
-      window.open(whatsappUrl, '_blank');
+      const whatsappUrl = buildWhatsAppLink({ message });
+
+      setOrderCompleted({
+        orderNumber: finalOrderNumber,
+        lookupToken,
+        whatsappUrl,
+        grandTotal,
+        name,
+      });
+
+      // Clear cart
+      clearCart();
+      setIsSubmitting(false);
+
+      // Open WhatsApp in new tab
+      if (typeof window !== 'undefined') {
+        window.open(whatsappUrl, '_blank');
+      }
+    } catch (err) {
+      console.error('Checkout error:', err);
+      setErrorMsg('Something went wrong submitting your order. Please retry or chat with us on WhatsApp.');
+      setIsSubmitting(false);
     }
   };
 

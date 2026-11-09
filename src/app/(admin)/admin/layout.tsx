@@ -27,6 +27,16 @@ const ADMIN_LINKS = [
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
+  const handleSignOut = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    try {
+      await fetch('/api/admin/auth/logout', { method: 'POST' });
+    } catch (err) {
+      console.error('Logout error:', err);
+    }
+    window.location.href = '/admin/login';
+  };
+
   // If on admin login page, render clean full-page without sidebar
   if (pathname === '/admin/login') {
     return <div className="min-h-screen bg-canvas flex flex-col">{children}</div>;
@@ -97,13 +107,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <span>Open Bloomora Storefront</span>
           </Link>
 
-          <Link
-            href="/admin/login"
-            className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-red-700 hover:bg-red-50 transition-colors"
+          <button
+            type="button"
+            onClick={handleSignOut}
+            className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-red-700 hover:bg-red-50 transition-colors text-left"
           >
             <LogOut className="w-4 h-4" />
             <span>Sign Out</span>
-          </Link>
+          </button>
         </div>
       </aside>
 
@@ -130,11 +141,37 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <Link href="/" target="_blank" className="text-xs text-primary font-semibold">
               Storefront ↗
             </Link>
-            <Link href="/admin/login" className="text-xs text-red-600 font-semibold">
+            <button
+              type="button"
+              onClick={handleSignOut}
+              className="text-xs text-red-600 font-semibold"
+            >
               Sign Out
-            </Link>
+            </button>
           </div>
         </header>
+
+        {/* Mobile Sub-Navigation Bar (Thumb-Friendly Studio Navigation) */}
+        <div className="md:hidden bg-surface border-b border-border-subtle overflow-x-auto py-2.5 px-4 flex items-center gap-2 select-none">
+          {ADMIN_LINKS.map((link) => {
+            const Icon = link.icon;
+            const isActive = pathname.startsWith(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 transition-all ${
+                  isActive
+                    ? 'bg-primary text-white shadow-sm'
+                    : 'bg-canvas text-ink-muted hover:text-ink border border-border-subtle'
+                }`}
+              >
+                <Icon className="w-3.5 h-3.5" />
+                <span>{link.label}</span>
+              </Link>
+            );
+          })}
+        </div>
 
         {/* Desktop Sticky Header */}
         <header className="hidden md:flex bg-surface/90 backdrop-blur-md border-b border-border-subtle px-8 py-3.5 items-center justify-between sticky top-0 z-30">
@@ -156,14 +193,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <ExternalLink className="w-3.5 h-3.5 text-rose" />
             </Link>
 
-            <span className="text-xs text-ink-muted">owner@bloomora.in</span>
+            <span className="text-xs font-medium text-ink bg-canvas px-2.5 py-1 rounded-md border border-border-subtle">
+              krmanishh18@gmail.com
+            </span>
 
-            <Link
-              href="/admin/login"
+            <button
+              type="button"
+              onClick={handleSignOut}
               className="text-xs font-semibold text-red-600 hover:text-red-700 hover:underline"
             >
               Sign Out
-            </Link>
+            </button>
           </div>
         </header>
 

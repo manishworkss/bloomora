@@ -1,14 +1,16 @@
 import { Order, OrderStatus } from '@/types';
+import { readJsonFile, writeJsonFile } from './json-db';
 
-// In-memory persistent order repository for preview & live sessions
-// Mirrors Supabase schema and functions
-let ordersRegistry: Order[] = [
+const ORDERS_FILE = 'orders.json';
+
+export const SEED_ORDERS: Order[] = [
   {
     id: 'ord-101',
-    orderNumber: 'THC-202611-0042',
+    orderNumber: 'BLM-202611-0042',
     lookupToken: 'tok_lavender_42',
     customerName: 'Ananya Patel',
     customerPhone: '9876543210',
+    customerEmail: 'ananya.p@example.com',
     deliveryAddress: 'B-402, Shivalik Greens, Near Gotri Lake Road',
     landmark: 'Gotri Lake',
     postalCode: '390021',
@@ -24,6 +26,7 @@ let ordersRegistry: Order[] = [
       {
         id: 'item-1',
         orderId: 'ord-101',
+        productId: 'prod-001',
         productTitle: 'Everlasting Crochet Lavender & Tulip Bouquet',
         unitPrice: 899,
         quantity: 1,
@@ -37,10 +40,11 @@ let ordersRegistry: Order[] = [
   },
   {
     id: 'ord-102',
-    orderNumber: 'THC-202611-0041',
+    orderNumber: 'BLM-202611-0041',
     lookupToken: 'tok_sunflower_41',
     customerName: 'Pooja Shah',
     customerPhone: '9825012345',
+    customerEmail: 'pooja.shah@example.com',
     deliveryAddress: 'Flat 12, Alkapuri Arcade, Race Course Road',
     landmark: 'Opposite Inox',
     postalCode: '390001',
@@ -56,6 +60,7 @@ let ordersRegistry: Order[] = [
       {
         id: 'item-2',
         orderId: 'ord-102',
+        productId: 'prod-002',
         productTitle: 'Mini Smiling Sunflower Crochet Desk Pot',
         unitPrice: 399,
         quantity: 2,
@@ -69,10 +74,11 @@ let ordersRegistry: Order[] = [
   },
   {
     id: 'ord-103',
-    orderNumber: 'THC-202611-0040',
+    orderNumber: 'BLM-202611-0040',
     lookupToken: 'tok_daisy_40',
     customerName: 'Kavita Joshi',
     customerPhone: '9909012345',
+    customerEmail: 'kavita.j@example.com',
     deliveryAddress: '14 Royal Residency, Manjalpur',
     postalCode: '390020',
     itemsSubtotal: 627,
@@ -86,6 +92,7 @@ let ordersRegistry: Order[] = [
       {
         id: 'item-3',
         orderId: 'ord-103',
+        productId: 'prod-003',
         productTitle: 'Handmade Daisy Flower Charm Keychain',
         unitPrice: 199,
         quantity: 2,
@@ -96,6 +103,7 @@ let ordersRegistry: Order[] = [
       {
         id: 'item-4',
         orderId: 'ord-103',
+        productId: 'prod-006',
         productTitle: 'Fluffy Strawberry Amigurumi Keychain',
         unitPrice: 229,
         quantity: 1,
@@ -110,32 +118,44 @@ let ordersRegistry: Order[] = [
 ];
 
 export function getOrders(): Order[] {
-  return ordersRegistry;
+  return readJsonFile<Order[]>(ORDERS_FILE, SEED_ORDERS);
 }
 
 export function findOrderByTokenOrNumber(identifier: string): Order | undefined {
+  const orders = getOrders();
   const clean = identifier.trim().toLowerCase();
-  return ordersRegistry.find(
+  return orders.find(
     (o) => o.lookupToken.toLowerCase() === clean || o.orderNumber.toLowerCase() === clean
   );
 }
 
 export function saveOrder(order: Order): Order {
-  ordersRegistry.unshift(order);
+  const orders = getOrders();
+  const index = orders.findIndex((o) => o.id === order.id || o.orderNumber === order.orderNumber);
+
+  if (index > -1) {
+    orders[index] = { ...order, updatedAt: new Date().toISOString() };
+    writeJsonFile(ORDERS_FILE, orders);
+    return orders[index];
+  }
+
+  orders.unshift(order);
+  writeJsonFile(ORDERS_FILE, orders);
   return order;
 }
 
 export function updateOrderStatus(orderId: string, newStatus: OrderStatus, notes?: string): Order | null {
-  const index = ordersRegistry.findIndex((o) => o.id === orderId);
+  const orders = getOrders();
+  const index = orders.findIndex((o) => o.id === orderId);
   if (index === -1) return null;
 
-  ordersRegistry[index] = {
-    ...ordersRegistry[index],
+  orders[index] = {
+    ...orders[index],
     orderStatus: newStatus,
-    internalNotes: notes || ordersRegistry[index].internalNotes,
+    internalNotes: notes !== undefined ? notes : orders[index].internalNotes,
     updatedAt: new Date().toISOString(),
   };
 
-  return ordersRegistry[index];
+  writeJsonFile(ORDERS_FILE, orders);
+  return orders[index];
 }
-

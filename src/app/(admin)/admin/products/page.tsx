@@ -17,6 +17,7 @@ import {
   ExternalLink,
   Eye,
   EyeOff,
+  Star,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
@@ -72,12 +73,14 @@ export default function AdminProductsPage() {
   const [stock, setStock] = useState('5');
   const [imageUrl, setImageUrl] = useState('');
   const [shortDescription, setShortDescription] = useState('');
+  const [fullDescription, setFullDescription] = useState('');
+  const [isFeatured, setIsFeatured] = useState(false);
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch('/api/admin/products');
+      const res = await fetch('/api/admin/products', { cache: 'no-store' });
       const data = await res.json();
-      if (data.success) {
+      if (data.success && Array.isArray(data.products)) {
         setProducts(data.products);
       }
     } catch (err) {
@@ -103,6 +106,8 @@ export default function AdminProductsPage() {
     setStock('5');
     setImageUrl(SAMPLE_PHOTO_PRESETS[0].url);
     setShortDescription('');
+    setFullDescription('');
+    setIsFeatured(false);
     setShowModal(true);
   };
 
@@ -118,6 +123,8 @@ export default function AdminProductsPage() {
     setStock(String(product.stockQuantity));
     setImageUrl(product.images?.[0]?.imageUrl || '');
     setShortDescription(product.shortDescription || '');
+    setFullDescription(product.fullDescription || '');
+    setIsFeatured(!!product.isFeatured);
     setShowModal(true);
   };
 
@@ -139,6 +146,8 @@ export default function AdminProductsPage() {
             preparationDays: productType === 'MADE_TO_ORDER' ? Number(preparationDays) : 0,
             stockQuantity: Number(stock),
             shortDescription,
+            fullDescription,
+            isFeatured,
             ...(imageUrl ? { images: [{ id: `img-${Date.now()}`, productId: editingId, imageUrl, isPrimary: true }] } : {}),
           }),
         });
@@ -163,7 +172,9 @@ export default function AdminProductsPage() {
             preparationDays: productType === 'MADE_TO_ORDER' ? Number(preparationDays) : 0,
             stockQuantity: Number(stock),
             shortDescription,
+            fullDescription,
             imageUrl: imageUrl || SAMPLE_PHOTO_PRESETS[0].url,
+            isFeatured,
           }),
         });
 
@@ -183,97 +194,113 @@ export default function AdminProductsPage() {
     }
   };
 
-  const handleTogglePublish = async (id: string, currentPublished: boolean) => {
-    try {
-      const res = await fetch(`/api/admin/products/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ isPublished: !currentPublished }),
-      });
-      if (res.ok) {
-        setProducts((prev) =>
-          prev.map((p) => (p.id === id ? { ...p, isPublished: !currentPublished } : p))
-        );
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   const handleUpdateStock = async (id: string, newStock: number) => {
     try {
-      const res = await fetch(`/api/admin/products/${id}`, {
+      setProducts(products.map((p) => (p.id === id ? { ...p, stockQuantity: newStock } : p)));
+      await fetch(`/api/admin/products/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ stockQuantity: newStock }),
       });
-      if (res.ok) {
-        setProducts((prev) =>
-          prev.map((p) => (p.id === id ? { ...p, stockQuantity: newStock } : p))
-        );
-      }
     } catch (err) {
-      console.error(err);
+      console.error('Failed to update stock:', err);
+      fetchProducts();
+    }
+  };
+
+  const handleTogglePublish = async (id: string, currentStatus: boolean) => {
+    try {
+      const nextStatus = !currentStatus;
+      setProducts(products.map((p) => (p.id === id ? { ...p, isPublished: nextStatus } : p)));
+      await fetch(`/api/admin/products/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ isPublished: nextStatus }),
+      });
+    } catch (err) {
+      console.error('Failed to toggle publish:', err);
+      fetchProducts();
+    }
+  };
+
+  const handleToggleFeatured = async (id: string, currentFeatured: boolean) => {
+    try {
+      const nextFeatured = !currentFeatured;
+      setProducts(products.map((p) => (p.id === id ? { ...p, isFeatured: nextFeatured } : p)));
+      await fetch(`/api/admin/products/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ isFeatured: nextFeatured }),
+      });
+    } catch (err) {
+      console.error('Failed to toggle featured highlight:', err);
+      fetchProducts();
     }
   };
 
   const handleDeleteProduct = async (id: string) => {
-    if (confirm('Are you sure you want to archive this creation from the catalog?')) {
-      try {
-        const res = await fetch(`/api/admin/products/${id}`, { method: 'DELETE' });
-        if (res.ok) {
-          setProducts((prev) => prev.filter((p) => p.id !== id));
-        }
-      } catch (err) {
-        console.error(err);
-      }
+    if (!confirm('Are you sure you want to remove this creation from the catalog?')) return;
+    try {
+      setProducts(products.filter((p) => p.id !== id));
+      await fetch(`/api/admin/products/${id}`, { method: 'DELETE' });
+    } catch (err) {
+      console.error('Failed to delete product:', err);
+      fetchProducts();
     }
   };
 
   const filteredProducts = products.filter((p) => {
-    if (selectedCategoryFilter !== 'all') {
-      if (p.categoryId !== selectedCategoryFilter && p.category?.slug !== selectedCategoryFilter) {
-        return false;
-      }
-    }
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      return (
-        p.title.toLowerCase().includes(q) ||
-        p.shortDescription?.toLowerCase().includes(q) ||
-        p.slug.toLowerCase().includes(q)
-      );
-    }
-    return true;
+    const matchCategory =
+      selectedCategoryFilter === 'all' ||
+      p.categoryId === selectedCategoryFilter ||
+      p.category?.slug === selectedCategoryFilter.replace('cat-', '');
+
+    const matchSearch =
+      !searchQuery.trim() ||
+      p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.slug.toLowerCase().includes(searchQuery.toLowerCase());
+
+    return matchCategory && matchSearch;
   });
 
   return (
     <div className="space-y-8">
-      {/* 1. Header Banner */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-surface p-6 rounded-2xl border border-border-subtle shadow-subtle">
-        <div className="space-y-1">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blush text-rose text-[10px] font-bold uppercase tracking-wider">
-            <Package className="w-3 h-3" />
-            <span>Product & Inventory Management</span>
-          </div>
+      {/* 1. Header Bar */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <span className="text-xs uppercase font-bold tracking-widest text-rose">
+            Live Catalog & Pricing
+          </span>
           <h1 className="font-serif text-2xl sm:text-3xl font-bold text-ink">
-            Handcrafted Creations Catalog
+            Handmade Creations & Inventory
           </h1>
           <p className="text-xs text-ink-muted">
-            Add new creations, adjust stock levels in real time, and toggle catalog visibility.
+            Changes made here instantly update titles, prices, descriptions, images, and homepage highlights on the live website.
           </p>
         </div>
 
-        <Button variant="primary" size="sm" onClick={openAddModal} className="gap-1.5">
-          <Plus className="w-4 h-4" />
+        <Button variant="primary" size="sm" onClick={openAddModal} className="shadow-craft">
+          <Plus className="w-4 h-4 mr-1.5" />
           <span>Add New Creation</span>
         </Button>
       </div>
 
-      {/* 2. Filter & Search Toolbar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-4 bg-surface rounded-2xl border border-border-subtle shadow-subtle">
-        {/* Category Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
+      {/* 2. Search & Category Filters Bar */}
+      <div className="bg-surface p-4 rounded-2xl border border-border-subtle shadow-subtle flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+        {/* Search Input */}
+        <div className="relative flex-1 max-w-md">
+          <Search className="w-4 h-4 text-ink-muted absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search by creation name, keyword, or slug..."
+            className="w-full pl-9 pr-4 py-2 rounded-xl bg-canvas border border-border-subtle text-xs text-ink placeholder:text-ink-muted/70 focus:outline-none focus:ring-2 focus:ring-primary"
+          />
+        </div>
+
+        {/* Category Filter Pills */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
           {[
             { id: 'all', label: 'All Items' },
             { id: 'cat-bouquets', label: 'Floral Bouquets' },
@@ -286,7 +313,7 @@ export default function AdminProductsPage() {
               onClick={() => setSelectedCategoryFilter(cat.id)}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
                 selectedCategoryFilter === cat.id
-                  ? 'bg-rose text-white shadow-subtle'
+                  ? 'bg-primary text-white'
                   : 'bg-canvas text-ink-muted hover:text-ink border border-border-subtle'
               }`}
             >
@@ -294,43 +321,34 @@ export default function AdminProductsPage() {
             </button>
           ))}
         </div>
-
-        {/* Search Box */}
-        <div className="relative w-full sm:w-72">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-ink-muted" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search catalog items..."
-            className="w-full pl-8 pr-3 py-1.5 rounded-lg bg-canvas border border-border-subtle text-xs text-ink placeholder:text-ink-muted focus:outline-none focus:ring-1 focus:ring-primary"
-          />
-        </div>
       </div>
 
       {/* 3. Products Table */}
-      <div className="bg-surface rounded-2xl border border-border-subtle shadow-subtle overflow-hidden">
+      <div className="bg-surface rounded-2xl border border-border-subtle shadow-craft overflow-hidden">
         {loading ? (
-          <div className="p-12 text-center text-ink-muted flex items-center justify-center gap-2">
+          <div className="p-16 text-center text-ink-muted text-xs flex items-center justify-center gap-2">
             <Loader2 className="w-5 h-5 animate-spin text-rose" />
-            <span>Loading creations...</span>
+            <span>Loading studio inventory...</span>
           </div>
         ) : filteredProducts.length === 0 ? (
-          <div className="p-12 text-center text-ink-muted space-y-3">
-            <Package className="w-10 h-10 mx-auto text-ink-muted/50" />
-            <p className="font-semibold text-ink">No creations match your filter</p>
-            <p className="text-xs">Adjust your search or click &quot;Add New Creation&quot; to list a new item.</p>
+          <div className="p-16 text-center space-y-3">
+            <Package className="w-8 h-8 text-ink-muted mx-auto opacity-50" />
+            <p className="text-sm font-semibold text-ink">No creations match your search.</p>
+            <Button variant="outline" size="sm" onClick={() => { setSearchQuery(''); setSelectedCategoryFilter('all'); }}>
+              Reset Filters
+            </Button>
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse text-xs">
+            <table className="w-full text-left text-xs border-collapse">
               <thead>
-                <tr className="bg-canvas border-b border-border-subtle text-ink-muted uppercase font-bold text-[10px] tracking-wider">
+                <tr className="bg-canvas/80 border-b border-border-subtle text-ink-muted uppercase font-bold tracking-wider text-[10px]">
                   <th className="py-3 px-4">Creation & Photo</th>
                   <th className="py-3 px-4">Price (INR)</th>
-                  <th className="py-3 px-4">Fulfillment Mode</th>
-                  <th className="py-3 px-4">Stock In Studio</th>
-                  <th className="py-3 px-4">Storefront Status</th>
+                  <th className="py-3 px-4">Fulfillment</th>
+                  <th className="py-3 px-4">Stock</th>
+                  <th className="py-3 px-4">Homepage Highlight</th>
+                  <th className="py-3 px-4">Visibility</th>
                   <th className="py-3 px-4 text-right">Actions</th>
                 </tr>
               </thead>
@@ -417,7 +435,24 @@ export default function AdminProductsPage() {
                       </div>
                     </td>
 
-                    {/* Storefront Status Toggle */}
+                    {/* Homepage Highlight Toggle */}
+                    <td className="py-3.5 px-4">
+                      <button
+                        type="button"
+                        onClick={() => handleToggleFeatured(product.id, !!product.isFeatured)}
+                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all ${
+                          product.isFeatured
+                            ? 'bg-amber-50 text-amber-900 border border-amber-200'
+                            : 'bg-canvas text-ink-muted hover:text-ink border border-border-subtle'
+                        }`}
+                        title="Click to toggle featured spotlight on homepage"
+                      >
+                        <Star className={`w-3.5 h-3.5 ${product.isFeatured ? 'fill-amber-400 text-amber-500' : 'text-ink-muted/50'}`} />
+                        <span>{product.isFeatured ? 'Featured 🌟' : 'Standard'}</span>
+                      </button>
+                    </td>
+
+                    {/* Storefront Visibility Toggle */}
                     <td className="py-3.5 px-4">
                       <button
                         type="button"
@@ -427,12 +462,12 @@ export default function AdminProductsPage() {
                             ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
                             : 'bg-zinc-100 text-zinc-600 border border-zinc-200'
                         }`}
-                        title="Click to toggle visibility on storefront"
+                        title="Click to toggle visibility on live storefront"
                       >
                         {product.isPublished ? (
                           <>
-                            <Eye className="w-3 h-3" />
-                            <span>Published</span>
+                            <Eye className="w-3 h-3 text-emerald-600" />
+                            <span>Live</span>
                           </>
                         ) : (
                           <>
@@ -450,7 +485,7 @@ export default function AdminProductsPage() {
                           type="button"
                           onClick={() => openEditModal(product)}
                           className="p-1.5 text-ink-muted hover:text-rose hover:bg-canvas rounded-lg transition-colors"
-                          title="Edit creation details"
+                          title="Edit creation details, description & price"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
                         </button>
@@ -483,8 +518,8 @@ export default function AdminProductsPage() {
                 </h3>
                 <p className="text-[11px] text-ink-muted">
                   {isEditing
-                    ? 'Update details, prices, and inventory for this creation.'
-                    : 'List a new handcrafted item on the Bloomora storefront.'}
+                    ? 'Changes immediately update on the live website and product showroom.'
+                    : 'List a new handcrafted piece on the Bloomora live storefront.'}
                 </p>
               </div>
               <button
@@ -534,45 +569,74 @@ export default function AdminProductsPage() {
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                     placeholder="399"
-                    className="w-full px-3.5 py-2 rounded-lg bg-canvas border border-border-subtle text-xs text-ink focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full px-3.5 py-2 rounded-lg bg-canvas border border-border-subtle text-xs text-ink focus:outline-none focus:ring-2 focus:ring-primary font-mono"
                   />
                 </div>
               </div>
 
-              {/* Stock Type & Stock Count */}
+              {/* Compare Price & Stock */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-semibold text-ink uppercase tracking-wider">Fulfillment Type</label>
-                  <select
-                    value={productType}
-                    onChange={(e) =>
-                      setProductType(e.target.value as 'READY_MADE' | 'MADE_TO_ORDER')
-                    }
-                    className="w-full px-3.5 py-2 rounded-lg bg-canvas border border-border-subtle text-xs text-ink focus:outline-none focus:ring-2 focus:ring-primary"
-                  >
-                    <option value="READY_MADE">In Ready Stock (Immediate)</option>
-                    <option value="MADE_TO_ORDER">Handcrafted to Order</option>
-                  </select>
+                  <label className="text-xs font-semibold text-ink uppercase tracking-wider">
+                    Compare At MRP (₹)
+                  </label>
+                  <input
+                    type="number"
+                    value={comparePrice}
+                    onChange={(e) => setComparePrice(e.target.value)}
+                    placeholder="e.g. 499 (optional strikethrough)"
+                    className="w-full px-3.5 py-2 rounded-lg bg-canvas border border-border-subtle text-xs text-ink focus:outline-none focus:ring-2 focus:ring-primary font-mono"
+                  />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-semibold text-ink uppercase tracking-wider">Stock Units Available</label>
+                  <label className="text-xs font-semibold text-ink uppercase tracking-wider">Stock Units</label>
                   <input
                     type="number"
                     min="0"
                     value={stock}
                     onChange={(e) => setStock(e.target.value)}
                     placeholder="5"
-                    className="w-full px-3.5 py-2 rounded-lg bg-canvas border border-border-subtle text-xs text-ink focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full px-3.5 py-2 rounded-lg bg-canvas border border-border-subtle text-xs text-ink focus:outline-none focus:ring-2 focus:ring-primary font-mono"
                   />
                 </div>
+              </div>
+
+              {/* Fulfillment Type */}
+              <div className="space-y-1">
+                <label className="text-xs font-semibold text-ink uppercase tracking-wider">Fulfillment Type</label>
+                <select
+                  value={productType}
+                  onChange={(e) =>
+                    setProductType(e.target.value as 'READY_MADE' | 'MADE_TO_ORDER')
+                  }
+                  className="w-full px-3.5 py-2 rounded-lg bg-canvas border border-border-subtle text-xs text-ink focus:outline-none focus:ring-2 focus:ring-primary"
+                >
+                  <option value="READY_MADE">In Ready Stock (Immediate Dispatch)</option>
+                  <option value="MADE_TO_ORDER">Handcrafted to Order (Custom Commission)</option>
+                </select>
+              </div>
+
+              {/* Homepage Highlight Checkbox */}
+              <div className="p-3 bg-canvas rounded-xl border border-border-subtle flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  id="isFeaturedToggle"
+                  checked={isFeatured}
+                  onChange={(e) => setIsFeatured(e.target.checked)}
+                  className="w-4 h-4 rounded text-primary focus:ring-primary border-border-subtle cursor-pointer"
+                />
+                <label htmlFor="isFeaturedToggle" className="cursor-pointer text-xs font-semibold text-ink flex items-center gap-1.5">
+                  <Star className="w-4 h-4 fill-amber-400 text-amber-500" />
+                  <span>Highlight on Homepage Showroom (Featured Spotlight)</span>
+                </label>
               </div>
 
               {/* Preset Sample Photos for Fast Listing */}
               <div className="space-y-2 pt-1">
                 <label className="text-xs font-semibold text-ink uppercase tracking-wider flex items-center justify-between">
                   <span>Photo URL</span>
-                  <span className="text-[10px] text-rose font-normal">Choose preset or enter custom</span>
+                  <span className="text-[10px] text-rose font-normal">Choose studio preset or enter URL</span>
                 </label>
                 <div className="flex flex-wrap gap-1.5">
                   {SAMPLE_PHOTO_PRESETS.map((preset) => (
@@ -595,18 +659,30 @@ export default function AdminProductsPage() {
                   value={imageUrl}
                   onChange={(e) => setImageUrl(e.target.value)}
                   placeholder="https://... or select a preset above"
-                  className="w-full px-3.5 py-2 rounded-lg bg-canvas border border-border-subtle text-xs text-ink focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full px-3.5 py-2 rounded-lg bg-canvas border border-border-subtle text-xs text-ink focus:outline-none focus:ring-2 focus:ring-primary font-mono"
                 />
               </div>
 
               {/* Short Description */}
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-ink uppercase tracking-wider">Short Description</label>
+                <label className="text-xs font-semibold text-ink uppercase tracking-wider">Short Tagline (Card Preview)</label>
                 <input
                   type="text"
                   value={shortDescription}
                   onChange={(e) => setShortDescription(e.target.value)}
                   placeholder="Soft milk-cotton yarn stitched with love in Vadodara."
+                  className="w-full px-3.5 py-2 rounded-lg bg-canvas border border-border-subtle text-xs text-ink focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+
+              {/* Full Description */}
+              <div className="space-y-1">
+                <label className="text-xs font-semibold text-ink uppercase tracking-wider">Full Story & Description</label>
+                <textarea
+                  rows={3}
+                  value={fullDescription}
+                  onChange={(e) => setFullDescription(e.target.value)}
+                  placeholder="Detailed description of yarn texture, dimensions, care, and packaging..."
                   className="w-full px-3.5 py-2 rounded-lg bg-canvas border border-border-subtle text-xs text-ink focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
@@ -621,14 +697,14 @@ export default function AdminProductsPage() {
                 >
                   Cancel
                 </Button>
-                <Button type="submit" variant="primary" size="sm" disabled={submitting}>
+                <Button type="submit" variant="primary" size="sm" disabled={submitting} className="shadow-craft">
                   {submitting
                     ? isEditing
                       ? 'Saving...'
                       : 'Creating...'
                     : isEditing
-                    ? 'Save Changes'
-                    : 'Publish Creation'}
+                    ? 'Save & Update Live Store'
+                    : 'Publish to Storefront'}
                 </Button>
               </div>
             </form>

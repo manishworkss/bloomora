@@ -4,6 +4,9 @@ import { nanoid } from 'nanoid';
 import { saveOrder } from '@/lib/orders-store';
 import { Order } from '@/types';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const checkoutSchema = z.object({
   customer: z.object({
     name: z.string().min(2, 'Name must be at least 2 characters'),

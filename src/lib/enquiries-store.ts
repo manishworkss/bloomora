@@ -1,3 +1,5 @@
+import { readJsonFile, writeJsonFile } from './json-db';
+
 export interface CustomEnquiry {
   id: string;
   customerName: string;
@@ -12,7 +14,9 @@ export interface CustomEnquiry {
   updatedAt: string;
 }
 
-let enquiriesRegistry: CustomEnquiry[] = [
+const ENQUIRIES_FILE = 'enquiries.json';
+
+export const SEED_ENQUIRIES: CustomEnquiry[] = [
   {
     id: 'enq-001',
     customerName: 'Rohan Shah',
@@ -41,10 +45,11 @@ let enquiriesRegistry: CustomEnquiry[] = [
 ];
 
 export function getEnquiries(): CustomEnquiry[] {
-  return enquiriesRegistry;
+  return readJsonFile<CustomEnquiry[]>(ENQUIRIES_FILE, SEED_ENQUIRIES);
 }
 
 export function saveEnquiry(enquiry: Omit<CustomEnquiry, 'id' | 'createdAt' | 'updatedAt' | 'status'>): CustomEnquiry {
+  const enquiries = getEnquiries();
   const newEnquiry: CustomEnquiry = {
     ...enquiry,
     id: `enq-${Date.now()}`,
@@ -52,25 +57,27 @@ export function saveEnquiry(enquiry: Omit<CustomEnquiry, 'id' | 'createdAt' | 'u
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };
-  enquiriesRegistry.unshift(newEnquiry);
+  enquiries.unshift(newEnquiry);
+  writeJsonFile(ENQUIRIES_FILE, enquiries);
   return newEnquiry;
 }
 
 export function updateEnquiryStatus(
   id: string,
   newStatus: CustomEnquiry['status'],
-  adminNotes?: string
+  notes?: string
 ): CustomEnquiry | null {
-  const index = enquiriesRegistry.findIndex((e) => e.id === id);
+  const enquiries = getEnquiries();
+  const index = enquiries.findIndex((e) => e.id === id);
   if (index === -1) return null;
 
-  enquiriesRegistry[index] = {
-    ...enquiriesRegistry[index],
+  enquiries[index] = {
+    ...enquiries[index],
     status: newStatus,
-    adminNotes: adminNotes !== undefined ? adminNotes : enquiriesRegistry[index].adminNotes,
+    adminNotes: notes !== undefined ? notes : enquiries[index].adminNotes,
     updatedAt: new Date().toISOString(),
   };
 
-  return enquiriesRegistry[index];
+  writeJsonFile(ENQUIRIES_FILE, enquiries);
+  return enquiries[index];
 }
-

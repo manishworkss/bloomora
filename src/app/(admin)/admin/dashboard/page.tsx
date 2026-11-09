@@ -30,9 +30,9 @@ export default function AdminDashboardPage() {
 
   useEffect(() => {
     Promise.all([
-      fetch('/api/admin/orders').then((res) => res.json()).catch(() => ({ data: [] })),
-      fetch('/api/admin/products').then((res) => res.json()).catch(() => ({ products: [] })),
-      fetch('/api/admin/enquiries').then((res) => res.json()).catch(() => ({ data: [] })),
+      fetch('/api/admin/orders', { cache: 'no-store' }).then((res) => res.json()).catch(() => ({ data: [] })),
+      fetch('/api/admin/products', { cache: 'no-store' }).then((res) => res.json()).catch(() => ({ products: [] })),
+      fetch('/api/admin/enquiries', { cache: 'no-store' }).then((res) => res.json()).catch(() => ({ data: [] })),
     ])
       .then(([ordersRes, productsRes, enquiriesRes]) => {
         if (ordersRes.data) setOrders(ordersRes.data);

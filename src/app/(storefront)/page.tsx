@@ -25,6 +25,9 @@ import { FAQAccordion, FAQItem } from '@/components/storefront/FAQAccordion';
 import { CraftHoopShowcase } from '@/components/storefront/CraftHoopShowcase';
 import { DEFAULT_WHATSAPP_NUMBER, getCustomOrderInquiryLink } from '@/lib/whatsapp';
 import { getProducts } from '@/lib/products-store';
+import { getSettings } from '@/lib/settings-store';
+
+export const dynamic = 'force-dynamic';
 
 const BRAND_VALUES_MARQUEE = [
   'Made with Love',
@@ -207,7 +210,10 @@ const TESTIMONIALS = [
 
 export default function HomePage() {
   const customWhatsAppUrl = getCustomOrderInquiryLink();
-  const featuredProducts = getProducts(true).slice(0, 6);
+  const settings = getSettings();
+  const allPublished = getProducts(true);
+  const featured = allPublished.filter((p) => p.isFeatured);
+  const featuredProducts = (featured.length > 0 ? featured : allPublished).slice(0, 8);
 
   return (
     <div className="space-y-8 sm:space-y-12 pb-12 w-full max-w-full overflow-x-hidden">
@@ -223,7 +229,7 @@ export default function HomePage() {
             <div className="lg:col-span-7 space-y-4 text-center lg:text-left min-w-0">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface/90 backdrop-blur-md border border-rose/25 shadow-subtle text-[11px] font-semibold text-rose tracking-wider uppercase max-w-full">
                 <Sparkles className="w-3.5 h-3.5 text-rose shrink-0" />
-                <span className="truncate">Vadodara&apos;s Artisan Studio • Slow Handcrafted Blooms</span>
+                <span className="truncate">{settings.heroBadgeText || "Vadodara's Artisan Studio • Slow Handcrafted Blooms"}</span>
               </div>
 
               <div className="space-y-3">

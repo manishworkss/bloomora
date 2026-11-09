@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { updateOrderStatus, getOrders } from '@/lib/orders-store';
 import { OrderStatus } from '@/types';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const VALID_TRANSITIONS: Record<OrderStatus, OrderStatus[]> = {
   PENDING: ['CONFIRMED', 'CANCELLED'],
   CONFIRMED: ['PROCESSING', 'CANCELLED'],

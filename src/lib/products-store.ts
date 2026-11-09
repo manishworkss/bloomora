@@ -1,4 +1,5 @@
 import { Product, Category } from '@/types';
+import { readJsonFile, writeJsonFile } from './json-db';
 
 export const INITIAL_CATEGORIES: Category[] = [
   {
@@ -30,7 +31,7 @@ export const INITIAL_CATEGORIES: Category[] = [
   },
 ];
 
-let productsRegistry: Product[] = [
+export const SEED_PRODUCTS: Product[] = [
   {
     id: 'prod-001',
     categoryId: 'cat-bouquets',
@@ -142,8 +143,9 @@ let productsRegistry: Product[] = [
     shortDescription:
       'Bespoke bouquet customized with your favorite color palette. Handcrafted to order.',
     fullDescription:
-      'Select your personalized colors and let our artisan craft an exclusive floral bouquet just for your special person. Handcrafted to order in 3–4 days in Vadodara.',
+      'Select your personalized colors and let our artisan craft an exclusive floral bouquet just for your special person. Handcrafted to order with care in Vadodara.',
     basePrice: 1199,
+    compareAtPrice: 1399,
     productType: 'MADE_TO_ORDER',
     preparationDays: 3,
     isPublished: true,
@@ -211,6 +213,7 @@ let productsRegistry: Product[] = [
     fullDescription:
       'Plump and soft handmade strawberry amigurumi keychain. Handcrafted with dense stitches so it retains its shape forever.',
     basePrice: 229,
+    compareAtPrice: 269,
     productType: 'READY_MADE',
     preparationDays: 0,
     isPublished: true,
@@ -235,34 +238,53 @@ let productsRegistry: Product[] = [
   },
 ];
 
+const PRODUCTS_FILE = 'products.json';
+
 export function getProducts(publishedOnly: boolean = false): Product[] {
+  const products = readJsonFile<Product[]>(PRODUCTS_FILE, SEED_PRODUCTS);
   if (publishedOnly) {
-    return productsRegistry.filter((p) => p.isPublished);
+    return products.filter((p) => p.isPublished);
   }
-  return productsRegistry;
+  return products;
 }
 
 export function getProductBySlug(slug: string): Product | undefined {
-  return productsRegistry.find((p) => p.slug === slug);
+  const products = getProducts(false);
+  return products.find((p) => p.slug === slug);
 }
 
 export function getProductById(id: string): Product | undefined {
-  return productsRegistry.find((p) => p.id === id);
+  const products = getProducts(false);
+  return products.find((p) => p.id === id);
 }
 
 export function saveProduct(product: Product): Product {
-  const index = productsRegistry.findIndex((p) => p.id === product.id);
+  const products = getProducts(false);
+  const index = products.findIndex((p) => p.id === product.id);
+
   if (index > -1) {
-    productsRegistry[index] = { ...product, updatedAt: new Date().toISOString() };
-    return productsRegistry[index];
+    products[index] = { ...product, updatedAt: new Date().toISOString() };
+    writeJsonFile(PRODUCTS_FILE, products);
+    return products[index];
   }
-  productsRegistry.unshift(product);
-  return product;
+
+  const newProduct = {
+    ...product,
+    createdAt: product.createdAt || new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+  products.unshift(newProduct);
+  writeJsonFile(PRODUCTS_FILE, products);
+  return newProduct;
 }
 
 export function deleteProduct(id: string): boolean {
-  const initialLength = productsRegistry.length;
-  productsRegistry = productsRegistry.filter((p) => p.id !== id);
-  return productsRegistry.length < initialLength;
+  const products = getProducts(false);
+  const initialLength = products.length;
+  const filtered = products.filter((p) => p.id !== id);
+  if (filtered.length < initialLength) {
+    writeJsonFile(PRODUCTS_FILE, filtered);
+    return true;
+  }
+  return false;
 }
-

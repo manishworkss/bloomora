@@ -12,8 +12,24 @@ export default function ContactPage() {
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
 
-  const handleSendMessage = (e: React.FormEvent) => {
+  const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    try {
+      await fetch('/api/store/enquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          customerName: name.trim(),
+          customerPhone: phone.trim().replace(/\D/g, ''),
+          occasion: subject || 'Store Contact Inquiry',
+          message: message,
+        }),
+      });
+    } catch (err) {
+      console.error('Failed to log contact message:', err);
+    }
+
     const formatted = `Hi Bloomora! 👋🌸\n\nName: ${name}\nPhone: ${phone}\nTopic: ${subject || 'General Inquiry'}\nMessage: ${message}`;
     const url = buildWhatsAppLink({ message: formatted });
     if (typeof window !== 'undefined') {

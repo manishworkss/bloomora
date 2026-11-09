@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { updateEnquiryStatus } from '@/lib/enquiries-store';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }

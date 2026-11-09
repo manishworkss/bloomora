@@ -60,282 +60,29 @@ const AVAILABLE_ADDONS: AddOnOption[] = [
   },
 ];
 
-// Baseline Catalog Database
-const ALL_PRODUCTS: Product[] = [
-  {
-    id: 'prod-001',
-    categoryId: 'cat-bouquets',
-    category: {
-      id: 'cat-bouquets',
-      name: 'Floral Bouquets',
-      slug: 'bouquets',
-      displayOrder: 1,
-      isActive: true,
-      createdAt: '2026-11-09',
-    },
-    title: 'Everlasting Crochet Lavender & Tulip Bouquet',
-    slug: 'everlasting-lavender-tulip-bouquet',
-    shortDescription:
-      'Handcrafted with soft milk-cotton yarn in pastel lilac and cream, tied with natural jute twine.',
-    fullDescription:
-      'A timeless arrangement of handcrafted lavender sprigs and pastel tulips. Hand-knitted with love in Vadodara, this bouquet never withers and stays vibrant forever. Perfect for birthdays, anniversaries, or self-love gifting. Wrapped in premium kraft paper with a matching bow.',
-    basePrice: 899,
-    compareAtPrice: 1049,
-    productType: 'READY_MADE',
-    preparationDays: 0,
-    isPublished: true,
-    isFeatured: true,
-    hasVariants: false,
-    stockQuantity: 6,
-    lowStockThreshold: 2,
-    images: [
-      {
-        id: 'img-001-a',
-        productId: 'prod-001',
-        cloudinaryPublicId: 'the-handmade-craft/sample-1',
-        imageUrl:
-          'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=1200&auto=format&fit=crop',
-        altText: 'Handmade crochet bouquet with lavender and cream tulips',
-        displayOrder: 0,
-        isPrimary: true,
-      },
-      {
-        id: 'img-001-b',
-        productId: 'prod-001',
-        cloudinaryPublicId: 'the-handmade-craft/sample-1-detail',
-        imageUrl:
-          'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=1200&auto=format&fit=crop',
-        altText: 'Close up stitches of crochet flowers',
-        displayOrder: 1,
-        isPrimary: false,
-      },
-    ],
-    createdAt: '2026-11-09',
-    updatedAt: '2026-11-09',
-  },
-  {
-    id: 'prod-002',
-    categoryId: 'cat-flowers',
-    category: {
-      id: 'cat-flowers',
-      name: 'Flower Pots',
-      slug: 'flowers',
-      displayOrder: 2,
-      isActive: true,
-      createdAt: '2026-11-09',
-    },
-    title: 'Mini Smiling Sunflower Crochet Desk Pot',
-    slug: 'mini-smiling-sunflower-crochet-pot',
-    shortDescription:
-      'Adorable handmade yellow sunflower with a joyful face sitting in a cozy terracotta yarn pot.',
-    fullDescription:
-      'Brighten any work desk, study table, or gifting occasion with this cheerful smiling sunflower. Hand-crocheted stitch-by-stitch with soft hypoallergenic yarn. Brings a smile to everyone who looks at it.',
-    basePrice: 399,
-    compareAtPrice: 450,
-    productType: 'READY_MADE',
-    preparationDays: 0,
-    isPublished: true,
-    isFeatured: true,
-    hasVariants: false,
-    stockQuantity: 10,
-    lowStockThreshold: 3,
-    images: [
-      {
-        id: 'img-002-a',
-        productId: 'prod-002',
-        cloudinaryPublicId: 'the-handmade-craft/sample-2',
-        imageUrl:
-          'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?q=80&w=1200&auto=format&fit=crop',
-        altText: 'Cute crochet sunflower desk pot',
-        displayOrder: 0,
-        isPrimary: true,
-      },
-    ],
-    createdAt: '2026-11-09',
-    updatedAt: '2026-11-09',
-  },
-  {
-    id: 'prod-003',
-    categoryId: 'cat-keychains',
-    category: {
-      id: 'cat-keychains',
-      name: 'Keychains',
-      slug: 'keychains',
-      displayOrder: 3,
-      isActive: true,
-      createdAt: '2026-11-09',
-    },
-    title: 'Handmade Daisy Flower Charm Keychain',
-    slug: 'handmade-daisy-flower-charm-keychain',
-    shortDescription:
-      'Delicate white daisy with yellow pistil charm, durable alloy golden ring, and ribbon bow.',
-    fullDescription:
-      'A lightweight yet durable handmade keychain to keep keys organized or attach to your favorite handbag, school bag, or backpack. Stitched with high-grade anti-pilling yarn.',
-    basePrice: 199,
-    compareAtPrice: 249,
-    productType: 'READY_MADE',
-    preparationDays: 0,
-    isPublished: true,
-    isFeatured: true,
-    hasVariants: false,
-    stockQuantity: 15,
-    lowStockThreshold: 5,
-    images: [
-      {
-        id: 'img-003-a',
-        productId: 'prod-003',
-        cloudinaryPublicId: 'the-handmade-craft/sample-3',
-        imageUrl:
-          'https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1200&auto=format&fit=crop',
-        altText: 'Handmade daisy crochet keychain charm',
-        displayOrder: 0,
-        isPrimary: true,
-      },
-    ],
-    createdAt: '2026-11-09',
-    updatedAt: '2026-11-09',
-  },
-  {
-    id: 'prod-004',
-    categoryId: 'cat-bouquets',
-    category: {
-      id: 'cat-bouquets',
-      name: 'Floral Bouquets',
-      slug: 'bouquets',
-      displayOrder: 1,
-      isActive: true,
-      createdAt: '2026-11-09',
-    },
-    title: 'Customizable Pastel Rose & Daisy Keepsake Bouquet',
-    slug: 'customizable-pastel-rose-daisy-keepsake-bouquet',
-    shortDescription:
-      'Bespoke bouquet customized with your favorite color palette. Handcrafted to order.',
-    fullDescription:
-      'Select your personalized colors and let our artisan craft an exclusive floral bouquet just for your special person. Handcrafted to order in 3–4 days in Vadodara.',
-    basePrice: 1199,
-    productType: 'MADE_TO_ORDER',
-    preparationDays: 3,
-    isPublished: true,
-    isFeatured: true,
-    hasVariants: false,
-    stockQuantity: 99,
-    lowStockThreshold: 1,
-    images: [
-      {
-        id: 'img-004-a',
-        productId: 'prod-004',
-        cloudinaryPublicId: 'the-handmade-craft/sample-4',
-        imageUrl:
-          'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=1200&auto=format&fit=crop',
-        altText: 'Customizable handmade rose bouquet in Vadodara',
-        displayOrder: 0,
-        isPrimary: true,
-      },
-    ],
-    createdAt: '2026-11-09',
-    updatedAt: '2026-11-09',
-  },
-  {
-    id: 'prod-005',
-    categoryId: 'cat-flowers',
-    category: {
-      id: 'cat-flowers',
-      name: 'Flower Pots',
-      slug: 'flowers',
-      displayOrder: 2,
-      isActive: true,
-      createdAt: '2026-11-09',
-    },
-    title: 'Pastel Pink Crochet Tulip Desk Blossom',
-    slug: 'pastel-pink-crochet-tulip-desk-blossom',
-    shortDescription:
-      'Elegant single tulip blossom in a handmade knitted white pot.',
-    fullDescription:
-      'An aesthetic minimalist piece for study tables, nightstands, and dressing corners. Needs zero watering or sunlight, staying in pristine bloom forever.',
-    basePrice: 349,
-    compareAtPrice: 399,
-    productType: 'READY_MADE',
-    preparationDays: 0,
-    isPublished: true,
-    isFeatured: false,
-    hasVariants: false,
-    stockQuantity: 8,
-    lowStockThreshold: 2,
-    images: [
-      {
-        id: 'img-005-a',
-        productId: 'prod-005',
-        cloudinaryPublicId: 'the-handmade-craft/sample-5',
-        imageUrl:
-          'https://images.unsplash.com/photo-1520763185298-1b434c919102?q=80&w=1200&auto=format&fit=crop',
-        altText: 'Pink crochet tulip in potted base',
-        displayOrder: 0,
-        isPrimary: true,
-      },
-    ],
-    createdAt: '2026-11-09',
-    updatedAt: '2026-11-09',
-  },
-  {
-    id: 'prod-006',
-    categoryId: 'cat-keychains',
-    category: {
-      id: 'cat-keychains',
-      name: 'Keychains',
-      slug: 'keychains',
-      displayOrder: 3,
-      isActive: true,
-      createdAt: '2026-11-09',
-    },
-    title: 'Fluffy Strawberry Amigurumi Keychain',
-    slug: 'fluffy-strawberry-amigurumi-keychain',
-    shortDescription:
-      'Vibrant red handmade strawberry with tiny embroidered seeds and green calyx top.',
-    fullDescription:
-      'Plump and soft handmade strawberry amigurumi keychain. Handcrafted with dense stitches so it retains its shape forever.',
-    basePrice: 229,
-    productType: 'READY_MADE',
-    preparationDays: 0,
-    isPublished: true,
-    isFeatured: false,
-    hasVariants: false,
-    stockQuantity: 12,
-    lowStockThreshold: 3,
-    images: [
-      {
-        id: 'img-006-a',
-        productId: 'prod-006',
-        cloudinaryPublicId: 'the-handmade-craft/sample-6',
-        imageUrl:
-          'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=1200&auto=format&fit=crop',
-        altText: 'Handmade strawberry crochet keychain',
-        displayOrder: 0,
-        isPrimary: true,
-      },
-    ],
-    createdAt: '2026-11-09',
-    updatedAt: '2026-11-09',
-  },
-];
-
 export default function ProductDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
 
-  const [product, setProduct] = useState<Product | undefined>(() =>
-    ALL_PRODUCTS.find((p) => p.slug === slug)
-  );
-  const [loading, setLoading] = useState(!product);
+  const [product, setProduct] = useState<Product | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`/api/store/products/${slug}`)
+    if (!slug) return;
+    setLoading(true);
+    fetch(`/api/store/products/${slug}`, { cache: 'no-store' })
       .then((res) => res.json())
       .then((data) => {
         if (data.success && data.product) {
           setProduct(data.product);
+        } else {
+          setProduct(undefined);
         }
       })
-      .catch((err) => console.error(err))
+      .catch((err) => {
+        console.error('Failed to load product detail:', err);
+        setProduct(undefined);
+      })
       .finally(() => setLoading(false));
   }, [slug]);
 

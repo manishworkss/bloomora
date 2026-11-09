@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { getProductById, saveProduct, deleteProduct } from '@/lib/products-store';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
