@@ -97,68 +97,93 @@ export default function HappyFamilyPage() {
         </div>
       </div>
 
-      {/* Filter Tabs & Stats Bar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-3 bg-surface rounded-2xl border border-border-subtle shadow-subtle">
-        <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
-          <button
-            type="button"
-            onClick={() => setActiveFilter('all')}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors ${
-              activeFilter === 'all'
-                ? 'bg-rose text-white shadow-sm'
-                : 'text-ink-muted hover:text-ink hover:bg-canvas'
-            }`}
-          >
-            All Stories ({reviews.length})
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveFilter('photos')}
-            className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors ${
-              activeFilter === 'photos'
-                ? 'bg-rose text-white shadow-sm'
-                : 'text-ink-muted hover:text-ink hover:bg-canvas'
-            }`}
-          >
-            <Camera className="w-3.5 h-3.5" />
-            <span>With Photos ({photoCount})</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveFilter('videos')}
-            className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors ${
-              activeFilter === 'videos'
-                ? 'bg-rose text-white shadow-sm'
-                : 'text-ink-muted hover:text-ink hover:bg-canvas'
-            }`}
-          >
-            <Video className="w-3.5 h-3.5" />
-            <span>With Videos ({videoCount})</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveFilter('5stars')}
-            className={`inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors ${
-              activeFilter === '5stars'
-                ? 'bg-rose text-white shadow-sm'
-                : 'text-ink-muted hover:text-ink hover:bg-canvas'
-            }`}
-          >
-            <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-            <span>5 Stars</span>
-          </button>
-        </div>
+      {/* Filter Tabs & Stats Bar (Only when reviews exist) */}
+      {reviews.length > 0 && (
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-3 bg-surface rounded-2xl border border-border-subtle shadow-subtle">
+          <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
+            <button
+              type="button"
+              onClick={() => setActiveFilter('all')}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors ${
+                activeFilter === 'all'
+                  ? 'bg-rose text-white shadow-sm'
+                  : 'text-ink-muted hover:text-ink hover:bg-canvas'
+              }`}
+            >
+              All Stories ({reviews.length})
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveFilter('photos')}
+              className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors ${
+                activeFilter === 'photos'
+                  ? 'bg-rose text-white shadow-sm'
+                  : 'text-ink-muted hover:text-ink hover:bg-canvas'
+              }`}
+            >
+              <Camera className="w-3.5 h-3.5" />
+              <span>With Photos ({photoCount})</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveFilter('videos')}
+              className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors ${
+                activeFilter === 'videos'
+                  ? 'bg-rose text-white shadow-sm'
+                  : 'text-ink-muted hover:text-ink hover:bg-canvas'
+              }`}
+            >
+              <Video className="w-3.5 h-3.5" />
+              <span>With Videos ({videoCount})</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveFilter('5stars')}
+              className={`inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors ${
+                activeFilter === '5stars'
+                  ? 'bg-rose text-white shadow-sm'
+                  : 'text-ink-muted hover:text-ink hover:bg-canvas'
+              }`}
+            >
+              <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+              <span>5 Stars</span>
+            </button>
+          </div>
 
-        <div className="text-[11px] text-ink-muted shrink-0 hidden sm:block">
-          Showing <strong>{filteredReviews.length}</strong> verified customer stories
+          <div className="text-[11px] text-ink-muted shrink-0 hidden sm:block">
+            Showing <strong>{filteredReviews.length}</strong> verified customer stories
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Stories Grid */}
       {loading ? (
         <div className="py-20 text-center space-y-3">
           <Loader2 className="w-8 h-8 animate-spin text-rose mx-auto" />
           <p className="text-xs text-ink-muted">Arranging customer stories & unboxings...</p>
+        </div>
+      ) : reviews.length === 0 ? (
+        <div className="py-16 text-center bg-surface rounded-3xl border border-border-subtle p-8 sm:p-12 space-y-4 max-w-xl mx-auto shadow-subtle">
+          <div className="w-14 h-14 rounded-full bg-blush/40 text-rose flex items-center justify-center mx-auto">
+            <Heart className="w-7 h-7 fill-rose" />
+          </div>
+          <h2 className="font-serif text-2xl font-bold text-ink">
+            No Stories Published Yet — Be the Very First!
+          </h2>
+          <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
+            Have you received a Bloomora handmade bouquet, smiling sunflower desk pot, or flower keychain in Vadodara? Click below to share your unboxing video, photo, and review.
+          </p>
+          <div className="pt-2">
+            <Button
+              variant="primary"
+              size="md"
+              onClick={() => setIsModalOpen(true)}
+              className="gap-2 shadow-craft font-semibold"
+            >
+              <PlusCircle className="w-4 h-4" />
+              <span>Share Your Story & Review</span>
+            </Button>
+          </div>
         </div>
       ) : filteredReviews.length === 0 ? (
         <div className="py-16 text-center bg-surface rounded-3xl border border-border-subtle p-8 space-y-4">

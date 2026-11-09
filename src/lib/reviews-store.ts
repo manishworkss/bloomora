@@ -93,7 +93,7 @@ export async function getReviewsAsync(approvedOnly: boolean = true): Promise<Cus
         query = query.eq('status', 'APPROVED');
       }
       const { data, error } = await query.order('created_at', { ascending: false });
-      if (!error && data && data.length > 0) {
+      if (!error && data) {
         return data.map(mapSupabaseReview);
       }
     } catch {

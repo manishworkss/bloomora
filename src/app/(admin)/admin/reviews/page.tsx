@@ -420,6 +420,27 @@ export default function AdminReviewsPage() {
           <Loader2 className="w-8 h-8 animate-spin text-rose mx-auto" />
           <p className="text-xs text-ink-muted">Loading customer stories...</p>
         </div>
+      ) : reviews.length === 0 ? (
+        <div className="py-16 text-center bg-surface rounded-2xl border border-border-subtle p-8 sm:p-12 space-y-4 max-w-lg mx-auto shadow-subtle">
+          <div className="w-14 h-14 rounded-full bg-blush/40 text-rose flex items-center justify-center mx-auto">
+            <Heart className="w-7 h-7 fill-rose" />
+          </div>
+          <h3 className="font-serif text-xl font-bold text-ink">No Customer Stories Yet</h3>
+          <p className="text-xs text-ink-muted leading-relaxed">
+            Real reviews will appear here as soon as customers submit their stories, unboxing videos, and photos on the storefront. You can also transcribe feedback received via WhatsApp or Instagram DMs!
+          </p>
+          <div className="pt-2">
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={() => setIsAddModalOpen(true)}
+              className="gap-2 shadow-craft font-semibold mx-auto"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Add Customer Story from WhatsApp</span>
+            </Button>
+          </div>
+        </div>
       ) : filteredReviews.length === 0 ? (
         <div className="py-16 text-center bg-surface rounded-2xl border border-border-subtle p-8 space-y-3">
           <Heart className="w-10 h-10 text-rose/50 mx-auto" />
@@ -1024,3 +1045,4 @@ export default function AdminReviewsPage() {
     </div>
   );
 }
+
