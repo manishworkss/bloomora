@@ -207,9 +207,9 @@ export default async function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-14 items-center">
             {/* Left Hand Side (LHS): Handcrafted Bouquet Photo */}
             <div className="lg:col-span-6 relative w-full">
-              <div className="relative group">
+              <div className="relative">
                 {/* Soft ambient backlight glow */}
-                <div className="pointer-events-none absolute -inset-2 bg-gradient-to-tr from-rose/25 via-blush/35 to-amber-100/30 rounded-[2rem] blur-2xl opacity-70 group-hover:opacity-100 transition duration-700 -z-10" />
+                <div className="pointer-events-none absolute -inset-2 bg-gradient-to-tr from-rose/25 via-blush/35 to-amber-100/30 rounded-[2rem] blur-2xl opacity-70 -z-10" />
 
                 <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-border-subtle bg-surface shadow-craft-elevated">
                   {/* Full fit in half area for mobile view (~44vh) and balanced on desktop */}
@@ -220,7 +220,7 @@ export default async function HomePage() {
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                       priority
-                      className="object-cover object-center w-full h-full transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="object-cover object-center w-full h-full"
                     />
                   </div>
                 </div>
