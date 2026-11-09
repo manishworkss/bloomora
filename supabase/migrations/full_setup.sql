@@ -285,12 +285,11 @@ ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = timezone('u
 
 -- 16. SEED PRODUCTS
 INSERT INTO products (
-  id, category_id, title, slug, short_description, full_description,
+  category_id, title, slug, short_description, full_description,
   base_price, compare_at_price, product_type, preparation_days,
   is_published, is_featured, stock_quantity, low_stock_threshold
 ) VALUES
   (
-    'p1000000-0000-0000-0000-000000000001',
     'c1000000-0000-0000-0000-000000000001',
     'Everlasting Crochet Lavender & Tulip Bouquet',
     'everlasting-lavender-tulip-bouquet',
@@ -299,7 +298,6 @@ INSERT INTO products (
     899.00, 1049.00, 'READY_MADE', 0, true, true, 6, 2
   ),
   (
-    'p1000000-0000-0000-0000-000000000002',
     'c1000000-0000-0000-0000-000000000002',
     'Mini Smiling Sunflower Crochet Desk Pot',
     'mini-smiling-sunflower-crochet-pot',
@@ -308,7 +306,6 @@ INSERT INTO products (
     399.00, 450.00, 'READY_MADE', 0, true, true, 10, 3
   ),
   (
-    'p1000000-0000-0000-0000-000000000003',
     'c1000000-0000-0000-0000-000000000003',
     'Handmade Daisy Flower Charm Keychain',
     'handmade-daisy-flower-charm-keychain',
@@ -317,7 +314,6 @@ INSERT INTO products (
     199.00, 249.00, 'READY_MADE', 0, true, true, 15, 5
   ),
   (
-    'p1000000-0000-0000-0000-000000000004',
     'c1000000-0000-0000-0000-000000000001',
     'Customizable Pastel Rose & Daisy Keepsake Bouquet',
     'customizable-pastel-rose-daisy-keepsake-bouquet',

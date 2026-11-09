@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
 import {
-  getDeliveryZones,
-  saveDeliveryZone,
-  toggleDeliveryZone,
-  deleteDeliveryZone,
+  getDeliveryZonesAsync,
+  saveDeliveryZoneAsync,
+  toggleDeliveryZoneAsync,
+  deleteDeliveryZoneAsync,
 } from '@/lib/delivery-zones-store';
 
 export const dynamic = 'force-dynamic';
@@ -11,7 +11,7 @@ export const revalidate = 0;
 
 export async function GET() {
   try {
-    const zones = getDeliveryZones();
+    const zones = await getDeliveryZonesAsync();
     return NextResponse.json({ success: true, zones });
   } catch (error) {
     return NextResponse.json(
@@ -34,17 +34,17 @@ export async function POST(request: Request) {
     }
 
     if (action === 'toggle') {
-      const updated = toggleDeliveryZone(pin);
+      const updated = await toggleDeliveryZoneAsync(pin);
       return NextResponse.json({ success: true, zone: updated });
     }
 
     if (action === 'delete') {
-      const deleted = deleteDeliveryZone(pin);
+      const deleted = await deleteDeliveryZoneAsync(pin);
       return NextResponse.json({ success: true, deleted });
     }
 
     // Default: Add or update zone
-    const saved = saveDeliveryZone({
+    const saved = await saveDeliveryZoneAsync({
       pin,
       area: area || 'Vadodara Locality',
       fee: Number(fee) || 50,

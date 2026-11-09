@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getProductBySlug } from '@/lib/products-store';
+import { getProductBySlugAsync } from '@/lib/products-store';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -10,7 +10,7 @@ export async function GET(
 ) {
   try {
     const { slug } = await params;
-    const product = getProductBySlug(slug);
+    const product = await getProductBySlugAsync(slug);
 
     if (!product || !product.isPublished) {
       return NextResponse.json(

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { updateOrderStatus, getOrders } from '@/lib/orders-store';
+import { updateOrderStatusAsync, getOrdersAsync } from '@/lib/orders-store';
 import { OrderStatus } from '@/types';
 
 export const dynamic = 'force-dynamic';
@@ -25,8 +25,8 @@ export async function PATCH(
     const body = await request.json();
     const { newStatus, notes } = body;
 
-    const allOrders = getOrders();
-    const currentOrder = allOrders.find((o) => o.id === id);
+    const allOrders = await getOrdersAsync();
+    const currentOrder = allOrders.find((o) => o.id === id || o.orderNumber === id);
 
     if (!currentOrder) {
       return NextResponse.json(
@@ -49,7 +49,7 @@ export async function PATCH(
       );
     }
 
-    const updated = updateOrderStatus(id, newStatus, notes);
+    const updated = await updateOrderStatusAsync(id, newStatus, notes);
 
     return NextResponse.json({
       success: true,

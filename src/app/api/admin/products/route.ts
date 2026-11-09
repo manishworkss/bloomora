@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getProducts, saveProduct } from '@/lib/products-store';
+import { getProductsAsync, saveProductAsync } from '@/lib/products-store';
 import { Product } from '@/types';
 
 export const dynamic = 'force-dynamic';
@@ -11,7 +11,7 @@ export async function GET(request: Request) {
     const category = searchParams.get('category');
     const search = searchParams.get('search')?.toLowerCase();
 
-    let products = getProducts(false); // Admin gets all products
+    let products = await getProductsAsync(false); // Admin gets all products
 
     if (category) {
       products = products.filter(
@@ -108,7 +108,7 @@ export async function POST(request: Request) {
       updatedAt: new Date().toISOString(),
     };
 
-    saveProduct(newProduct);
+    await saveProductAsync(newProduct);
 
     return NextResponse.json({
       success: true,

@@ -109,7 +109,7 @@ CREATE TABLE delivery_zones (
   zone_name VARCHAR(100) NOT NULL,
   city VARCHAR(60) NOT NULL DEFAULT 'Vadodara',
   delivery_fee NUMERIC(10, 2) NOT NULL DEFAULT 50.00 CHECK (delivery_fee >= 0),
-  estimated_days VARCHAR(50) NOT NULL DEFAULT '1-2 Days',
+  estimated_days VARCHAR(50) NOT NULL DEFAULT 'Vadodara Local',
   is_active BOOLEAN NOT NULL DEFAULT true,
   created_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc', now()),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc', now())

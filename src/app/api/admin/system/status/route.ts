@@ -1,19 +1,19 @@
 import { NextResponse } from 'next/server';
 import { isSupabaseConfigured } from '@/lib/supabase/status';
-import { getProducts } from '@/lib/products-store';
-import { getOrders } from '@/lib/orders-store';
-import { getEnquiries } from '@/lib/enquiries-store';
-import { getDeliveryZones } from '@/lib/delivery-zones-store';
+import { getProductsAsync } from '@/lib/products-store';
+import { getOrdersAsync } from '@/lib/orders-store';
+import { getEnquiriesAsync } from '@/lib/enquiries-store';
+import { getDeliveryZonesAsync } from '@/lib/delivery-zones-store';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export async function GET() {
   const isCloud = isSupabaseConfigured();
-  const products = getProducts(false);
-  const orders = getOrders();
-  const enquiries = getEnquiries();
-  const zones = getDeliveryZones();
+  const products = await getProductsAsync(false);
+  const orders = await getOrdersAsync();
+  const enquiries = await getEnquiriesAsync();
+  const zones = await getDeliveryZonesAsync();
 
   return NextResponse.json({
     success: true,

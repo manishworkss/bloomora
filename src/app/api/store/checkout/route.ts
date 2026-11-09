@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { nanoid } from 'nanoid';
-import { saveOrder } from '@/lib/orders-store';
+import { saveOrderAsync } from '@/lib/orders-store';
 import { Order } from '@/types';
 
 export const dynamic = 'force-dynamic';
@@ -96,7 +96,7 @@ export async function POST(request: NextRequest) {
       updatedAt: new Date().toISOString(),
     };
 
-    saveOrder(newOrder);
+    await saveOrderAsync(newOrder);
 
     return NextResponse.json(
       {

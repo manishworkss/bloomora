@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { updateEnquiryStatus } from '@/lib/enquiries-store';
+import { updateEnquiryStatusAsync } from '@/lib/enquiries-store';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -13,7 +13,7 @@ export async function PATCH(
     const body = await request.json();
     const { status, adminNotes } = body;
 
-    const updated = updateEnquiryStatus(id, status, adminNotes);
+    const updated = await updateEnquiryStatusAsync(id, status, adminNotes);
 
     if (!updated) {
       return NextResponse.json(

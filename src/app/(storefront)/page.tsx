@@ -24,8 +24,8 @@ import { ProductCard } from '@/components/storefront/ProductCard';
 import { FAQAccordion, FAQItem } from '@/components/storefront/FAQAccordion';
 import { CraftHoopShowcase } from '@/components/storefront/CraftHoopShowcase';
 import { DEFAULT_WHATSAPP_NUMBER, getCustomOrderInquiryLink } from '@/lib/whatsapp';
-import { getProducts } from '@/lib/products-store';
-import { getSettings } from '@/lib/settings-store';
+import { getProductsAsync } from '@/lib/products-store';
+import { getSettingsAsync } from '@/lib/settings-store';
 
 export const dynamic = 'force-dynamic';
 
@@ -208,10 +208,10 @@ const TESTIMONIALS = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
   const customWhatsAppUrl = getCustomOrderInquiryLink();
-  const settings = getSettings();
-  const allPublished = getProducts(true);
+  const settings = await getSettingsAsync();
+  const allPublished = await getProductsAsync(true);
   const featured = allPublished.filter((p) => p.isFeatured);
   const featuredProducts = (featured.length > 0 ? featured : allPublished).slice(0, 8);
 

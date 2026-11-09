@@ -1,4 +1,6 @@
 import { readJsonFile, writeJsonFile } from './json-db';
+import { createAdminClient } from './supabase/admin';
+import { isSupabaseConfigured } from './supabase/status';
 
 export interface DeliveryZone {
   pin: string;
@@ -62,6 +64,81 @@ export function deleteDeliveryZone(pin: string): boolean {
     return true;
   }
   return false;
+}
+
+export async function getDeliveryZonesAsync(): Promise<DeliveryZone[]> {
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = createAdminClient();
+      const { data, error } = await supabase
+        .from('delivery_zones')
+        .select('*')
+        .order('postal_code', { ascending: true });
+
+      if (!error && data && data.length > 0) {
+        return data.map((d: any) => ({
+          pin: d.postal_code,
+          area: d.zone_name,
+          fee: Number(d.delivery_fee),
+          active: Boolean(d.is_active),
+        }));
+      }
+    } catch {
+      // Fall back to JSON
+    }
+  }
+  return getDeliveryZones();
+}
+
+export async function saveDeliveryZoneAsync(zone: DeliveryZone): Promise<DeliveryZone> {
+  const saved = saveDeliveryZone(zone);
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = createAdminClient();
+      await supabase.from('delivery_zones').upsert(
+        {
+          postal_code: zone.pin,
+          zone_name: zone.area,
+          delivery_fee: zone.fee,
+          is_active: zone.active,
+          updated_at: new Date().toISOString(),
+        },
+        { onConflict: 'postal_code' }
+      );
+    } catch {
+      // JSON already saved
+    }
+  }
+  return saved;
+}
+
+export async function toggleDeliveryZoneAsync(pin: string): Promise<DeliveryZone | null> {
+  const toggled = toggleDeliveryZone(pin);
+  if (isSupabaseConfigured() && toggled) {
+    try {
+      const supabase = createAdminClient();
+      await supabase
+        .from('delivery_zones')
+        .update({ is_active: toggled.active, updated_at: new Date().toISOString() })
+        .eq('postal_code', pin);
+    } catch {
+      // JSON already toggled
+    }
+  }
+  return toggled;
+}
+
+export async function deleteDeliveryZoneAsync(pin: string): Promise<boolean> {
+  const deleted = deleteDeliveryZone(pin);
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = createAdminClient();
+      await supabase.from('delivery_zones').delete().eq('postal_code', pin);
+    } catch {
+      // JSON already deleted
+    }
+  }
+  return deleted;
 }
 
 export function isPinServiceable(pin: string): { serviceable: boolean; zone?: DeliveryZone } {

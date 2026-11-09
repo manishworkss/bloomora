@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { saveEnquiry } from '@/lib/enquiries-store';
+import { saveEnquiryAsync } from '@/lib/enquiries-store';
 
 const enquirySchema = z.object({
   customerName: z.string().min(2, 'Name is required'),
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const created = saveEnquiry(validated.data);
+    const created = await saveEnquiryAsync(validated.data);
 
     return NextResponse.json(
       {

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getProductById, saveProduct, deleteProduct } from '@/lib/products-store';
+import { getProductById, saveProductAsync, deleteProductAsync } from '@/lib/products-store';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -51,7 +51,7 @@ export async function PATCH(
       updatedAt: new Date().toISOString(),
     };
 
-    saveProduct(updatedProduct);
+    await saveProductAsync(updatedProduct);
 
     return NextResponse.json({
       success: true,
@@ -71,7 +71,7 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params;
-    const success = deleteProduct(id);
+    const success = await deleteProductAsync(id);
 
     if (!success) {
       return NextResponse.json(

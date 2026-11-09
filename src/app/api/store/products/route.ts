@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getProducts } from '@/lib/products-store';
+import { getProductsAsync } from '@/lib/products-store';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -10,7 +10,7 @@ export async function GET(request: Request) {
     const category = searchParams.get('category');
     const featured = searchParams.get('featured') === 'true';
 
-    let products = getProducts(true);
+    let products = await getProductsAsync(true);
 
     if (category) {
       products = products.filter(

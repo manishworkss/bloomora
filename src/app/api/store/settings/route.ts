@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
-import { getSettings } from '@/lib/settings-store';
+import { getSettingsAsync } from '@/lib/settings-store';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    const settings = getSettings();
+    const settings = await getSettingsAsync();
     return NextResponse.json({ success: true, settings });
   } catch (error) {
     return NextResponse.json(
