@@ -205,46 +205,23 @@ export default async function HomePage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-14 items-center">
-            {/* Left Hand Side (LHS): Artisan Studio & Workbench Image */}
+            {/* Left Hand Side (LHS): Handcrafted Bouquet Photo */}
             <div className="lg:col-span-6 relative w-full">
               <div className="relative group">
                 {/* Soft ambient backlight glow */}
                 <div className="pointer-events-none absolute -inset-2 bg-gradient-to-tr from-rose/25 via-blush/35 to-amber-100/30 rounded-[2rem] blur-2xl opacity-70 group-hover:opacity-100 transition duration-700 -z-10" />
 
                 <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-border-subtle bg-surface shadow-craft-elevated">
-                  <div className="relative aspect-[16/10] sm:aspect-[16/10] lg:aspect-[4/3] xl:aspect-[16/11] w-full overflow-hidden">
+                  {/* Full fit in half area for mobile view (~44vh) and balanced on desktop */}
+                  <div className="relative w-full h-[44vh] sm:h-[48vh] min-h-[260px] max-h-[400px] lg:h-[460px] xl:h-[500px] lg:max-h-none overflow-hidden">
                     <Image
-                      src="/images/bloomora-hero-artisan-workbench.jpg"
-                      alt="Bloomora Artisan Studio & Workbench - Handcrafted crochet flowers in Vadodara"
+                      src="/images/bloomora-hero-bouquet.jpg"
+                      alt="Bloomora Handcrafted Crochet Bouquet - Made with Love in Vadodara"
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                       priority
-                      className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="object-cover object-center w-full h-full transition-transform duration-700 ease-out group-hover:scale-105"
                     />
-                    {/* Soft ambient vignette */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/65 via-ink/10 to-transparent pointer-events-none" />
-
-                    {/* Top Studio Badge */}
-                    <div className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 bg-surface/90 backdrop-blur-md border border-white/70 px-3 py-1 rounded-full shadow-subtle flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                      <span className="text-[11px] font-semibold text-ink uppercase tracking-wider">Vadodara Artisan Studio</span>
-                    </div>
-
-                    {/* Bottom Caption Overlay */}
-                    <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex items-end justify-between gap-3 text-white">
-                      <div>
-                        <p className="text-xs sm:text-sm font-serif italic text-white drop-shadow">
-                          Handmade stitch by stitch with patient care
-                        </p>
-                        <p className="text-[10px] sm:text-[11px] text-white/80 uppercase tracking-widest font-sans mt-0.5">
-                          100% Everlasting Floral Art
-                        </p>
-                      </div>
-                      <div className="hidden sm:inline-flex items-center gap-1.5 text-[11px] bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-white border border-white/30 font-medium">
-                        <Sparkles className="w-3 h-3 text-amber-300 shrink-0" />
-                        <span>Slow Made</span>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -252,11 +229,6 @@ export default async function HomePage() {
 
             {/* Right Hand Side (RHS): Narrative Column */}
             <div className="lg:col-span-6 space-y-4 text-center lg:text-left min-w-0">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface/90 backdrop-blur-md border border-rose/25 shadow-subtle text-[11px] font-semibold text-rose tracking-wider uppercase max-w-full">
-                <Sparkles className="w-3.5 h-3.5 text-rose shrink-0" />
-                <span className="truncate">{settings.heroBadgeText || "Vadodara's Artisan Studio • Slow Handcrafted Blooms"}</span>
-              </div>
-
               <div className="space-y-3">
                 <h1 className="font-serif text-3xl sm:text-4xl lg:text-[2.85rem] xl:text-[3.25rem] text-ink font-normal tracking-tight leading-[1.14]">
                   Little details. <br />
