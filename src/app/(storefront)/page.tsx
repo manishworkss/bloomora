@@ -24,6 +24,7 @@ import { ProductCard } from '@/components/storefront/ProductCard';
 import { FAQAccordion, FAQItem } from '@/components/storefront/FAQAccordion';
 import { DEFAULT_WHATSAPP_NUMBER, getCustomOrderInquiryLink } from '@/lib/whatsapp';
 import { getProductsAsync } from '@/lib/products-store';
+import { getCategoriesAsync } from '@/lib/categories-store';
 import { getSettingsAsync } from '@/lib/settings-store';
 import { getReviewsAsync } from '@/lib/reviews-store';
 import { HappyFamilySection } from '@/components/storefront/HappyFamilySection';
@@ -41,40 +42,6 @@ const BRAND_VALUES_MARQUEE = [
   'Everlasting Memories',
 ];
 
-const CATEGORIES = [
-  {
-    id: 'flowers',
-    name: 'Handmade Flowers',
-    tagline: 'Single blossoms & smiling desk pots',
-    href: '/shop?category=flowers',
-    imageUrl:
-      'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?q=80&w=600&auto=format&fit=crop',
-  },
-  {
-    id: 'bouquets',
-    name: 'Everlasting Bouquets',
-    tagline: 'Hand-knitted blooms wrapped in craft paper',
-    href: '/shop?category=bouquets',
-    imageUrl:
-      'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=600&auto=format&fit=crop',
-  },
-  {
-    id: 'keychains',
-    name: 'Handmade Keychains',
-    tagline: 'Daisies, strawberries & bag charms',
-    href: '/shop?category=keychains',
-    imageUrl:
-      'https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=600&auto=format&fit=crop',
-  },
-  {
-    id: 'custom',
-    name: 'Personalised Gifts',
-    tagline: 'Bespoke colors & handwritten cards',
-    href: '/custom-orders',
-    imageUrl:
-      'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=600&auto=format&fit=crop',
-  },
-];
 
 const PROCESS_STEPS = [
   {
@@ -187,10 +154,11 @@ const INSTAGRAM_POSTS = [
 
 export default async function HomePage() {
   const customWhatsAppUrl = getCustomOrderInquiryLink();
-  const [settings, allPublished, reviews] = await Promise.all([
+  const [settings, allPublished, reviews, categories] = await Promise.all([
     getSettingsAsync(),
     getProductsAsync(true),
     getReviewsAsync(true),
+    getCategoriesAsync(true),
   ]);
   const featured = allPublished.filter((p) => p.isFeatured);
   const featuredProducts = (featured.length > 0 ? featured : allPublished).slice(0, 8);
@@ -354,29 +322,43 @@ export default async function HomePage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
-          {CATEGORIES.map((cat) => (
+        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5">
+          {categories.map((cat) => (
             <Link
               key={cat.id}
-              href={cat.href}
-              className="group relative block aspect-[3/4] rounded-2xl overflow-hidden bg-canvas border border-border-subtle shadow-subtle hover:border-primary/50 transition-all duration-300"
+              href={`/shop?category=${cat.slug}`}
+              className="group relative block aspect-[3/4] rounded-2xl overflow-hidden bg-surface border border-border-subtle shadow-subtle hover:border-primary/50 transition-all duration-300"
             >
-              <Image
-                src={cat.imageUrl}
-                alt={cat.name}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-              />
-
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
+              {cat.imageUrl ? (
+                <>
+                  <Image
+                    src={cat.imageUrl}
+                    alt={cat.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
+                </>
+              ) : (
+                <div className="absolute inset-0 bg-gradient-to-b from-blush/30 via-canvas to-surface flex flex-col justify-between p-5 border border-border-subtle/50">
+                  <div className="w-10 h-10 rounded-full bg-blush/60 flex items-center justify-center text-rose">
+                    <Flower2 className="w-5 h-5" />
+                  </div>
+                  <div />
+                </div>
+              )}
 
               <div className="absolute inset-x-5 bottom-5 text-white space-y-1">
-                <h3 className="font-serif text-xl sm:text-2xl font-semibold leading-tight">
+                <h3 className={`font-serif text-xl sm:text-2xl font-semibold leading-tight ${!cat.imageUrl ? 'text-ink' : 'text-white'}`}>
                   {cat.name}
                 </h3>
-                <p className="text-xs text-white/80 line-clamp-1">{cat.tagline}</p>
-                <span className="inline-flex items-center gap-1.5 text-xs text-blush pt-2 group-hover:translate-x-1 transition-transform">
+                {cat.description && (
+                  <p className={`text-xs line-clamp-1 ${!cat.imageUrl ? 'text-ink-muted' : 'text-white/80'}`}>
+                    {cat.description}
+                  </p>
+                )}
+                <span className={`inline-flex items-center gap-1.5 text-xs pt-2 group-hover:translate-x-1 transition-transform ${!cat.imageUrl ? 'text-rose font-medium' : 'text-blush'}`}>
                   <span>Explore category</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </span>

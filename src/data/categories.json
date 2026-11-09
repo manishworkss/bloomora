@@ -1,0 +1,32 @@
+[
+  {
+    "id": "c1000000-0000-0000-0000-000000000001",
+    "name": "Floral Bouquets",
+    "slug": "bouquets",
+    "description": "Everlasting handmade crochet bouquets with lavender, tulips, and roses.",
+    "imageUrl": "",
+    "displayOrder": 1,
+    "isActive": true,
+    "createdAt": "2026-11-09T00:00:00Z"
+  },
+  {
+    "id": "c1000000-0000-0000-0000-000000000002",
+    "name": "Desk Flower Pots",
+    "slug": "flowers",
+    "description": "Adorable smiling sunflowers and potted crochet blooms for work desks.",
+    "imageUrl": "",
+    "displayOrder": 2,
+    "isActive": true,
+    "createdAt": "2026-11-09T00:00:00Z"
+  },
+  {
+    "id": "c1000000-0000-0000-0000-000000000003",
+    "name": "Handmade Keychains",
+    "slug": "keychains",
+    "description": "Charming daisy charms, strawberries, and personalized key tags.",
+    "imageUrl": "",
+    "displayOrder": 3,
+    "isActive": true,
+    "createdAt": "2026-11-09T00:00:00Z"
+  }
+]

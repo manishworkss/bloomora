@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import {
   Plus,
   Package,
@@ -18,11 +19,12 @@ import {
   Eye,
   EyeOff,
   Star,
+  Upload,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { formatINR } from '@/lib/formatters';
-import { Product } from '@/types';
+import { Product, Category } from '@/types';
 
 const SAMPLE_PHOTO_PRESETS = [
   {
@@ -51,8 +53,12 @@ const SAMPLE_PHOTO_PRESETS = [
   },
 ];
 
-export default function AdminProductsPage() {
+function AdminProductsContent() {
+  const searchParams = useSearchParams();
+  const categoryIdParam = searchParams?.get('categoryId');
+
   const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('all');
@@ -62,10 +68,12 @@ export default function AdminProductsPage() {
   const [isEditing, setIsEditing] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const productFileInputRef = useRef<HTMLInputElement>(null);
 
   // Form Fields
   const [title, setTitle] = useState('');
-  const [categoryId, setCategoryId] = useState('cat-bouquets');
+  const [categoryId, setCategoryId] = useState('');
   const [price, setPrice] = useState('');
   const [comparePrice, setComparePrice] = useState('');
   const [productType, setProductType] = useState<'READY_MADE' | 'MADE_TO_ORDER'>('READY_MADE');
@@ -78,13 +86,24 @@ export default function AdminProductsPage() {
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch('/api/admin/products', { cache: 'no-store' });
-      const data = await res.json();
-      if (data.success && Array.isArray(data.products)) {
-        setProducts(data.products);
+      const [prodsRes, catsRes] = await Promise.all([
+        fetch('/api/admin/products', { cache: 'no-store' }),
+        fetch('/api/admin/categories', { cache: 'no-store' }),
+      ]);
+      const prodsData = await prodsRes.json();
+      const catsData = await catsRes.json();
+
+      if (prodsData.success && Array.isArray(prodsData.products)) {
+        setProducts(prodsData.products);
+      }
+      if (catsData.success && Array.isArray(catsData.categories)) {
+        setCategories(catsData.categories);
+        if (catsData.categories.length > 0 && !categoryId) {
+          setCategoryId(catsData.categories[0].id);
+        }
       }
     } catch (err) {
-      console.error('Failed to load products:', err);
+      console.error('Failed to load products or categories:', err);
     } finally {
       setLoading(false);
     }
@@ -94,17 +113,52 @@ export default function AdminProductsPage() {
     fetchProducts();
   }, []);
 
+  useEffect(() => {
+    if (categoryIdParam) {
+      setSelectedCategoryFilter(categoryIdParam);
+      setCategoryId(categoryIdParam);
+      setShowModal(true);
+    }
+  }, [categoryIdParam]);
+
+  const handleProductFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadingImage(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const res = await fetch('/api/admin/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.success && data.url) {
+        setImageUrl(data.url);
+      } else {
+        alert(data.error || 'Failed to upload photo');
+      }
+    } catch (err) {
+      console.error('Product image upload error:', err);
+      alert('Failed to upload image. Please try again.');
+    } finally {
+      setUploadingImage(false);
+    }
+  };
+
   const openAddModal = () => {
     setIsEditing(false);
     setEditingId(null);
     setTitle('');
-    setCategoryId('cat-bouquets');
+    setCategoryId(categories.length > 0 ? categories[0].id : '');
     setPrice('');
     setComparePrice('');
     setProductType('READY_MADE');
     setPreparationDays('0');
     setStock('5');
-    setImageUrl(SAMPLE_PHOTO_PRESETS[0].url);
+    setImageUrl('');
     setShortDescription('');
     setFullDescription('');
     setIsFeatured(false);
@@ -301,12 +355,18 @@ export default function AdminProductsPage() {
 
         {/* Category Filter Pills */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
-          {[
-            { id: 'all', label: 'All Items' },
-            { id: 'cat-bouquets', label: 'Floral Bouquets' },
-            { id: 'cat-flowers', label: 'Desk Pots' },
-            { id: 'cat-keychains', label: 'Keychains' },
-          ].map((cat) => (
+          <button
+            type="button"
+            onClick={() => setSelectedCategoryFilter('all')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
+              selectedCategoryFilter === 'all'
+                ? 'bg-primary text-white'
+                : 'bg-canvas text-ink-muted hover:text-ink border border-border-subtle'
+            }`}
+          >
+            All Items
+          </button>
+          {categories.map((cat) => (
             <button
               key={cat.id}
               type="button"
@@ -317,7 +377,7 @@ export default function AdminProductsPage() {
                   : 'bg-canvas text-ink-muted hover:text-ink border border-border-subtle'
               }`}
             >
-              {cat.label}
+              {cat.name}
             </button>
           ))}
         </div>
@@ -554,9 +614,12 @@ export default function AdminProductsPage() {
                     onChange={(e) => setCategoryId(e.target.value)}
                     className="w-full px-3.5 py-2 rounded-lg bg-canvas border border-border-subtle text-xs text-ink focus:outline-none focus:ring-2 focus:ring-primary"
                   >
-                    <option value="cat-bouquets">Floral Bouquets</option>
-                    <option value="cat-flowers">Desk Flower Pots</option>
-                    <option value="cat-keychains">Handmade Keychains</option>
+                    {categories.length === 0 && <option value="">No categories created yet</option>}
+                    {categories.map((cat) => (
+                      <option key={cat.id} value={cat.id}>
+                        {cat.name}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
@@ -632,35 +695,74 @@ export default function AdminProductsPage() {
                 </label>
               </div>
 
-              {/* Preset Sample Photos for Fast Listing */}
+              {/* Product Photo Field with Upload and Preview */}
               <div className="space-y-2 pt-1">
-                <label className="text-xs font-semibold text-ink uppercase tracking-wider flex items-center justify-between">
-                  <span>Photo URL</span>
-                  <span className="text-[10px] text-rose font-normal">Choose studio preset or enter URL</span>
-                </label>
-                <div className="flex flex-wrap gap-1.5">
-                  {SAMPLE_PHOTO_PRESETS.map((preset) => (
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-semibold text-ink uppercase tracking-wider">
+                    Creation Photo *
+                  </label>
+                  {imageUrl && (
                     <button
-                      key={preset.label}
                       type="button"
-                      onClick={() => setImageUrl(preset.url)}
-                      className={`px-2 py-1 rounded text-[10px] font-semibold transition-colors ${
-                        imageUrl === preset.url
-                          ? 'bg-rose text-white'
-                          : 'bg-canvas text-ink-muted hover:text-ink border border-border-subtle'
-                      }`}
+                      onClick={() => setImageUrl('')}
+                      className="text-[10px] text-red-600 hover:underline"
                     >
-                      {preset.label}
+                      Clear photo
                     </button>
-                  ))}
+                  )}
                 </div>
-                <input
-                  type="text"
-                  value={imageUrl}
-                  onChange={(e) => setImageUrl(e.target.value)}
-                  placeholder="https://... or select a preset above"
-                  className="w-full px-3.5 py-2 rounded-lg bg-canvas border border-border-subtle text-xs text-ink focus:outline-none focus:ring-2 focus:ring-primary font-mono"
-                />
+
+                {/* Live Preview */}
+                {imageUrl && (
+                  <div className="relative aspect-[4/3] max-w-[200px] rounded-xl overflow-hidden border border-border-subtle bg-canvas">
+                    <Image
+                      src={imageUrl}
+                      alt="Product preview"
+                      fill
+                      className="object-cover"
+                      sizes="200px"
+                    />
+                  </div>
+                )}
+
+                <div className="flex items-center gap-2">
+                  <input
+                    type="file"
+                    ref={productFileInputRef}
+                    accept="image/*"
+                    onChange={handleProductFileUpload}
+                    className="hidden"
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    disabled={uploadingImage}
+                    onClick={() => productFileInputRef.current?.click()}
+                    className="shrink-0 flex items-center gap-1.5 text-xs bg-canvas hover:bg-surface border-border-subtle"
+                  >
+                    {uploadingImage ? (
+                      <>
+                        <Loader2 className="w-3.5 h-3.5 animate-spin text-rose" />
+                        <span>Uploading...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Upload className="w-3.5 h-3.5 text-rose" />
+                        <span>Upload Photo</span>
+                      </>
+                    )}
+                  </Button>
+
+                  <input
+                    type="text"
+                    required
+                    value={imageUrl}
+                    onChange={(e) => setImageUrl(e.target.value)}
+                    placeholder="Or enter image URL (https://...)"
+                    className="flex-1 px-3.5 py-2 rounded-lg bg-canvas border border-border-subtle text-xs text-ink focus:outline-none focus:ring-2 focus:ring-primary font-mono"
+                  />
+                </div>
               </div>
 
               {/* Short Description */}
@@ -712,5 +814,13 @@ export default function AdminProductsPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function AdminProductsPage() {
+  return (
+    <Suspense fallback={<div className="p-12 text-center text-xs text-ink-muted">Loading product catalog...</div>}>
+      <AdminProductsContent />
+    </Suspense>
   );
 }

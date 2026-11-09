@@ -14,11 +14,13 @@ import {
   ExternalLink,
   LogOut,
   Star,
+  Layers,
 } from 'lucide-react';
 
 const ADMIN_LINKS = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/admin/orders', label: 'Orders & Fulfillment', icon: ShoppingBag },
+  { href: '/admin/categories', label: 'Categories & Covers', icon: Layers },
   { href: '/admin/products', label: 'Product Catalog', icon: Package },
   { href: '/admin/reviews', label: 'Reviews & Stories', icon: Star },
   { href: '/admin/enquiries', label: 'Custom Enquiries', icon: MessageSquare },

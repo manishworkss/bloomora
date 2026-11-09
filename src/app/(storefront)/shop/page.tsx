@@ -8,18 +8,14 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ProductCard } from '@/components/storefront/ProductCard';
 import { Product } from '@/types';
 
-const CATEGORIES = [
-  { id: 'all', slug: 'all', name: 'All Creations' },
-  { id: 'cat-flowers', slug: 'flowers', name: 'Handmade Flowers' },
-  { id: 'cat-bouquets', slug: 'bouquets', name: 'Bouquets' },
-  { id: 'cat-keychains', slug: 'keychains', name: 'Keychains' },
-];
-
 function ShopContent() {
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get('category');
 
   const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<{ id: string; slug: string; name: string }[]>([
+    { id: 'all', slug: 'all', name: 'All Creations' },
+  ]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -27,25 +23,37 @@ function ShopContent() {
   const [filterType, setFilterType] = useState<string>('all');
 
   useEffect(() => {
-    fetch('/api/store/products', { cache: 'no-store' })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success && Array.isArray(data.products)) {
-          setProducts(data.products);
+    Promise.all([
+      fetch('/api/store/products', { cache: 'no-store' }).then((r) => r.json()),
+      fetch('/api/store/categories', { cache: 'no-store' }).then((r) => r.json()),
+    ])
+      .then(([prodsData, catsData]) => {
+        if (prodsData.success && Array.isArray(prodsData.products)) {
+          setProducts(prodsData.products);
+        }
+        if (catsData.success && Array.isArray(catsData.categories)) {
+          setCategories([
+            { id: 'all', slug: 'all', name: 'All Creations' },
+            ...catsData.categories.map((c: any) => ({
+              id: c.id,
+              slug: c.slug,
+              name: c.name,
+            })),
+          ]);
         }
       })
-      .catch((err) => console.error('Failed to fetch live products:', err))
+      .catch((err) => console.error('Failed to fetch live data:', err))
       .finally(() => setLoading(false));
   }, []);
 
   useEffect(() => {
-    if (categoryParam) {
-      const found = CATEGORIES.find((c) => c.slug === categoryParam);
+    if (categoryParam && categories.length > 1) {
+      const found = categories.find((c) => c.slug === categoryParam);
       if (found) setSelectedCategory(found.id);
-    } else {
+    } else if (!categoryParam) {
       setSelectedCategory('all');
     }
-  }, [categoryParam]);
+  }, [categoryParam, categories]);
 
   const filteredProducts = useMemo(() => {
     return products
@@ -94,7 +102,7 @@ function ShopContent() {
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2 border-t border-border-subtle/60">
           {/* Category Tabs */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 no-scrollbar">
-            {CATEGORIES.map((cat) => (
+            {categories.map((cat) => (
               <button
                 key={cat.id}
                 type="button"
