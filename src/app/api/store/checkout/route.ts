@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
 
     // Generate unique reference and high-entropy secret token
     const randomSuffix = Math.floor(1000 + Math.random() * 9000);
-    const orderNumber = `THC-${new Date().getFullYear()}${String(
+    const orderNumber = `BLOOM-${new Date().getFullYear()}${String(
       new Date().getMonth() + 1
     ).padStart(2, '0')}-${randomSuffix}`;
     const lookupToken = nanoid(24);
