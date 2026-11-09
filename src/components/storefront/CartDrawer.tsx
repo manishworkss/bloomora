@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Plus, Minus, Trash2, ShoppingBag, ArrowRight, MessageCircle } from 'lucide-react';
+import { X, Plus, Minus, Trash2, ShoppingBag, ArrowRight, MessageCircle, Flower2 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { formatINR } from '@/lib/formatters';
 import { Button } from '@/components/ui/Button';
@@ -102,14 +102,18 @@ export const CartDrawer: React.FC = () => {
                       className="flex gap-4 p-3.5 bg-surface rounded-xl border border-border-subtle/80 shadow-sm"
                     >
                       {/* Thumbnail */}
-                      <div className="relative w-20 h-20 rounded-lg overflow-hidden bg-canvas border border-border-subtle shrink-0">
-                        <Image
-                          src={item.imageUrl}
-                          alt={item.title}
-                          fill
-                          className="object-cover"
-                          sizes="80px"
-                        />
+                      <div className="relative w-20 h-20 rounded-lg overflow-hidden bg-canvas border border-border-subtle shrink-0 flex items-center justify-center">
+                        {item.imageUrl ? (
+                          <Image
+                            src={item.imageUrl}
+                            alt={item.title}
+                            fill
+                            className="object-cover"
+                            sizes="80px"
+                          />
+                        ) : (
+                          <Flower2 className="w-8 h-8 text-rose/60" />
+                        )}
                       </div>
 
                       {/* Details */}

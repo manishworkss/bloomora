@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ShoppingBag, ArrowRight, Trash2, Plus, Minus, MessageCircle } from 'lucide-react';
+import { ShoppingBag, ArrowRight, Trash2, Plus, Minus, MessageCircle, Flower2 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { formatINR } from '@/lib/formatters';
 import { Button } from '@/components/ui/Button';
@@ -63,8 +63,12 @@ export default function CartPage() {
                 className="flex flex-col sm:flex-row gap-5 pt-6 first:pt-0"
               >
                 {/* Image */}
-                <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden bg-canvas border border-border-subtle shrink-0">
-                  <Image src={item.imageUrl} alt={item.title} fill className="object-cover" sizes="112px" />
+                <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden bg-canvas border border-border-subtle shrink-0 flex items-center justify-center">
+                  {item.imageUrl ? (
+                    <Image src={item.imageUrl} alt={item.title} fill className="object-cover" sizes="112px" />
+                  ) : (
+                    <Flower2 className="w-10 h-10 text-rose/60" />
+                  )}
                 </div>
 
                 {/* Info */}

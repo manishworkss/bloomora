@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Search, X, ArrowRight, Loader2, Sparkles } from 'lucide-react';
+import { Search, X, ArrowRight, Loader2, Sparkles, Flower2 } from 'lucide-react';
 import { formatINR } from '@/lib/formatters';
 import { Product } from '@/types';
 
@@ -148,14 +148,18 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                       onClick={onClose}
                       className="flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-canvas transition-colors group"
                     >
-                      <div className="relative w-14 h-14 rounded-lg overflow-hidden bg-canvas border border-border-subtle shrink-0">
-                        <Image
-                          src={product.images[0]?.imageUrl || ''}
-                          alt={product.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          sizes="56px"
-                        />
+                      <div className="relative w-14 h-14 rounded-lg overflow-hidden bg-canvas border border-border-subtle shrink-0 flex items-center justify-center">
+                        {product.images[0]?.imageUrl ? (
+                          <Image
+                            src={product.images[0].imageUrl}
+                            alt={product.title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-300"
+                            sizes="56px"
+                          />
+                        ) : (
+                          <Flower2 className="w-6 h-6 text-rose/60" />
+                        )}
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="font-semibold text-xs text-ink group-hover:text-primary truncate transition-colors">

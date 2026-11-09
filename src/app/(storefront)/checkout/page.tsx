@@ -12,6 +12,7 @@ import {
   MapPin,
   ShoppingBag,
   CheckCircle2,
+  Flower2,
 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { formatINR } from '@/lib/formatters';
@@ -313,8 +314,12 @@ export default function CheckoutPage() {
             <div className="divide-y divide-border-subtle/60 max-h-64 overflow-y-auto pr-1 space-y-3">
               {items.map((item) => (
                 <div key={`${item.productId}-${item.variantId || 'base'}`} className="flex gap-3 pt-3 first:pt-0">
-                  <div className="relative w-14 h-14 rounded-lg overflow-hidden bg-canvas border border-border-subtle shrink-0">
-                    <Image src={item.imageUrl} alt={item.title} fill className="object-cover" sizes="56px" />
+                  <div className="relative w-14 h-14 rounded-lg overflow-hidden bg-canvas border border-border-subtle shrink-0 flex items-center justify-center">
+                    {item.imageUrl ? (
+                      <Image src={item.imageUrl} alt={item.title} fill className="object-cover" sizes="56px" />
+                    ) : (
+                      <Flower2 className="w-6 h-6 text-rose/60" />
+                    )}
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-xs font-bold text-ink truncate">{item.title}</p>
