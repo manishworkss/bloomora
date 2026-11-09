@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { isPinServiceable } from '@/lib/delivery-zones-store';
 
-const VADODARA_PINS = [
-  '390001', '390002', '390004', '390007', '390008', '390010',
-  '390011', '390012', '390015', '390018', '390019', '390020',
-  '390021', '390022', '390023', '390024', '390025',
-];
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -23,10 +21,10 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  // Check Vadodara coverage
-  const isServiceable = VADODARA_PINS.includes(pin) || pin.startsWith('390');
+  // Check Vadodara coverage against persistent database
+  const result = isPinServiceable(pin);
 
-  if (!isServiceable) {
+  if (!result.serviceable) {
     return NextResponse.json(
       {
         success: false,
@@ -50,10 +48,9 @@ export async function GET(request: NextRequest) {
       isServiceable: true,
       postalCode: pin,
       city: 'Vadodara',
-      deliveryFee: 50.0,
-      estimatedDays: '1-2 Days',
+      area: result.zone?.area || 'Vadodara',
+      deliveryFee: result.zone?.fee || 50.0,
     },
     message: 'PIN code verified for Vadodara local delivery.',
   });
 }
-
