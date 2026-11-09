@@ -175,7 +175,7 @@ function OrderTrackingContent() {
 
             <Link
               href={`https://wa.me/${DEFAULT_WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                `Hi The Handmade Craft! I'm checking in on my order ${order.orderNumber}.`
+                `Hi Bloomora! I'm checking in on my order ${order.orderNumber}.`
               )}`}
               target="_blank"
               rel="noopener noreferrer"

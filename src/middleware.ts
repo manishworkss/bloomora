@@ -8,7 +8,9 @@ export async function middleware(request: NextRequest) {
     request.nextUrl.pathname.startsWith('/admin') &&
     !request.nextUrl.pathname.startsWith('/admin/login')
   ) {
-    const adminSession = request.cookies.get('thc_admin_auth')?.value;
+    const adminSession =
+      request.cookies.get('bloomora_admin_auth')?.value ||
+      request.cookies.get('thc_admin_auth')?.value;
 
     if (!adminSession) {
       const redirectUrl = new URL('/admin/login', request.url);

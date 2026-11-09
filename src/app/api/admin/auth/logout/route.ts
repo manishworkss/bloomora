@@ -8,6 +8,10 @@ export async function POST() {
     message: 'Signed out successfully.',
   });
 
+  response.cookies.set('bloomora_admin_auth', '', {
+    path: '/',
+    maxAge: 0,
+  });
   response.cookies.set('thc_admin_auth', '', {
     path: '/',
     maxAge: 0,

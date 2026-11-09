@@ -77,12 +77,12 @@ export default function ContactPage() {
             <h3 className="font-serif text-base font-bold text-ink">Instagram DMs</h3>
             <p className="text-xs text-ink-muted">Follow our daily knotting reels & stories.</p>
             <Link
-              href="https://instagram.com/the_.handmadecraft"
+              href="https://instagram.com/bloomora.creation"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-bold text-primary hover:underline block pt-1"
             >
-              @the_.handmadecraft
+              @bloomora.creation
             </Link>
           </div>
 

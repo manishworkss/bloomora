@@ -162,19 +162,19 @@ export default function HappyFamilyPage() {
             Share Your Bloomora Moment
           </h2>
           <p className="text-xs sm:text-sm text-ink-muted max-w-lg mx-auto leading-relaxed">
-            Tag us in your unboxing videos and photos on Instagram <span className="font-semibold text-ink">@the_.handmadecraft</span> or send us your story on WhatsApp to be featured in Our Happy Family!
+            Tag us in your unboxing videos and photos on Instagram <span className="font-semibold text-ink">@bloomora.creation</span> or send us your story on WhatsApp to be featured in Our Happy Family!
           </p>
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
           <Link
-            href="https://instagram.com/the_.handmadecraft"
+            href="https://instagram.com/bloomora.creation"
             target="_blank"
             rel="noopener noreferrer"
           >
             <Button variant="outline" size="md" className="gap-2 w-full sm:w-auto">
               <Instagram className="w-4 h-4 text-rose" />
-              <span>Tag @the_.handmadecraft</span>
+              <span>Tag @bloomora.creation</span>
             </Button>
           </Link>
 

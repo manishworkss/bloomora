@@ -21,7 +21,7 @@ export const DEFAULT_SETTINGS: StoreSettings = {
     'Bloomora • Handcrafted with love in Vadodara • City-Wide Delivery across all PIN codes • WhatsApp: +91 8271735190',
   announcementVisible: true,
   whatsappNumber: '918271735190',
-  instagramHandle: 'the_.handmadecraft',
+  instagramHandle: 'bloomora.creation',
   heroBadgeText: "Vadodara's Artisan Studio • Slow Handcrafted Blooms",
   heroTitle: 'Little details. Beautiful emotions.',
   heroSubtitle:

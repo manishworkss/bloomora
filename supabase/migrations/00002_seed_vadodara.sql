@@ -1,5 +1,5 @@
 -- ==============================================================================
--- THE HANDMADE CRAFT — VADODARA SEED DATA MIGRATION
+-- BLOOMORA — VADODARA SEED DATA MIGRATION
 -- Version: 1.0 (Nov 2026)
 -- Target: Initial Categories, Vadodara Delivery Zones, Site Settings & Products
 -- ==============================================================================
@@ -15,30 +15,30 @@ ON CONFLICT (slug) DO NOTHING;
 -- 2. SEED VADODARA DELIVERY ZONES (All 17 Major Postal Codes Active at ₹50 Flat Fee)
 INSERT INTO delivery_zones (postal_code, zone_name, city, delivery_fee, estimated_days, is_active)
 VALUES
-  ('390001', 'Alkapuri / Central Vadodara', 'Vadodara', 50.00, '1-2 Days', true),
-  ('390002', 'Mandvi / Old City', 'Vadodara', 50.00, '1-2 Days', true),
-  ('390004', 'Fatehgunj / MS University Area', 'Vadodara', 50.00, '1-2 Days', true),
-  ('390007', 'Race Course / Inox Area', 'Vadodara', 50.00, '1-2 Days', true),
-  ('390008', 'Waghodia Road', 'Vadodara', 50.00, '1-2 Days', true),
-  ('390010', 'Karelibaug', 'Vadodara', 50.00, '1-2 Days', true),
-  ('390011', 'Sayajigunj / Station Area', 'Vadodara', 50.00, '1-2 Days', true),
-  ('390012', 'Gorwa / BIDC', 'Vadodara', 50.00, '1-2 Days', true),
-  ('390015', 'Sama / New Sama Road', 'Vadodara', 50.00, '1-2 Days', true),
-  ('390018', 'Gotri', 'Vadodara', 50.00, '1-2 Days', true),
-  ('390019', 'Harni / Airport Area', 'Vadodara', 50.00, '1-2 Days', true),
-  ('390020', 'Manjalpur / Makarpura', 'Vadodara', 50.00, '1-2 Days', true),
-  ('390021', 'Gotri Road / Sevasi', 'Vadodara', 50.00, '1-2 Days', true),
-  ('390022', 'Vasna / Bhayli Road', 'Vadodara', 50.00, '1-2 Days', true),
-  ('390023', 'Subhanpura', 'Vadodara', 50.00, '1-2 Days', true),
-  ('390024', 'Akota', 'Vadodara', 50.00, '1-2 Days', true),
-  ('390025', 'Tarsali', 'Vadodara', 50.00, '1-2 Days', true)
+  ('390001', 'Alkapuri / Central Vadodara', 'Vadodara', 50.00, 'Vadodara Local', true),
+  ('390002', 'Mandvi / Old City', 'Vadodara', 50.00, 'Vadodara Local', true),
+  ('390004', 'Fatehgunj / MS University Area', 'Vadodara', 50.00, 'Vadodara Local', true),
+  ('390007', 'Race Course / Inox Area', 'Vadodara', 50.00, 'Vadodara Local', true),
+  ('390008', 'Waghodia Road', 'Vadodara', 50.00, 'Vadodara Local', true),
+  ('390010', 'Karelibaug', 'Vadodara', 50.00, 'Vadodara Local', true),
+  ('390011', 'Sayajigunj / Station Area', 'Vadodara', 50.00, 'Vadodara Local', true),
+  ('390012', 'Gorwa / BIDC', 'Vadodara', 50.00, 'Vadodara Local', true),
+  ('390015', 'Sama / New Sama Road', 'Vadodara', 50.00, 'Vadodara Local', true),
+  ('390018', 'Gotri', 'Vadodara', 50.00, 'Vadodara Local', true),
+  ('390019', 'Harni / Airport Area', 'Vadodara', 50.00, 'Vadodara Local', true),
+  ('390020', 'Manjalpur / Makarpura', 'Vadodara', 50.00, 'Vadodara Local', true),
+  ('390021', 'Gotri Road / Sevasi', 'Vadodara', 50.00, 'Vadodara Local', true),
+  ('390022', 'Vasna / Bhayli Road', 'Vadodara', 50.00, 'Vadodara Local', true),
+  ('390023', 'Subhanpura', 'Vadodara', 50.00, 'Vadodara Local', true),
+  ('390024', 'Akota', 'Vadodara', 50.00, 'Vadodara Local', true),
+  ('390025', 'Tarsali', 'Vadodara', 50.00, 'Vadodara Local', true)
 ON CONFLICT (postal_code) DO NOTHING;
 
 -- 3. SEED SITE SETTINGS (Configured with Approved WhatsApp Number)
 INSERT INTO site_settings (key, value, description)
 VALUES
   ('business_whatsapp_number', '"918271735190"', 'Official owner WhatsApp contact number for wa.me links.'),
-  ('instagram_handle', '"the_.handmadecraft"', 'Official Instagram username.'),
+  ('instagram_handle', '"bloomora.creation"', 'Official Instagram username.'),
   ('announcement_text', '"Handcrafted with love in Vadodara • Delivering across all of Vadodara • WhatsApp Orders: +91 8271735190"', 'Storefront top announcement bar text.'),
   ('default_delivery_fee', '50.00', 'Standard local courier delivery charge in Vadodara.')
 ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = timezone('utc', now());
@@ -82,7 +82,7 @@ INSERT INTO products (
     'Customizable Pastel Rose & Daisy Keepsake Bouquet',
     'customizable-pastel-rose-daisy-keepsake-bouquet',
     'Bespoke bouquet customized with your favorite color palette. Handcrafted to order.',
-    'Select your personalized colors and let our artisan craft an exclusive floral bouquet just for your special person. Handcrafted to order in 3–4 days in Vadodara.',
+    'Select your personalized colors and let our artisan craft an exclusive floral bouquet just for your special person. Handcrafted to order with care in Vadodara.',
     1199.00, NULL, 'MADE_TO_ORDER', 3, true, true, 99, 1
   )
 ON CONFLICT (slug) DO NOTHING;

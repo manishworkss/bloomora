@@ -8,8 +8,9 @@ export const metadata: Metadata = {
     'Thoughtful, authentic handmade keychains, everlasting floral bouquets, and bespoke gifts crafted with love in Vadodara, Gujarat by Bloomora.',
   keywords: [
     'bloomora',
+    'bloomora creation',
     'bloomora vadodara',
-    'handmade craft vadodara',
+    'crochet blooms vadodara',
     'crochet bouquets',
     'handmade flowers',
     'personalized keychains',

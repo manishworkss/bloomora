@@ -33,7 +33,7 @@ export const Footer: React.FC = () => {
 
             <div className="flex items-center gap-3 pt-2">
               <Link
-                href="https://instagram.com/the_.handmadecraft"
+                href="https://instagram.com/bloomora.creation"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-canvas border border-border-subtle flex items-center justify-center text-ink hover:text-primary hover:border-primary transition-colors"

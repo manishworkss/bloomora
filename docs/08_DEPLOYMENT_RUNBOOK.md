@@ -38,15 +38,15 @@ The following environment variables must be configured in Vercel under **Project
 
 | Variable Name | Environment | Description | Sample / Format |
 | :--- | :--- | :--- | :--- |
-| `NEXT_PUBLIC_SITE_URL` | Production / Preview | Canonical public URL of the application. | `https://thehandmadecraft.in` |
+| `NEXT_PUBLIC_SITE_URL` | Production / Preview | Canonical public URL of the application. | `https://bloomora.in` |
 | `NEXT_PUBLIC_SUPABASE_URL` | All | Supabase project API gateway endpoint. | `https://xyzcompany.supabase.co` |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | All | Public Supabase client anonymous token. | `eyJhbGciOiJIUzI1NiIsIn...` |
 | `SUPABASE_SERVICE_ROLE_KEY` | Production / Preview | **Secret:** Superuser key bypassing RLS. | `eyJhbGciOiJIUzI1NiIsIn...` (Keep Secret) |
 | `DATABASE_URL` | Production / Preview | Transaction pooled direct connection string. | `postgresql://postgres.[ref]:[pass]@aws-0-ap-south-1.pooler.supabase.com:6543/postgres?pgbouncer=true` |
-| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`| All | Cloudinary account identifier. | `thehandmadecraft` |
+| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`| All | Cloudinary account identifier (Optional). | `bloomora` |
 | `CLOUDINARY_API_KEY` | Production / Preview | Cloudinary authentication API key. | `123456789012345` |
 | `CLOUDINARY_API_SECRET` | Production / Preview | **Secret:** Cloudinary secret for signed ops. | `abcdefghijklmnopqrstuv_1234` |
-| `ADMIN_INITIAL_EMAIL` | Production (One-Time)| Initial owner login email for seed creation. | `owner@thehandmadecraft.in` |
+| `ADMIN_INITIAL_EMAIL` | Production (One-Time)| Initial owner login email for seed creation. | `krmanishh18@gmail.com` |
 
 ---
 
@@ -89,7 +89,7 @@ The following environment variables must be configured in Vercel under **Project
 
 ## 4. Custom Domain & DNS Mapping
 
-To connect the official domain (e.g., `thehandmadecraft.in`):
+To connect the official domain (e.g., `bloomora.in`):
 1. In Vercel Project Settings, navigate to **Domains** and enter the registered apex domain and `www` subdomain.
 2. In the domain registrar's DNS panel (GoDaddy, Namecheap, Hostinger, etc.), create:
 

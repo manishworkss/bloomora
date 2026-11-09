@@ -85,13 +85,13 @@ export default function AboutPage() {
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
           <Link
-            href="https://instagram.com/the_.handmadecraft"
+            href="https://instagram.com/bloomora.creation"
             target="_blank"
             rel="noopener noreferrer"
           >
             <Button variant="primary">
               <Instagram className="w-4 h-4 mr-2" />
-              <span>@the_.handmadecraft</span>
+              <span>@bloomora.creation</span>
             </Button>
           </Link>
           <Link

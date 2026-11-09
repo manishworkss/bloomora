@@ -734,12 +734,12 @@ export default function HomePage() {
               Studio Moments
             </span>
             <h2 className="font-serif text-xl sm:text-3xl text-ink font-normal">
-              Follow Our Journey @the_.handmadecraft
+              Follow Our Journey @bloomora.creation
             </h2>
           </div>
 
           <Link
-            href="https://instagram.com/the_.handmadecraft"
+            href="https://instagram.com/bloomora.creation"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full sm:w-auto"
@@ -755,7 +755,7 @@ export default function HomePage() {
           {INSTAGRAM_POSTS.map((post) => (
             <Link
               key={post.id}
-              href="https://instagram.com/the_.handmadecraft"
+              href="https://instagram.com/bloomora.creation"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative block aspect-square rounded-2xl overflow-hidden bg-canvas border border-border-subtle shadow-subtle"

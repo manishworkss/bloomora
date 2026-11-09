@@ -36,12 +36,20 @@ export async function POST(request: Request) {
     });
 
     // Set secure authentication cookie for 7 days
-    response.cookies.set('thc_admin_auth', 'authenticated', {
+    response.cookies.set('bloomora_admin_auth', 'authenticated', {
       httpOnly: false,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       path: '/',
       maxAge: 60 * 60 * 24 * 7, // 7 days
+    });
+    // Legacy cookie compatibility
+    response.cookies.set('thc_admin_auth', 'authenticated', {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7,
     });
 
     return response;

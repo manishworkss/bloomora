@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/Button';
 
 export default function AdminSettingsPage() {
   const [whatsappNumber, setWhatsappNumber] = useState('918271735190');
-  const [instagramHandle, setInstagramHandle] = useState('the_.handmadecraft');
+  const [instagramHandle, setInstagramHandle] = useState('bloomora.creation');
   const [announcementText, setAnnouncementText] = useState(
     'Bloomora • Handcrafted with love in Vadodara • City-Wide Delivery across all PIN codes • WhatsApp: +91 8271735190'
   );

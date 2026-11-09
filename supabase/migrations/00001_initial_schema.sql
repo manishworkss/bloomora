@@ -1,5 +1,5 @@
 -- ==============================================================================
--- THE HANDMADE CRAFT — VERCEL + SUPABASE SCHEMA MIGRATION
+-- BLOOMORA — VERCEL + SUPABASE SCHEMA MIGRATION
 -- Version: 1.0 (Nov 2026)
 -- Target: PostgreSQL 16 (Supabase Managed Cloud)
 -- ==============================================================================

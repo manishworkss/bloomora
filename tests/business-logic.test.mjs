@@ -30,17 +30,17 @@ function buildWhatsAppLink({ phone = DEFAULT_WHATSAPP_NUMBER, message }) {
 test('TC-WA-01: buildWhatsAppLink cleans phone number and encodes messages safely', () => {
   const url = buildWhatsAppLink({
     phone: '+91 82717-35190',
-    message: 'Hello The Handmade Craft! 🌸',
+    message: 'Hello Bloomora! 🌸',
   });
   assert.match(url, /^https:\/\/wa\.me\/918271735190\?text=/);
-  assert.ok(url.includes(encodeURIComponent('Hello The Handmade Craft! 🌸')));
+  assert.ok(url.includes(encodeURIComponent('Hello Bloomora! 🌸')));
 });
 
 test('TC-WA-02: WhatsApp order inquiry includes order reference and total', () => {
-  const orderNumber = 'THC-202611-0042';
+  const orderNumber = 'BLOOM-202611-0042';
   const totalFormatted = '₹949';
   const items = 'Everlasting Lavender Bouquet x 1';
-  const message = `Hi The Handmade Craft! Order: ${orderNumber}, Total: ${totalFormatted}, Items: ${items}`;
+  const message = `Hi Bloomora! Order: ${orderNumber}, Total: ${totalFormatted}, Items: ${items}`;
   const url = buildWhatsAppLink({ message });
 
   assert.ok(url.includes(encodeURIComponent(orderNumber)));

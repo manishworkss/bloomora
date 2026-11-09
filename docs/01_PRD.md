@@ -64,7 +64,7 @@ To ensure rapid, defect-free delivery, the following features are strictly exclu
 - **FR-C01.2:** Showcase curated featured categories and highlighted products dynamically managed by the admin.
 - **FR-C01.3:** Feature a dedicated *"Why Handmade"* brand story section emphasizing care, artisanal detail, and emotional connection.
 - **FR-C01.4:** Render customer reviews and testimonials only if genuine and approved via the admin panel.
-- **FR-C01.5:** Display official Instagram link (`@the_.handmadecraft`) and serviceable area notice (Vadodara, Gujarat).
+- **FR-C01.5:** Display official Instagram link (`@bloomora.creation`) and serviceable area notice (Vadodara, Gujarat).
 - **FR-C01.6:** Standard header and footer navigation linking to Shop, About Us, Contact, Policies, and Cart.
 
 ### FR-C02: Catalog & Search
