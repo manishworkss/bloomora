@@ -143,13 +143,35 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             )}
           </div>
 
-          <Link
-            href={`/shop/${product.slug}`}
-            className="text-xs text-primary font-semibold flex items-center gap-1 group/btn hover:translate-x-0.5 transition-transform"
-          >
-            <span>Details</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5" />
-          </Link>
+          <div className="flex items-center gap-2">
+            {/* Quick Add icon button for mobile and quick shoppers */}
+            <motion.button
+              type="button"
+              whileTap={{ scale: 0.9 }}
+              onClick={handleQuickAdd}
+              className={`p-2 rounded-lg text-xs font-semibold border transition-all sm:hidden ${
+                justAdded
+                  ? 'bg-emerald-600 text-white border-emerald-600'
+                  : 'bg-canvas border-border-subtle text-ink hover:border-primary'
+              }`}
+              title="Add to Bag"
+              aria-label="Add to Bag"
+            >
+              {justAdded ? (
+                <Check className="w-3.5 h-3.5 text-white" />
+              ) : (
+                <ShoppingBag className="w-3.5 h-3.5 text-rose" />
+              )}
+            </motion.button>
+
+            <Link
+              href={`/shop/${product.slug}`}
+              className="text-xs text-primary font-semibold flex items-center gap-1 group/btn hover:translate-x-0.5 transition-transform"
+            >
+              <span>Details</span>
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5" />
+            </Link>
+          </div>
         </div>
       </div>
     </motion.div>
