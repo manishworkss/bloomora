@@ -409,11 +409,37 @@ export default async function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
-          {featuredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        {featuredProducts.length > 0 ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+            {featuredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-16 px-4 rounded-3xl bg-surface border border-border-subtle/80 max-w-xl mx-auto space-y-3.5 shadow-subtle">
+            <div className="w-12 h-12 rounded-full bg-blush/60 flex items-center justify-center mx-auto text-rose">
+              <Flower2 className="w-6 h-6" />
+            </div>
+            <h3 className="font-serif text-xl sm:text-2xl text-ink font-normal">
+              New Creations in the Studio
+            </h3>
+            <p className="text-xs sm:text-sm text-ink-muted leading-relaxed max-w-md mx-auto">
+              Our Vadodara artisan is actively looping fresh stitches. Need something bespoke? Message us on WhatsApp or request a custom order!
+            </p>
+            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link href="/custom-orders">
+                <Button variant="primary" size="sm">
+                  <span>Customise a Bouquet</span>
+                </Button>
+              </Link>
+              <Link href="/contact">
+                <Button variant="outline" size="sm">
+                  <span>Contact Studio</span>
+                </Button>
+              </Link>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* 5. OUR STORY / FOUNDER SECTION */}

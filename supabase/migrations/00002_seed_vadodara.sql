@@ -43,43 +43,4 @@ VALUES
   ('default_delivery_fee', '50.00', 'Standard local courier delivery charge in Vadodara.')
 ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = timezone('utc', now());
 
--- 4. SEED PRODUCTS
-INSERT INTO products (
-  category_id, title, slug, short_description, full_description,
-  base_price, compare_at_price, product_type, preparation_days,
-  is_published, is_featured, stock_quantity, low_stock_threshold
-) VALUES
-  (
-    'c1000000-0000-0000-0000-000000000001',
-    'Everlasting Crochet Lavender & Tulip Bouquet',
-    'everlasting-lavender-tulip-bouquet',
-    'Handcrafted with soft milk-cotton yarn in pastel lilac and cream, tied with natural jute twine.',
-    'A timeless arrangement of handcrafted lavender sprigs and pastel tulips. Hand-knitted with love in Vadodara, this bouquet never withers and stays vibrant forever. Perfect for birthdays, anniversaries, or self-love gifting.',
-    899.00, 1049.00, 'READY_MADE', 0, true, true, 6, 2
-  ),
-  (
-    'c1000000-0000-0000-0000-000000000002',
-    'Mini Smiling Sunflower Crochet Desk Pot',
-    'mini-smiling-sunflower-crochet-pot',
-    'Adorable handmade yellow sunflower with a joyful face sitting in a cozy terracotta yarn pot.',
-    'Brighten any work desk, study table, or gifting occasion with this cheerful smiling sunflower. Hand-crocheted stitch-by-stitch with soft hypoallergenic yarn.',
-    399.00, 450.00, 'READY_MADE', 0, true, true, 10, 3
-  ),
-  (
-    'c1000000-0000-0000-0000-000000000003',
-    'Handmade Daisy Flower Charm Keychain',
-    'handmade-daisy-flower-charm-keychain',
-    'Delicate white daisy with yellow pistil charm, durable alloy golden ring, and ribbon bow.',
-    'A lightweight yet durable handmade keychain to keep keys organized or attach to your favorite handbag, school bag, or backpack.',
-    199.00, 249.00, 'READY_MADE', 0, true, true, 15, 5
-  ),
-  (
-    'c1000000-0000-0000-0000-000000000001',
-    'Customizable Pastel Rose & Daisy Keepsake Bouquet',
-    'customizable-pastel-rose-daisy-keepsake-bouquet',
-    'Bespoke bouquet customized with your favorite color palette. Handcrafted to order.',
-    'Select your personalized colors and let our artisan craft an exclusive floral bouquet just for your special person. Handcrafted to order with care in Vadodara.',
-    1199.00, NULL, 'MADE_TO_ORDER', 0, true, true, 99, 1
-  )
-ON CONFLICT (slug) DO NOTHING;
 
