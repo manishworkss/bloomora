@@ -73,15 +73,15 @@ export default function HappyFamilyPage() {
       <div className="text-center space-y-4 max-w-2xl mx-auto">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blush/40 border border-border-subtle text-xs font-semibold text-rose uppercase tracking-wider">
           <Heart className="w-3.5 h-3.5 fill-rose" />
-          <span>Real Smiles • Real Stories • Real Moments</span>
+          <span>Verified Client Reviews • Photos & Video Unboxings</span>
         </div>
 
         <h1 className="font-serif text-3xl sm:text-5xl text-ink font-normal leading-tight">
-          Our Happy Family
+          Our Happy Family & Reviews
         </h1>
 
         <p className="text-xs sm:text-base text-ink-muted leading-relaxed">
-          Behind every stitch is a human emotion. From anniversary surprises and birthday hugs to heartfelt desk companions, explore authentic unboxings, videos, and stories from our cherished community.
+          Behind every handmade creation is a genuine emotion. Explore real unboxing videos, client photos, and heartfelt reviews from our cherished community across Vadodara.
         </p>
 
         <div className="pt-2 flex items-center justify-center gap-3">
@@ -92,7 +92,7 @@ export default function HappyFamilyPage() {
             className="shadow-craft gap-2 font-semibold"
           >
             <PlusCircle className="w-4 h-4" />
-            <span>Share Your Story & Review</span>
+            <span>Submit a Review with Photos & Videos</span>
           </Button>
         </div>
       </div>

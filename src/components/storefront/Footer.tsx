@@ -84,8 +84,8 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link href="/happy-family" className="hover:text-primary transition-colors flex items-center gap-1.5 font-medium text-rose">
-                  <span>Our Happy Family</span>
-                  <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-blush">Stories</span>
+                  <span>Happy Family & Reviews</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-blush">Photos & Videos</span>
                 </Link>
               </li>
             </ul>

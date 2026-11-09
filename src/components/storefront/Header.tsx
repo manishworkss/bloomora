@@ -134,12 +134,12 @@ export const Header: React.FC = () => {
                 )}
               </div>
 
-              {/* Our Happy Family (New Dedicated Category) */}
+              {/* Happy Family & Reviews Link */}
               <Link
                 href="/happy-family"
                 className="text-xs uppercase font-medium tracking-widest text-ink hover:text-primary transition-colors py-1 whitespace-nowrap flex items-center gap-1.5"
               >
-                <span>Our Happy Family</span>
+                <span>Happy Family & Reviews</span>
               </Link>
 
               <Link
@@ -305,15 +305,15 @@ export const Header: React.FC = () => {
                 )}
               </div>
 
-              {/* Our Happy Family Mobile Link */}
+              {/* Happy Family & Reviews Mobile Link */}
               <Link
                 href="/happy-family"
                 onClick={() => setMobileMenuOpen(false)}
                 className="block text-sm font-semibold text-ink hover:text-primary py-2.5 border-b border-border-subtle/50 flex items-center justify-between"
               >
-                <span>Our Happy Family</span>
+                <span>Happy Family & Reviews</span>
                 <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-blush text-rose">
-                  Stories
+                  Photos & Videos
                 </span>
               </Link>
 

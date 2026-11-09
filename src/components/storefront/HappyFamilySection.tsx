@@ -66,13 +66,13 @@ export function HappyFamilySection({ initialReviews }: HappyFamilySectionProps) 
         <div className="space-y-1.5 text-center md:text-left">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blush/40 border border-border-subtle text-[11px] font-semibold text-rose uppercase tracking-wider">
             <Heart className="w-3.5 h-3.5 fill-rose" />
-            <span>Real Gifting Moments • Vadodara</span>
+            <span>Customer Reviews • Photos & Video Unboxings</span>
           </div>
           <h2 className="font-serif text-2xl sm:text-4xl text-ink font-normal">
-            Our Happy Family
+            Our Happy Family & Reviews
           </h2>
           <p className="text-xs sm:text-sm text-ink-muted max-w-xl">
-            Heartfelt smiles, customer photos, and real unboxing videos from homes across Vadodara.
+            Real client reviews, unboxing videos, and keepsake photos from homes across Vadodara.
           </p>
         </div>
 
@@ -84,13 +84,13 @@ export function HappyFamilySection({ initialReviews }: HappyFamilySectionProps) 
             className="gap-1.5 shadow-craft font-semibold text-xs"
           >
             <PlusCircle className="w-3.5 h-3.5" />
-            <span>Share Your Review</span>
+            <span>Add Your Review & Media</span>
           </Button>
 
           <Link href="/happy-family">
             <Button variant="outline" size="sm" className="gap-1.5 text-xs">
               <Users className="w-3.5 h-3.5 text-rose" />
-              <span>View All Stories</span>
+              <span>View All Reviews ({reviews.length})</span>
               <ArrowRight className="w-3 h-3 ml-0.5" />
             </Button>
           </Link>
