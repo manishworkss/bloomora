@@ -318,48 +318,49 @@ export default async function HomePage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5">
+        <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 sm:gap-5 pb-3 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:overflow-visible scrollbar-none">
           {categories.map((cat) => (
-            <Link
-              key={cat.id}
-              href={`/shop?category=${cat.slug}`}
-              className="group relative block aspect-[3/4] rounded-2xl overflow-hidden bg-surface border border-border-subtle shadow-subtle hover:border-primary/50 transition-all duration-300"
-            >
-              {cat.imageUrl ? (
-                <>
-                  <Image
-                    src={cat.imageUrl}
-                    alt={cat.name}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
-                </>
-              ) : (
-                <div className="absolute inset-0 bg-gradient-to-b from-blush/30 via-canvas to-surface flex flex-col justify-between p-5 border border-border-subtle/50">
-                  <div className="w-10 h-10 rounded-full bg-blush/60 flex items-center justify-center text-rose">
-                    <Flower2 className="w-5 h-5" />
+            <div key={cat.id} className="w-[240px] sm:w-auto shrink-0 sm:shrink snap-start">
+              <Link
+                href={`/shop?category=${cat.slug}`}
+                className="group relative block aspect-[3/4] rounded-2xl overflow-hidden bg-surface border border-border-subtle shadow-subtle hover:border-primary/50 transition-all duration-300"
+              >
+                {cat.imageUrl ? (
+                  <>
+                    <Image
+                      src={cat.imageUrl}
+                      alt={cat.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
+                  </>
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-b from-blush/30 via-canvas to-surface flex flex-col justify-between p-5 border border-border-subtle/50">
+                    <div className="w-10 h-10 rounded-full bg-blush/60 flex items-center justify-center text-rose">
+                      <Flower2 className="w-5 h-5" />
+                    </div>
+                    <div />
                   </div>
-                  <div />
-                </div>
-              )}
-
-              <div className="absolute inset-x-5 bottom-5 text-white space-y-1">
-                <h3 className={`font-serif text-xl sm:text-2xl font-semibold leading-tight ${!cat.imageUrl ? 'text-ink' : 'text-white'}`}>
-                  {cat.name}
-                </h3>
-                {cat.description && (
-                  <p className={`text-xs line-clamp-1 ${!cat.imageUrl ? 'text-ink-muted' : 'text-white/80'}`}>
-                    {cat.description}
-                  </p>
                 )}
-                <span className={`inline-flex items-center gap-1.5 text-xs pt-2 group-hover:translate-x-1 transition-transform ${!cat.imageUrl ? 'text-rose font-medium' : 'text-blush'}`}>
-                  <span>Explore category</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </span>
-              </div>
-            </Link>
+
+                <div className="absolute inset-x-5 bottom-5 text-white space-y-1">
+                  <h3 className={`font-serif text-xl sm:text-2xl font-semibold leading-tight ${!cat.imageUrl ? 'text-ink' : 'text-white'}`}>
+                    {cat.name}
+                  </h3>
+                  {cat.description && (
+                    <p className={`text-xs line-clamp-1 ${!cat.imageUrl ? 'text-ink-muted' : 'text-white/80'}`}>
+                      {cat.description}
+                    </p>
+                  )}
+                  <span className={`inline-flex items-center gap-1.5 text-xs pt-2 group-hover:translate-x-1 transition-transform ${!cat.imageUrl ? 'text-rose font-medium' : 'text-blush'}`}>
+                    <span>Explore category</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </Link>
+            </div>
           ))}
         </div>
       </section>
@@ -388,9 +389,13 @@ export default async function HomePage() {
         </div>
 
         {featuredProducts.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 sm:gap-5 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 lg:grid-cols-4 sm:overflow-visible scrollbar-none">
             {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <div key={product.id} className="w-[250px] sm:w-auto shrink-0 sm:shrink snap-start flex">
+                <div className="w-full">
+                  <ProductCard product={product} />
+                </div>
+              </div>
             ))}
           </div>
         ) : (

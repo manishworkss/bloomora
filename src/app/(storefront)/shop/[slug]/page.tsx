@@ -646,9 +646,9 @@ export default function ProductDetailPage() {
         </div>
       )}
 
-      {/* More Handcrafted Creations (2-col mobile, 4-col desktop matching Image 1) */}
+      {/* More Handcrafted Creations (Swipeable on mobile, 4-col desktop matching Image 1) */}
       {relatedProducts.length > 0 && (
-        <section className="pt-12 sm:pt-16 border-t border-border-subtle space-y-6">
+        <section className="pt-12 sm:pt-16 border-t border-border-subtle space-y-6 pb-20 lg:pb-0">
           <div className="flex items-center justify-between">
             <div className="space-y-1">
               <span className="text-xs uppercase font-bold tracking-widest text-rose">
@@ -663,13 +663,43 @@ export default function ProductDetailPage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 sm:gap-5 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 lg:grid-cols-4 sm:overflow-visible scrollbar-none">
             {relatedProducts.map((p) => (
-              <ProductCard key={p.id} product={p} />
+              <div key={p.id} className="w-[250px] sm:w-auto shrink-0 sm:shrink snap-start flex">
+                <div className="w-full">
+                  <ProductCard product={p} />
+                </div>
+              </div>
             ))}
           </div>
         </section>
       )}
+
+      {/* Mobile Sticky Add to Box Bottom Bar */}
+      <div className="lg:hidden fixed bottom-0 inset-x-0 bg-surface/95 backdrop-blur-md border-t border-border-subtle p-3 px-4 z-40 flex items-center justify-between gap-3 shadow-craft-elevated">
+        <div className="min-w-0">
+          <p className="font-bold text-xs text-ink truncate">{product.title}</p>
+          <p className="text-xs text-primary font-bold">{formatINR(totalPrice)}</p>
+        </div>
+        <Button
+          onClick={handleAddToCart}
+          variant="primary"
+          size="sm"
+          className="shrink-0 gap-1.5 px-5"
+        >
+          {justAdded ? (
+            <>
+              <Check className="w-4 h-4 text-emerald-300" />
+              <span>Added ✓</span>
+            </>
+          ) : (
+            <>
+              <ShoppingBag className="w-4 h-4" />
+              <span>Add to Box</span>
+            </>
+          )}
+        </Button>
+      </div>
     </div>
   );
 }

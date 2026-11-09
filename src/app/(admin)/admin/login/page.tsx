@@ -38,8 +38,8 @@ function LoginForm() {
         return;
       }
 
-      // Success: navigate to target dashboard
-      router.push(redirectTo);
+      // Success: navigate to target dashboard with full session sync
+      window.location.href = redirectTo;
     } catch (err) {
       setError('Connection error. Please try again.');
       setIsLoading(false);
