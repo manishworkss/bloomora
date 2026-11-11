@@ -78,12 +78,12 @@ const ORDER_STEPS = [
   {
     step: '1',
     title: 'Explore the Collection',
-    desc: 'Browse our everlasting bouquets, desk pots, and keepsake keychains.',
+    desc: 'Browse handmade keychains, customized bouquets, handmade flowers, seasonal crafts, and birthday surprise cards.',
   },
   {
     step: '2',
-    title: 'Choose Your Favourite',
-    desc: 'Select ready-to-ship creations or specify your custom colorway.',
+    title: 'Bring Your Idea, We Bring Creativity',
+    desc: 'Pick a favorite design or share a custom gift idea — we turn it into handmade magic.',
   },
   {
     step: '3',
@@ -321,68 +321,73 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 3. SHOP BY CATEGORY */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6 w-full">
-        <div className="text-center space-y-1.5 max-w-xl mx-auto">
-          <span className="text-xs uppercase font-bold tracking-widest text-rose">
-            Curated Collections
-          </span>
-          <h2 className="font-serif text-2xl sm:text-4xl text-ink font-normal">
-            Shop by Category
-          </h2>
-          <p className="text-xs sm:text-sm text-ink-muted">
-            Explore our curated selection of everlasting florals, desk accents, and keepsake charms.
-          </p>
-        </div>
-
+      {/* 3. SHOP BY CATEGORY (Style 2 – Modern Card Grid) */}
+      <section className="relative w-full py-10 sm:py-14 bg-gradient-to-b from-blush/25 via-[#FAF4F1] to-canvas border-y border-primary/10">
         <div
-          className={`flex overflow-x-auto snap-x snap-mandatory gap-3 sm:gap-5 pb-3 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 sm:overflow-visible scrollbar-none ${
-            categories.length <= 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-3 xl:grid-cols-4'
-          }`}
-        >
-          {categories.map((cat) => (
-            <div key={cat.id} className="w-[240px] sm:w-auto shrink-0 sm:shrink snap-start">
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(232,193,197,0.22),_transparent_65%)]"
+        />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
+          {/* Header with delicate heart divider */}
+          <div className="text-center space-y-2.5 max-w-xl mx-auto">
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-[42px] text-ink font-semibold tracking-tight leading-tight">
+              Shop by Category
+            </h2>
+            <div className="flex items-center justify-center gap-3 py-0.5" aria-hidden="true">
+              <span className="h-px w-16 sm:w-24 bg-primary/25" />
+              <Heart className="w-3.5 h-3.5 text-primary/75" />
+              <span className="h-px w-16 sm:w-24 bg-primary/25" />
+            </div>
+            <p className="text-xs sm:text-sm text-ink-muted">
+              Find what you&apos;re looking for
+            </p>
+          </div>
+
+          {/* 3x2 Modern Horizontal Card Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {categories.map((cat) => (
               <Link
+                key={cat.id}
                 href={`/shop?category=${cat.slug}`}
-                className="group relative block aspect-[3/4] rounded-2xl overflow-hidden bg-surface border border-border-subtle shadow-subtle hover:border-primary/50 transition-all duration-300"
+                className="group relative flex items-center gap-4 sm:gap-5 p-3 sm:p-3.5 rounded-2xl bg-white/95 border border-[#EADCD9]/90 shadow-[0_8px_24px_-8px_rgba(74,40,46,0.08)] hover:shadow-[0_16px_36px_-10px_rgba(168,82,97,0.18)] hover:border-primary/35 hover:-translate-y-0.5 transition-all duration-300"
               >
-                {cat.imageUrl ? (
-                  <>
+                {/* Left Studio Product Image */}
+                <div className="relative w-24 h-24 sm:w-28 sm:h-28 shrink-0 rounded-xl overflow-hidden bg-gradient-to-br from-[#FAF0F1] to-[#F6EFE9] ring-1 ring-black/[0.04]">
+                  {cat.imageUrl ? (
                     <Image
                       src={cat.imageUrl}
                       alt={cat.name}
                       fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      sizes="(max-width: 640px) 96px, 112px"
+                      className={`object-cover transition-transform duration-500 ease-out group-hover:scale-105 ${
+                        cat.slug === 'birthday-surprise-card' ? 'object-[50%_65%]' : 'object-center'
+                      }`}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
-                  </>
-                ) : (
-                  <div className="absolute inset-0 bg-gradient-to-b from-blush/30 via-canvas to-surface flex flex-col justify-between p-5 border border-border-subtle/50">
-                    <div className="w-10 h-10 rounded-full bg-blush/60 flex items-center justify-center text-rose">
-                      <Flower2 className="w-5 h-5" />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-rose/70">
+                      <Flower2 className="w-7 h-7" />
                     </div>
-                    <div />
-                  </div>
-                )}
+                  )}
+                  <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-black/5" />
+                </div>
 
-                <div className="absolute inset-x-5 bottom-5 text-white space-y-1">
-                  <h3 className={`font-serif text-xl sm:text-2xl font-semibold leading-tight ${!cat.imageUrl ? 'text-ink' : 'text-white'}`}>
+                {/* Right Category Title & Arrow */}
+                <div className="flex-1 min-w-0 pr-1.5 flex flex-col justify-center space-y-1.5">
+                  <h3 className="font-sans text-[15px] sm:text-base font-semibold text-ink leading-snug group-hover:text-primary transition-colors">
                     {cat.name}
                   </h3>
-                  {cat.description && (
-                    <p className={`text-xs line-clamp-1 ${!cat.imageUrl ? 'text-ink-muted' : 'text-white/80'}`}>
-                      {cat.description}
+                  {cat.slug === 'customized-personalized-gifts' && (
+                    <p className="text-[11px] font-medium text-rose/90 leading-snug">
+                      Your idea, our creativity
                     </p>
                   )}
-                  <span className={`inline-flex items-center gap-1.5 text-xs pt-2 group-hover:translate-x-1 transition-transform ${!cat.imageUrl ? 'text-rose font-medium' : 'text-blush'}`}>
-                    <span>Explore category</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </span>
+                  <div className="pt-0.5 inline-flex items-center gap-1.5 text-primary/75 group-hover:text-primary transition-colors">
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+                  </div>
                 </div>
               </Link>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 

@@ -23,9 +23,9 @@ function ShopContent() {
   const categoryParam = searchParams.get('category');
 
   const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<{ id: string; slug: string; name: string }[]>([
-    { id: 'all', slug: 'all', name: 'All Creations' },
-  ]);
+  const [categories, setCategories] = useState<
+    { id: string; slug: string; name: string; description?: string }[]
+  >([{ id: 'all', slug: 'all', name: 'All Creations' }]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -44,11 +44,14 @@ function ShopContent() {
         if (catsData.success && Array.isArray(catsData.categories)) {
           setCategories([
             { id: 'all', slug: 'all', name: 'All Creations' },
-            ...catsData.categories.map((c: any) => ({
-              id: c.id,
-              slug: c.slug,
-              name: c.name,
-            })),
+            ...catsData.categories.map(
+              (c: { id: string; slug: string; name: string; description?: string }) => ({
+                id: c.id,
+                slug: c.slug,
+                name: c.name,
+                description: c.description,
+              })
+            ),
           ]);
         }
       })
@@ -76,7 +79,13 @@ function ShopContent() {
   }, [products, categories]);
 
   const activeCategoryObj = useMemo(
-    () => categories.find((c) => c.id === selectedCategory) || { id: 'all', slug: 'all' },
+    () =>
+      categories.find((c) => c.id === selectedCategory) || {
+        id: 'all',
+        slug: 'all',
+        name: 'All Creations',
+        description: '',
+      },
     [categories, selectedCategory]
   );
 
@@ -125,7 +134,7 @@ function ShopContent() {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search flowers, bouquets, keychains, desk pots..."
+            placeholder="Search keychains, customized bouquets, handmade flowers, birthday cards..."
             className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-canvas border border-border-subtle text-xs sm:text-sm text-ink placeholder:text-ink-muted/70 focus:outline-none focus:ring-2 focus:ring-primary"
           />
           {searchQuery && (
@@ -219,6 +228,37 @@ function ShopContent() {
         )}
       </div>
 
+      {/* Active Category Creative Spotlight */}
+      {!loading && activeCategoryObj && activeCategoryObj.id !== 'all' && (
+        <div className="rounded-2xl bg-blush/35 border border-primary/20 p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <p className="text-[11px] uppercase font-bold tracking-widest text-rose">
+              {activeCategoryObj.slug === 'customized-personalized-gifts'
+                ? 'Your Idea • Our Creativity'
+                : 'Selected Category'}
+            </p>
+            <h2 className="font-serif text-xl sm:text-2xl text-ink">{activeCategoryObj.name}</h2>
+            <p className="text-xs sm:text-sm text-ink-muted max-w-2xl leading-relaxed">
+              {activeCategoryObj.description ||
+                'Handcrafted to order in our Vadodara studio with your favorite palette and personal note.'}
+            </p>
+          </div>
+          <Link
+            href={`/custom-orders?category=${activeCategoryObj.slug}`}
+            className="w-full sm:w-auto shrink-0"
+          >
+            <Button variant="primary" size="sm" className="w-full sm:w-auto whitespace-nowrap">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>
+                {activeCategoryObj.slug === 'customized-personalized-gifts'
+                  ? 'Share Your Idea'
+                  : 'Customise This Style'}
+              </span>
+            </Button>
+          </Link>
+        </div>
+      )}
+
       {/* Product Results Grid */}
       {loading ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
@@ -232,20 +272,43 @@ function ShopContent() {
         </div>
       ) : filteredProducts.length === 0 ? (
         <div className="text-center py-16 sm:py-20 bg-surface rounded-3xl border border-border-subtle p-8 space-y-4">
-          <p className="font-serif text-2xl text-ink">No creations match your filters</p>
-          <p className="text-xs sm:text-sm text-ink-muted max-w-md mx-auto">
-            Try resetting your keywords or commission a bespoke crochet design crafted specially for you in Vadodara.
+          <p className="font-serif text-2xl text-ink">
+            {activeCategoryObj && activeCategoryObj.id !== 'all'
+              ? `Craft Your Own ${activeCategoryObj.name}`
+              : 'No creations match your filters'}
+          </p>
+          <p className="text-xs sm:text-sm text-ink-muted max-w-md mx-auto leading-relaxed">
+            {activeCategoryObj?.slug === 'customized-personalized-gifts'
+              ? 'You have an idea — we have the creativity to turn it into a handmade keepsake! Tell us what you imagine and we will design it from scratch.'
+              : activeCategoryObj && activeCategoryObj.id !== 'all'
+                ? 'Pieces in this category are lovingly crafted to order. Tell us your preferred theme, colors, or personal touch and we will bring it to life.'
+                : 'Try resetting your keywords or commission a bespoke handcrafted gift created specially for you in Vadodara.'}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-            <Button variant="primary" size="sm" onClick={resetFilters} className="w-full sm:w-auto">
-              Reset all filters
-            </Button>
-            <Link href="/custom-orders" className="w-full sm:w-auto">
-              <Button variant="outline" size="sm" className="w-full sm:w-auto">
-                <Sparkles className="w-3.5 h-3.5 text-rose" />
-                <span>Request Custom Creation</span>
+            <Link
+              href={
+                activeCategoryObj && activeCategoryObj.id !== 'all'
+                  ? `/custom-orders?category=${activeCategoryObj.slug}`
+                  : '/custom-orders'
+              }
+              className="w-full sm:w-auto"
+            >
+              <Button variant="primary" size="sm" className="w-full sm:w-auto">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>
+                  {activeCategoryObj?.slug === 'customized-personalized-gifts'
+                    ? 'Pitch Your Gift Idea'
+                    : 'Request Custom Creation'}
+                </span>
               </Button>
             </Link>
+            {hasActiveFilters && (
+              <Button variant="outline" size="sm" onClick={resetFilters} className="w-full sm:w-auto">
+                {activeCategoryObj && activeCategoryObj.id !== 'all'
+                  ? 'View all categories'
+                  : 'Reset all filters'}
+              </Button>
+            )}
           </div>
         </div>
       ) : (
@@ -260,16 +323,23 @@ function ShopContent() {
       <div className="rounded-3xl bg-blush/30 border border-border-subtle p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
         <div className="space-y-1">
           <p className="text-xs uppercase font-bold tracking-widest text-rose">
-            Personalized Gifting
+            Your Idea • Our Creativity
           </p>
           <h2 className="font-serif text-xl sm:text-2xl text-ink">
-            Want a custom color palette or bouquet size?
+            Have a special personalized gift idea in mind?
           </h2>
           <p className="text-xs text-ink-muted max-w-lg">
-            Choose flower types, yarn shades, wrapping paper, and personal charms made to order in our Vadodara studio.
+            Whether it&apos;s a custom keychain, a tailored crochet bouquet, a seasonal decor piece, or a surprise birthday card — bring us your idea and we will bring the creativity.
           </p>
         </div>
-        <Link href="/custom-orders" className="w-full sm:w-auto shrink-0">
+        <Link
+          href={
+            activeCategoryObj && activeCategoryObj.id !== 'all'
+              ? `/custom-orders?category=${activeCategoryObj.slug}`
+              : '/custom-orders'
+          }
+          className="w-full sm:w-auto shrink-0"
+        >
           <Button variant="primary" size="md" className="w-full sm:w-auto whitespace-nowrap">
             <span>Customise a Gift</span>
             <ArrowRight className="w-4 h-4" />
@@ -291,8 +361,8 @@ export default function ShopPage() {
         <h1 className="font-serif text-3xl sm:text-4xl text-ink font-normal">
           Handmade Creations
         </h1>
-        <p className="text-xs sm:text-sm text-ink-muted max-w-xl mx-auto sm:mx-0">
-          Everlasting crochet flowers, hand-knitted bouquets, and keepsake charms made with love in Vadodara.
+        <p className="text-xs sm:text-sm text-ink-muted max-w-2xl mx-auto sm:mx-0">
+          Handmade keychains, customized bouquets, handmade flowers, seasonal crafts, birthday surprise cards &amp; bespoke personalized gifts crafted with love in Vadodara.
         </p>
       </div>
 
