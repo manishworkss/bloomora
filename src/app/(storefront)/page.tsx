@@ -28,6 +28,7 @@ import { getCategoriesAsync } from '@/lib/categories-store';
 import { getSettingsAsync } from '@/lib/settings-store';
 import { getReviewsAsync } from '@/lib/reviews-store';
 import { HappyFamilySection } from '@/components/storefront/HappyFamilySection';
+import { InteractiveGiftStudio } from '@/components/storefront/InteractiveGiftStudio';
 
 export const dynamic = 'force-dynamic';
 
@@ -433,77 +434,70 @@ export default async function HomePage() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 px-4 rounded-3xl bg-surface border border-border-subtle/80 max-w-xl mx-auto space-y-3.5 shadow-subtle">
-            <div className="w-12 h-12 rounded-full bg-blush/60 flex items-center justify-center mx-auto text-rose">
-              <Flower2 className="w-6 h-6" />
-            </div>
-            <h3 className="font-serif text-xl sm:text-2xl text-ink font-normal">
-              New Creations in the Studio
-            </h3>
-            <p className="text-xs sm:text-sm text-ink-muted leading-relaxed max-w-md mx-auto">
-              Our Vadodara artisan is actively looping fresh stitches. Need something bespoke? Message us on WhatsApp or request a custom order!
-            </p>
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link href="/custom-orders">
-                <Button variant="primary" size="sm">
-                  <span>Customise a Bouquet</span>
-                </Button>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
+            {[
+              {
+                title: 'Everlasting Pastel Bouquet',
+                subtitle: 'Custom flowers, stems & ribbon palette',
+                image: '/images/cat-customized-bouquet.jpg',
+                imagePosition: 'object-center',
+                href: '/custom-orders?category=customized-bouquet',
+                cta: 'Customise Bouquet',
+              },
+              {
+                title: 'Handmade Birthday Surprise Card',
+                subtitle: 'Pop-up memory flaps & personal wishes',
+                image: '/images/cat-birthday-surprise-card.jpg',
+                imagePosition: 'object-[50%_65%]',
+                href: '/custom-orders?category=birthday-surprise-card',
+                cta: 'Design a Card',
+              },
+              {
+                title: 'Your Idea → Handmade Reality',
+                subtitle: 'Bring any concept and we craft it fresh',
+                image: '/images/cat-personalized-gifts.jpg',
+                imagePosition: 'object-center',
+                href: '/custom-orders?category=customized-personalized-gifts',
+                cta: 'Pitch Your Idea',
+              },
+            ].map((item) => (
+              <Link
+                key={item.title}
+                href={item.href}
+                className="group bg-surface rounded-2xl border border-border-subtle overflow-hidden shadow-subtle hover:shadow-craft hover:border-primary/40 transition-all flex sm:flex-col"
+              >
+                <div className="relative w-28 sm:w-full aspect-square sm:aspect-[4/3] shrink-0 overflow-hidden bg-canvas">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 640px) 112px, 33vw"
+                    className={`object-cover group-hover:scale-105 transition-transform duration-500 ${item.imagePosition ?? 'object-center'}`}
+                  />
+                </div>
+                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-2">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-rose">
+                      Made to Order
+                    </span>
+                    <h3 className="font-serif text-base sm:text-lg font-semibold text-ink leading-snug group-hover:text-primary transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-ink-muted leading-relaxed">{item.subtitle}</p>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary pt-1">
+                    <span>{item.cta}</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </div>
               </Link>
-              <Link href="/contact">
-                <Button variant="outline" size="sm">
-                  <span>Contact Studio</span>
-                </Button>
-              </Link>
-            </div>
+            ))}
           </div>
         )}
       </section>
 
-      {/* 5. OUR STORY / FOUNDER SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="bg-surface rounded-3xl border border-border-subtle p-6 sm:p-8 lg:p-10 shadow-subtle">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="relative aspect-square sm:aspect-[4/3] rounded-2xl overflow-hidden bg-canvas border border-border-subtle w-full">
-              <Image
-                src="/images/bloomora-hero-artisan-workbench.jpg"
-                alt="Bloomora handmade crafting studio in Vadodara"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-
-            <div className="space-y-5 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blush/40 text-xs font-semibold text-rose uppercase tracking-wider">
-                <Heart className="w-3 h-3 fill-rose" />
-                <span>Our Philosophy</span>
-              </div>
-
-              <h2 className="font-serif text-2xl sm:text-4xl text-ink font-normal leading-tight">
-                Little details. <br />
-                <span className="italic text-rose">Beautiful emotions.</span>
-              </h2>
-
-              <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-                Bloomora began with a simple belief: that a handmade gift carries warmth and feeling that mass-produced items can never replicate. In our Vadodara studio, we take the slow path — looping milk-cotton yarn stitch by stitch to create flowers that remain in full bloom for years.
-              </p>
-
-              <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-                Whether you are celebrating an anniversary, surprising a friend with a smiling desk flower, or gifting yourself a moment of calm, each creation is crafted with genuine patience and packed with care.
-              </p>
-
-              <div className="pt-2 flex justify-center lg:justify-start">
-                <Link href="/about">
-                  <Button variant="outline" size="sm">
-                    <span>Read Our Full Story</span>
-                    <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 5. ATELIER PHILOSOPHY & INTERACTIVE GIFT IDEA FINDER */}
+      <InteractiveGiftStudio />
 
       {/* 6. OUR HAPPY FAMILY (Real Unboxings, Photos, Videos & Stories) */}
       <HappyFamilySection initialReviews={reviews} />

@@ -69,6 +69,7 @@ const CATEGORY_PRESETS: CategoryPreset[] = [
 function CustomOrdersContent() {
   const searchParams = useSearchParams();
   const categorySlugParam = searchParams.get('category') || '';
+  const ideaParam = searchParams.get('idea') || '';
 
   const [selectedPreset, setSelectedPreset] = useState<string>('');
   const [name, setName] = useState('');
@@ -88,13 +89,17 @@ function CustomOrdersContent() {
   };
 
   useEffect(() => {
-    if (!categorySlugParam) return;
-    const match = CATEGORY_PRESETS.find((p) => p.slug === categorySlugParam);
-    if (match) {
-      setSelectedPreset(match.slug);
-      setOccasion((prev) => prev || match.occasionValue);
+    if (categorySlugParam) {
+      const match = CATEGORY_PRESETS.find((p) => p.slug === categorySlugParam);
+      if (match) {
+        setSelectedPreset(match.slug);
+        setOccasion((prev) => prev || match.occasionValue);
+      }
     }
-  }, [categorySlugParam]);
+    if (ideaParam) {
+      setDetails((prev) => prev || ideaParam);
+    }
+  }, [categorySlugParam, ideaParam]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
