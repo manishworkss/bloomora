@@ -183,7 +183,7 @@ export default async function HomePage() {
   });
 
   return (
-    <div className="space-y-10 sm:space-y-14 lg:space-y-16 pb-16 w-full max-w-full overflow-x-clip">
+    <div className="space-y-5 sm:space-y-7 lg:space-y-8 pb-8 w-full max-w-full overflow-x-clip">
       {/* 1. EDITORIAL HERO SECTION (Full-Width 16:9 Desktop Landscape / Tall 9:16 Mobile Portrait) */}
       <section className="relative w-full overflow-hidden bg-[#1B1013]">
         {/* Full-bleed Art-Directed Banner Container (Starts behind transparent homepage header) */}
@@ -322,12 +322,12 @@ export default async function HomePage() {
       </section>
 
       {/* 3. SHOP BY CATEGORY (Style 2 – Modern Card Grid) */}
-      <section className="relative w-full py-10 sm:py-14 bg-gradient-to-b from-blush/25 via-[#FAF4F1] to-canvas border-y border-primary/10">
+      <section className="relative w-full !mt-0 py-6 sm:py-8 bg-gradient-to-b from-blush/25 via-[#FAF4F1] to-canvas border-b border-primary/10">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(232,193,197,0.22),_transparent_65%)]"
         />
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
           {/* Header with delicate heart divider */}
           <div className="text-center space-y-2.5 max-w-xl mx-auto">
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-[42px] text-ink font-semibold tracking-tight leading-tight">
