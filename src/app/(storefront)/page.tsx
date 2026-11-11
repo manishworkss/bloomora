@@ -183,7 +183,7 @@ export default async function HomePage() {
   });
 
   return (
-    <div className="space-y-8 sm:space-y-12 pb-12 w-full max-w-full overflow-x-clip">
+    <div className="space-y-10 sm:space-y-14 lg:space-y-16 pb-16 w-full max-w-full overflow-x-clip">
       {/* 1. EDITORIAL HERO SECTION (Full-Width 16:9 Desktop Landscape / Tall 9:16 Mobile Portrait) */}
       <section className="relative w-full overflow-hidden bg-[#1B1013]">
         {/* Full-bleed Art-Directed Banner Container (Starts behind transparent homepage header) */}
@@ -208,28 +208,28 @@ export default async function HomePage() {
           {/* Mobile bottom scrim (keeps bottom-anchored portrait text legible) */}
           <div className="pointer-events-none md:hidden absolute inset-x-0 bottom-0 h-[56%] bg-gradient-to-t from-[#180E10]/95 via-[#180E10]/65 via-45% to-transparent" />
 
-          {/* Desktop subtle atmospheric wall halo (frames centered text in the golden sunlit cavity without darkening flowers/book) */}
-          <div className="pointer-events-none hidden md:block absolute top-[10%] left-[44%] -translate-x-1/2 w-[540px] h-[290px] bg-[radial-gradient(ellipse_at_center,rgba(24,14,16,0.48)_0%,rgba(24,14,16,0.20)_54%,transparent_78%)]" />
+          {/* Desktop subtle atmospheric wall halo (balanced in sunlit cavity between marigold & tulip wrap) */}
+          <div className="pointer-events-none hidden md:block absolute top-[8%] left-[46.5%] -translate-x-1/2 w-[520px] h-[270px] bg-[radial-gradient(ellipse_at_center,rgba(24,14,16,0.46)_0%,rgba(24,14,16,0.18)_54%,transparent_78%)]" />
           <div className="pointer-events-none hidden md:block absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#180E10]/30 to-transparent" />
 
-          {/* Overlay Editorial Narrative & CTAs — Bottom on Mobile 9:16, Sunlit Upper-Center Cavity on Desktop 16:9 */}
-          <div className="absolute inset-x-0 bottom-0 md:bottom-auto md:top-[15%] lg:top-[14.5%] xl:top-[15.5%] md:inset-x-auto md:left-[44%] md:-translate-x-1/2 z-10 pb-5 md:pb-0 pt-16 md:pt-0 w-full md:w-[90%] md:max-w-[400px] lg:max-w-[460px] px-4 sm:px-6 md:px-0">
-            <div className="space-y-2.5 md:text-center">
-              <div className="w-9 sm:w-10 h-[1.5px] bg-[#E8B4BE]/90 rounded-full md:mx-auto" />
+          {/* Overlay Editorial Narrative & CTAs — Centered Bottom on Mobile 9:16, Sunlit Upper-Center Cavity on Desktop 16:9 */}
+          <div className="absolute inset-x-0 bottom-0 md:bottom-auto md:top-[13%] lg:top-[12.5%] xl:top-[13.5%] md:inset-x-auto md:left-[46.5%] md:-translate-x-1/2 z-10 pb-5 md:pb-0 pt-16 md:pt-0 w-full md:w-[88%] md:max-w-[390px] lg:max-w-[430px] px-4 sm:px-6 md:px-0">
+            <div className="space-y-2.5 text-center">
+              <div className="w-9 sm:w-10 h-[1.5px] bg-[#E8B4BE]/90 rounded-full mx-auto" />
 
-              <h1 className="font-serif text-[2rem] sm:text-4xl md:text-[2.15rem] lg:text-[2.65rem] xl:text-[3rem] text-white font-normal tracking-tight leading-[1.06] drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]">
+              <h1 className="font-serif text-[2rem] sm:text-4xl md:text-[2.1rem] lg:text-[2.6rem] xl:text-[2.95rem] text-white font-normal tracking-tight leading-[1.06] drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]">
                 Little details. <br />
                 <span className="italic font-light text-[#FCE3E8]">
                   Beautiful emotions.
                 </span>
               </h1>
               {/* Side-by-Side CTAs */}
-              <div className="grid grid-cols-2 sm:flex sm:flex-row items-center md:justify-center gap-2.5 pt-1 w-full md:w-auto">
+              <div className="grid grid-cols-2 sm:flex sm:flex-row items-center justify-center gap-2.5 pt-1 w-full md:w-auto">
                 <Link href="/shop" className="w-full sm:w-auto">
                   <Button
                     variant="primary"
                     size="md"
-                    className="w-full sm:w-auto h-10 md:h-11 px-3 md:px-5 text-xs sm:text-[13px] whitespace-nowrap shadow-craft-elevated border border-white/20"
+                    className="w-full sm:w-auto h-10 md:h-11 px-3 md:px-4 lg:px-5 text-xs sm:text-[13px] whitespace-nowrap shadow-craft-elevated border border-white/20"
                   >
                     <span className="md:hidden">Explore Shop</span>
                     <span className="hidden md:inline">Explore Collection</span>
@@ -241,7 +241,7 @@ export default async function HomePage() {
                   <Button
                     variant="outline"
                     size="md"
-                    className="w-full sm:w-auto h-10 md:h-11 px-3 md:px-5 text-xs sm:text-[13px] whitespace-nowrap bg-[#180E10]/35 hover:bg-[#180E10]/55 backdrop-blur-md text-white border-white/45 hover:border-white/80 transition-all"
+                    className="w-full sm:w-auto h-10 md:h-11 px-3 md:px-4 lg:px-5 text-xs sm:text-[13px] whitespace-nowrap bg-[#180E10]/35 hover:bg-[#180E10]/55 backdrop-blur-md text-white border-white/45 hover:border-white/80 transition-all"
                   >
                     <span className="md:hidden">Custom Gift</span>
                     <span className="hidden md:inline">Customise Gift</span>
@@ -250,7 +250,7 @@ export default async function HomePage() {
               </div>
 
               {/* Compact Inline Social Proof */}
-              <div className="flex items-center md:justify-center gap-2 pt-0.5 text-[11px] text-white/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.45)]">
+              <div className="flex items-center justify-center gap-2 pt-0.5 text-[11px] text-white/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.45)]">
                 <div className="flex items-center gap-0.5 text-amber-400 shrink-0">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-2.5 h-2.5 fill-current" />
@@ -335,7 +335,11 @@ export default async function HomePage() {
           </p>
         </div>
 
-        <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 sm:gap-5 pb-3 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:overflow-visible scrollbar-none">
+        <div
+          className={`flex overflow-x-auto snap-x snap-mandatory gap-3 sm:gap-5 pb-3 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 sm:overflow-visible scrollbar-none ${
+            categories.length <= 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-3 xl:grid-cols-4'
+          }`}
+        >
           {categories.map((cat) => (
             <div key={cat.id} className="w-[240px] sm:w-auto shrink-0 sm:shrink snap-start">
               <Link
@@ -385,7 +389,7 @@ export default async function HomePage() {
       {/* 4. FEATURED COLLECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 w-full">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border-subtle pb-4">
-          <div className="space-y-1">
+          <div className="space-y-1 text-center sm:text-left">
             <span className="text-xs uppercase font-bold tracking-widest text-rose">
               Signature Works
             </span>
@@ -397,7 +401,7 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <Link href="/shop" className="w-full sm:w-auto">
+          <Link href="/shop" className="w-full sm:w-auto sm:shrink-0">
             <Button variant="outline" size="sm" className="w-full sm:w-auto">
               <span>View All Creations</span>
               <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
@@ -406,7 +410,15 @@ export default async function HomePage() {
         </div>
 
         {featuredProducts.length > 0 ? (
-          <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 sm:gap-5 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 lg:grid-cols-4 sm:overflow-visible scrollbar-none">
+          <div
+            className={`flex overflow-x-auto snap-x snap-mandatory gap-3 sm:gap-5 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:overflow-visible scrollbar-none ${
+              featuredProducts.length <= 2
+                ? 'sm:grid-cols-2 max-w-3xl mx-auto'
+                : featuredProducts.length === 3
+                  ? 'sm:grid-cols-2 lg:grid-cols-3'
+                  : 'sm:grid-cols-2 lg:grid-cols-4'
+            }`}
+          >
             {featuredProducts.map((product) => (
               <div key={product.id} className="w-[250px] sm:w-auto shrink-0 sm:shrink snap-start flex">
                 <div className="w-full">
@@ -511,7 +523,7 @@ export default async function HomePage() {
             return (
               <div
                 key={step.number}
-                className="bg-surface rounded-2xl border border-border-subtle p-5 sm:p-6 space-y-2.5 shadow-subtle"
+                className="bg-surface rounded-2xl border border-border-subtle p-4 sm:p-6 space-y-2.5 shadow-subtle"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-serif text-2xl font-bold text-blush-dark">
@@ -531,7 +543,7 @@ export default async function HomePage() {
       </section>
 
       {/* 8. WHY EVERLASTING BLOOMS? (Editorial Comparison Matrix) */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 w-full">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 w-full">
         <div className="text-center space-y-1.5 max-w-xl mx-auto">
           <span className="text-xs uppercase font-bold tracking-widest text-rose">
             Thoughtful Gifting
@@ -544,7 +556,7 @@ export default async function HomePage() {
           </p>
         </div>
 
-        <div className="bg-surface rounded-3xl border border-border-subtle p-6 sm:p-8 shadow-subtle overflow-hidden">
+        <div className="bg-surface rounded-3xl border border-border-subtle p-6 sm:p-8 lg:p-10 shadow-subtle overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 divide-y md:divide-y-0 md:divide-x divide-border-subtle/80">
             {/* Bloomora Column */}
             <div className="space-y-5 md:pr-6">
@@ -632,20 +644,22 @@ export default async function HomePage() {
       {/* 9. CUSTOM ORDERS & COMMISSIONS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="relative rounded-3xl bg-blush/30 border border-border-subtle p-6 sm:p-10 overflow-hidden">
-          <div className="max-w-2xl space-y-4 text-center sm:text-left">
-            <span className="text-xs uppercase font-bold tracking-widest text-rose">
-              Bespoke Gifting
-            </span>
-            <h2 className="font-serif text-2xl sm:text-4xl text-ink font-normal leading-tight">
-              Have something special in mind?
-            </h2>
-            <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-              Tell us your idea, and let&apos;s create something meaningful together. We customize colors, bouquet sizes, flower combinations, and personalized tags.
-            </p>
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-10">
+            <div className="max-w-2xl space-y-3 sm:space-y-4 text-center lg:text-left mx-auto lg:mx-0">
+              <span className="text-xs uppercase font-bold tracking-widest text-rose">
+                Bespoke Gifting
+              </span>
+              <h2 className="font-serif text-2xl sm:text-4xl text-ink font-normal leading-tight">
+                Have something special in mind?
+              </h2>
+              <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
+                Tell us your idea, and let&apos;s create something meaningful together. We customize colors, bouquet sizes, flower combinations, and personalized tags.
+              </p>
+            </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-3 pt-1">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-end gap-3 shrink-0 w-full lg:w-auto">
               <Link href="/custom-orders" className="w-full sm:w-auto">
-                <Button variant="primary" size="md" className="w-full sm:w-auto">
+                <Button variant="primary" size="md" className="w-full sm:w-auto whitespace-nowrap">
                   <span>Create Your Custom Gift</span>
                   <ArrowRight className="w-4 h-4 ml-1.5" />
                 </Button>
@@ -657,7 +671,7 @@ export default async function HomePage() {
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto"
               >
-                <Button variant="outline" size="md" className="w-full sm:w-auto">
+                <Button variant="outline" size="md" className="w-full sm:w-auto whitespace-nowrap">
                   <MessageCircle className="w-4 h-4 mr-1.5 text-whatsapp fill-whatsapp" />
                   <span>Discuss on WhatsApp</span>
                 </Button>
@@ -685,7 +699,7 @@ export default async function HomePage() {
           {ORDER_STEPS.map((item) => (
             <div
               key={item.step}
-              className="p-5 sm:p-6 rounded-2xl bg-surface border border-border-subtle space-y-2.5"
+              className="p-4 sm:p-6 rounded-2xl bg-surface border border-border-subtle space-y-2.5"
             >
               <div className="w-7 h-7 rounded-full bg-rose text-white flex items-center justify-center text-xs font-bold font-serif">
                 {item.step}

@@ -71,7 +71,7 @@ export function HappyFamilySection({ initialReviews }: HappyFamilySectionProps) 
           <h2 className="font-serif text-2xl sm:text-4xl text-ink font-normal">
             Our Happy Family & Reviews
           </h2>
-          <p className="text-xs sm:text-sm text-ink-muted max-w-xl">
+          <p className="text-xs sm:text-sm text-ink-muted max-w-xl mx-auto md:mx-0">
             Real client reviews, unboxing videos, and keepsake photos from homes across Vadodara.
           </p>
         </div>
