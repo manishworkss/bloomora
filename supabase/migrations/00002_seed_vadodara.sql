@@ -5,11 +5,14 @@
 -- ==============================================================================
 
 -- 1. SEED CATEGORIES
-INSERT INTO categories (id, name, slug, description, display_order, is_active)
+INSERT INTO categories (id, name, slug, description, image_url, display_order, is_active)
 VALUES
-  ('c1000000-0000-0000-0000-000000000001', 'Floral Bouquets', 'bouquets', 'Everlasting handmade crochet bouquets with lavender, tulips, and roses.', 1, true),
-  ('c1000000-0000-0000-0000-000000000002', 'Desk Flower Pots', 'flowers', 'Adorable smiling sunflowers and potted crochet blooms for work desks.', 2, true),
-  ('c1000000-0000-0000-0000-000000000003', 'Handmade Keychains', 'keychains', 'Charming daisy charms, strawberries, and personalized key tags.', 3, true)
+  ('c1000000-0000-0000-0000-000000000001', 'Handmade Keychain', 'handmade-keychain', 'Hand-crocheted daisies, strawberries, hearts, and miniature keepsakes crafted for everyday charm.', '/images/cat-handmade-keychain.jpg', 1, true),
+  ('c1000000-0000-0000-0000-000000000002', 'Customized Bouquet', 'customized-bouquet', 'Bespoke everlasting crochet bouquets wrapped with ribbons, roses, tulips, and your personal colour palette.', '/images/cat-customized-bouquet.jpg', 2, true),
+  ('c1000000-0000-0000-0000-000000000006', 'Handmade Flower', 'handmade-flower', 'Everlasting single crochet sunflowers, roses, tulips, and desk flower pots that never fade.', '/images/cat-handmade-flower.jpg', 3, true),
+  ('c1000000-0000-0000-0000-000000000003', 'Seasonable Handmade Products', 'seasonable-handmade-products', 'Limited-edition festive marigolds, cozy winter knits, and seasonal handcrafted creations made fresh in small batches.', '/images/cat-seasonable-handmade.jpg', 4, true),
+  ('c1000000-0000-0000-0000-000000000004', 'Birthday Surprise Card', 'birthday-surprise-card', 'Handmade pop-up explosion cards, layered memory flaps, handwritten notes, and birthday keepsake envelopes.', '/images/cat-birthday-surprise-card.jpg', 5, true),
+  ('c1000000-0000-0000-0000-000000000005', 'Customized / Personalized Gifts', 'customized-personalized-gifts', 'You have an idea — we have the creativity to craft it into a one-of-a-kind handmade keepsake made from scratch.', '/images/cat-personalized-gifts.jpg', 6, true)
 ON CONFLICT (slug) DO NOTHING;
 
 -- 2. SEED VADODARA DELIVERY ZONES (All 17 Major Postal Codes Active at ₹50 Flat Fee)

@@ -1,33 +1,62 @@
 [
   {
     "id": "c1000000-0000-0000-0000-000000000001",
-    "name": "Floral Bouquets",
-    "slug": "bouquets",
-    "description": "Everlasting handmade crochet bouquets with lavender, tulips, and roses.",
-    "imageUrl": "",
+    "name": "Handmade Keychain",
+    "slug": "handmade-keychain",
+    "description": "Hand-crocheted daisies, strawberries, hearts, and miniature keepsakes crafted for everyday charm.",
+    "imageUrl": "/images/cat-handmade-keychain.jpg",
     "displayOrder": 1,
     "isActive": true,
     "createdAt": "2026-11-09T00:00:00Z"
   },
   {
     "id": "c1000000-0000-0000-0000-000000000002",
-    "name": "Desk Flower Pots",
-    "slug": "flowers",
-    "description": "Adorable smiling sunflowers and potted crochet blooms for work desks.",
-    "imageUrl": "",
+    "name": "Customized Bouquet",
+    "slug": "customized-bouquet",
+    "description": "Bespoke everlasting crochet bouquets wrapped with ribbons, roses, tulips, and your personal colour palette.",
+    "imageUrl": "/images/cat-customized-bouquet.jpg",
     "displayOrder": 2,
     "isActive": true,
     "createdAt": "2026-11-09T00:00:00Z"
   },
   {
-    "id": "c1000000-0000-0000-0000-000000000003",
-    "name": "Handmade Keychains",
-    "slug": "keychains",
-    "description": "Charming daisy charms, strawberries, and personalized key tags.",
-    "imageUrl": "",
+    "id": "c1000000-0000-0000-0000-000000000006",
+    "name": "Handmade Flower",
+    "slug": "handmade-flower",
+    "description": "Everlasting single crochet sunflowers, roses, tulips, and desk flower pots that never fade.",
+    "imageUrl": "/images/cat-handmade-flower.jpg",
     "displayOrder": 3,
+    "isActive": true,
+    "createdAt": "2026-11-11T00:00:00Z"
+  },
+  {
+    "id": "c1000000-0000-0000-0000-000000000003",
+    "name": "Seasonable Handmade Products",
+    "slug": "seasonable-handmade-products",
+    "description": "Limited-edition festive marigolds, cozy winter knits, and seasonal handcrafted creations made fresh in small batches.",
+    "imageUrl": "/images/cat-seasonable-handmade.jpg",
+    "displayOrder": 4,
+    "isActive": true,
+    "createdAt": "2026-11-09T00:00:00Z"
+  },
+  {
+    "id": "c1000000-0000-0000-0000-000000000004",
+    "name": "Birthday Surprise Card",
+    "slug": "birthday-surprise-card",
+    "description": "Handmade pop-up explosion cards, layered memory flaps, handwritten notes, and birthday keepsake envelopes.",
+    "imageUrl": "/images/cat-birthday-surprise-card.jpg",
+    "displayOrder": 5,
+    "isActive": true,
+    "createdAt": "2026-11-09T00:00:00Z"
+  },
+  {
+    "id": "c1000000-0000-0000-0000-000000000005",
+    "name": "Customized / Personalized Gifts",
+    "slug": "customized-personalized-gifts",
+    "description": "You have an idea — we have the creativity to craft it into a one-of-a-kind handmade keepsake made from scratch.",
+    "imageUrl": "/images/cat-personalized-gifts.jpg",
+    "displayOrder": 6,
     "isActive": true,
     "createdAt": "2026-11-09T00:00:00Z"
   }
 ]
-

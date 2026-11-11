@@ -1,37 +1,10 @@
 import { Product, Category, ProductImage } from '@/types';
 import { readJsonFile, writeJsonFile } from './json-db';
+import { DEFAULT_CATEGORIES } from './categories-store';
 import { createAdminClient } from './supabase/admin';
 import { isSupabaseConfigured } from './supabase/status';
 
-export const INITIAL_CATEGORIES: Category[] = [
-  {
-    id: 'cat-bouquets',
-    name: 'Floral Bouquets',
-    slug: 'bouquets',
-    description: 'Everlasting handmade bouquets wrapped in luxury paper.',
-    displayOrder: 1,
-    isActive: true,
-    createdAt: '2026-11-09T00:00:00Z',
-  },
-  {
-    id: 'cat-flowers',
-    name: 'Desk Flower Pots',
-    slug: 'flowers',
-    description: 'Smiling sunflowers and potted crochet blossoms.',
-    displayOrder: 2,
-    isActive: true,
-    createdAt: '2026-11-09T00:00:00Z',
-  },
-  {
-    id: 'cat-keychains',
-    name: 'Handmade Keychains',
-    slug: 'keychains',
-    description: 'Delicate daisies, strawberries, and customized bag charms.',
-    displayOrder: 3,
-    isActive: true,
-    createdAt: '2026-11-09T00:00:00Z',
-  },
-];
+export const INITIAL_CATEGORIES: Category[] = DEFAULT_CATEGORIES;
 
 export const SEED_PRODUCTS: Product[] = [];
 

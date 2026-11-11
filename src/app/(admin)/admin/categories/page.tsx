@@ -211,7 +211,7 @@ export default function AdminCategoriesPage() {
           <Layers className="w-10 h-10 text-rose/50 mx-auto" />
           <h3 className="font-serif text-lg font-bold text-ink">No Categories Created Yet</h3>
           <p className="text-xs text-ink-muted max-w-sm mx-auto">
-            Create your first category (e.g. Floral Bouquets, Desk Flower Pots) and upload its cover picture.
+            Create your first category (e.g. Handmade Keychain, Customized Bouquet) and upload its cover picture.
           </p>
           <Button onClick={openAddModal} variant="primary" size="sm">
             Add Category
@@ -369,7 +369,7 @@ export default function AdminCategoriesPage() {
                       );
                     }
                   }}
-                  placeholder="e.g. Floral Bouquets"
+                  placeholder="e.g. Handmade Keychain"
                   className="w-full px-3.5 py-2 rounded-lg bg-canvas border border-border-subtle text-xs text-ink focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
@@ -384,7 +384,7 @@ export default function AdminCategoriesPage() {
                   required
                   value={slug}
                   onChange={(e) => setSlug(e.target.value)}
-                  placeholder="e.g. bouquets"
+                  placeholder="e.g. handmade-keychain"
                   className="w-full px-3.5 py-2 rounded-lg bg-canvas border border-border-subtle text-xs text-ink focus:outline-none focus:ring-2 focus:ring-primary font-mono"
                 />
               </div>
