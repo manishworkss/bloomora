@@ -26,12 +26,16 @@ export const Header: React.FC = () => {
   const [shopDropdownOpen, setShopDropdownOpen] = useState(false);
   const [mobileShopOpen, setMobileShopOpen] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isPinnedTop, setIsPinnedTop] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [categories, setCategories] = useState<{ id: string; name: string; slug: string }[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      const scrollTop =
+        window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+      setIsScrolled(scrollTop > 10);
+      setIsPinnedTop(scrollTop > 40);
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -92,8 +96,12 @@ export const Header: React.FC = () => {
           }
         }}
         onMouseLeave={() => setIsHovered(false)}
-        className={`sticky top-0 z-40 w-full max-w-full transition-all duration-300 ${
-          isHomePage ? '-mb-16 md:-mb-20' : ''
+        className={`z-40 w-full max-w-full transition-colors duration-300 ${
+          isHomePage
+            ? isPinnedTop
+              ? 'fixed top-0 left-0 right-0'
+              : 'sticky top-0 -mb-16 md:-mb-20'
+            : 'sticky top-0'
         } ${
           isTransparentHero
             ? 'bg-gradient-to-b from-[#180E10]/55 via-[#180E10]/20 to-transparent border-b border-transparent'

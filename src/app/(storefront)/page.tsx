@@ -223,12 +223,6 @@ export default async function HomePage() {
                   Beautiful emotions.
                 </span>
               </h1>
-
-              <p className="text-[12.5px] sm:text-sm lg:text-[14px] text-white/95 leading-relaxed max-w-md md:mx-auto font-normal drop-shadow-[0_1px_6px_rgba(0,0,0,0.45)]">
-                Everlasting crochet flowers, bespoke bouquets, and handmade memory scrapbooks —
-                crafted stitch by stitch in Vadodara.
-              </p>
-
               {/* Side-by-Side CTAs */}
               <div className="grid grid-cols-2 sm:flex sm:flex-row items-center md:justify-center gap-2.5 pt-1 w-full md:w-auto">
                 <Link href="/shop" className="w-full sm:w-auto">
