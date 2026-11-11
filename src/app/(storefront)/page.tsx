@@ -187,7 +187,7 @@ export default async function HomePage() {
       {/* 1. EDITORIAL HERO SECTION (Full-Width 16:9 Desktop Landscape / Tall 9:16 Mobile Portrait) */}
       <section className="relative w-full overflow-hidden bg-[#1B1013]">
         {/* Full-bleed Art-Directed Banner Container (Starts behind transparent homepage header) */}
-        <div className="relative w-full aspect-[9/16] md:aspect-auto md:h-[min(56.25vw,calc(100vh-2.25rem))] md:min-h-[520px] md:max-h-[860px] overflow-hidden">
+        <div className="relative w-full aspect-[9/16] md:aspect-auto md:h-[min(56.25vw,100vh)] md:min-h-[520px] md:max-h-[860px] overflow-hidden">
           <picture className="absolute inset-0 block w-full h-full">
             <source
               media="(min-width: 768px)"
@@ -213,7 +213,7 @@ export default async function HomePage() {
           <div className="pointer-events-none hidden md:block absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#180E10]/30 to-transparent" />
 
           {/* Overlay Editorial Narrative & CTAs — Centered Bottom on Mobile 9:16, Sunlit Upper-Center Cavity on Desktop 16:9 */}
-          <div className="absolute inset-x-0 bottom-0 md:bottom-auto md:top-[13%] lg:top-[12.5%] xl:top-[13.5%] md:inset-x-auto md:left-[46.5%] md:-translate-x-1/2 z-10 pb-5 md:pb-0 pt-16 md:pt-0 w-full md:w-[88%] md:max-w-[390px] lg:max-w-[430px] px-4 sm:px-6 md:px-0">
+          <div className="absolute inset-x-0 bottom-0 md:bottom-auto md:top-[17%] lg:top-[14%] xl:top-[13.5%] md:inset-x-auto md:left-[46.5%] md:-translate-x-1/2 z-10 pb-5 md:pb-0 pt-16 md:pt-0 w-full md:w-[88%] md:max-w-[390px] lg:max-w-[430px] px-4 sm:px-6 md:px-0">
             <div className="space-y-2.5 text-center">
               <div className="w-9 sm:w-10 h-[1.5px] bg-[#E8B4BE]/90 rounded-full mx-auto" />
 

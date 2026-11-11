@@ -1,16 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Settings, Save, CheckCircle2, MessageCircle, Instagram, ShieldCheck, Loader2, Sparkles, Store } from 'lucide-react';
+import { Save, CheckCircle2, MessageCircle, Instagram, Loader2, Store } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
 export default function AdminSettingsPage() {
   const [whatsappNumber, setWhatsappNumber] = useState('918271735190');
   const [instagramHandle, setInstagramHandle] = useState('bloomora.creation');
-  const [announcementText, setAnnouncementText] = useState(
-    'Bloomora • Handcrafted with love in Vadodara • City-Wide Delivery across all PIN codes • WhatsApp: +91 8271735190'
-  );
-  const [announcementVisible, setAnnouncementVisible] = useState(true);
   const [heroBadgeText, setHeroBadgeText] = useState("Vadodara's Artisan Studio • Slow Handcrafted Blooms");
   const [deliveryFee, setDeliveryFee] = useState('50');
 
@@ -27,8 +23,6 @@ export default function AdminSettingsPage() {
           const s = data.settings;
           if (s.whatsappNumber) setWhatsappNumber(s.whatsappNumber);
           if (s.instagramHandle) setInstagramHandle(s.instagramHandle);
-          if (s.announcementText) setAnnouncementText(s.announcementText);
-          if (s.announcementVisible !== undefined) setAnnouncementVisible(s.announcementVisible);
           if (s.heroBadgeText) setHeroBadgeText(s.heroBadgeText);
           if (s.deliveryFee !== undefined) setDeliveryFee(String(s.deliveryFee));
         }
@@ -49,8 +43,6 @@ export default function AdminSettingsPage() {
         body: JSON.stringify({
           whatsappNumber,
           instagramHandle,
-          announcementText,
-          announcementVisible,
           heroBadgeText,
           deliveryFee: Number(deliveryFee) || 50,
         }),
@@ -155,39 +147,6 @@ export default function AdminSettingsPage() {
                 value={instagramHandle}
                 onChange={(e) => setInstagramHandle(e.target.value)}
                 className="w-full px-3 py-2.5 bg-canvas text-sm text-ink focus:outline-none"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Announcement Bar */}
-        <div className="space-y-4 pt-4 border-t border-border-subtle/80">
-          <h3 className="font-serif text-base font-bold text-ink border-b border-border-subtle/80 pb-3 flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-rose" />
-            <span>Storefront Top Announcement Banner</span>
-          </h3>
-
-          <div className="space-y-3">
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={announcementVisible}
-                onChange={(e) => setAnnouncementVisible(e.target.checked)}
-                className="rounded border-border-subtle text-primary focus:ring-primary h-4 w-4"
-              />
-              <span className="text-xs font-semibold text-ink">Show announcement bar at the very top of all pages</span>
-            </label>
-
-            <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-ink uppercase tracking-wider">
-                Banner Message Text
-              </label>
-              <input
-                type="text"
-                required
-                value={announcementText}
-                onChange={(e) => setAnnouncementText(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-lg bg-canvas border border-border-subtle text-sm text-ink focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
           </div>

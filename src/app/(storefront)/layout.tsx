@@ -1,5 +1,4 @@
 import React from 'react';
-import { AnnouncementBar } from '@/components/storefront/AnnouncementBar';
 import { Header } from '@/components/storefront/Header';
 import { Footer } from '@/components/storefront/Footer';
 import { CartDrawer } from '@/components/storefront/CartDrawer';
@@ -14,7 +13,6 @@ export default function StorefrontLayout({
   return (
     <CartProvider>
       <div className="min-h-screen flex flex-col bg-canvas w-full max-w-full overflow-x-clip">
-        <AnnouncementBar />
         <Header />
         <main className="flex-1 w-full max-w-full overflow-x-clip">{children}</main>
         <CartDrawer />

@@ -8,12 +8,9 @@ import {
   ShoppingBag,
   Menu,
   X,
-  Heart,
   MessageCircle,
   ChevronDown,
   Clock,
-  Sparkles,
-  Users,
 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp';
@@ -26,7 +23,6 @@ export const Header: React.FC = () => {
   const [shopDropdownOpen, setShopDropdownOpen] = useState(false);
   const [mobileShopOpen, setMobileShopOpen] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isPinnedTop, setIsPinnedTop] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [categories, setCategories] = useState<{ id: string; name: string; slug: string }[]>([]);
 
@@ -35,7 +31,6 @@ export const Header: React.FC = () => {
       const scrollTop =
         window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
       setIsScrolled(scrollTop > 10);
-      setIsPinnedTop(scrollTop > 40);
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -97,11 +92,7 @@ export const Header: React.FC = () => {
         }}
         onMouseLeave={() => setIsHovered(false)}
         className={`z-40 w-full max-w-full transition-colors duration-300 ${
-          isHomePage
-            ? isPinnedTop
-              ? 'fixed top-0 left-0 right-0'
-              : 'sticky top-0 -mb-16 md:-mb-20'
-            : 'sticky top-0'
+          isHomePage ? 'fixed top-0 left-0 right-0' : 'sticky top-0'
         } ${
           isTransparentHero
             ? 'bg-gradient-to-b from-[#180E10]/55 via-[#180E10]/20 to-transparent border-b border-transparent'
