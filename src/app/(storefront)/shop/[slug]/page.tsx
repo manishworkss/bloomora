@@ -30,40 +30,7 @@ import { CustomerReviewModal } from '@/components/storefront/CustomerReviewModal
 import { ProductCard } from '@/components/storefront/ProductCard';
 import { MediaLightbox } from '@/components/storefront/MediaLightbox';
 import { Product, CustomerReview } from '@/types';
-
-interface AddOnOption {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-}
-
-const AVAILABLE_ADDONS: AddOnOption[] = [
-  {
-    id: 'card',
-    name: 'Handwritten Calligraphy Card',
-    price: 0,
-    description: 'Sealed kraft envelope with your personal message penned by hand',
-  },
-  {
-    id: 'lights',
-    name: 'Warm Fairy Lights Wrap',
-    price: 69,
-    description: 'Delicate warm-white micro-LEDs wrapped around the blooms',
-  },
-  {
-    id: 'box',
-    name: 'Signature Satin Ribbon & Gift Box',
-    price: 49,
-    description: 'Elevated presentation in our boutique kraft keepsake box',
-  },
-  {
-    id: 'charm',
-    name: 'Mini Crochet Heart Charm',
-    price: 99,
-    description: 'Matching handmade amigurumi heart charm tied with ribbon',
-  },
-];
+import { AVAILABLE_ADDONS } from '@/lib/gift-addons';
 
 export default function ProductDetailPage() {
   const params = useParams();
@@ -190,8 +157,30 @@ export default function ProductDetailPage() {
     typeof window !== 'undefined' ? window.location.href : undefined
   );
 
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.title,
+    description: product.shortDescription || product.fullDescription,
+    image: images.map((img) => img.imageUrl),
+    brand: { '@type': 'Brand', name: 'Bloomora Studio' },
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'INR',
+      price: String(product.basePrice),
+      availability:
+        product.stockQuantity > 0 || product.productType === 'MADE_TO_ORDER'
+          ? 'https://schema.org/InStock'
+          : 'https://schema.org/OutOfStock',
+    },
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 pb-24 lg:pb-12 space-y-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       {/* Breadcrumbs */}
       <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-ink-muted">
         <Link href="/" className="hover:text-primary transition-colors">

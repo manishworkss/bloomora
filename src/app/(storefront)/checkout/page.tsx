@@ -98,6 +98,8 @@ export default function CheckoutPage() {
           unitPrice: i.unitPrice,
           quantity: i.quantity,
           imageUrl: i.imageUrl,
+          addOnIds: i.addOns?.map((a) => a.id),
+          giftMessage: i.giftMessage,
         })),
         paymentMethod: 'MANUAL_UPI' as const,
       };
