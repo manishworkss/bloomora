@@ -20,10 +20,13 @@ import {
   EyeOff,
   Star,
   Upload,
+  RotateCcw,
+  Eraser,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { formatINR } from '@/lib/formatters';
+import { isSeededCatalogProduct } from '@/lib/catalog-seed';
 import { Product, Category } from '@/types';
 
 function AdminProductsContent() {
@@ -35,6 +38,10 @@ function AdminProductsContent() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('all');
+  const [sourceFilter, setSourceFilter] = useState<'all' | 'seed' | 'custom'>('all');
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [bulkRunning, setBulkRunning] = useState(false);
+  const [bulkNotice, setBulkNotice] = useState<string | null>(null);
 
   // Add / Edit Modal State
   const [showModal, setShowModal] = useState(false);
@@ -281,7 +288,14 @@ function AdminProductsContent() {
     }
   };
 
+  const seedCount = products.filter((p) => isSeededCatalogProduct(p)).length;
+  const customCount = products.length - seedCount;
+
   const filteredProducts = products.filter((p) => {
+    const isSeed = isSeededCatalogProduct(p);
+    if (sourceFilter === 'seed' && !isSeed) return false;
+    if (sourceFilter === 'custom' && isSeed) return false;
+
     const matchCategory =
       selectedCategoryFilter === 'all' ||
       p.categoryId === selectedCategoryFilter ||
@@ -296,6 +310,59 @@ function AdminProductsContent() {
 
     return matchCategory && matchSearch;
   });
+
+  const allVisibleSelected =
+    filteredProducts.length > 0 && filteredProducts.every((p) => selectedIds.includes(p.id));
+
+  const toggleSelectAllVisible = () => {
+    if (allVisibleSelected) {
+      const visibleSet = new Set(filteredProducts.map((p) => p.id));
+      setSelectedIds((prev) => prev.filter((id) => !visibleSet.has(id)));
+    } else {
+      const merged = new Set([...selectedIds, ...filteredProducts.map((p) => p.id)]);
+      setSelectedIds(Array.from(merged));
+    }
+  };
+
+  const toggleSelectOne = (id: string) => {
+    setSelectedIds((prev) =>
+      prev.includes(id) ? prev.filter((existing) => existing !== id) : [...prev, id]
+    );
+  };
+
+  const runBulkAction = async (
+    payload:
+      | { action: 'delete_selected' | 'publish_selected' | 'unpublish_selected'; ids: string[] }
+      | { action: 'clean_demo_all' | 'restore_demo_catalog' }
+      | { action: 'clean_demo_category'; categoryId: string },
+    confirmText?: string
+  ) => {
+    if (confirmText && !confirm(confirmText)) return;
+    setBulkRunning(true);
+    setBulkNotice(null);
+    try {
+      const res = await fetch('/api/admin/products/bulk', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setBulkNotice(data.message || 'Catalog updated successfully.');
+        if (payload.action === 'delete_selected' || payload.action.startsWith('clean_demo')) {
+          setSelectedIds([]);
+        }
+        await fetchProducts();
+      } else {
+        alert(data.error || 'Bulk operation failed.');
+      }
+    } catch (err) {
+      console.error('Bulk catalog action error:', err);
+      alert('Network error running bulk action.');
+    } finally {
+      setBulkRunning(false);
+    }
+  };
 
   return (
     <div className="space-y-8">
@@ -313,24 +380,105 @@ function AdminProductsContent() {
           </p>
         </div>
 
-        <Button variant="primary" size="sm" onClick={openAddModal} className="shadow-craft">
-          <Plus className="w-4 h-4 mr-1.5" />
-          <span>Add New Creation</span>
-        </Button>
+        <div className="flex flex-wrap items-center gap-2">
+          {seedCount < 60 && (
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={bulkRunning}
+              onClick={() =>
+                runBulkAction(
+                  { action: 'restore_demo_catalog' },
+                  'Restore all 60 starter creations (10 per category)? Existing custom creations are preserved.'
+                )
+              }
+            >
+              <RotateCcw className="w-3.5 h-3.5 mr-1.5" />
+              <span>Load Starter 60</span>
+            </Button>
+          )}
+          {seedCount > 0 && (
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={bulkRunning}
+              onClick={() =>
+                runBulkAction(
+                  selectedCategoryFilter !== 'all'
+                    ? { action: 'clean_demo_category', categoryId: selectedCategoryFilter }
+                    : { action: 'clean_demo_all' },
+                  selectedCategoryFilter !== 'all'
+                    ? 'Clean starter demo items in this category? Your own custom creations will remain untouched.'
+                    : `Clean all ${seedCount} starter demo items? Any custom creations you added will stay safe.`
+                )
+              }
+              className="border-rose/30 text-rose hover:bg-blush/30"
+            >
+              <Eraser className="w-3.5 h-3.5 mr-1.5" />
+              <span>
+                {selectedCategoryFilter !== 'all' ? 'Clean Category Demo' : `Clean Starter (${seedCount})`}
+              </span>
+            </Button>
+          )}
+          <Button variant="primary" size="sm" onClick={openAddModal} className="shadow-craft">
+            <Plus className="w-4 h-4 mr-1.5" />
+            <span>Add New Creation</span>
+          </Button>
+        </div>
       </div>
 
+      {bulkNotice && (
+        <div className="bg-emerald-50 border border-emerald-200 text-emerald-900 rounded-xl px-4 py-2.5 text-xs font-medium flex items-center justify-between gap-2">
+          <span>{bulkNotice}</span>
+          <button
+            type="button"
+            onClick={() => setBulkNotice(null)}
+            className="text-emerald-700 hover:text-emerald-950 p-0.5"
+            aria-label="Dismiss notice"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
+
       {/* 2. Search & Category Filters Bar */}
-      <div className="bg-surface p-4 rounded-2xl border border-border-subtle shadow-subtle flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-        {/* Search Input */}
-        <div className="relative flex-1 max-w-md">
-          <Search className="w-4 h-4 text-ink-muted absolute left-3.5 top-1/2 -translate-y-1/2" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search by creation name, keyword, or slug..."
-            className="w-full pl-9 pr-4 py-2 rounded-xl bg-canvas border border-border-subtle text-xs text-ink placeholder:text-ink-muted/70 focus:outline-none focus:ring-2 focus:ring-primary"
-          />
+      <div className="bg-surface p-4 rounded-2xl border border-border-subtle shadow-subtle space-y-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          {/* Search Input */}
+          <div className="relative flex-1 max-w-md">
+            <Search className="w-4 h-4 text-ink-muted absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search by creation name, keyword, or slug..."
+              className="w-full pl-9 pr-4 py-2 rounded-xl bg-canvas border border-border-subtle text-xs text-ink placeholder:text-ink-muted/70 focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+
+          {/* Cleanable Source Filter Tabs */}
+          <div className="inline-flex items-center gap-1 bg-canvas p-1 rounded-xl border border-border-subtle self-start sm:self-auto">
+            {(
+              [
+                { id: 'all', label: `All (${products.length})` },
+                { id: 'seed', label: `Starter Seed (${seedCount})` },
+                { id: 'custom', label: `Custom (${customCount})` },
+              ] as const
+            ).map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => setSourceFilter(tab.id)}
+                className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-colors ${
+                  sourceFilter === tab.id
+                    ? 'bg-primary text-white shadow-xs'
+                    : 'text-ink-muted hover:text-ink'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Category Filter Pills */}
@@ -363,6 +511,54 @@ function AdminProductsContent() {
         </div>
       </div>
 
+      {/* Selected Rows Bulk Bar */}
+      {selectedIds.length > 0 && (
+        <div className="bg-surface border border-primary/25 rounded-xl px-4 py-2.5 shadow-subtle flex flex-wrap items-center justify-between gap-3 text-xs">
+          <span className="font-semibold text-ink">
+            {selectedIds.length} creation{selectedIds.length === 1 ? '' : 's'} selected
+          </span>
+          <div className="flex flex-wrap items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={bulkRunning}
+              onClick={() => runBulkAction({ action: 'publish_selected', ids: selectedIds })}
+            >
+              Publish Live
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={bulkRunning}
+              onClick={() => runBulkAction({ action: 'unpublish_selected', ids: selectedIds })}
+            >
+              Hide
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={bulkRunning}
+              onClick={() =>
+                runBulkAction(
+                  { action: 'delete_selected', ids: selectedIds },
+                  `Permanently remove ${selectedIds.length} selected item(s)?`
+                )
+              }
+              className="text-red-600 border-red-200 hover:bg-red-50"
+            >
+              Delete Selected
+            </Button>
+            <button
+              type="button"
+              onClick={() => setSelectedIds([])}
+              className="text-ink-muted hover:text-ink px-2 py-1 font-medium"
+            >
+              Clear
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* 3. Products Table */}
       <div className="bg-surface rounded-2xl border border-border-subtle shadow-craft overflow-hidden">
         {loading ? (
@@ -383,6 +579,15 @@ function AdminProductsContent() {
             <table className="w-full text-left text-xs border-collapse">
               <thead>
                 <tr className="bg-canvas/80 border-b border-border-subtle text-ink-muted uppercase font-bold tracking-wider text-[10px]">
+                  <th className="py-3 pl-4 pr-2 w-8">
+                    <input
+                      type="checkbox"
+                      checked={allVisibleSelected}
+                      onChange={toggleSelectAllVisible}
+                      aria-label="Select all visible products"
+                      className="rounded border-border-subtle text-primary focus:ring-primary"
+                    />
+                  </th>
                   <th className="py-3 px-4">Creation & Photo</th>
                   <th className="py-3 px-4">Price (INR)</th>
                   <th className="py-3 px-4">Fulfillment</th>
@@ -395,6 +600,15 @@ function AdminProductsContent() {
               <tbody className="divide-y divide-border-subtle/50 text-ink">
                 {filteredProducts.map((product) => (
                   <tr key={product.id} className="hover:bg-canvas/50 transition-colors">
+                    <td className="py-3.5 pl-4 pr-2">
+                      <input
+                        type="checkbox"
+                        checked={selectedIds.includes(product.id)}
+                        onChange={() => toggleSelectOne(product.id)}
+                        aria-label={`Select ${product.title}`}
+                        className="rounded border-border-subtle text-primary focus:ring-primary"
+                      />
+                    </td>
                     {/* Creation & Photo */}
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-3">
@@ -414,7 +628,14 @@ function AdminProductsContent() {
                           )}
                         </div>
                         <div className="min-w-0">
-                          <p className="font-semibold text-ink truncate max-w-[200px]">{product.title}</p>
+                          <div className="flex items-center gap-1.5">
+                            <p className="font-semibold text-ink truncate max-w-[180px]">{product.title}</p>
+                            {isSeededCatalogProduct(product) && (
+                              <span className="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-blush/50 text-rose border border-primary/15 shrink-0">
+                                Starter
+                              </span>
+                            )}
+                          </div>
                           <Link
                             href={`/shop/${product.slug}`}
                             target="_blank"

@@ -1,5 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { execFileSync } from 'node:child_process';
+import { createRequire } from 'node:module';
 
 // 1. Formatters Test
 function formatINR(amount) {
@@ -217,5 +221,145 @@ test('TC-PHONE-01: Normalizes +91 and leading-0 Indian numbers to 10 digits', ()
   assert.equal(normalizeIndianPhone('+91 98765 43210'), '9876543210');
   assert.equal(normalizeIndianPhone('09876543210'), '9876543210');
   assert.equal(normalizeIndianPhone('9876543210'), '9876543210');
+});
+
+// 8. Enterprise Seed Catalog, Signed Admin Auth & Server Checkout Pricing
+const ROOT_DIR = process.cwd();
+const COMPILED_DIR = '/tmp/bloomora_unit_lib';
+execFileSync(
+  path.join(ROOT_DIR, 'node_modules/.bin/tsc'),
+  [
+    '--outDir',
+    COMPILED_DIR,
+    '--rootDir',
+    path.join(ROOT_DIR, 'src'),
+    '--module',
+    'commonjs',
+    '--target',
+    'ES2022',
+    '--moduleResolution',
+    'node',
+    '--esModuleInterop',
+    '--skipLibCheck',
+    'src/lib/catalog-seed.ts',
+    'src/lib/admin-auth.ts',
+    'src/lib/gift-addons.ts',
+  ],
+  { cwd: ROOT_DIR }
+);
+
+const requireCompiled = createRequire(import.meta.url);
+const { SEED_PRODUCTS_60, isSeededCatalogProduct } = requireCompiled(
+  path.join(COMPILED_DIR, 'lib/catalog-seed.js')
+);
+const { signAdminSessionToken, verifyAdminSessionToken, checkLoginRateLimit, clearLoginRateLimit } =
+  requireCompiled(path.join(COMPILED_DIR, 'lib/admin-auth.js'));
+const { resolveAuthoritativeOrderPricing } = requireCompiled(
+  path.join(COMPILED_DIR, 'lib/gift-addons.js')
+);
+
+test('TC-CATALOG-01: Seeds 60 cleanable products (10 per category across 6 categories) with valid local images', () => {
+  assert.equal(SEED_PRODUCTS_60.length, 60);
+
+  const byCategory = new Map();
+  const seenSlugs = new Set();
+  const seenIds = new Set();
+
+  for (const product of SEED_PRODUCTS_60) {
+    assert.equal(isSeededCatalogProduct(product), true);
+    assert.ok(product.basePrice > 0, `${product.slug} must have positive price`);
+    assert.ok(product.images.length >= 1, `${product.slug} must have images`);
+    assert.equal(seenSlugs.has(product.slug), false, `Duplicate slug: ${product.slug}`);
+    assert.equal(seenIds.has(product.id), false, `Duplicate ID: ${product.id}`);
+    seenSlugs.add(product.slug);
+    seenIds.add(product.id);
+
+    const primaryPath = path.join(ROOT_DIR, 'public', product.images[0].imageUrl);
+    assert.equal(fs.existsSync(primaryPath), true, `Missing primary image on disk: ${primaryPath}`);
+
+    byCategory.set(product.categoryId, (byCategory.get(product.categoryId) || 0) + 1);
+  }
+
+  assert.equal(byCategory.size, 6);
+  for (const [catId, count] of byCategory.entries()) {
+    assert.equal(count, 10, `Category ${catId} expected 10 products, got ${count}`);
+  }
+  assert.equal(isSeededCatalogProduct({ id: 'custom-uuid-123' }), false);
+});
+
+test('TC-AUTH-01: Signs and verifies HMAC admin tokens while rejecting tampered and expired tokens', async () => {
+  const secret = 'test-enterprise-signing-secret-32chars!';
+  const now = 1_794_400_000_000;
+  const token = await signAdminSessionToken('StudioOwner@Bloomora.in', secret, now);
+  assert.ok(token);
+
+  const verified = await verifyAdminSessionToken(token, secret, now + 1000);
+  assert.equal(verified?.sub, 'studioowner@bloomora.in');
+  assert.equal(verified?.role, 'admin');
+
+  const [payloadPart, sigPart] = token.split('.');
+  const tamperedToken = `${payloadPart}.tampered${sigPart.slice(8)}`;
+  assert.equal(await verifyAdminSessionToken(tamperedToken, secret, now + 1000), null);
+  assert.equal(await verifyAdminSessionToken('authenticated', secret, now + 1000), null);
+
+  // Token expires cleanly after 7 days
+  assert.equal(await verifyAdminSessionToken(token, secret, now + 8 * 24 * 60 * 60 * 1000), null);
+});
+
+test('TC-AUTH-02: Enforces sliding-window login rate limit and clears cleanly on reset', () => {
+  const key = 'test-ip:admin@bloomora.in';
+  clearLoginRateLimit(key);
+  const t0 = 1_794_400_000_000;
+  for (let i = 0; i < 8; i += 1) {
+    assert.equal(checkLoginRateLimit(key, t0 + i * 100).allowed, true);
+  }
+  const blocked = checkLoginRateLimit(key, t0 + 1000);
+  assert.equal(blocked.allowed, false);
+  assert.ok(blocked.retryAfterSeconds > 0);
+  clearLoginRateLimit(key);
+  assert.equal(checkLoginRateLimit(key, t0 + 2000).allowed, true);
+});
+
+test('TC-CHECKOUT-01: Resolves authoritative server pricing from catalog, add-ons, and active PIN zones', () => {
+  const catalog = [
+    SEED_PRODUCTS_60[0], // basePrice 249
+    { ...SEED_PRODUCTS_60[1], isPublished: false },
+  ];
+  const zones = [
+    { pin: '390007', area: 'Race Course', fee: 40, active: true },
+    { pin: '390099', area: 'Paused Zone', fee: 60, active: false },
+  ];
+
+  const pricing = resolveAuthoritativeOrderPricing({
+    inputs: [
+      {
+        productId: catalog[0].id,
+        quantity: 2,
+        addOnIds: ['lights', 'box', 'bogus-addon'],
+        giftMessage: 'Happy Birthday!',
+      },
+    ],
+    catalogProducts: catalog,
+    deliveryZones: zones,
+    postalCode: '390007',
+    fallbackDeliveryFee: 50,
+  });
+
+  // Authoritative unit = 249 + 69 (lights) + 49 (box) = 367 * 2 = 734; zone 390007 fee = 40; total = 774
+  assert.equal(pricing.unknownProductIds.length, 0);
+  assert.equal(pricing.items[0].unitPrice, 367);
+  assert.equal(pricing.itemsSubtotal, 734);
+  assert.equal(pricing.deliveryFee, 40);
+  assert.equal(pricing.grandTotal, 774);
+
+  const blocked = resolveAuthoritativeOrderPricing({
+    inputs: [{ productId: catalog[1].id, quantity: 1 }],
+    catalogProducts: catalog,
+    deliveryZones: zones,
+    postalCode: '390099',
+    fallbackDeliveryFee: 50,
+  });
+  assert.equal(blocked.unknownProductIds[0], catalog[1].id);
+  assert.equal(blocked.inactiveZonePin, '390099');
 });
 

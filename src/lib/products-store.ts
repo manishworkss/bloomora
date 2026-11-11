@@ -311,3 +311,165 @@ export async function deleteProductAsync(id: string): Promise<boolean> {
   const deletedLocal = deleteProduct(id);
   return deletedSupabase || deletedLocal;
 }
+
+/** Bulk-upserts multiple products into both local JSON store and Supabase cleanly. */
+export async function bulkUpsertProductsAsync(productsToSave: Product[]): Promise<{ count: number }> {
+  if (productsToSave.length === 0) return { count: 0 };
+
+  const existing = getProducts(false);
+  const byId = new Map<string, Product>(existing.map((p) => [p.id, p]));
+  const now = new Date().toISOString();
+
+  for (const item of productsToSave) {
+    byId.set(item.id, {
+      ...item,
+      createdAt: item.createdAt || now,
+      updatedAt: now,
+    });
+  }
+
+  // Keep custom products ahead of seeded items so newly created pieces stay prominent
+  const merged = Array.from(byId.values());
+  writeJsonFile(PRODUCTS_FILE, merged);
+
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = createAdminClient();
+      const rows = productsToSave.map((p) => ({
+        id: p.id,
+        category_id: p.categoryId || null,
+        title: p.title,
+        slug: p.slug,
+        short_description: p.shortDescription || null,
+        full_description: p.fullDescription || '',
+        base_price: p.basePrice,
+        compare_at_price: p.compareAtPrice || null,
+        product_type: p.productType,
+        preparation_days: p.preparationDays || 0,
+        is_published: p.isPublished,
+        is_featured: p.isFeatured,
+        has_variants: Boolean(p.hasVariants),
+        stock_quantity: p.stockQuantity,
+        low_stock_threshold: p.lowStockThreshold || 3,
+        deleted_at: null,
+        updated_at: now,
+      }));
+
+      const { error: upsertErr } = await supabase.from('products').upsert(rows, { onConflict: 'id' });
+      if (upsertErr) {
+        console.error('Supabase bulk product upsert error:', upsertErr);
+      }
+
+      const ids = productsToSave.map((p) => p.id);
+      await supabase.from('product_images').delete().in('product_id', ids);
+
+      const imageRows = productsToSave.flatMap((p) =>
+        (p.images || [])
+          .filter((img) => img.imageUrl && img.imageUrl.trim())
+          .map((img, idx) => ({
+            id: crypto.randomUUID(),
+            product_id: p.id,
+            cloudinary_public_id: img.cloudinaryPublicId || 'studio-seed',
+            image_url: img.imageUrl,
+            alt_text: img.altText || p.title,
+            display_order: idx,
+            is_primary: idx === 0,
+          }))
+      );
+
+      if (imageRows.length > 0) {
+        const { error: imgErr } = await supabase.from('product_images').insert(imageRows);
+        if (imgErr) {
+          console.error('Supabase bulk image insert error:', imgErr);
+        }
+      }
+    } catch (err) {
+      console.error('Supabase bulkUpsertProductsAsync error:', err);
+    }
+  }
+
+  return { count: productsToSave.length };
+}
+
+/** Bulk-deletes selected products cleanly from both local JSON store and Supabase. */
+export async function bulkDeleteProductsAsync(ids: string[]): Promise<{ deletedCount: number }> {
+  const uniqueIds = Array.from(new Set(ids.filter(Boolean)));
+  if (uniqueIds.length === 0) return { deletedCount: 0 };
+
+  const idSet = new Set(uniqueIds);
+  const existing = getProducts(false);
+  const remaining = existing.filter((p) => !idSet.has(p.id));
+  const localDeleted = existing.length - remaining.length;
+  if (localDeleted > 0) {
+    writeJsonFile(PRODUCTS_FILE, remaining);
+  }
+
+  let cloudDeleted = 0;
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = createAdminClient();
+      const uuidIds = uniqueIds.filter((id) =>
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id)
+      );
+      if (uuidIds.length > 0) {
+        await supabase.from('product_images').delete().in('product_id', uuidIds);
+        const { error: delErr } = await supabase.from('products').delete().in('id', uuidIds);
+        if (!delErr) {
+          cloudDeleted = uuidIds.length;
+        } else {
+          await supabase
+            .from('products')
+            .update({ deleted_at: new Date().toISOString() })
+            .in('id', uuidIds);
+          cloudDeleted = uuidIds.length;
+        }
+      }
+    } catch (err) {
+      console.error('Supabase bulkDeleteProductsAsync error:', err);
+    }
+  }
+
+  return { deletedCount: Math.max(localDeleted, cloudDeleted) };
+}
+
+/** Bulk-toggles storefront visibility (`isPublished`) across multiple creations. */
+export async function bulkSetPublishedAsync(
+  ids: string[],
+  isPublished: boolean
+): Promise<{ updatedCount: number }> {
+  const uniqueIds = Array.from(new Set(ids.filter(Boolean)));
+  if (uniqueIds.length === 0) return { updatedCount: 0 };
+
+  const idSet = new Set(uniqueIds);
+  const now = new Date().toISOString();
+  const existing = getProducts(false);
+  let localCount = 0;
+
+  const updated = existing.map((p) => {
+    if (!idSet.has(p.id)) return p;
+    localCount += 1;
+    return { ...p, isPublished, updatedAt: now };
+  });
+  if (localCount > 0) {
+    writeJsonFile(PRODUCTS_FILE, updated);
+  }
+
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = createAdminClient();
+      const uuidIds = uniqueIds.filter((id) =>
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id)
+      );
+      if (uuidIds.length > 0) {
+        await supabase
+          .from('products')
+          .update({ is_published: isPublished, updated_at: now })
+          .in('id', uuidIds);
+      }
+    } catch (err) {
+      console.error('Supabase bulkSetPublishedAsync error:', err);
+    }
+  }
+
+  return { updatedCount: Math.max(localCount, uniqueIds.length) };
+}

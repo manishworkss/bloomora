@@ -1,1 +1,2981 @@
-[]
+[
+  {
+    "id": "10000000-0000-4000-8000-000000000001",
+    "categoryId": "c1000000-0000-0000-0000-000000000001",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000001",
+      "name": "Handmade Keychain",
+      "slug": "handmade-keychain",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-keychain.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Sweet Strawberry Crochet Bag Charm",
+    "slug": "sweet-strawberry-crochet-keychain",
+    "shortDescription": "Plump ruby milk-cotton strawberry knotted with antique bronze clasp.",
+    "fullDescription": "Hand-crocheted stitch by stitch using combed milk-cotton yarn and topped with dainty green leaves and a durable swivel clasp. Ideal for bags, totes, keys, and thoughtful everyday gifting.",
+    "basePrice": 249,
+    "compareAtPrice": 329,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": true,
+    "hasVariants": false,
+    "stockQuantity": 12,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000001-img-1",
+        "productId": "10000000-0000-4000-8000-000000000001",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/kc-01.jpg",
+        "altText": "Sweet Strawberry Crochet Bag Charm",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000001-img-2",
+        "productId": "10000000-0000-4000-8000-000000000001",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-handmade-keychain.jpg",
+        "altText": "Sweet Strawberry Crochet Bag Charm alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000002",
+    "categoryId": "c1000000-0000-0000-0000-000000000001",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000001",
+      "name": "Handmade Keychain",
+      "slug": "handmade-keychain",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-keychain.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Sunbeam Daisy Crochet Keychain",
+    "slug": "sunbeam-daisy-crochet-keychain",
+    "shortDescription": "Crisp cream petals around a warm golden centre on woven cord.",
+    "fullDescription": "A cheerful pocket daisy handcrafted with tight cotton stitching so petals hold their sculpted form for years without fraying.",
+    "basePrice": 199,
+    "compareAtPrice": 269,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 15,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000002-img-1",
+        "productId": "10000000-0000-4000-8000-000000000002",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/kc-02.jpg",
+        "altText": "Sunbeam Daisy Crochet Keychain",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000002-img-2",
+        "productId": "10000000-0000-4000-8000-000000000002",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-handmade-keychain.jpg",
+        "altText": "Sunbeam Daisy Crochet Keychain alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000003",
+    "categoryId": "c1000000-0000-0000-0000-000000000001",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000001",
+      "name": "Handmade Keychain",
+      "slug": "handmade-keychain",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-keychain.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Lavender Puff Heart Keychain",
+    "slug": "lavender-puff-heart-keychain",
+    "shortDescription": "Soft stuffed pastel lilac heart charm finished with jute twine.",
+    "fullDescription": "Weighted lightly with recycled polyfill and fitted with an antique brass clip, this squishy lilac heart makes an effortless keepsake token.",
+    "basePrice": 219,
+    "compareAtPrice": 279,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 10,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000003-img-1",
+        "productId": "10000000-0000-4000-8000-000000000003",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/kc-03.jpg",
+        "altText": "Lavender Puff Heart Keychain",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000003-img-2",
+        "productId": "10000000-0000-4000-8000-000000000003",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-handmade-keychain.jpg",
+        "altText": "Lavender Puff Heart Keychain alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000004",
+    "categoryId": "c1000000-0000-0000-0000-000000000001",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000001",
+      "name": "Handmade Keychain",
+      "slug": "handmade-keychain",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-keychain.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Garden Trio Keepsake Keychain Set",
+    "slug": "trio-garden-keepsake-keychains",
+    "shortDescription": "Bundle of strawberry, daisy & lilac heart charms on linen card.",
+    "fullDescription": "Save when gifting the complete studio keychain trio together—perfect for sibling gifts, bridesmaid favors, or best-friend matching sets.",
+    "basePrice": 549,
+    "compareAtPrice": 669,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 8,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000004-img-1",
+        "productId": "10000000-0000-4000-8000-000000000004",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/kc-04.jpg",
+        "altText": "Garden Trio Keepsake Keychain Set",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000004-img-2",
+        "productId": "10000000-0000-4000-8000-000000000004",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/kc-01.jpg",
+        "altText": "Garden Trio Keepsake Keychain Set alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000005",
+    "categoryId": "c1000000-0000-0000-0000-000000000001",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000001",
+      "name": "Handmade Keychain",
+      "slug": "handmade-keychain",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-keychain.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Dusty Blush Berry Keyring",
+    "slug": "blush-berry-crochet-charm",
+    "shortDescription": "Muted pastel berry crochet pendant with ivory seed stitches.",
+    "fullDescription": "Subtle dusty-rose palette tailored for minimalist handbags and Kindle sleeves, paired with rust-resistant vintage brass hardware.",
+    "basePrice": 249,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 9,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000005-img-1",
+        "productId": "10000000-0000-4000-8000-000000000005",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/kc-05.jpg",
+        "altText": "Dusty Blush Berry Keyring",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000005-img-2",
+        "productId": "10000000-0000-4000-8000-000000000005",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/kc-04.jpg",
+        "altText": "Dusty Blush Berry Keyring alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000006",
+    "categoryId": "c1000000-0000-0000-0000-000000000001",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000001",
+      "name": "Handmade Keychain",
+      "slug": "handmade-keychain",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-keychain.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Meadow Buttercup Daisy Charm",
+    "slug": "meadow-buttercup-daisy-charm",
+    "shortDescription": "Sunny sage-and-cream floral charm with twin crochet leaves.",
+    "fullDescription": "Inspired by spring meadows, featuring firm woven petals and double leaf accents for a bright everyday backpack accent.",
+    "basePrice": 209,
+    "compareAtPrice": 259,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 11,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000006-img-1",
+        "productId": "10000000-0000-4000-8000-000000000006",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/kc-06.jpg",
+        "altText": "Meadow Buttercup Daisy Charm",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000006-img-2",
+        "productId": "10000000-0000-4000-8000-000000000006",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/kc-02.jpg",
+        "altText": "Meadow Buttercup Daisy Charm alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000007",
+    "categoryId": "c1000000-0000-0000-0000-000000000001",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000001",
+      "name": "Handmade Keychain",
+      "slug": "handmade-keychain",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-keychain.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Rose Blush Keepsake Heart Charm",
+    "slug": "rose-blush-keepsake-heart-keychain",
+    "shortDescription": "Romantic rosewater cotton heart stitched with fine yarn.",
+    "fullDescription": "Hand-stuffed compact heart keychain in soft rosewater pink—lightweight for scooter keys, purses, and anniversary hamper toppers.",
+    "basePrice": 229,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 7,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000007-img-1",
+        "productId": "10000000-0000-4000-8000-000000000007",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/kc-07.jpg",
+        "altText": "Rose Blush Keepsake Heart Charm",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000007-img-2",
+        "productId": "10000000-0000-4000-8000-000000000007",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/kc-03.jpg",
+        "altText": "Rose Blush Keepsake Heart Charm alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000008",
+    "categoryId": "c1000000-0000-0000-0000-000000000001",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000001",
+      "name": "Handmade Keychain",
+      "slug": "handmade-keychain",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-keychain.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Artisan Hook & Floral Charm Duo",
+    "slug": "artisan-crochet-loom-keychain-duo",
+    "shortDescription": "Custom two-charm pairing in neutral cream and berry tones.",
+    "fullDescription": "Crafted to order in your choice of two colours from our Vadodara studio yarn wall, complete with handwritten craft tag.",
+    "basePrice": 399,
+    "compareAtPrice": 469,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 2,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 6,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000008-img-1",
+        "productId": "10000000-0000-4000-8000-000000000008",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/kc-08.jpg",
+        "altText": "Artisan Hook & Floral Charm Duo",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000008-img-2",
+        "productId": "10000000-0000-4000-8000-000000000008",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-handmade-keychain.jpg",
+        "altText": "Artisan Hook & Floral Charm Duo alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000009",
+    "categoryId": "c1000000-0000-0000-0000-000000000001",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000001",
+      "name": "Handmade Keychain",
+      "slug": "handmade-keychain",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-keychain.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Peach Sorbet Berry Keychain",
+    "slug": "peach-sorbet-berry-keychain",
+    "shortDescription": "Warm terracotta-peach yarn berry charm with sage crown.",
+    "fullDescription": "Warm sun-baked peach hue with crisp hand-embroidered pips and sturdy swivel clasp built for daily commute bags.",
+    "basePrice": 239,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 10,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000009-img-1",
+        "productId": "10000000-0000-4000-8000-000000000009",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/kc-09.jpg",
+        "altText": "Peach Sorbet Berry Keychain",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000009-img-2",
+        "productId": "10000000-0000-4000-8000-000000000009",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/kc-01.jpg",
+        "altText": "Peach Sorbet Berry Keychain alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000010",
+    "categoryId": "c1000000-0000-0000-0000-000000000001",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000001",
+      "name": "Handmade Keychain",
+      "slug": "handmade-keychain",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-keychain.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Twilight Lilac Daisy Keyring",
+    "slug": "twilight-lilac-daisy-keyring",
+    "shortDescription": "Lavender-kissed daisy bloom with bespoke monogram tag option.",
+    "fullDescription": "Gentle pastel lavender petals stitched around a sunny core, ready to customise with a complimentary initial tag for birthdays.",
+    "basePrice": 219,
+    "compareAtPrice": 279,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 2,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 8,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000010-img-1",
+        "productId": "10000000-0000-4000-8000-000000000010",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/kc-10.jpg",
+        "altText": "Twilight Lilac Daisy Keyring",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000010-img-2",
+        "productId": "10000000-0000-4000-8000-000000000010",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/kc-02.jpg",
+        "altText": "Twilight Lilac Daisy Keyring alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000011",
+    "categoryId": "c1000000-0000-0000-0000-000000000002",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000002",
+      "name": "Customized Bouquet",
+      "slug": "customized-bouquet",
+      "description": "",
+      "imageUrl": "/images/cat-customized-bouquet.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Signature Blush Rose & Tulip Bouquet",
+    "slug": "signature-blush-rose-tulip-bouquet",
+    "shortDescription": "Hand-crocheted roses, tulips & lavender in cream satin wrap.",
+    "fullDescription": "Our flagship Vadodara bouquet combining spiral blush roses, plump tulips, chamomile sprigs, and sage eucalyptus wrapped in crisp Korean paper with a blush satin bow.",
+    "basePrice": 1299,
+    "compareAtPrice": 1599,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 3,
+    "isPublished": true,
+    "isFeatured": true,
+    "hasVariants": false,
+    "stockQuantity": 6,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000011-img-1",
+        "productId": "10000000-0000-4000-8000-000000000011",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-01.jpg",
+        "altText": "Signature Blush Rose & Tulip Bouquet",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000011-img-2",
+        "productId": "10000000-0000-4000-8000-000000000011",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-05.jpg",
+        "altText": "Signature Blush Rose & Tulip Bouquet alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000012",
+    "categoryId": "c1000000-0000-0000-0000-000000000002",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000002",
+      "name": "Customized Bouquet",
+      "slug": "customized-bouquet",
+      "description": "",
+      "imageUrl": "/images/cat-customized-bouquet.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Enchanted Lilac & Peach Lily Bouquet",
+    "slug": "enchanted-lilac-peach-lily-bouquet",
+    "shortDescription": "Velvet plush lilies, daisy buds & heart stem in lilac organza.",
+    "fullDescription": "Sculpted from soft chenille plush wire with pearl flower centres, layered inside gold-trimmed lilac wrapping and organza skirt ribbon.",
+    "basePrice": 1449,
+    "compareAtPrice": 1749,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 3,
+    "isPublished": true,
+    "isFeatured": true,
+    "hasVariants": false,
+    "stockQuantity": 5,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000012-img-1",
+        "productId": "10000000-0000-4000-8000-000000000012",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-02.jpg",
+        "altText": "Enchanted Lilac & Peach Lily Bouquet",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000012-img-2",
+        "productId": "10000000-0000-4000-8000-000000000012",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/bloomora-hero-bouquet.jpg",
+        "altText": "Enchanted Lilac & Peach Lily Bouquet alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000013",
+    "categoryId": "c1000000-0000-0000-0000-000000000002",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000002",
+      "name": "Customized Bouquet",
+      "slug": "customized-bouquet",
+      "description": "",
+      "imageUrl": "/images/cat-customized-bouquet.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Crimson Velvet Tulip Noir Wrap",
+    "slug": "crimson-velvet-tulip-noir-bouquet",
+    "shortDescription": "Five plush crimson tulips framed in matte black & cream ribbon.",
+    "fullDescription": "Bold, romantic five-tulip arrangement accented with golden berry foliage inside structured black matte wrap and double-layer burgundy satin ribbon.",
+    "basePrice": 1199,
+    "compareAtPrice": 1499,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 4,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000013-img-1",
+        "productId": "10000000-0000-4000-8000-000000000013",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-03.jpg",
+        "altText": "Crimson Velvet Tulip Noir Wrap",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000013-img-2",
+        "productId": "10000000-0000-4000-8000-000000000013",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-customized-bouquet.jpg",
+        "altText": "Crimson Velvet Tulip Noir Wrap alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000014",
+    "categoryId": "c1000000-0000-0000-0000-000000000002",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000002",
+      "name": "Customized Bouquet",
+      "slug": "customized-bouquet",
+      "description": "",
+      "imageUrl": "/images/cat-customized-bouquet.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Rustic Kraft Tulip & Lavender Wrap",
+    "slug": "rustic-kraft-tulip-lavender-bouquet",
+    "shortDescription": "Earthy brown kraft bouquet with blush tulips, daisies & custom tag.",
+    "fullDescription": "Wrapped in textured artisan kraft paper tied with jute twine and a personalized Bloomora gift tag—timeless aesthetic that looks effortlessly editorial on any desk.",
+    "basePrice": 1099,
+    "compareAtPrice": 1349,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 2,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 7,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000014-img-1",
+        "productId": "10000000-0000-4000-8000-000000000014",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-04.jpg",
+        "altText": "Rustic Kraft Tulip & Lavender Wrap",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000014-img-2",
+        "productId": "10000000-0000-4000-8000-000000000014",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-10.jpg",
+        "altText": "Rustic Kraft Tulip & Lavender Wrap alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000015",
+    "categoryId": "c1000000-0000-0000-0000-000000000002",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000002",
+      "name": "Customized Bouquet",
+      "slug": "customized-bouquet",
+      "description": "",
+      "imageUrl": "/images/cat-customized-bouquet.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Peach Peony & Blush Tulip Keepsake",
+    "slug": "peach-peony-blush-tulip-wrap",
+    "shortDescription": "Romantic close-knit pastel roses & tulips with foliage stems.",
+    "fullDescription": "Featuring layered crochet peonies, tulips, and textured leaf sprigs arranged tightly in ivory crinkled wrapping paper.",
+    "basePrice": 1349,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 3,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 5,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000015-img-1",
+        "productId": "10000000-0000-4000-8000-000000000015",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-05.jpg",
+        "altText": "Peach Peony & Blush Tulip Keepsake",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000015-img-2",
+        "productId": "10000000-0000-4000-8000-000000000015",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-01.jpg",
+        "altText": "Peach Peony & Blush Tulip Keepsake alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000016",
+    "categoryId": "c1000000-0000-0000-0000-000000000002",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000002",
+      "name": "Customized Bouquet",
+      "slug": "customized-bouquet",
+      "description": "",
+      "imageUrl": "/images/cat-customized-bouquet.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Sage Meadow Everlasting Bouquet",
+    "slug": "sage-meadow-pastel-bouquet",
+    "shortDescription": "Botanical eucalyptus-heavy custom wrap in muted pastel shades.",
+    "fullDescription": "Balanced greenery-forward arrangement with hand-shaped wire stems allowing you to angle each bloom naturally once displayed in a ceramic vase.",
+    "basePrice": 1149,
+    "compareAtPrice": 1399,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 3,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 5,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000016-img-1",
+        "productId": "10000000-0000-4000-8000-000000000016",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-06.jpg",
+        "altText": "Sage Meadow Everlasting Bouquet",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000016-img-2",
+        "productId": "10000000-0000-4000-8000-000000000016",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-customized-bouquet.jpg",
+        "altText": "Sage Meadow Everlasting Bouquet alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000017",
+    "categoryId": "c1000000-0000-0000-0000-000000000002",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000002",
+      "name": "Customized Bouquet",
+      "slug": "customized-bouquet",
+      "description": "",
+      "imageUrl": "/images/cat-customized-bouquet.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Rosewater Velvet Plush 7-Stem Wrap",
+    "slug": "rosewater-velvet-plush-bouquet",
+    "shortDescription": "Deep plum & rosewater chenille lilies crafted with heart center.",
+    "fullDescription": "Dreamy plush floral bouquet finished with fairy-light ready stem wraps and a custom greeting tag penned in calligraphy.",
+    "basePrice": 1499,
+    "compareAtPrice": 1799,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 4,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 4,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000017-img-1",
+        "productId": "10000000-0000-4000-8000-000000000017",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-07.jpg",
+        "altText": "Rosewater Velvet Plush 7-Stem Wrap",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000017-img-2",
+        "productId": "10000000-0000-4000-8000-000000000017",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-02.jpg",
+        "altText": "Rosewater Velvet Plush 7-Stem Wrap alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000018",
+    "categoryId": "c1000000-0000-0000-0000-000000000002",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000002",
+      "name": "Customized Bouquet",
+      "slug": "customized-bouquet",
+      "description": "",
+      "imageUrl": "/images/cat-customized-bouquet.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Burgundy Satin Romance Bouquet",
+    "slug": "burgundy-satin-anniversary-bouquet",
+    "shortDescription": "Classic anniversary reds wrapped for milestone celebrations.",
+    "fullDescription": "Specially curated for milestone anniversaries and proposals, pairing velvety tulips with champagne-ivory ribbon tails.",
+    "basePrice": 1399,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 3,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 5,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000018-img-1",
+        "productId": "10000000-0000-4000-8000-000000000018",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-08.jpg",
+        "altText": "Burgundy Satin Romance Bouquet",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000018-img-2",
+        "productId": "10000000-0000-4000-8000-000000000018",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-03.jpg",
+        "altText": "Burgundy Satin Romance Bouquet alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000019",
+    "categoryId": "c1000000-0000-0000-0000-000000000002",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000002",
+      "name": "Customized Bouquet",
+      "slug": "customized-bouquet",
+      "description": "",
+      "imageUrl": "/images/cat-customized-bouquet.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Honeycomb Pastel 5-Bloom Bundle",
+    "slug": "honeycomb-pastel-trio-bouquet",
+    "shortDescription": "Compact sunlit bouquet ideal for graduation & thank-you gifting.",
+    "fullDescription": "Sweet five-bloom studio arrangement sized effortlessly for dorm desks, hospital get-well wishes, and graduation photos.",
+    "basePrice": 999,
+    "compareAtPrice": 1199,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 6,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000019-img-1",
+        "productId": "10000000-0000-4000-8000-000000000019",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-09.jpg",
+        "altText": "Honeycomb Pastel 5-Bloom Bundle",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000019-img-2",
+        "productId": "10000000-0000-4000-8000-000000000019",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-01.jpg",
+        "altText": "Honeycomb Pastel 5-Bloom Bundle alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000020",
+    "categoryId": "c1000000-0000-0000-0000-000000000002",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000002",
+      "name": "Customized Bouquet",
+      "slug": "customized-bouquet",
+      "description": "",
+      "imageUrl": "/images/cat-customized-bouquet.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Grand Studio Mixed Heirloom Bouquet",
+    "slug": "grand-studio-mixed-heirloom-bouquet",
+    "shortDescription": "Full studio deluxe wrap with tulips, lavender & daisies.",
+    "fullDescription": "Our largest handcrafted mixed floral bouquet tailored to your colour mood board with personalised studio kraft tag and keepsake wrap.",
+    "basePrice": 1699,
+    "compareAtPrice": 1999,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 4,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 4,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000020-img-1",
+        "productId": "10000000-0000-4000-8000-000000000020",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-10.jpg",
+        "altText": "Grand Studio Mixed Heirloom Bouquet",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000020-img-2",
+        "productId": "10000000-0000-4000-8000-000000000020",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-04.jpg",
+        "altText": "Grand Studio Mixed Heirloom Bouquet alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000021",
+    "categoryId": "c1000000-0000-0000-0000-000000000006",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000006",
+      "name": "Handmade Flower",
+      "slug": "handmade-flower",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-flower.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Potted Crochet Sunflower & Daisy Trio",
+    "slug": "potted-sunflower-daisy-trio",
+    "shortDescription": "Smiling dual sunflowers in textured brown yarn planter.",
+    "fullDescription": "Brighten any work desk or bedside shelf permanently with two golden crocheted sunflowers, dainty chamomile daisies, and moss knit soil inside a ribbed terracotta-yarn pot.",
+    "basePrice": 649,
+    "compareAtPrice": 799,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": true,
+    "hasVariants": false,
+    "stockQuantity": 8,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000021-img-1",
+        "productId": "10000000-0000-4000-8000-000000000021",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/fl-01.jpg",
+        "altText": "Potted Crochet Sunflower & Daisy Trio",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000021-img-2",
+        "productId": "10000000-0000-4000-8000-000000000021",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-handmade-flower.jpg",
+        "altText": "Potted Crochet Sunflower & Daisy Trio alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000022",
+    "categoryId": "c1000000-0000-0000-0000-000000000006",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000006",
+      "name": "Handmade Flower",
+      "slug": "handmade-flower",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-flower.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Milk-Cotton Blush Tulip Stem",
+    "slug": "milk-cotton-blush-tulip-stem",
+    "shortDescription": "Single timeless bendable blush tulip stem with twin leaves.",
+    "fullDescription": "Plump cupped tulip petals crocheted tightly over a flexible floral stem so you can arrange single stems in bud vases or mix a custom bunch.",
+    "basePrice": 249,
+    "compareAtPrice": 299,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 20,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000022-img-1",
+        "productId": "10000000-0000-4000-8000-000000000022",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/fl-02.jpg",
+        "altText": "Milk-Cotton Blush Tulip Stem",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000022-img-2",
+        "productId": "10000000-0000-4000-8000-000000000022",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-handmade-flower.jpg",
+        "altText": "Milk-Cotton Blush Tulip Stem alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000023",
+    "categoryId": "c1000000-0000-0000-0000-000000000006",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000006",
+      "name": "Handmade Flower",
+      "slug": "handmade-flower",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-flower.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Classic Ivory Chamomile Desk Stem",
+    "slug": "classic-ivory-chamomile-stem",
+    "shortDescription": "Crisp eight-petal white daisy stem with ochre pollen stitch.",
+    "fullDescription": "Delicate multi-bloom daisy sprig crafted in unbleached ivory milk-cotton—zero watering required, everlasting freshness.",
+    "basePrice": 229,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 18,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000023-img-1",
+        "productId": "10000000-0000-4000-8000-000000000023",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/fl-03.jpg",
+        "altText": "Classic Ivory Chamomile Desk Stem",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000023-img-2",
+        "productId": "10000000-0000-4000-8000-000000000023",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-handmade-flower.jpg",
+        "altText": "Classic Ivory Chamomile Desk Stem alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000024",
+    "categoryId": "c1000000-0000-0000-0000-000000000006",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000006",
+      "name": "Handmade Flower",
+      "slug": "handmade-flower",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-flower.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "French Lavender Everlasting Sprig",
+    "slug": "french-lavender-everlasting-sprig",
+    "shortDescription": "Textured bobble-stitch lavender stalk in calming pastel violet.",
+    "fullDescription": "Pairs effortlessly with tulips, single roses, or Kraft birthday cards—looks lovely tucked inside ceramic bottles.",
+    "basePrice": 239,
+    "compareAtPrice": 289,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 16,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000024-img-1",
+        "productId": "10000000-0000-4000-8000-000000000024",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/fl-04.jpg",
+        "altText": "French Lavender Everlasting Sprig",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000024-img-2",
+        "productId": "10000000-0000-4000-8000-000000000024",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-handmade-flower.jpg",
+        "altText": "French Lavender Everlasting Sprig alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000025",
+    "categoryId": "c1000000-0000-0000-0000-000000000006",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000006",
+      "name": "Handmade Flower",
+      "slug": "handmade-flower",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-flower.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Saffron Genda Marigold Single Stalk",
+    "slug": "saffron-genda-marigold-stalk",
+    "shortDescription": "Dense ruffled marigold bloom celebrating warm Indian craft.",
+    "fullDescription": "Lush multi-layered orange petals hand-knotted to evoke celebratory genda phool for home puja corners, dashboards, and return favours.",
+    "basePrice": 219,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 15,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000025-img-1",
+        "productId": "10000000-0000-4000-8000-000000000025",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/fl-05.jpg",
+        "altText": "Saffron Genda Marigold Single Stalk",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000025-img-2",
+        "productId": "10000000-0000-4000-8000-000000000025",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-seasonable-handmade.jpg",
+        "altText": "Saffron Genda Marigold Single Stalk alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000026",
+    "categoryId": "c1000000-0000-0000-0000-000000000006",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000006",
+      "name": "Handmade Flower",
+      "slug": "handmade-flower",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-flower.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Plush Lilac Heart Stem Bloom",
+    "slug": "plush-lilac-heart-stem-bloom",
+    "shortDescription": "Hand-twisted purple chenille heart stalk with velvet leaf.",
+    "fullDescription": "Playful fuzzy plush stem crowned in a heart motif—great solo gift stem or whimsical centerpiece topper.",
+    "basePrice": 259,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 14,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000026-img-1",
+        "productId": "10000000-0000-4000-8000-000000000026",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/fl-06.jpg",
+        "altText": "Plush Lilac Heart Stem Bloom",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000026-img-2",
+        "productId": "10000000-0000-4000-8000-000000000026",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-02.jpg",
+        "altText": "Plush Lilac Heart Stem Bloom alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000027",
+    "categoryId": "c1000000-0000-0000-0000-000000000006",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000006",
+      "name": "Handmade Flower",
+      "slug": "handmade-flower",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-flower.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Sunlit Peach Lily Single Flower",
+    "slug": "sunlit-peach-lily-crochet-stem",
+    "shortDescription": "Graceful wide-petal peach lily accented with faux pearl stamen.",
+    "fullDescription": "Resplendent wide-open pastel lily crafted on coated floristry wire for effortless curving into table arrangements.",
+    "basePrice": 279,
+    "compareAtPrice": 349,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 2,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 10,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000027-img-1",
+        "productId": "10000000-0000-4000-8000-000000000027",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/fl-07.jpg",
+        "altText": "Sunlit Peach Lily Single Flower",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000027-img-2",
+        "productId": "10000000-0000-4000-8000-000000000027",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-02.jpg",
+        "altText": "Sunlit Peach Lily Single Flower alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000028",
+    "categoryId": "c1000000-0000-0000-0000-000000000006",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000006",
+      "name": "Handmade Flower",
+      "slug": "handmade-flower",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-flower.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Buttercream Golden Single Tulip",
+    "slug": "buttercream-golden-tulip-stem",
+    "shortDescription": "Warm golden-cream crocheted tulip finished on wrapped stem.",
+    "fullDescription": "Soft cream-gold colourway designed for minimalist bedside vases and Mother’s Day coffee-in-bed surprises.",
+    "basePrice": 249,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 12,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000028-img-1",
+        "productId": "10000000-0000-4000-8000-000000000028",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/fl-08.jpg",
+        "altText": "Buttercream Golden Single Tulip",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000028-img-2",
+        "productId": "10000000-0000-4000-8000-000000000028",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/fl-02.jpg",
+        "altText": "Buttercream Golden Single Tulip alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000029",
+    "categoryId": "c1000000-0000-0000-0000-000000000006",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000006",
+      "name": "Handmade Flower",
+      "slug": "handmade-flower",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-flower.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Sage Desk Potted Sunflower Duo",
+    "slug": "sage-desk-potted-sunflower-duo",
+    "shortDescription": "Muted vintage-tone potted daisies & golden blooms for desks.",
+    "fullDescription": "Cool-toned moss pot variation of our bestselling sunflower planter, built to lift study desks and studio corners.",
+    "basePrice": 599,
+    "compareAtPrice": 749,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 2,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 7,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000029-img-1",
+        "productId": "10000000-0000-4000-8000-000000000029",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/fl-09.jpg",
+        "altText": "Sage Desk Potted Sunflower Duo",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000029-img-2",
+        "productId": "10000000-0000-4000-8000-000000000029",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/fl-01.jpg",
+        "altText": "Sage Desk Potted Sunflower Duo alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000030",
+    "categoryId": "c1000000-0000-0000-0000-000000000006",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000006",
+      "name": "Handmade Flower",
+      "slug": "handmade-flower",
+      "description": "",
+      "imageUrl": "/images/cat-handmade-flower.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Pressed Blossom Studio Medallion",
+    "slug": "pressed-blossom-crochet-stem",
+    "shortDescription": "Five-petal sakura-style stitched flower with sage leaf trio.",
+    "fullDescription": "Versatile handcrafted cotton flower finished either on a long floral wire stem or flat magnetic backing on request.",
+    "basePrice": 269,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 2,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 9,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000030-img-1",
+        "productId": "10000000-0000-4000-8000-000000000030",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/fl-10.jpg",
+        "altText": "Pressed Blossom Studio Medallion",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000030-img-2",
+        "productId": "10000000-0000-4000-8000-000000000030",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-handmade-flower.jpg",
+        "altText": "Pressed Blossom Studio Medallion alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000031",
+    "categoryId": "c1000000-0000-0000-0000-000000000003",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000003",
+      "name": "Seasonable Handmade Products",
+      "slug": "seasonable-handmade-products",
+      "description": "",
+      "imageUrl": "/images/cat-seasonable-handmade.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Festive Marigold & Coaster Tabletop Tray",
+    "slug": "festive-marigold-coaster-tray-set",
+    "shortDescription": "Three saffron marigold blooms paired with braided mug coasters.",
+    "fullDescription": "A celebratory limited-batch set blending plush crochet marigold blooms, warm oatmeal coasters, and handcrafted tassels ready for Diwali, Navratri, or housewarming tables.",
+    "basePrice": 899,
+    "compareAtPrice": 1099,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 3,
+    "isPublished": true,
+    "isFeatured": true,
+    "hasVariants": false,
+    "stockQuantity": 6,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000031-img-1",
+        "productId": "10000000-0000-4000-8000-000000000031",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/se-01.jpg",
+        "altText": "Festive Marigold & Coaster Tabletop Tray",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000031-img-2",
+        "productId": "10000000-0000-4000-8000-000000000031",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-seasonable-handmade.jpg",
+        "altText": "Festive Marigold & Coaster Tabletop Tray alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000032",
+    "categoryId": "c1000000-0000-0000-0000-000000000003",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000003",
+      "name": "Seasonable Handmade Products",
+      "slug": "seasonable-handmade-products",
+      "description": "",
+      "imageUrl": "/images/cat-seasonable-handmade.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Terracotta Spiral Crochet Coaster Duo",
+    "slug": "terracotta-spiral-crochet-coasters",
+    "shortDescription": "Thick braided natural oat & clay-red cotton tabletop coasters.",
+    "fullDescription": "Washable double-weight yarn coasters absorbing condensation effortlessly while warming wood coffee tables.",
+    "basePrice": 349,
+    "compareAtPrice": 449,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 14,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000032-img-1",
+        "productId": "10000000-0000-4000-8000-000000000032",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/se-02.jpg",
+        "altText": "Terracotta Spiral Crochet Coaster Duo",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000032-img-2",
+        "productId": "10000000-0000-4000-8000-000000000032",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-seasonable-handmade.jpg",
+        "altText": "Terracotta Spiral Crochet Coaster Duo alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000033",
+    "categoryId": "c1000000-0000-0000-0000-000000000003",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000003",
+      "name": "Seasonable Handmade Products",
+      "slug": "seasonable-handmade-products",
+      "description": "",
+      "imageUrl": "/images/cat-seasonable-handmade.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Cozy Yarn Parcel Keepsake Ornaments",
+    "slug": "cozy-yarn-parcel-ornaments-trio",
+    "shortDescription": "Three knitted mini-gift box charms with wooden bead toppers.",
+    "fullDescription": "Lightweight winter and festive tree/car/garland charms stitched in oatmeal, mustard, and rust tied in tiny twine bows.",
+    "basePrice": 399,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 11,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000033-img-1",
+        "productId": "10000000-0000-4000-8000-000000000033",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/se-03.jpg",
+        "altText": "Cozy Yarn Parcel Keepsake Ornaments",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000033-img-2",
+        "productId": "10000000-0000-4000-8000-000000000033",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-seasonable-handmade.jpg",
+        "altText": "Cozy Yarn Parcel Keepsake Ornaments alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000034",
+    "categoryId": "c1000000-0000-0000-0000-000000000003",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000003",
+      "name": "Seasonable Handmade Products",
+      "slug": "seasonable-handmade-products",
+      "description": "",
+      "imageUrl": "/images/cat-seasonable-handmade.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Saffron & Clay Wooden-Bead Tassels",
+    "slug": "saffron-wooden-bead-festival-tassels",
+    "shortDescription": "Pair of dense combed-yarn door & curtain tieback tassels.",
+    "fullDescription": "Finished with raw beachwood beads for effortless festive styling on doorways, almirah handles, or gift baskets.",
+    "basePrice": 299,
+    "compareAtPrice": 369,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 15,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000034-img-1",
+        "productId": "10000000-0000-4000-8000-000000000034",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/se-04.jpg",
+        "altText": "Saffron & Clay Wooden-Bead Tassels",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000034-img-2",
+        "productId": "10000000-0000-4000-8000-000000000034",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-seasonable-handmade.jpg",
+        "altText": "Saffron & Clay Wooden-Bead Tassels alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000035",
+    "categoryId": "c1000000-0000-0000-0000-000000000003",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000003",
+      "name": "Seasonable Handmade Products",
+      "slug": "seasonable-handmade-products",
+      "description": "",
+      "imageUrl": "/images/cat-seasonable-handmade.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Festive Toran Marigold Bundle",
+    "slug": "festive-toran-marigold-bundle",
+    "shortDescription": "Doorway-ready garland bundle of eternal handmade marigolds.",
+    "fullDescription": "Reusable every festival season—vibrant tangerine blooms stitched cleanly onto flexible cotton string for indoor or sheltered balconies.",
+    "basePrice": 799,
+    "compareAtPrice": 949,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 3,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 5,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000035-img-1",
+        "productId": "10000000-0000-4000-8000-000000000035",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/se-05.jpg",
+        "altText": "Festive Toran Marigold Bundle",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000035-img-2",
+        "productId": "10000000-0000-4000-8000-000000000035",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/se-01.jpg",
+        "altText": "Festive Toran Marigold Bundle alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000036",
+    "categoryId": "c1000000-0000-0000-0000-000000000003",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000003",
+      "name": "Seasonable Handmade Products",
+      "slug": "seasonable-handmade-products",
+      "description": "",
+      "imageUrl": "/images/cat-seasonable-handmade.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Winter Solstice Crimson Bouquet",
+    "slug": "winter-solstice-crimson-tulip-duo",
+    "shortDescription": "Deep holiday-red tulip arrangement accented in golden berries.",
+    "fullDescription": "Seasonal winter release pairing crisp velvet red blooms with gilded foliage inside sculptural onyx wrap.",
+    "basePrice": 949,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 2,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 5,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000036-img-1",
+        "productId": "10000000-0000-4000-8000-000000000036",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/se-06.jpg",
+        "altText": "Winter Solstice Crimson Bouquet",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000036-img-2",
+        "productId": "10000000-0000-4000-8000-000000000036",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-03.jpg",
+        "altText": "Winter Solstice Crimson Bouquet alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000037",
+    "categoryId": "c1000000-0000-0000-0000-000000000003",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000003",
+      "name": "Seasonable Handmade Products",
+      "slug": "seasonable-handmade-products",
+      "description": "",
+      "imageUrl": "/images/cat-seasonable-handmade.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Valentine Linen Bow & Accent Kit",
+    "slug": "valentine-satin-bow-gift-tie-kit",
+    "shortDescription": "Hand-tied dusty rose linen bow for chocolates & keepsake boxes.",
+    "fullDescription": "Created in small batches before February gifting rush to dress wine bottles, dessert boxes, or personalized hampers.",
+    "basePrice": 199,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 20,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000037-img-1",
+        "productId": "10000000-0000-4000-8000-000000000037",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/se-07.jpg",
+        "altText": "Valentine Linen Bow & Accent Kit",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000037-img-2",
+        "productId": "10000000-0000-4000-8000-000000000037",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/se-10.jpg",
+        "altText": "Valentine Linen Bow & Accent Kit alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000038",
+    "categoryId": "c1000000-0000-0000-0000-000000000003",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000003",
+      "name": "Seasonable Handmade Products",
+      "slug": "seasonable-handmade-products",
+      "description": "",
+      "imageUrl": "/images/cat-seasonable-handmade.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Sage Harvest Crochet Coaster Pair",
+    "slug": "sage-harvest-crochet-coaster-pair",
+    "shortDescription": "Earthy botanical sage-and-cream table coasters in ribbed weave.",
+    "fullDescription": "Calm spring/monsoon tabletop colorway washed pre-shipping for soft lay-flat finish.",
+    "basePrice": 349,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 10,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000038-img-1",
+        "productId": "10000000-0000-4000-8000-000000000038",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/se-08.jpg",
+        "altText": "Sage Harvest Crochet Coaster Pair",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000038-img-2",
+        "productId": "10000000-0000-4000-8000-000000000038",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/se-02.jpg",
+        "altText": "Sage Harvest Crochet Coaster Pair alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000039",
+    "categoryId": "c1000000-0000-0000-0000-000000000003",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000003",
+      "name": "Seasonable Handmade Products",
+      "slug": "seasonable-handmade-products",
+      "description": "",
+      "imageUrl": "/images/cat-seasonable-handmade.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Blush Berry Holiday Gift Ornaments",
+    "slug": "holiday-keepsake-parcel-charms",
+    "shortDescription": "Pastel holiday knit parcel ornaments for winter gift wrapping.",
+    "fullDescription": "Soft rosé and cream palette mini-parcels crafted for modern pastel seasonal decor.",
+    "basePrice": 429,
+    "compareAtPrice": 499,
+    "productType": "READY_MADE",
+    "preparationDays": 0,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 9,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000039-img-1",
+        "productId": "10000000-0000-4000-8000-000000000039",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/se-09.jpg",
+        "altText": "Blush Berry Holiday Gift Ornaments",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000039-img-2",
+        "productId": "10000000-0000-4000-8000-000000000039",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/se-03.jpg",
+        "altText": "Blush Berry Holiday Gift Ornaments alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000040",
+    "categoryId": "c1000000-0000-0000-0000-000000000003",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000003",
+      "name": "Seasonable Handmade Products",
+      "slug": "seasonable-handmade-products",
+      "description": "",
+      "imageUrl": "/images/cat-seasonable-handmade.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Complete Artisanal Festive Gift Collection",
+    "slug": "complete-artisanal-festive-hamper",
+    "shortDescription": "Studio seasonal full sampler: marigolds, coasters, tassels & charms.",
+    "fullDescription": "Our signature seasonal tabletop flat-lay packed completely as a gift hamper with handwritten greeting card for housewarmings and festivals.",
+    "basePrice": 1199,
+    "compareAtPrice": 1449,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 3,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 5,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000040-img-1",
+        "productId": "10000000-0000-4000-8000-000000000040",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/se-10.jpg",
+        "altText": "Complete Artisanal Festive Gift Collection",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000040-img-2",
+        "productId": "10000000-0000-4000-8000-000000000040",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-seasonable-handmade.jpg",
+        "altText": "Complete Artisanal Festive Gift Collection alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000041",
+    "categoryId": "c1000000-0000-0000-0000-000000000004",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000004",
+      "name": "Birthday Surprise Card",
+      "slug": "birthday-surprise-card",
+      "description": "",
+      "imageUrl": "/images/cat-birthday-surprise-card.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Signature Explosion Keepsake Birthday Card",
+    "slug": "signature-explosion-keepsake-birthday-card",
+    "shortDescription": "Handfolded cotton card with mini photos, pockets & gold wax seal.",
+    "fullDescription": "Multi-flap handmade birthday keepsake folded from heavy acid-free cotton paper, complete with printed mini memories you share with us on WhatsApp and an embossed crimson wax seal.",
+    "basePrice": 449,
+    "compareAtPrice": 549,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 2,
+    "isPublished": true,
+    "isFeatured": true,
+    "hasVariants": false,
+    "stockQuantity": 10,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000041-img-1",
+        "productId": "10000000-0000-4000-8000-000000000041",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bc-01.jpg",
+        "altText": "Signature Explosion Keepsake Birthday Card",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000041-img-2",
+        "productId": "10000000-0000-4000-8000-000000000041",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-birthday-surprise-card.jpg",
+        "altText": "Signature Explosion Keepsake Birthday Card alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000042",
+    "categoryId": "c1000000-0000-0000-0000-000000000004",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000004",
+      "name": "Birthday Surprise Card",
+      "slug": "birthday-surprise-card",
+      "description": "",
+      "imageUrl": "/images/cat-birthday-surprise-card.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Pop-Up Polaroid \"Make a Wish\" Card",
+    "slug": "pop-up-polaroid-make-a-wish-card",
+    "shortDescription": "Layered accordion photo flaps opening like a tiny keepsake book.",
+    "fullDescription": "Hold up to 6 crisp Polaroid prints inside pull-out waterfall tabs alongside your personal birthday note in hand calligraphy.",
+    "basePrice": 499,
+    "compareAtPrice": 599,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 2,
+    "isPublished": true,
+    "isFeatured": true,
+    "hasVariants": false,
+    "stockQuantity": 10,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000042-img-1",
+        "productId": "10000000-0000-4000-8000-000000000042",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bc-02.jpg",
+        "altText": "Pop-Up Polaroid \"Make a Wish\" Card",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000042-img-2",
+        "productId": "10000000-0000-4000-8000-000000000042",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-birthday-surprise-card.jpg",
+        "altText": "Pop-Up Polaroid \"Make a Wish\" Card alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000043",
+    "categoryId": "c1000000-0000-0000-0000-000000000004",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000004",
+      "name": "Birthday Surprise Card",
+      "slug": "birthday-surprise-card",
+      "description": "",
+      "imageUrl": "/images/cat-birthday-surprise-card.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Pressed Daisy \"Bloom Bright\" Letter Card",
+    "slug": "pressed-daisy-cotton-birthday-letter",
+    "shortDescription": "Botanical sage-bordered birthday card with detachable crochet daisy.",
+    "fullDescription": "Clean minimalism with a real tiny chamomile blossom tucked under twine inside a deckle-edged cotton sleeve.",
+    "basePrice": 329,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 1,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 12,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000043-img-1",
+        "productId": "10000000-0000-4000-8000-000000000043",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bc-03.jpg",
+        "altText": "Pressed Daisy \"Bloom Bright\" Letter Card",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000043-img-2",
+        "productId": "10000000-0000-4000-8000-000000000043",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-birthday-surprise-card.jpg",
+        "altText": "Pressed Daisy \"Bloom Bright\" Letter Card alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000044",
+    "categoryId": "c1000000-0000-0000-0000-000000000004",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000004",
+      "name": "Birthday Surprise Card",
+      "slug": "birthday-surprise-card",
+      "description": "",
+      "imageUrl": "/images/cat-birthday-surprise-card.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Lavender Satin Gatefold \"Cheers to You\" Card",
+    "slug": "lavender-gatefold-birthday-card",
+    "shortDescription": "Double-door lilac gatefold card tied neatly in pastel ribbon.",
+    "fullDescription": "Ideal for best friends and sisters—two opening wings reveal confetti pockets, secret note flaps, and gold border trims.",
+    "basePrice": 399,
+    "compareAtPrice": 479,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 2,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 9,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000044-img-1",
+        "productId": "10000000-0000-4000-8000-000000000044",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bc-04.jpg",
+        "altText": "Lavender Satin Gatefold \"Cheers to You\" Card",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000044-img-2",
+        "productId": "10000000-0000-4000-8000-000000000044",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bc-02.jpg",
+        "altText": "Lavender Satin Gatefold \"Cheers to You\" Card alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000045",
+    "categoryId": "c1000000-0000-0000-0000-000000000004",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000004",
+      "name": "Birthday Surprise Card",
+      "slug": "birthday-surprise-card",
+      "description": "",
+      "imageUrl": "/images/cat-birthday-surprise-card.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Golden Milestone \"Sunny Moments\" Card",
+    "slug": "golden-milestone-sunny-moments-card",
+    "shortDescription": "Standing desk display card honoring 18th, 21st, or 25th milestones.",
+    "fullDescription": "Constructed with sturdy easel backing and golden hand-foil accents so your birthday card stays propped cleanly on their study table.",
+    "basePrice": 429,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 2,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 8,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000045-img-1",
+        "productId": "10000000-0000-4000-8000-000000000045",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bc-05.jpg",
+        "altText": "Golden Milestone \"Sunny Moments\" Card",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000045-img-2",
+        "productId": "10000000-0000-4000-8000-000000000045",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/fl-01.jpg",
+        "altText": "Golden Milestone \"Sunny Moments\" Card alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000046",
+    "categoryId": "c1000000-0000-0000-0000-000000000004",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000004",
+      "name": "Birthday Surprise Card",
+      "slug": "birthday-surprise-card",
+      "description": "",
+      "imageUrl": "/images/cat-birthday-surprise-card.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Crimson Velvet \"Forever Yours\" Folio",
+    "slug": "crimson-velvet-forever-yours-folio",
+    "shortDescription": "Deep burgundy romantic surprise folio with four secret flaps.",
+    "fullDescription": "Our most romantic greeting card format for partner birthdays and anniversary mornings—sealed with wax stamp and ribbon ties.",
+    "basePrice": 549,
+    "compareAtPrice": 649,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 3,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 7,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000046-img-1",
+        "productId": "10000000-0000-4000-8000-000000000046",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bc-06.jpg",
+        "altText": "Crimson Velvet \"Forever Yours\" Folio",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000046-img-2",
+        "productId": "10000000-0000-4000-8000-000000000046",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bc-01.jpg",
+        "altText": "Crimson Velvet \"Forever Yours\" Folio alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000047",
+    "categoryId": "c1000000-0000-0000-0000-000000000004",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000004",
+      "name": "Birthday Surprise Card",
+      "slug": "birthday-surprise-card",
+      "description": "",
+      "imageUrl": "/images/cat-birthday-surprise-card.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Concertina 8-Photo Memory Walk Card",
+    "slug": "concertina-memory-walk-birthday-card",
+    "shortDescription": "Unfolding zig-zag accordion card capturing a year of milestones.",
+    "fullDescription": "Crafted in warm brown kraft and cream cotton stock with space for 8 custom snapshots and handwritten captions below each frame.",
+    "basePrice": 579,
+    "compareAtPrice": 699,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 3,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 6,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000047-img-1",
+        "productId": "10000000-0000-4000-8000-000000000047",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bc-07.jpg",
+        "altText": "Concertina 8-Photo Memory Walk Card",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000047-img-2",
+        "productId": "10000000-0000-4000-8000-000000000047",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-birthday-surprise-card.jpg",
+        "altText": "Concertina 8-Photo Memory Walk Card alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000048",
+    "categoryId": "c1000000-0000-0000-0000-000000000004",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000004",
+      "name": "Birthday Surprise Card",
+      "slug": "birthday-surprise-card",
+      "description": "",
+      "imageUrl": "/images/cat-birthday-surprise-card.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Sweet Berry Keepsake Charm Birthday Card",
+    "slug": "sweet-berry-keepsake-charm-card",
+    "shortDescription": "Birthday card carrying a detachable crochet strawberry bag charm.",
+    "fullDescription": "Two surprises in one envelope: a heartfelt cotton birthday card plus a keepsake key charm tied directly onto the inner ribbon!",
+    "basePrice": 469,
+    "compareAtPrice": 549,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 2,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 9,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000048-img-1",
+        "productId": "10000000-0000-4000-8000-000000000048",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bc-08.jpg",
+        "altText": "Sweet Berry Keepsake Charm Birthday Card",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000048-img-2",
+        "productId": "10000000-0000-4000-8000-000000000048",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/kc-01.jpg",
+        "altText": "Sweet Berry Keepsake Charm Birthday Card alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000049",
+    "categoryId": "c1000000-0000-0000-0000-000000000004",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000004",
+      "name": "Birthday Surprise Card",
+      "slug": "birthday-surprise-card",
+      "description": "",
+      "imageUrl": "/images/cat-birthday-surprise-card.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Marigold Sunny Celebration Card",
+    "slug": "marigold-joyful-birthday-card",
+    "shortDescription": "Warm turmeric & amber palette greeting card with hand calligraphy.",
+    "fullDescription": "Cheerful sunshine aesthetic made from textured handmade paper—wonderful for parents, grandparents, and mentors.",
+    "basePrice": 349,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 2,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 10,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000049-img-1",
+        "productId": "10000000-0000-4000-8000-000000000049",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bc-09.jpg",
+        "altText": "Marigold Sunny Celebration Card",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000049-img-2",
+        "productId": "10000000-0000-4000-8000-000000000049",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-birthday-surprise-card.jpg",
+        "altText": "Marigold Sunny Celebration Card alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000050",
+    "categoryId": "c1000000-0000-0000-0000-000000000004",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000004",
+      "name": "Birthday Surprise Card",
+      "slug": "birthday-surprise-card",
+      "description": "",
+      "imageUrl": "/images/cat-birthday-surprise-card.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Bespoke Monogram Wax-Sealed Card Box",
+    "slug": "bespoke-monogram-wax-sealed-box-card",
+    "shortDescription": "Custom name-lettered card inside presentation kraft gift sleeve.",
+    "fullDescription": "Custom initial stamped into crimson sealing wax plus bespoke recipient name calligraphed on the front cover.",
+    "basePrice": 649,
+    "compareAtPrice": 779,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 3,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 6,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000050-img-1",
+        "productId": "10000000-0000-4000-8000-000000000050",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bc-10.jpg",
+        "altText": "Bespoke Monogram Wax-Sealed Card Box",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000050-img-2",
+        "productId": "10000000-0000-4000-8000-000000000050",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bc-01.jpg",
+        "altText": "Bespoke Monogram Wax-Sealed Card Box alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000051",
+    "categoryId": "c1000000-0000-0000-0000-000000000005",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000005",
+      "name": "Customized / Personalized Gifts",
+      "slug": "customized-personalized-gifts",
+      "description": "",
+      "imageUrl": "/images/cat-personalized-gifts.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Custom Kraft Bouquet & Handwritten Tag",
+    "slug": "custom-kraft-bouquet-handwritten-tag",
+    "shortDescription": "Bespoke yarn palette wrapped with personalized Bloomora kraft tag.",
+    "fullDescription": "Tell us their favourite flower, shade, and memory—we craft a bespoke everlasting wrap paired with a hand-lettered kraft keepsake tag.",
+    "basePrice": 1199,
+    "compareAtPrice": 1449,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 3,
+    "isPublished": true,
+    "isFeatured": true,
+    "hasVariants": false,
+    "stockQuantity": 6,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000051-img-1",
+        "productId": "10000000-0000-4000-8000-000000000051",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/pg-01.jpg",
+        "altText": "Custom Kraft Bouquet & Handwritten Tag",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000051-img-2",
+        "productId": "10000000-0000-4000-8000-000000000051",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-personalized-gifts.jpg",
+        "altText": "Custom Kraft Bouquet & Handwritten Tag alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000052",
+    "categoryId": "c1000000-0000-0000-0000-000000000005",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000005",
+      "name": "Customized / Personalized Gifts",
+      "slug": "customized-personalized-gifts",
+      "description": "",
+      "imageUrl": "/images/cat-personalized-gifts.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Personalised Calligraphy Kraft Tag Trio",
+    "slug": "personalized-calligraphy-gift-tag-set",
+    "shortDescription": "Three hand-penned heavy kraft tags with jute twine loops.",
+    "fullDescription": "Custom-lettered names, dates, or short inside jokes penned in permanent archive ink to elevate any gift box or bouquet.",
+    "basePrice": 179,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 1,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 25,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000052-img-1",
+        "productId": "10000000-0000-4000-8000-000000000052",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/pg-02.jpg",
+        "altText": "Personalised Calligraphy Kraft Tag Trio",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000052-img-2",
+        "productId": "10000000-0000-4000-8000-000000000052",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-personalized-gifts.jpg",
+        "altText": "Personalised Calligraphy Kraft Tag Trio alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000053",
+    "categoryId": "c1000000-0000-0000-0000-000000000005",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000005",
+      "name": "Customized / Personalized Gifts",
+      "slug": "customized-personalized-gifts",
+      "description": "",
+      "imageUrl": "/images/cat-personalized-gifts.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Creator Workbench Custom Gift Box",
+    "slug": "studio-creator-bespoke-hamper",
+    "shortDescription": "Mix & match flower stems, yarn keychain & handwritten note in box.",
+    "fullDescription": "Start with your idea—we curate a boxed keepsake pairing custom flower stems, a matching bag charm, and calligraphy greeting note.",
+    "basePrice": 1499,
+    "compareAtPrice": 1799,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 4,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 5,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000053-img-1",
+        "productId": "10000000-0000-4000-8000-000000000053",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/pg-03.jpg",
+        "altText": "Creator Workbench Custom Gift Box",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000053-img-2",
+        "productId": "10000000-0000-4000-8000-000000000053",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/bloomora-hero-artisan-workbench.jpg",
+        "altText": "Creator Workbench Custom Gift Box alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000054",
+    "categoryId": "c1000000-0000-0000-0000-000000000005",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000005",
+      "name": "Customized / Personalized Gifts",
+      "slug": "customized-personalized-gifts",
+      "description": "",
+      "imageUrl": "/images/cat-personalized-gifts.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "\"Handcrafted With Love\" Luxury Gift Wrap",
+    "slug": "handcrafted-with-love-memory-hamper",
+    "shortDescription": "Curated lilac plush wrap + dried gypsophila tag + message envelope.",
+    "fullDescription": "Everything wrapped studio-ready for surprise doorstep delivery anywhere in Vadodara with zero extra wrapping needed.",
+    "basePrice": 1399,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 3,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 5,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000054-img-1",
+        "productId": "10000000-0000-4000-8000-000000000054",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/pg-04.jpg",
+        "altText": "\"Handcrafted With Love\" Luxury Gift Wrap",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000054-img-2",
+        "productId": "10000000-0000-4000-8000-000000000054",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/bq-02.jpg",
+        "altText": "\"Handcrafted With Love\" Luxury Gift Wrap alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000055",
+    "categoryId": "c1000000-0000-0000-0000-000000000005",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000005",
+      "name": "Customized / Personalized Gifts",
+      "slug": "customized-personalized-gifts",
+      "description": "",
+      "imageUrl": "/images/cat-personalized-gifts.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Heirloom Ribbon & Heart Keepsake Box",
+    "slug": "heirloom-ribbon-wooden-button-keepsake",
+    "shortDescription": "Personalized linen gift box dressed in satin bow & wood heart.",
+    "fullDescription": "Designed to hold rings, letters, and concert tickets alongside a custom crocheted keepsake emblem inside.",
+    "basePrice": 1299,
+    "compareAtPrice": 1549,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 3,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 5,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000055-img-1",
+        "productId": "10000000-0000-4000-8000-000000000055",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/pg-05.jpg",
+        "altText": "Heirloom Ribbon & Heart Keepsake Box",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000055-img-2",
+        "productId": "10000000-0000-4000-8000-000000000055",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/bloomora-hoop.png",
+        "altText": "Heirloom Ribbon & Heart Keepsake Box alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000056",
+    "categoryId": "c1000000-0000-0000-0000-000000000005",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000005",
+      "name": "Customized / Personalized Gifts",
+      "slug": "customized-personalized-gifts",
+      "description": "",
+      "imageUrl": "/images/cat-personalized-gifts.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Your Idea • Custom Concept Consultation Box",
+    "slug": "custom-idea-prototype-sample-build",
+    "shortDescription": "Got an imaginative gift concept? Book custom workbench build.",
+    "fullDescription": "You bring the spark of an idea—themed bouquets, pet-colour yarn charms, hobby minis—and we collaborate over WhatsApp to prototype it cleanly.",
+    "basePrice": 499,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 3,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 8,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000056-img-1",
+        "productId": "10000000-0000-4000-8000-000000000056",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/pg-06.jpg",
+        "altText": "Your Idea • Custom Concept Consultation Box",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000056-img-2",
+        "productId": "10000000-0000-4000-8000-000000000056",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/bloomora-hero-artisan-workbench.jpg",
+        "altText": "Your Idea • Custom Concept Consultation Box alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000057",
+    "categoryId": "c1000000-0000-0000-0000-000000000005",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000005",
+      "name": "Customized / Personalized Gifts",
+      "slug": "customized-personalized-gifts",
+      "description": "",
+      "imageUrl": "/images/cat-personalized-gifts.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Crochet Blossom Wall Hoop Keepsake",
+    "slug": "embroidery-hoop-eternal-floral-frame",
+    "shortDescription": "Linen wooden hoop stitched with pastel flower, leaves & names.",
+    "fullDescription": "A gallery-worthy handmade nursery or anniversary wall hanging combining dimensional crochet blooms on natural cream canvas.",
+    "basePrice": 899,
+    "compareAtPrice": 1099,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 4,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 6,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000057-img-1",
+        "productId": "10000000-0000-4000-8000-000000000057",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/pg-07.jpg",
+        "altText": "Crochet Blossom Wall Hoop Keepsake",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000057-img-2",
+        "productId": "10000000-0000-4000-8000-000000000057",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/bloomora-hoop.png",
+        "altText": "Crochet Blossom Wall Hoop Keepsake alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000058",
+    "categoryId": "c1000000-0000-0000-0000-000000000005",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000005",
+      "name": "Customized / Personalized Gifts",
+      "slug": "customized-personalized-gifts",
+      "description": "",
+      "imageUrl": "/images/cat-personalized-gifts.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Couple Initial Pastel Gift Hamper",
+    "slug": "couple-initial-pastel-gift-hamper",
+    "shortDescription": "Custom bouquet paired with dual monogrammed kraft keepsakes.",
+    "fullDescription": "Thoughtfully assembled for engagements and anniversaries with bespoke couple initials stamped on natural tags and ribbon tails.",
+    "basePrice": 1549,
+    "compareAtPrice": 1849,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 4,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 5,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000058-img-1",
+        "productId": "10000000-0000-4000-8000-000000000058",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/pg-08.jpg",
+        "altText": "Couple Initial Pastel Gift Hamper",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000058-img-2",
+        "productId": "10000000-0000-4000-8000-000000000058",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-customized-bouquet.jpg",
+        "altText": "Couple Initial Pastel Gift Hamper alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000059",
+    "categoryId": "c1000000-0000-0000-0000-000000000005",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000005",
+      "name": "Customized / Personalized Gifts",
+      "slug": "customized-personalized-gifts",
+      "description": "",
+      "imageUrl": "/images/cat-personalized-gifts.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Bestie Matching Charms Gift Kit",
+    "slug": "matching-duo-charm-gift-kit",
+    "shortDescription": "Personalized multi-charm studio box with friendship notes.",
+    "fullDescription": "Select three custom motifs for your closest circle—presented cleanly with personal inside-joke gift tags.",
+    "basePrice": 649,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 2,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 8,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000059-img-1",
+        "productId": "10000000-0000-4000-8000-000000000059",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/pg-09.jpg",
+        "altText": "Bestie Matching Charms Gift Kit",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000059-img-2",
+        "productId": "10000000-0000-4000-8000-000000000059",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-handmade-keychain.jpg",
+        "altText": "Bestie Matching Charms Gift Kit alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  },
+  {
+    "id": "10000000-0000-4000-8000-000000000060",
+    "categoryId": "c1000000-0000-0000-0000-000000000005",
+    "category": {
+      "id": "c1000000-0000-0000-0000-000000000005",
+      "name": "Customized / Personalized Gifts",
+      "slug": "customized-personalized-gifts",
+      "description": "",
+      "imageUrl": "/images/cat-personalized-gifts.jpg",
+      "displayOrder": 0,
+      "isActive": true,
+      "createdAt": "2026-11-11T12:00:00.000Z"
+    },
+    "title": "Personalized Evergreen Memory Bundle",
+    "slug": "personalized-evergreen-studio-bundle",
+    "shortDescription": "Handcrafted tulip wrap + sealed wish card tailored by name.",
+    "fullDescription": "Combines a timeless kraft bouquet and matching wax-sealed card personalized completely around your recipient’s story.",
+    "basePrice": 1249,
+    "compareAtPrice": 1499,
+    "productType": "MADE_TO_ORDER",
+    "preparationDays": 3,
+    "isPublished": true,
+    "isFeatured": false,
+    "hasVariants": false,
+    "stockQuantity": 6,
+    "lowStockThreshold": 2,
+    "images": [
+      {
+        "id": "10000000-0000-4000-8000-000000000060-img-1",
+        "productId": "10000000-0000-4000-8000-000000000060",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/products/pg-10.jpg",
+        "altText": "Personalized Evergreen Memory Bundle",
+        "displayOrder": 0,
+        "isPrimary": true
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000060-img-2",
+        "productId": "10000000-0000-4000-8000-000000000060",
+        "cloudinaryPublicId": "studio-seed",
+        "imageUrl": "/images/cat-personalized-gifts.jpg",
+        "altText": "Personalized Evergreen Memory Bundle alternate view",
+        "displayOrder": 1,
+        "isPrimary": false
+      }
+    ],
+    "variants": [],
+    "createdAt": "2026-11-11T12:00:00.000Z",
+    "updatedAt": "2026-11-11T12:00:00.000Z"
+  }
+]

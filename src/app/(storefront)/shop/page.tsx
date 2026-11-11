@@ -31,6 +31,7 @@ function ShopContent() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortBy, setSortBy] = useState<string>('featured');
   const [filterType, setFilterType] = useState<string>('all');
+  const [visibleCount, setVisibleCount] = useState<number>(12);
 
   useEffect(() => {
     Promise.all([
@@ -117,10 +118,20 @@ function ShopContent() {
   const hasActiveFilters =
     selectedCategory !== 'all' || filterType !== 'all' || searchQuery.trim().length > 0;
 
+  useEffect(() => {
+    setVisibleCount(12);
+  }, [selectedCategory, filterType, searchQuery, sortBy]);
+
+  const visibleProducts = useMemo(
+    () => filteredProducts.slice(0, visibleCount),
+    [filteredProducts, visibleCount]
+  );
+
   const resetFilters = () => {
     setSelectedCategory('all');
     setSearchQuery('');
     setFilterType('all');
+    setVisibleCount(12);
   };
 
   return (
@@ -312,10 +323,28 @@ function ShopContent() {
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+        <div className="space-y-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+            {visibleProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+
+          {filteredProducts.length > visibleCount && (
+            <div className="flex flex-col items-center gap-2 pt-2">
+              <p className="text-[11px] text-ink-muted">
+                Showing {visibleProducts.length} of {filteredProducts.length} creations
+              </p>
+              <Button
+                variant="outline"
+                size="md"
+                onClick={() => setVisibleCount((prev) => prev + 12)}
+                className="px-6"
+              >
+                Show More Creations (+{Math.min(12, filteredProducts.length - visibleCount)})
+              </Button>
+            </div>
+          )}
         </div>
       )}
 
