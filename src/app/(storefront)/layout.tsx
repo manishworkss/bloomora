@@ -13,10 +13,10 @@ export default function StorefrontLayout({
 }) {
   return (
     <CartProvider>
-      <div className="min-h-screen flex flex-col bg-canvas w-full max-w-full overflow-x-hidden">
+      <div className="min-h-screen flex flex-col bg-canvas w-full max-w-full overflow-x-clip">
         <AnnouncementBar />
         <Header />
-        <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
+        <main className="flex-1 w-full max-w-full overflow-x-clip">{children}</main>
         <CartDrawer />
         <WhatsAppConcierge />
         <Footer />

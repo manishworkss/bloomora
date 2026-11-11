@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image, { getImageProps } from 'next/image';
 import {
   Sparkles,
   Heart,
@@ -159,115 +159,138 @@ export default async function HomePage() {
   const featured = allPublished.filter((p) => p.isFeatured);
   const featuredProducts = (featured.length > 0 ? featured : allPublished).slice(0, 8);
 
+  // Art-directed responsive hero banner: 16:9 full-width landscape on desktop/Windows, 9:16 tall portrait on mobile
+  const heroCommonProps = {
+    alt: 'Bloomora Handcrafted Crochet Bouquets & Memory Keepsake Scrapbooks — Crafted in Vadodara',
+    sizes: '100vw',
+    priority: true,
+  };
+  const {
+    props: { src: desktopHeroSrc, srcSet: desktopHeroSrcSet },
+  } = getImageProps({
+    ...heroCommonProps,
+    src: '/images/bloomora-hero-desktop.jpg',
+    width: 1024,
+    height: 576,
+  });
+  const {
+    props: { srcSet: mobileHeroSrcSet, ...mobileHeroRest },
+  } = getImageProps({
+    ...heroCommonProps,
+    src: '/images/bloomora-hero-mobile.jpg',
+    width: 576,
+    height: 1024,
+  });
+
   return (
-    <div className="space-y-8 sm:space-y-12 pb-12 w-full max-w-full overflow-x-hidden">
-      {/* 1. EDITORIAL HERO SECTION (Atmospheric Boutique Aesthetics) */}
-      <section className="relative overflow-hidden pt-3 pb-6 lg:pt-8 lg:pb-8 w-full bg-gradient-to-b from-blush/25 via-canvas/60 to-canvas">
-        {/* Soft diffused ambient lighting circles */}
-        <div className="pointer-events-none absolute -top-20 -right-20 w-80 sm:w-[28rem] h-80 sm:h-[28rem] rounded-full bg-blush/40 blur-3xl -z-10" />
-        <div className="pointer-events-none absolute top-1/3 -left-24 w-72 sm:w-80 h-72 sm:h-80 rounded-full bg-[#F4ECE4]/80 blur-3xl -z-10" />
+    <div className="space-y-8 sm:space-y-12 pb-12 w-full max-w-full overflow-x-clip">
+      {/* 1. EDITORIAL HERO SECTION (Full-Width 16:9 Desktop Landscape / Tall 9:16 Mobile Portrait) */}
+      <section className="relative w-full overflow-hidden bg-[#1B1013]">
+        {/* Full-bleed Art-Directed Banner Container (Starts behind transparent homepage header) */}
+        <div className="relative w-full aspect-[9/16] md:aspect-auto md:h-[min(56.25vw,calc(100vh-2.25rem))] md:min-h-[520px] md:max-h-[860px] overflow-hidden">
+          <picture className="absolute inset-0 block w-full h-full">
+            <source
+              media="(min-width: 768px)"
+              srcSet={desktopHeroSrcSet ?? desktopHeroSrc}
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              {...mobileHeroRest}
+              srcSet={mobileHeroSrcSet ?? mobileHeroRest.src}
+              alt={heroCommonProps.alt}
+              className="absolute inset-0 w-full h-full object-cover object-center block select-none"
+            />
+          </picture>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-14 items-center">
-            {/* Left Hand Side (LHS): Handcrafted Bouquet Photo */}
-            <div className="lg:col-span-6 relative w-full">
-              <div className="relative">
-                {/* Soft ambient backlight glow */}
-                <div className="pointer-events-none absolute -inset-2 bg-gradient-to-tr from-rose/25 via-blush/35 to-amber-100/30 rounded-[2rem] blur-2xl opacity-70 -z-10" />
+          {/* Subtle top vignette protecting white transparent header navigation & logo */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-28 md:h-36 bg-gradient-to-b from-[#180E10]/65 via-[#180E10]/28 to-transparent" />
 
-                <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-border-subtle bg-surface shadow-craft-elevated">
-                  {/* Full fit in half area for mobile view (~44vh) and balanced on desktop */}
-                  <div className="relative w-full h-[44vh] sm:h-[48vh] min-h-[260px] max-h-[400px] lg:h-[460px] xl:h-[500px] lg:max-h-none overflow-hidden">
-                    <Image
-                      src="/images/bloomora-hero-bouquet.jpg"
-                      alt="Bloomora Handcrafted Crochet Bouquet - Made with Love in Vadodara"
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                      priority
-                      className="object-cover object-center w-full h-full"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Mobile bottom scrim (keeps bottom-anchored portrait text legible) */}
+          <div className="pointer-events-none md:hidden absolute inset-x-0 bottom-0 h-[56%] bg-gradient-to-t from-[#180E10]/95 via-[#180E10]/65 via-45% to-transparent" />
 
-            {/* Right Hand Side (RHS): Narrative Column */}
-            <div className="lg:col-span-6 space-y-4 text-center lg:text-left min-w-0">
-              <div className="space-y-3">
-                <h1 className="font-serif text-3xl sm:text-4xl lg:text-[2.85rem] xl:text-[3.25rem] text-ink font-normal tracking-tight leading-[1.14]">
-                  Little details. <br />
-                  <span className="italic font-light text-rose">
-                    Beautiful emotions.
-                  </span>
-                </h1>
-                <p className="text-xs sm:text-base text-ink-muted leading-relaxed max-w-xl mx-auto lg:mx-0 font-normal">
-                  Thoughtfully crocheted everlasting flowers, bespoke bouquets, and keepsake charms.
-                  Each piece is slow-crafted stitch by stitch with warmth, patient care, and genuine feeling in Vadodara, Gujarat.
-                </p>
-              </div>
+          {/* Desktop subtle atmospheric wall halo (frames centered text in the golden sunlit cavity without darkening flowers/book) */}
+          <div className="pointer-events-none hidden md:block absolute top-[10%] left-[44%] -translate-x-1/2 w-[540px] h-[290px] bg-[radial-gradient(ellipse_at_center,rgba(24,14,16,0.48)_0%,rgba(24,14,16,0.20)_54%,transparent_78%)]" />
+          <div className="pointer-events-none hidden md:block absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#180E10]/30 to-transparent" />
 
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-1.5 w-full sm:w-auto">
+          {/* Overlay Editorial Narrative & CTAs — Bottom on Mobile 9:16, Sunlit Upper-Center Cavity on Desktop 16:9 */}
+          <div className="absolute inset-x-0 bottom-0 md:bottom-auto md:top-[15%] lg:top-[14.5%] xl:top-[15.5%] md:inset-x-auto md:left-[44%] md:-translate-x-1/2 z-10 pb-5 md:pb-0 pt-16 md:pt-0 w-full md:w-[90%] md:max-w-[400px] lg:max-w-[460px] px-4 sm:px-6 md:px-0">
+            <div className="space-y-2.5 md:text-center">
+              <div className="w-9 sm:w-10 h-[1.5px] bg-[#E8B4BE]/90 rounded-full md:mx-auto" />
+
+              <h1 className="font-serif text-[2rem] sm:text-4xl md:text-[2.15rem] lg:text-[2.65rem] xl:text-[3rem] text-white font-normal tracking-tight leading-[1.06] drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]">
+                Little details. <br />
+                <span className="italic font-light text-[#FCE3E8]">
+                  Beautiful emotions.
+                </span>
+              </h1>
+
+              <p className="text-[12.5px] sm:text-sm lg:text-[14px] text-white/95 leading-relaxed max-w-md md:mx-auto font-normal drop-shadow-[0_1px_6px_rgba(0,0,0,0.45)]">
+                Everlasting crochet flowers, bespoke bouquets, and handmade memory scrapbooks —
+                crafted stitch by stitch in Vadodara.
+              </p>
+
+              {/* Side-by-Side CTAs */}
+              <div className="grid grid-cols-2 sm:flex sm:flex-row items-center md:justify-center gap-2.5 pt-1 w-full md:w-auto">
                 <Link href="/shop" className="w-full sm:w-auto">
-                  <Button variant="primary" size="lg" className="w-full sm:w-auto shadow-craft hover:shadow-craft-elevated transition-all">
-                    <span>Explore Collection</span>
-                    <ArrowRight className="w-4 h-4 ml-1.5" />
+                  <Button
+                    variant="primary"
+                    size="md"
+                    className="w-full sm:w-auto h-10 md:h-11 px-3 md:px-5 text-xs sm:text-[13px] whitespace-nowrap shadow-craft-elevated border border-white/20"
+                  >
+                    <span className="md:hidden">Explore Shop</span>
+                    <span className="hidden md:inline">Explore Collection</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-1.5 shrink-0" />
                   </Button>
                 </Link>
 
                 <Link href="/custom-orders" className="w-full sm:w-auto">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto bg-surface/85 hover:bg-surface border-border-subtle hover:border-primary/50 transition-all">
-                    <span>Customise Your Gift</span>
+                  <Button
+                    variant="outline"
+                    size="md"
+                    className="w-full sm:w-auto h-10 md:h-11 px-3 md:px-5 text-xs sm:text-[13px] whitespace-nowrap bg-[#180E10]/35 hover:bg-[#180E10]/55 backdrop-blur-md text-white border-white/45 hover:border-white/80 transition-all"
+                  >
+                    <span className="md:hidden">Custom Gift</span>
+                    <span className="hidden md:inline">Customise Gift</span>
                   </Button>
                 </Link>
               </div>
 
-              {/* Social Proof & Local Trust */}
-              <div className="flex items-center justify-center lg:justify-start gap-3 pt-1">
-                <div className="flex -space-x-2 overflow-hidden">
-                  <div className="inline-block h-7 w-7 rounded-full ring-2 ring-canvas bg-blush flex items-center justify-center text-[10px] font-bold text-rose">
-                    MD
-                  </div>
-                  <div className="inline-block h-7 w-7 rounded-full ring-2 ring-canvas bg-surface border border-border-subtle flex items-center justify-center text-[10px] font-bold text-ink">
-                    AP
-                  </div>
-                  <div className="inline-block h-7 w-7 rounded-full ring-2 ring-canvas bg-rose/15 flex items-center justify-center text-[10px] font-bold text-rose">
-                    PS
-                  </div>
+              {/* Compact Inline Social Proof */}
+              <div className="flex items-center md:justify-center gap-2 pt-0.5 text-[11px] text-white/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.45)]">
+                <div className="flex items-center gap-0.5 text-amber-400 shrink-0">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-2.5 h-2.5 fill-current" />
+                  ))}
                 </div>
-                <div className="text-left">
-                  <div className="flex items-center gap-1 text-amber-500">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3 h-3 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-[11px] text-ink-muted">
-                    <strong className="text-ink font-semibold">500+ smiles</strong> delivered across Vadodara
-                  </p>
-                </div>
+                <span>
+                  <strong className="text-white font-semibold">500+ smiles</strong> delivered across Vadodara
+                </span>
               </div>
+            </div>
+          </div>
+        </div>
 
-              {/* Quiet Trust Attributes Card */}
-              <div className="pt-2">
-                <div className="bg-surface/85 backdrop-blur-sm rounded-2xl border border-border-subtle/80 p-3 sm:p-4 grid grid-cols-3 divide-x divide-border-subtle/70 text-center shadow-subtle max-w-md mx-auto lg:mx-0">
-                  <div className="px-2">
-                    <p className="font-serif text-lg sm:text-2xl font-bold text-ink">100%</p>
-                    <p className="text-[10px] sm:text-[11px] uppercase tracking-wider text-ink-muted mt-0.5">
-                      Slow Crochet
-                    </p>
-                  </div>
-                  <div className="px-2">
-                    <p className="font-serif text-lg sm:text-2xl font-bold text-rose">Forever</p>
-                    <p className="text-[10px] sm:text-[11px] uppercase tracking-wider text-ink-muted mt-0.5">
-                      Never Withers
-                    </p>
-                  </div>
-                  <div className="px-2">
-                    <p className="font-serif text-lg sm:text-2xl font-bold text-ink">Vadodara</p>
-                    <p className="text-[10px] sm:text-[11px] uppercase tracking-wider text-ink-muted mt-0.5">
-                      City Delivery
-                    </p>
-                  </div>
-                </div>
+        {/* Seamless Boutique Promise Strip Bridging Hero to Marquee */}
+        <div className="bg-surface border-t border-white/10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-3 divide-x divide-border-subtle/70 py-3 sm:py-4 text-center">
+              <div className="px-2">
+                <p className="font-serif text-base sm:text-xl font-bold text-ink">100%</p>
+                <p className="text-[9px] sm:text-[11px] uppercase tracking-wider text-ink-muted mt-0.5">
+                  Slow Crochet
+                </p>
+              </div>
+              <div className="px-2">
+                <p className="font-serif text-base sm:text-xl font-bold text-rose">Forever</p>
+                <p className="text-[9px] sm:text-[11px] uppercase tracking-wider text-ink-muted mt-0.5">
+                  Never Withers
+                </p>
+              </div>
+              <div className="px-2">
+                <p className="font-serif text-base sm:text-xl font-bold text-ink">Vadodara</p>
+                <p className="text-[9px] sm:text-[11px] uppercase tracking-wider text-ink-muted mt-0.5">
+                  City Delivery
+                </p>
               </div>
             </div>
           </div>

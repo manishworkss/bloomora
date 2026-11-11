@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import {
   ShoppingBag,
   Menu,
@@ -18,11 +19,24 @@ import { useCart } from '@/context/CartContext';
 import { DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp';
 
 export const Header: React.FC = () => {
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
   const { totalItems, openDrawer } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [shopDropdownOpen, setShopDropdownOpen] = useState(false);
   const [mobileShopOpen, setMobileShopOpen] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [categories, setCategories] = useState<{ id: string; name: string; slug: string }[]>([]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [pathname]);
 
   useEffect(() => {
     fetch('/api/store/categories')
@@ -35,29 +49,69 @@ export const Header: React.FC = () => {
       .catch(() => {});
   }, []);
 
-  // Lock body scroll when mobile menu drawer is open
+  // Lock body scroll when mobile menu drawer is open & clear residual hover state on close
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+      setIsHovered(false);
     }
     return () => {
       document.body.style.overflow = '';
     };
   }, [mobileMenuOpen]);
 
+  // Luxury editorial transparent overlay over Homepage hero before scroll/hover; crisp white surface on scroll or inner pages
+  const isTransparentHero =
+    isHomePage && !isScrolled && !isHovered && !mobileMenuOpen && !shopDropdownOpen;
+
+  const getNavLinkClass = (href: string, isGroup = false) => {
+    const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
+    const hoverText = isGroup ? 'group-hover:text-blush' : 'hover:text-blush';
+    const lightHoverText = isGroup ? 'group-hover:text-primary' : 'hover:text-primary';
+
+    if (isTransparentHero) {
+      return `text-xs uppercase font-medium tracking-widest transition-colors py-1 whitespace-nowrap ${
+        isActive
+          ? 'text-white border-b border-white/70'
+          : `text-white/90 ${hoverText}`
+      } drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]`;
+    }
+    return `text-xs uppercase font-medium tracking-widest transition-colors py-1 whitespace-nowrap ${
+      isActive ? 'text-primary font-semibold' : `text-ink ${lightHoverText}`
+    }`;
+  };
+
   return (
     <>
-      <header className="sticky top-0 z-40 bg-canvas/95 backdrop-blur-md border-b border-border-subtle transition-all duration-200 w-full max-w-full">
+      <header
+        onMouseEnter={() => {
+          if (typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches) {
+            setIsHovered(true);
+          }
+        }}
+        onMouseLeave={() => setIsHovered(false)}
+        className={`sticky top-0 z-40 w-full max-w-full transition-all duration-300 ${
+          isHomePage ? '-mb-16 md:-mb-20' : ''
+        } ${
+          isTransparentHero
+            ? 'bg-gradient-to-b from-[#180E10]/55 via-[#180E10]/20 to-transparent border-b border-transparent'
+            : 'bg-surface/95 backdrop-blur-md border-b border-border-subtle shadow-sm'
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20 w-full">
+          <div className="flex items-center justify-between h-16 md:h-20 w-full">
             {/* Mobile Menu Hamburger */}
             <div className="flex items-center lg:hidden">
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 -ml-2 text-ink hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
+                className={`p-2 -ml-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg ${
+                  isTransparentHero
+                    ? 'text-white hover:bg-white/15 drop-shadow-sm'
+                    : 'text-ink hover:text-primary'
+                }`}
                 aria-label="Toggle navigation menu"
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -77,7 +131,11 @@ export const Header: React.FC = () => {
                     alt="Bloomora Handcrafted Creations"
                     fill
                     priority
-                    className="object-contain"
+                    className={`object-contain transition-all duration-300 ${
+                      isTransparentHero
+                        ? 'brightness-0 invert drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)]'
+                        : ''
+                    }`}
                     sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, 176px"
                   />
                 </div>
@@ -86,10 +144,7 @@ export const Header: React.FC = () => {
 
             {/* Desktop Single-Line Navigation */}
             <nav className="hidden lg:flex items-center space-x-8 xl:space-x-10 whitespace-nowrap">
-              <Link
-                href="/"
-                className="text-xs uppercase font-medium tracking-widest text-ink hover:text-primary transition-colors py-1 whitespace-nowrap"
-              >
+              <Link href="/" className={getNavLinkClass('/')}>
                 Home
               </Link>
 
@@ -101,10 +156,16 @@ export const Header: React.FC = () => {
               >
                 <Link
                   href="/shop"
-                  className="inline-flex items-center gap-1.5 text-xs uppercase font-medium tracking-widest text-ink group-hover:text-primary transition-colors whitespace-nowrap"
+                  className={`inline-flex items-center gap-1.5 ${getNavLinkClass('/shop', true)}`}
                 >
                   <span>Shop</span>
-                  <ChevronDown className="w-3.5 h-3.5 text-ink-muted group-hover:text-primary transition-transform duration-200 group-hover:rotate-180" />
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180 ${
+                      isTransparentHero
+                        ? 'text-white/80 group-hover:text-blush'
+                        : 'text-ink-muted group-hover:text-primary'
+                    }`}
+                  />
                 </Link>
 
                 {/* Rich Dropdown Panel */}
@@ -140,22 +201,16 @@ export const Header: React.FC = () => {
               {/* Happy Family & Reviews Link */}
               <Link
                 href="/happy-family"
-                className="text-xs uppercase font-medium tracking-widest text-ink hover:text-primary transition-colors py-1 whitespace-nowrap flex items-center gap-1.5"
+                className={`flex items-center gap-1.5 ${getNavLinkClass('/happy-family')}`}
               >
                 <span>Happy Family & Reviews</span>
               </Link>
 
-              <Link
-                href="/about"
-                className="text-xs uppercase font-medium tracking-widest text-ink hover:text-primary transition-colors py-1 whitespace-nowrap"
-              >
+              <Link href="/about" className={getNavLinkClass('/about')}>
                 Our Story
               </Link>
 
-              <Link
-                href="/contact"
-                className="text-xs uppercase font-medium tracking-widest text-ink hover:text-primary transition-colors py-1 whitespace-nowrap"
-              >
+              <Link href="/contact" className={getNavLinkClass('/contact')}>
                 Contact
               </Link>
             </nav>
@@ -165,7 +220,11 @@ export const Header: React.FC = () => {
               {/* Order Tracking / Lookup */}
               <Link
                 href="/orders/track"
-                className="p-2 text-ink hover:text-primary hover:bg-surface rounded-lg transition-colors hidden sm:inline-flex"
+                className={`p-2 rounded-lg transition-colors hidden sm:inline-flex ${
+                  isTransparentHero
+                    ? 'text-white/95 hover:text-white hover:bg-white/15'
+                    : 'text-ink hover:text-primary hover:bg-canvas'
+                }`}
                 aria-label="Track your order"
                 title="Track order status"
               >
@@ -179,10 +238,20 @@ export const Header: React.FC = () => {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200 text-xs font-semibold tracking-wide transition-all shadow-subtle"
+                className={`hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border text-xs font-semibold tracking-wide transition-all shadow-subtle ${
+                  isTransparentHero
+                    ? 'bg-white/15 hover:bg-white/25 text-white border-white/35 backdrop-blur-md'
+                    : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border-emerald-200'
+                }`}
                 title="Chat with Bloomora on WhatsApp"
               >
-                <MessageCircle className="w-3.5 h-3.5 text-whatsapp fill-whatsapp" />
+                <MessageCircle
+                  className={`w-3.5 h-3.5 ${
+                    isTransparentHero
+                      ? 'text-emerald-300 fill-emerald-300'
+                      : 'text-whatsapp fill-whatsapp'
+                  }`}
+                />
                 <span>WhatsApp Us</span>
               </Link>
 
@@ -190,12 +259,22 @@ export const Header: React.FC = () => {
               <button
                 type="button"
                 onClick={openDrawer}
-                className="relative p-2 text-ink hover:text-primary hover:bg-surface rounded-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className={`relative p-2 rounded-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                  isTransparentHero
+                    ? 'text-white hover:bg-white/15'
+                    : 'text-ink hover:text-primary hover:bg-canvas'
+                }`}
                 aria-label={`Shopping bag with ${totalItems} items`}
               >
                 <ShoppingBag className="w-5 h-5 stroke-[1.8]" />
                 {totalItems > 0 && (
-                  <span className="absolute top-1 right-1 flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-bold text-white bg-primary rounded-full animate-in zoom-in-75 duration-200">
+                  <span
+                    className={`absolute top-1 right-1 flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-bold rounded-full animate-in zoom-in-75 duration-200 ${
+                      isTransparentHero
+                        ? 'text-primary bg-white shadow-sm'
+                        : 'text-white bg-primary'
+                    }`}
+                  >
                     {totalItems}
                   </span>
                 )}

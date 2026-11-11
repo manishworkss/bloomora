@@ -156,7 +156,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </header>
 
         {/* Mobile Sub-Navigation Bar (Thumb-Friendly Studio Navigation) */}
-        <div className="md:hidden bg-surface border-b border-border-subtle overflow-x-auto py-2.5 px-4 flex items-center gap-2 select-none">
+        <div className="md:hidden bg-surface border-b border-border-subtle overflow-x-auto scrollbar-none py-2.5 px-4 flex items-center gap-2 select-none">
           {ADMIN_LINKS.map((link) => {
             const Icon = link.icon;
             const isActive = pathname.startsWith(link.href);
@@ -215,7 +215,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
         </header>
 
-        <main className="flex-1 p-6 sm:p-10 overflow-y-auto max-w-7xl w-full mx-auto space-y-8">
+        <main className="flex-1 p-4 sm:p-6 lg:p-10 overflow-y-auto max-w-7xl w-full mx-auto space-y-6 sm:space-y-8">
           {children}
         </main>
       </div>
