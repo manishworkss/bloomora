@@ -182,3 +182,40 @@ test('TC-REVIEW-02: Filters reviews by 5-star rating and featured status', () =>
   assert.equal(featured.length, 2);
 });
 
+// 7. Cart Item Signature & Indian Phone Normalization
+function getCartItemKey(item) {
+  const addonIds = (item.addOns || []).map((a) => a.id).sort().join(',');
+  const note = (item.giftMessage || '').trim();
+  return `${item.productId}::${item.variantId || 'base'}::${addonIds}::${note}`;
+}
+
+function normalizeIndianPhone(input) {
+  const digits = input.replace(/\D/g, '');
+  if (digits.length === 12 && digits.startsWith('91')) return digits.slice(2);
+  if (digits.length === 11 && digits.startsWith('0')) return digits.slice(1);
+  return digits;
+}
+
+test('TC-CART-02: Differentiates cart lines by add-ons and gift message signature', () => {
+  const plainBouquet = { productId: 'prod-1', addOns: [], giftMessage: '' };
+  const giftedBouquet = {
+    productId: 'prod-1',
+    addOns: [{ id: 'lights' }, { id: 'card' }],
+    giftMessage: 'Happy Birthday!',
+  };
+  const reorderedAddonsSameGift = {
+    productId: 'prod-1',
+    addOns: [{ id: 'card' }, { id: 'lights' }],
+    giftMessage: ' Happy Birthday! ',
+  };
+
+  assert.notEqual(getCartItemKey(plainBouquet), getCartItemKey(giftedBouquet));
+  assert.equal(getCartItemKey(giftedBouquet), getCartItemKey(reorderedAddonsSameGift));
+});
+
+test('TC-PHONE-01: Normalizes +91 and leading-0 Indian numbers to 10 digits', () => {
+  assert.equal(normalizeIndianPhone('+91 98765 43210'), '9876543210');
+  assert.equal(normalizeIndianPhone('09876543210'), '9876543210');
+  assert.equal(normalizeIndianPhone('9876543210'), '9876543210');
+});
+

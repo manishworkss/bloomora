@@ -2,26 +2,21 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import {
   Heart,
   Star,
   Sparkles,
-  MessageCircle,
-  ArrowRight,
   Instagram,
   Gift,
   Video,
   Camera,
   CheckCircle2,
-  Filter,
   PlusCircle,
   Loader2,
-  Play,
-  Volume2,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { CustomerReviewModal } from '@/components/storefront/CustomerReviewModal';
+import { MediaLightbox } from '@/components/storefront/MediaLightbox';
 import { CustomerReview } from '@/types';
 
 type FilterTab = 'all' | 'photos' | 'videos' | '5stars';
@@ -32,8 +27,7 @@ export default function HappyFamilyPage() {
   const [activeFilter, setActiveFilter] = useState<FilterTab>('all');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeMediaModal, setActiveMediaModal] = useState<{
-    type: 'image' | 'video';
-    url: string;
+    images: string[];
     caption?: string;
   } | null>(null);
 
@@ -100,7 +94,7 @@ export default function HappyFamilyPage() {
       {/* Filter Tabs & Stats Bar (Only when reviews exist) */}
       {reviews.length > 0 && (
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-3 bg-surface rounded-2xl border border-border-subtle shadow-subtle">
-          <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
+          <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 scrollbar-none">
             <button
               type="button"
               onClick={() => setActiveFilter('all')}
@@ -227,8 +221,7 @@ export default function HappyFamilyPage() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer"
                     onClick={() =>
                       setActiveMediaModal({
-                        type: 'image',
-                        url: story.images[0],
+                        images: story.images,
                         caption: `${story.customerName} • ${story.productName}`,
                       })
                     }
@@ -369,26 +362,14 @@ export default function HappyFamilyPage() {
         onSubmitted={fetchReviews}
       />
 
-      {/* Image Zoom Modal */}
+      {/* Image Zoom Lightbox Modal */}
       {activeMediaModal && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/80 backdrop-blur-sm animate-in fade-in"
-          onClick={() => setActiveMediaModal(null)}
-        >
-          <div className="relative max-w-3xl max-h-[90vh] bg-surface rounded-2xl overflow-hidden p-2 shadow-2xl">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={activeMediaModal.url}
-              alt="Customer review photo"
-              className="max-h-[80vh] w-auto object-contain rounded-xl"
-            />
-            {activeMediaModal.caption && (
-              <p className="text-center text-xs font-semibold text-ink pt-2">
-                {activeMediaModal.caption}
-              </p>
-            )}
-          </div>
-        </div>
+        <MediaLightbox
+          images={activeMediaModal.images}
+          caption={activeMediaModal.caption}
+          alt="Customer review photo"
+          onClose={() => setActiveMediaModal(null)}
+        />
       )}
     </div>
   );

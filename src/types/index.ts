@@ -83,6 +83,7 @@ export interface GiftAddOn {
 }
 
 export interface CartItem {
+  itemKey?: string;
   productId: string;
   variantId?: string;
   title: string;

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { nanoid } from 'nanoid';
 import { saveOrderAsync } from '@/lib/orders-store';
+import { getSettingsAsync } from '@/lib/settings-store';
 import { Order } from '@/types';
 
 export const dynamic = 'force-dynamic';
@@ -59,8 +60,12 @@ export async function POST(request: NextRequest) {
     const lookupToken = nanoid(24);
     const orderId = `ord-${Date.now()}`;
 
+    const settings = await getSettingsAsync();
     const subtotal = items.reduce((sum, item) => sum + (item.unitPrice || 0) * item.quantity, 0);
-    const deliveryFee = 50.0;
+    const deliveryFee =
+      typeof settings.deliveryFee === 'number' && settings.deliveryFee >= 0
+        ? settings.deliveryFee
+        : 50.0;
     const grandTotal = subtotal + deliveryFee;
 
     const newOrder: Order = {

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Plus, Minus, Trash2, ShoppingBag, ArrowRight, MessageCircle, Flower2 } from 'lucide-react';
-import { useCart } from '@/context/CartContext';
+import { useCart, getCartItemKey, formatCartLineExtras } from '@/context/CartContext';
 import { formatINR } from '@/lib/formatters';
 import { Button } from '@/components/ui/Button';
 import { getOrderInquiryLink } from '@/lib/whatsapp';
@@ -27,7 +27,7 @@ export const CartDrawer: React.FC = () => {
   }, [isDrawerOpen]);
 
   const itemsSummary = items
-    .map((i) => `${i.title}${i.variantTitle ? ` (${i.variantTitle})` : ''} x ${i.quantity}`)
+    .map((i) => `${i.title}${formatCartLineExtras(i)} x ${i.quantity}`)
     .join(', ');
 
   const whatsappCheckoutLink = getOrderInquiryLink('NEW-CART-ENQUIRY', formatINR(subtotal), itemsSummary);
@@ -88,17 +88,19 @@ export const CartDrawer: React.FC = () => {
                       </p>
                     </div>
                     <div className="pt-2">
-                      <Button variant="primary" onClick={closeDrawer} className="w-full">
-                        <Link href="/shop" className="w-full">
+                      <Link href="/shop" onClick={closeDrawer} className="block w-full">
+                        <Button variant="primary" className="w-full">
                           Explore Creations
-                        </Link>
-                      </Button>
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 ) : (
-                  items.map((item) => (
+                  items.map((item) => {
+                    const lineKey = getCartItemKey(item);
+                    return (
                     <div
-                      key={`${item.productId}-${item.variantId || 'base'}`}
+                      key={lineKey}
                       className="flex gap-4 p-3.5 bg-surface rounded-xl border border-border-subtle/80 shadow-sm"
                     >
                       {/* Thumbnail */}
@@ -151,8 +153,8 @@ export const CartDrawer: React.FC = () => {
                           <div className="flex items-center border border-border-subtle rounded-md bg-canvas">
                             <button
                               type="button"
-                              onClick={() => updateQuantity(item.productId, item.variantId, item.quantity - 1)}
-                              className="p-1 hover:text-primary transition-colors text-ink-muted"
+                              onClick={() => updateQuantity(item.productId, item.variantId, item.quantity - 1, lineKey)}
+                              className="p-1.5 hover:text-primary transition-colors text-ink-muted"
                               aria-label="Decrease quantity"
                             >
                               <Minus className="w-3.5 h-3.5" />
@@ -162,8 +164,8 @@ export const CartDrawer: React.FC = () => {
                             </span>
                             <button
                               type="button"
-                              onClick={() => updateQuantity(item.productId, item.variantId, item.quantity + 1)}
-                              className="p-1 hover:text-primary transition-colors text-ink-muted"
+                              onClick={() => updateQuantity(item.productId, item.variantId, item.quantity + 1, lineKey)}
+                              className="p-1.5 hover:text-primary transition-colors text-ink-muted"
                               aria-label="Increase quantity"
                             >
                               <Plus className="w-3.5 h-3.5" />
@@ -172,8 +174,8 @@ export const CartDrawer: React.FC = () => {
 
                           <button
                             type="button"
-                            onClick={() => removeItem(item.productId, item.variantId)}
-                            className="text-ink-muted hover:text-red-600 transition-colors p-1"
+                            onClick={() => removeItem(item.productId, item.variantId, lineKey)}
+                            className="text-ink-muted hover:text-red-600 transition-colors p-1.5"
                             aria-label="Remove item"
                           >
                             <Trash2 className="w-4 h-4" />
@@ -181,7 +183,8 @@ export const CartDrawer: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                  ))
+                    );
+                  })
                 )}
               </div>
 

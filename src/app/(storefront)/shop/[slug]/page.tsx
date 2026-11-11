@@ -5,23 +5,19 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useParams, notFound } from 'next/navigation';
 import {
-  Heart,
   ShoppingBag,
   MessageCircle,
   Truck,
   ShieldCheck,
   Clock,
   ChevronRight,
+  ChevronLeft,
+  Expand,
   Plus,
   Minus,
   Check,
-  Sparkles,
   Gift,
   Star,
-  Camera,
-  Video,
-  CheckCircle2,
-  X,
   Flower2,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -32,6 +28,7 @@ import { formatINR } from '@/lib/formatters';
 import { getProductInquiryLink } from '@/lib/whatsapp';
 import { CustomerReviewModal } from '@/components/storefront/CustomerReviewModal';
 import { ProductCard } from '@/components/storefront/ProductCard';
+import { MediaLightbox } from '@/components/storefront/MediaLightbox';
 import { Product, CustomerReview } from '@/types';
 
 interface AddOnOption {
@@ -103,8 +100,8 @@ export default function ProductDetailPage() {
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [activeMediaModal, setActiveMediaModal] = useState<{
-    type: 'image' | 'video';
-    url: string;
+    images: string[];
+    index: number;
     caption?: string;
   } | null>(null);
   const { addItem } = useCart();
@@ -194,7 +191,7 @@ export default function ProductDetailPage() {
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 pb-24 lg:pb-12 space-y-12">
       {/* Breadcrumbs */}
       <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-ink-muted">
         <Link href="/" className="hover:text-primary transition-colors">
@@ -220,11 +217,11 @@ export default function ProductDetailPage() {
       </nav>
 
       {/* Main Detail Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        {/* Left Column: Image Gallery with Framer Motion Crossfade */}
-        <div className="space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        {/* Left Column: Sticky Desktop Image Gallery with Lightbox & Arrow Controls */}
+        <div className="space-y-4 lg:sticky lg:top-24">
           {/* Main Large Image */}
-          <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-surface border border-border-subtle shadow-craft">
+          <div className="group relative aspect-[4/5] rounded-2xl overflow-hidden bg-surface border border-border-subtle shadow-craft">
             {currentImage?.imageUrl ? (
               <AnimatePresence mode="wait">
                 <motion.div
@@ -233,7 +230,14 @@ export default function ProductDetailPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.35, ease: 'easeOut' }}
-                  className="relative w-full h-full"
+                  onClick={() =>
+                    setActiveMediaModal({
+                      images: images.map((i) => i.imageUrl),
+                      index: selectedImageIndex,
+                      caption: product.title,
+                    })
+                  }
+                  className="relative w-full h-full cursor-zoom-in"
                 >
                   <Image
                     src={currentImage.imageUrl}
@@ -260,11 +264,54 @@ export default function ProductDetailPage() {
                 <Badge variant="terracotta">Handcrafted to Order</Badge>
               )}
             </div>
+
+            {currentImage?.imageUrl && (
+              <button
+                type="button"
+                onClick={() =>
+                  setActiveMediaModal({
+                    images: images.map((i) => i.imageUrl),
+                    index: selectedImageIndex,
+                    caption: product.title,
+                  })
+                }
+                aria-label="Zoom product photo"
+                className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-surface/90 hover:bg-surface text-ink border border-border-subtle shadow-sm flex items-center justify-center transition-all"
+              >
+                <Expand className="w-4 h-4" />
+              </button>
+            )}
+
+            {images.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setSelectedImageIndex((prev) => (prev - 1 + images.length) % images.length)
+                  }
+                  aria-label="Previous image"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-surface/90 hover:bg-surface text-ink border border-border-subtle shadow-md flex items-center justify-center sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedImageIndex((prev) => (prev + 1) % images.length)}
+                  aria-label="Next image"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-surface/90 hover:bg-surface text-ink border border-border-subtle shadow-md flex items-center justify-center sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+                <div className="absolute bottom-3 right-3 z-10 px-2.5 py-0.5 rounded-full bg-ink/70 text-white text-[10px] font-semibold">
+                  {selectedImageIndex + 1} / {images.length}
+                </div>
+              </>
+            )}
           </div>
 
           {/* Thumbnail Strip with Spring Hover */}
           {images.length > 1 && (
-            <div className="flex items-center gap-3 overflow-x-auto pb-1">
+            <div className="flex items-center gap-3 overflow-x-auto pb-1 scrollbar-none">
               {images.map((img, idx) => (
                 <motion.button
                   key={img.id}
@@ -556,8 +603,8 @@ export default function ProductDetailPage() {
                       className="relative aspect-video rounded-xl bg-canvas overflow-hidden cursor-pointer"
                       onClick={() =>
                         setActiveMediaModal({
-                          type: 'image',
-                          url: story.images[0],
+                          images: story.images,
+                          index: 0,
                           caption: `${story.customerName} • ${story.productName}`,
                         })
                       }
@@ -615,40 +662,19 @@ export default function ProductDetailPage() {
         defaultProductName={product.title}
       />
 
-      {/* Lightbox Modal */}
+      {/* Shared Accessible Lightbox Modal */}
       {activeMediaModal && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/80 backdrop-blur-sm animate-in fade-in"
-          onClick={() => setActiveMediaModal(null)}
-        >
-          <div
-            className="relative max-w-2xl max-h-[85vh] bg-surface rounded-2xl overflow-hidden p-2 shadow-2xl space-y-2"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setActiveMediaModal(null)}
-              className="absolute top-3 right-3 z-10 w-7 h-7 rounded-full bg-ink/70 text-white flex items-center justify-center hover:bg-ink"
-            >
-              <X className="w-4 h-4" />
-            </button>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={activeMediaModal.url}
-              alt="Enlarged review photo"
-              className="max-h-[75vh] w-auto max-w-full rounded-xl object-contain mx-auto"
-            />
-            {activeMediaModal.caption && (
-              <p className="text-center text-xs font-semibold text-ink pt-1 pb-1">
-                {activeMediaModal.caption}
-              </p>
-            )}
-          </div>
-        </div>
+        <MediaLightbox
+          images={activeMediaModal.images}
+          initialIndex={activeMediaModal.index}
+          caption={activeMediaModal.caption}
+          onClose={() => setActiveMediaModal(null)}
+        />
       )}
 
       {/* More Handcrafted Creations (Swipeable on mobile, 4-col desktop matching Image 1) */}
       {relatedProducts.length > 0 && (
-        <section className="pt-12 sm:pt-16 border-t border-border-subtle space-y-6 pb-20 lg:pb-0">
+        <section className="pt-12 sm:pt-16 border-t border-border-subtle space-y-6">
           <div className="flex items-center justify-between">
             <div className="space-y-1">
               <span className="text-xs uppercase font-bold tracking-widest text-rose">

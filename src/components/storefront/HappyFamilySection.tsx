@@ -10,14 +10,12 @@ import {
   CheckCircle2,
   PlusCircle,
   ArrowRight,
-  Sparkles,
   Users,
-  Play,
-  X,
   Instagram,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { CustomerReviewModal } from './CustomerReviewModal';
+import { MediaLightbox } from './MediaLightbox';
 import { CustomerReview } from '@/types';
 
 interface HappyFamilySectionProps {
@@ -31,8 +29,7 @@ export function HappyFamilySection({ initialReviews }: HappyFamilySectionProps) 
   const [activeFilter, setActiveFilter] = useState<FilterTab>('all');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeMediaModal, setActiveMediaModal] = useState<{
-    type: 'image' | 'video';
-    url: string;
+    images: string[];
     caption?: string;
   } | null>(null);
 
@@ -140,7 +137,7 @@ export function HappyFamilySection({ initialReviews }: HappyFamilySectionProps) 
       ) : (
         <>
           {/* Filter Tabs */}
-          <div className="flex items-center justify-between gap-3 overflow-x-auto pb-1">
+          <div className="flex items-center justify-between gap-3 overflow-x-auto pb-1 scrollbar-none">
             <div className="flex items-center gap-1.5 bg-surface p-1.5 rounded-2xl border border-border-subtle shadow-subtle shrink-0">
               <button
                 type="button"
@@ -239,8 +236,7 @@ export function HappyFamilySection({ initialReviews }: HappyFamilySectionProps) 
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer"
                         onClick={() =>
                           setActiveMediaModal({
-                            type: 'image',
-                            url: story.images[0],
+                            images: story.images,
                             caption: `${story.customerName} • ${story.productName}`,
                           })
                         }
@@ -332,35 +328,14 @@ export function HappyFamilySection({ initialReviews }: HappyFamilySectionProps) 
         onSubmitted={reloadReviews}
       />
 
-      {/* Image Lightbox Modal */}
+      {/* Shared Multi-Photo Lightbox Modal */}
       {activeMediaModal && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/80 backdrop-blur-sm animate-in fade-in"
-          onClick={() => setActiveMediaModal(null)}
-        >
-          <div
-            className="relative max-w-2xl max-h-[85vh] bg-surface rounded-2xl overflow-hidden p-2 shadow-2xl space-y-2"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setActiveMediaModal(null)}
-              className="absolute top-3 right-3 z-10 w-7 h-7 rounded-full bg-ink/70 text-white flex items-center justify-center hover:bg-ink"
-            >
-              <X className="w-4 h-4" />
-            </button>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={activeMediaModal.url}
-              alt="Enlarged review photo"
-              className="max-h-[75vh] w-auto max-w-full rounded-xl object-contain mx-auto"
-            />
-            {activeMediaModal.caption && (
-              <p className="text-center text-xs font-semibold text-ink pt-1 pb-1">
-                {activeMediaModal.caption}
-              </p>
-            )}
-          </div>
-        </div>
+        <MediaLightbox
+          images={activeMediaModal.images}
+          caption={activeMediaModal.caption}
+          alt="Customer review photo"
+          onClose={() => setActiveMediaModal(null)}
+        />
       )}
     </section>
   );

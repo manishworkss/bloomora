@@ -2,16 +2,28 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { MessageCircle } from 'lucide-react';
 import { DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp';
+import { useCart } from '@/context/CartContext';
 
 export const WhatsAppConcierge: React.FC = () => {
+  const pathname = usePathname();
+  const { isDrawerOpen } = useCart();
+
+  if (isDrawerOpen) return null;
+
+  const isProductDetail = pathname?.startsWith('/shop/') && pathname !== '/shop';
+  const bottomOffsetClass = isProductDetail ? 'bottom-20 lg:bottom-6' : 'bottom-5 sm:bottom-6';
+
   const conciergeUrl = `https://wa.me/${DEFAULT_WHATSAPP_NUMBER}?text=${encodeURIComponent(
     "Hi Bloomora! 🌸 I'm looking for gift recommendations in Vadodara. Can you help me pick the perfect handmade creation?"
   )}`;
 
   return (
-    <div className="fixed bottom-20 lg:bottom-6 right-4 sm:right-6 z-40 flex flex-col items-end gap-2.5 select-none">
+    <div
+      className={`fixed ${bottomOffsetClass} right-4 sm:right-6 z-40 flex flex-col items-end gap-2.5 select-none transition-all duration-200`}
+    >
       {/* Floating Action Button */}
       <Link
         href={conciergeUrl}

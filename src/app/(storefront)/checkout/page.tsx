@@ -1,23 +1,21 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import {
-  ShieldCheck,
   Truck,
-  ArrowRight,
   MessageCircle,
   MapPin,
   ShoppingBag,
   CheckCircle2,
   Flower2,
+  AlertCircle,
 } from 'lucide-react';
-import { useCart } from '@/context/CartContext';
+import { useCart, getCartItemKey, formatCartLineExtras } from '@/context/CartContext';
 import { formatINR } from '@/lib/formatters';
 import { Button } from '@/components/ui/Button';
-import { DEFAULT_WHATSAPP_NUMBER, buildWhatsAppLink } from '@/lib/whatsapp';
+import { buildWhatsAppLink } from '@/lib/whatsapp';
 
 const VADODARA_PINS = [
   '390001', '390002', '390004', '390007', '390008', '390010',
@@ -25,8 +23,14 @@ const VADODARA_PINS = [
   '390021', '390022', '390023', '390024', '390025',
 ];
 
+function normalizeIndianPhone(input: string): string {
+  const digits = input.replace(/\D/g, '');
+  if (digits.length === 12 && digits.startsWith('91')) return digits.slice(2);
+  if (digits.length === 11 && digits.startsWith('0')) return digits.slice(1);
+  return digits;
+}
+
 export default function CheckoutPage() {
-  const router = useRouter();
   const { items, subtotal, clearCart } = useCart();
 
   // Form State
@@ -36,12 +40,22 @@ export default function CheckoutPage() {
   const [landmark, setLandmark] = useState('');
   const [postalCode, setPostalCode] = useState('390001');
   const [notes, setNotes] = useState('');
+  const [deliveryFee, setDeliveryFee] = useState(50);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderCompleted, setOrderCompleted] = useState<any>(null);
 
-  // Vadodara Local Delivery Fee
-  const deliveryFee = 50;
+  useEffect(() => {
+    fetch('/api/store/settings')
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.success && typeof data.settings?.deliveryFee === 'number') {
+          setDeliveryFee(data.settings.deliveryFee);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const grandTotal = subtotal + deliveryFee;
 
   const isVadodaraPin =
@@ -54,11 +68,20 @@ export default function CheckoutPage() {
     e.preventDefault();
     if (items.length === 0) return;
 
+    const cleanPhone = normalizeIndianPhone(phone);
+    if (!/^[0-9]{10}$/.test(cleanPhone)) {
+      setErrorMsg('Please enter a valid 10-digit Indian mobile number.');
+      return;
+    }
+    if (!/^390\d{3}$/.test(postalCode.trim())) {
+      setErrorMsg('Currently we deliver across Vadodara PIN codes starting with 390.');
+      return;
+    }
+
     setIsSubmitting(true);
     setErrorMsg('');
 
     try {
-      const cleanPhone = phone.replace(/\D/g, '');
       const orderPayload = {
         customer: {
           name: name.trim(),
@@ -71,7 +94,7 @@ export default function CheckoutPage() {
         items: items.map((i) => ({
           productId: i.productId,
           variantId: i.variantId,
-          title: i.title,
+          title: `${i.title}${formatCartLineExtras(i)}`,
           unitPrice: i.unitPrice,
           quantity: i.quantity,
           imageUrl: i.imageUrl,
@@ -86,16 +109,33 @@ export default function CheckoutPage() {
       });
 
       const data = await res.json();
+      if (!res.ok || !data.success || !data.data?.orderNumber) {
+        setErrorMsg(
+          data?.error?.message ||
+            'Please verify your delivery details and mobile number, then try again.'
+        );
+        setIsSubmitting(false);
+        return;
+      }
 
-      const finalOrderNumber = data?.data?.orderNumber || `BLM-${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, '0')}-${Math.floor(1000 + Math.random() * 9000)}`;
-      const lookupToken = data?.data?.lookupToken;
+      const finalOrderNumber = data.data.orderNumber;
+      const lookupToken = data.data.lookupToken;
+      const finalDeliveryFee =
+        typeof data.data.deliveryFee === 'number' ? data.data.deliveryFee : deliveryFee;
+      const finalGrandTotal =
+        typeof data.data.grandTotal === 'number' ? data.data.grandTotal : grandTotal;
 
       const itemsSummary = items
-        .map((i) => `• ${i.title}${i.variantTitle ? ` (${i.variantTitle})` : ''} x ${i.quantity} (${formatINR(i.unitPrice * i.quantity)})`)
+        .map(
+          (i) =>
+            `• ${i.title}${formatCartLineExtras(i)} x ${i.quantity} (${formatINR(
+              i.unitPrice * i.quantity
+            )})`
+        )
         .join('\n');
 
       // WhatsApp Message
-      const message = `Hi Bloomora! 👋🌸\nI have placed an order on your website!\n\n🛍️ *Order Ref:* ${finalOrderNumber}\n\n*Items Ordered:*\n${itemsSummary}\n\n📦 *Delivery Address:*\n${name}\nPhone: ${phone}\n${address}\nLandmark: ${landmark || 'N/A'}\nVadodara PIN: ${postalCode}\nSpecial Notes: ${notes || 'None'}\n\n💵 *Total Amount:* ${formatINR(grandTotal)} (Includes ₹${deliveryFee} Vadodara delivery)\n\nPlease share your UPI QR so I can complete payment and you can start handcrafting! 💖`;
+      const message = `Hi Bloomora! 👋🌸\nI have placed an order on your website!\n\n🛍️ *Order Ref:* ${finalOrderNumber}\n\n*Items Ordered:*\n${itemsSummary}\n\n📦 *Delivery Address:*\n${name}\nPhone: ${cleanPhone}\n${address}\nLandmark: ${landmark || 'N/A'}\nVadodara PIN: ${postalCode}\nSpecial Notes: ${notes || 'None'}\n\n💵 *Total Amount:* ${formatINR(finalGrandTotal)} (Includes ₹${finalDeliveryFee} Vadodara delivery)\n\nPlease share your UPI QR so I can complete payment and you can start handcrafting! 💖`;
 
       const whatsappUrl = buildWhatsAppLink({ message });
 
@@ -103,8 +143,8 @@ export default function CheckoutPage() {
         orderNumber: finalOrderNumber,
         lookupToken,
         whatsappUrl,
-        grandTotal,
-        name,
+        grandTotal: finalGrandTotal,
+        name: name.trim(),
       });
 
       // Clear cart
@@ -143,15 +183,30 @@ export default function CheckoutPage() {
           </p>
         </div>
 
-        <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-          <Link href={orderCompleted.whatsappUrl} target="_blank" rel="noopener noreferrer">
-            <Button variant="whatsapp" size="lg">
+        <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 flex-wrap">
+          <Link
+            href={orderCompleted.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto"
+          >
+            <Button variant="whatsapp" size="lg" className="w-full sm:w-auto">
               <MessageCircle className="w-5 h-5 fill-current mr-2" />
               <span>Confirm on WhatsApp (+91 8271735190)</span>
             </Button>
           </Link>
-          <Link href="/shop">
-            <Button variant="outline" size="lg">
+          {orderCompleted.lookupToken && (
+            <Link
+              href={`/orders/track?token=${encodeURIComponent(orderCompleted.lookupToken)}`}
+              className="w-full sm:w-auto"
+            >
+              <Button variant="primary" size="lg" className="w-full sm:w-auto">
+                <span>Track Order</span>
+              </Button>
+            </Link>
+          )}
+          <Link href="/shop" className="w-full sm:w-auto">
+            <Button variant="outline" size="lg" className="w-full sm:w-auto">
               <span>Continue Shopping</span>
             </Button>
           </Link>
@@ -280,11 +335,21 @@ export default function CheckoutPage() {
             {isVadodaraPin ? (
               <div className="p-3 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 flex items-center gap-2">
                 <Truck className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Vadodara PIN verified: Flat local courier delivery of ₹50 applied.</span>
+                <span>Vadodara PIN verified: Flat local courier delivery of {formatINR(deliveryFee)} applied.</span>
               </div>
             ) : (
               <div className="p-3 rounded-lg bg-amber-50 border border-amber-200 text-xs text-amber-900">
                 ⚠️ We currently deliver within Vadodara (PIN codes starting with 390...). Please confirm your PIN code.
+              </div>
+            )}
+
+            {errorMsg && (
+              <div
+                role="alert"
+                className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-xs text-red-700 flex items-start gap-2"
+              >
+                <AlertCircle className="w-4 h-4 shrink-0 text-red-600 mt-0.5" />
+                <span>{errorMsg}</span>
               </div>
             )}
 
@@ -304,16 +369,16 @@ export default function CheckoutPage() {
         </div>
 
         {/* Right Summary: Items & WhatsApp Checkout */}
-        <div className="lg:col-span-5 space-y-6">
+        <div className="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
           <div className="bg-surface p-6 sm:p-8 rounded-2xl border border-border-subtle shadow-craft space-y-5">
             <h3 className="font-serif text-lg font-bold text-ink border-b border-border-subtle/80 pb-3">
-              Order Summary ({items.length} creations)
+              Order Summary ({items.length} {items.length === 1 ? 'creation' : 'creations'})
             </h3>
 
             {/* Items list */}
             <div className="divide-y divide-border-subtle/60 max-h-64 overflow-y-auto pr-1 space-y-3">
               {items.map((item) => (
-                <div key={`${item.productId}-${item.variantId || 'base'}`} className="flex gap-3 pt-3 first:pt-0">
+                <div key={getCartItemKey(item)} className="flex gap-3 pt-3 first:pt-0">
                   <div className="relative w-14 h-14 rounded-lg overflow-hidden bg-canvas border border-border-subtle shrink-0 flex items-center justify-center">
                     {item.imageUrl ? (
                       <Image src={item.imageUrl} alt={item.title} fill className="object-cover" sizes="56px" />
@@ -323,6 +388,16 @@ export default function CheckoutPage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-xs font-bold text-ink truncate">{item.title}</p>
+                    {item.addOns && item.addOns.length > 0 && (
+                      <p className="text-[10px] text-ink-muted line-clamp-1">
+                        +{item.addOns.map((a) => a.name).join(', ')}
+                      </p>
+                    )}
+                    {item.giftMessage && (
+                      <p className="text-[10px] text-rose italic truncate">
+                        💌 &ldquo;{item.giftMessage}&rdquo;
+                      </p>
+                    )}
                     <p className="text-[11px] text-ink-muted">Qty: {item.quantity}</p>
                     <p className="text-xs font-semibold text-primary">{formatINR(item.unitPrice * item.quantity)}</p>
                   </div>

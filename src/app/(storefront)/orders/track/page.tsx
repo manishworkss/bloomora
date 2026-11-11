@@ -61,12 +61,14 @@ function OrderTrackingContent() {
 
   const currentStepIndex = order
     ? STEPS.findIndex((s) => s.key === order.orderStatus)
-    : 0;
+    : -1;
+  const isTerminalException =
+    order && (order.orderStatus === 'CANCELLED' || order.orderStatus === 'RETURNED');
 
   return (
     <div className="space-y-12">
       {/* Search Input Box */}
-      <form onSubmit={handleSearch} className="max-w-xl mx-auto flex gap-3">
+      <form onSubmit={handleSearch} className="max-w-xl mx-auto flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-muted" />
           <input
@@ -112,37 +114,49 @@ function OrderTrackingContent() {
           {/* Stepper Timeline */}
           <div className="space-y-6">
             <h3 className="font-serif text-lg font-bold text-ink">Fulfillment Progress</h3>
-            <div className="relative pl-6 sm:pl-8 space-y-8 before:absolute before:left-2.5 sm:before:left-3.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-border-subtle">
-              {STEPS.map((step, idx) => {
-                const isPassed = idx <= currentStepIndex;
-                const isCurrent = idx === currentStepIndex;
+            {isTerminalException ? (
+              <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 space-y-1">
+                <p className="font-bold uppercase tracking-wider">
+                  Order Status: {order.orderStatus}
+                </p>
+                <p>
+                  {order.cancellationReason ||
+                    'Please message Bloomora on WhatsApp below if you have any questions about this order.'}
+                </p>
+              </div>
+            ) : (
+              <div className="relative pl-6 sm:pl-8 space-y-8 before:absolute before:left-2.5 sm:before:left-3.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-border-subtle">
+                {STEPS.map((step, idx) => {
+                  const isPassed = currentStepIndex >= 0 && idx <= currentStepIndex;
+                  const isCurrent = idx === currentStepIndex;
 
-                return (
-                  <div key={step.key} className="relative flex items-start gap-4">
-                    <div
-                      className={`absolute -left-6 sm:-left-8 w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-                        isPassed
-                          ? 'bg-primary text-white ring-4 ring-primary/20'
-                          : 'bg-canvas border border-border-subtle text-ink-muted'
-                      }`}
-                    >
-                      {isPassed ? <CheckCircle2 className="w-4 h-4" /> : idx + 1}
-                    </div>
-
-                    <div className="space-y-0.5">
-                      <p
-                        className={`text-sm font-bold ${
-                          isCurrent ? 'text-primary' : isPassed ? 'text-ink' : 'text-ink-muted'
+                  return (
+                    <div key={step.key} className="relative flex items-start gap-4">
+                      <div
+                        className={`absolute -left-6 sm:-left-8 w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
+                          isPassed
+                            ? 'bg-primary text-white ring-4 ring-primary/20'
+                            : 'bg-canvas border border-border-subtle text-ink-muted'
                         }`}
                       >
-                        {step.label} {isCurrent && '— Currently in progress'}
-                      </p>
-                      <p className="text-xs text-ink-muted">{step.desc}</p>
+                        {isPassed ? <CheckCircle2 className="w-4 h-4" /> : idx + 1}
+                      </div>
+
+                      <div className="space-y-0.5">
+                        <p
+                          className={`text-sm font-bold ${
+                            isCurrent ? 'text-primary' : isPassed ? 'text-ink' : 'text-ink-muted'
+                          }`}
+                        >
+                          {step.label} {isCurrent && '— Currently in progress'}
+                        </p>
+                        <p className="text-xs text-ink-muted">{step.desc}</p>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           {/* Items Summary */}
@@ -196,7 +210,7 @@ export default function OrderTrackingPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
       <div className="text-center space-y-3 max-w-xl mx-auto">
-        <span className="text-xs uppercase font-bold tracking-widest text-secondary">
+        <span className="text-xs uppercase font-bold tracking-widest text-rose">
           Vadodara Fulfillment Tracker
         </span>
         <h1 className="font-serif text-3xl sm:text-5xl font-bold text-ink">

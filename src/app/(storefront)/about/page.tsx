@@ -88,8 +88,9 @@ export default function AboutPage() {
             href="https://instagram.com/bloomora.creation"
             target="_blank"
             rel="noopener noreferrer"
+            className="w-full sm:w-auto"
           >
-            <Button variant="primary">
+            <Button variant="primary" className="w-full sm:w-auto">
               <Instagram className="w-4 h-4 mr-2" />
               <span>@bloomora.creation</span>
             </Button>
@@ -98,8 +99,9 @@ export default function AboutPage() {
             href={`https://wa.me/${DEFAULT_WHATSAPP_NUMBER}`}
             target="_blank"
             rel="noopener noreferrer"
+            className="w-full sm:w-auto"
           >
-            <Button variant="whatsapp">
+            <Button variant="whatsapp" className="w-full sm:w-auto">
               <MessageCircle className="w-4 h-4 fill-current mr-2" />
               <span>Chat on WhatsApp (+91 8271735190)</span>
             </Button>

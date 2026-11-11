@@ -1,16 +1,28 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ShoppingBag, ArrowRight, Trash2, Plus, Minus, MessageCircle, Flower2 } from 'lucide-react';
-import { useCart } from '@/context/CartContext';
+import { useCart, getCartItemKey, formatCartLineExtras } from '@/context/CartContext';
 import { formatINR } from '@/lib/formatters';
 import { Button } from '@/components/ui/Button';
 import { getOrderInquiryLink } from '@/lib/whatsapp';
 
 export default function CartPage() {
   const { items, subtotal, totalItems, updateQuantity, removeItem } = useCart();
+  const [deliveryFee, setDeliveryFee] = useState(50);
+
+  useEffect(() => {
+    fetch('/api/store/settings')
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.success && typeof data.settings?.deliveryFee === 'number') {
+          setDeliveryFee(data.settings.deliveryFee);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   if (items.length === 0) {
     return (
@@ -37,15 +49,15 @@ export default function CartPage() {
   }
 
   const itemsSummary = items
-    .map((i) => `${i.title} x ${i.quantity}`)
+    .map((i) => `${i.title}${formatCartLineExtras(i)} x ${i.quantity}`)
     .join(', ');
 
   const whatsappInquiryUrl = getOrderInquiryLink('BAG-INQUIRY', formatINR(subtotal), itemsSummary);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10 w-full max-w-full overflow-hidden">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 space-y-8 sm:space-y-10 w-full overflow-x-clip">
       <div className="space-y-2 text-center sm:text-left">
-        <span className="text-xs uppercase font-bold tracking-widest text-secondary">
+        <span className="text-xs uppercase font-bold tracking-widest text-rose">
           Review Your Selections
         </span>
         <h1 className="font-serif text-3xl sm:text-4xl font-bold text-ink">
@@ -53,14 +65,16 @@ export default function CartPage() {
         </h1>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
         {/* Items List */}
-        <div className="lg:col-span-8 bg-surface rounded-2xl border border-border-subtle p-6 sm:p-8 shadow-craft space-y-6">
+        <div className="lg:col-span-8 bg-surface rounded-2xl border border-border-subtle p-5 sm:p-8 shadow-craft space-y-6">
           <div className="divide-y divide-border-subtle/80 space-y-6">
-            {items.map((item) => (
+            {items.map((item) => {
+              const lineKey = getCartItemKey(item);
+              return (
               <div
-                key={`${item.productId}-${item.variantId || 'base'}`}
-                className="flex flex-col sm:flex-row gap-5 pt-6 first:pt-0"
+                key={lineKey}
+                className="flex flex-col sm:flex-row gap-4 sm:gap-5 pt-6 first:pt-0"
               >
                 {/* Image */}
                 <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden bg-canvas border border-border-subtle shrink-0 flex items-center justify-center">
@@ -72,19 +86,36 @@ export default function CartPage() {
                 </div>
 
                 {/* Info */}
-                <div className="flex-1 flex flex-col justify-between space-y-2">
+                <div className="flex-1 flex flex-col justify-between space-y-2 min-w-0">
                   <div className="flex justify-between items-start gap-4">
-                    <div>
+                    <div className="min-w-0">
                       <h3 className="font-serif text-base sm:text-lg font-bold text-ink">{item.title}</h3>
                       {item.variantTitle && (
                         <p className="text-xs text-ink-muted font-medium mt-0.5">{item.variantTitle}</p>
                       )}
-                      <p className="text-xs font-semibold text-secondary mt-1">
+                      {item.addOns && item.addOns.length > 0 && (
+                        <div className="flex flex-wrap gap-1.5 mt-1.5">
+                          {item.addOns.map((addon) => (
+                            <span
+                              key={addon.id}
+                              className="px-2 py-0.5 rounded-full bg-canvas border border-border-subtle text-[10px] font-medium text-ink-muted"
+                            >
+                              +{addon.name} {addon.price > 0 ? `(${formatINR(addon.price)})` : '(Free)'}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                      {item.giftMessage && (
+                        <p className="text-xs text-rose italic mt-1.5">
+                          💌 &ldquo;{item.giftMessage}&rdquo;
+                        </p>
+                      )}
+                      <p className="text-xs font-semibold text-rose mt-1">
                         {item.productType === 'READY_MADE' ? 'Ready to Ship' : 'Handcrafted to Order'}
                       </p>
                     </div>
 
-                    <span className="font-serif text-base sm:text-lg font-bold text-ink">
+                    <span className="font-serif text-base sm:text-lg font-bold text-ink shrink-0">
                       {formatINR(item.unitPrice * item.quantity)}
                     </span>
                   </div>
@@ -94,8 +125,8 @@ export default function CartPage() {
                     <div className="flex items-center border border-border-subtle rounded-lg bg-canvas">
                       <button
                         type="button"
-                        onClick={() => updateQuantity(item.productId, item.variantId, item.quantity - 1)}
-                        className="p-1.5 hover:text-primary transition-colors text-ink-muted"
+                        onClick={() => updateQuantity(item.productId, item.variantId, item.quantity - 1, lineKey)}
+                        className="p-2 hover:text-primary transition-colors text-ink-muted"
                         aria-label="Decrease quantity"
                       >
                         <Minus className="w-4 h-4" />
@@ -103,8 +134,8 @@ export default function CartPage() {
                       <span className="w-10 text-center text-xs font-bold text-ink">{item.quantity}</span>
                       <button
                         type="button"
-                        onClick={() => updateQuantity(item.productId, item.variantId, item.quantity + 1)}
-                        className="p-1.5 hover:text-primary transition-colors text-ink-muted"
+                        onClick={() => updateQuantity(item.productId, item.variantId, item.quantity + 1, lineKey)}
+                        className="p-2 hover:text-primary transition-colors text-ink-muted"
                         aria-label="Increase quantity"
                       >
                         <Plus className="w-4 h-4" />
@@ -113,8 +144,8 @@ export default function CartPage() {
 
                     <button
                       type="button"
-                      onClick={() => removeItem(item.productId, item.variantId)}
-                      className="text-xs font-medium text-ink-muted hover:text-red-600 transition-colors flex items-center gap-1"
+                      onClick={() => removeItem(item.productId, item.variantId, lineKey)}
+                      className="text-xs font-medium text-ink-muted hover:text-red-600 transition-colors flex items-center gap-1 py-1"
                     >
                       <Trash2 className="w-4 h-4" />
                       <span>Remove</span>
@@ -122,12 +153,13 @@ export default function CartPage() {
                   </div>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
         {/* Order Summary Box */}
-        <div className="lg:col-span-4 bg-surface rounded-2xl border border-border-subtle p-6 sm:p-8 shadow-craft space-y-6">
+        <div className="lg:col-span-4 lg:sticky lg:top-24 bg-surface rounded-2xl border border-border-subtle p-6 sm:p-8 shadow-craft space-y-6">
           <h2 className="font-serif text-xl font-bold text-ink border-b border-border-subtle pb-3">
             Order Summary
           </h2>
@@ -139,7 +171,7 @@ export default function CartPage() {
             </div>
             <div className="flex justify-between text-ink-muted">
               <span>Vadodara Delivery</span>
-              <span className="text-xs font-semibold text-sage">Calculated at Checkout (₹50)</span>
+              <span className="text-xs font-semibold text-sage">Calculated at Checkout ({formatINR(deliveryFee)})</span>
             </div>
             <div className="flex justify-between text-base font-bold text-ink pt-3 border-t border-border-subtle">
               <span>Estimated Total</span>
