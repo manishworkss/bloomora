@@ -34,14 +34,13 @@ const GIFT_MOODS: GiftMoodOption[] = [
     id: 'birthday',
     chipLabel: 'Birthday Surprise',
     icon: Cake,
-    matchEyebrow: 'Best Match • Birthday Keepsake',
-    recommendationTitle: 'Multi-Layer Birthday Surprise Card + Mini Charm',
-    recommendationPitch:
-      'Hand-folded photo pockets, pop-up flaps written with your inside jokes, and a stitched keychain tucked inside the envelope.',
+    matchEyebrow: 'Birthday Keepsake',
+    recommendationTitle: 'Pop-Up Surprise Card + Mini Charm',
+    recommendationPitch: 'Folded photo pockets paired with a crochet charm.',
     categorySlug: 'birthday-surprise-card',
     categoryName: 'Birthday Surprise Card',
     previewImage: '/images/cat-birthday-surprise-card.jpg',
-    craftHighlight: 'Photo flaps + handwritten wishes',
+    craftHighlight: 'Photo flaps + handwritten note',
     prefillIdea:
       'I am planning a Birthday Surprise Card! Favorite colors, number of photo memories, and the vibe I want: ',
   },
@@ -49,10 +48,9 @@ const GIFT_MOODS: GiftMoodOption[] = [
     id: 'anniversary',
     chipLabel: 'Anniversary / Love',
     icon: Heart,
-    matchEyebrow: 'Best Match • Forever Romance',
-    recommendationTitle: 'Customized Everlasting Tulip & Rose Bouquet',
-    recommendationPitch:
-      'Pick their signature color palette, stem count, Korean wrap, and satin ribbon — a bouquet that blooms on their bedside for years.',
+    matchEyebrow: 'Forever Romance',
+    recommendationTitle: 'Customized Everlasting Bouquet',
+    recommendationPitch: 'Your palette, stem count, Korean wrap, and satin bow.',
     categorySlug: 'customized-bouquet',
     categoryName: 'Customized Bouquet',
     previewImage: '/images/cat-customized-bouquet.jpg',
@@ -64,14 +62,13 @@ const GIFT_MOODS: GiftMoodOption[] = [
     id: 'desk',
     chipLabel: 'Cheer Up / Desk',
     icon: Flower2,
-    matchEyebrow: 'Best Match • Warm Daily Smile',
-    recommendationTitle: 'Crochet Sunflower & Daisy Desk Flower Pot',
-    recommendationPitch:
-      'Sunlight on a study table or office desk — handmade golden petals in a woven yarn pot that need zero watering or upkeep.',
+    matchEyebrow: 'Warm Daily Smile',
+    recommendationTitle: 'Crochet Sunflower & Tulip Pot',
+    recommendationPitch: 'Zero watering, soft yarn petals on any desk.',
     categorySlug: 'handmade-flower',
     categoryName: 'Handmade Flower',
     previewImage: '/images/cat-handmade-flower.jpg',
-    craftHighlight: 'Hypoallergenic • Desk-ready',
+    craftHighlight: 'Zero care • Desk-ready',
     prefillIdea:
       'I would love a handmade crochet flower/desk pot to brighten someone’s workspace! Preferred blooms and colors: ',
   },
@@ -79,14 +76,13 @@ const GIFT_MOODS: GiftMoodOption[] = [
     id: 'keychain',
     chipLabel: 'Cute Everyday Gift',
     icon: KeyRound,
-    matchEyebrow: 'Best Match • Pocket Keepsake',
-    recommendationTitle: 'Handmade Strawberry, Daisy or Initial Keychain',
-    recommendationPitch:
-      'Tactile milk-cotton charms clipped to antique brass clasps — a thoughtful everyday reminder on tote bags, scooters, or keys.',
+    matchEyebrow: 'Pocket Keepsake',
+    recommendationTitle: 'Strawberry, Daisy or Heart Keychain',
+    recommendationPitch: 'Soft yarn bag charms clipped on brass clasps.',
     categorySlug: 'handmade-keychain',
     categoryName: 'Handmade Keychain',
     previewImage: '/images/cat-handmade-keychain.jpg',
-    craftHighlight: 'Matching sets & initials available',
+    craftHighlight: 'Matching sets & initials',
     prefillIdea:
       'I want handmade crochet keychains! Favorite charm motifs (strawberry, daisy, heart, initials) and colors: ',
   },
@@ -94,14 +90,13 @@ const GIFT_MOODS: GiftMoodOption[] = [
     id: 'custom-idea',
     chipLabel: 'I Have My Own Idea',
     icon: Lightbulb,
-    matchEyebrow: 'Your Idea • Our Creativity',
-    recommendationTitle: '100% Bespoke Creation Built From Your Thought',
-    recommendationPitch:
-      'Have a sketch, seasonal festival decor dream, or unique personalized gift concept? Share your rough idea and we bring the craft.',
+    matchEyebrow: 'Your Idea • Our Craft',
+    recommendationTitle: '100% Bespoke Gift From Your Sketch',
+    recommendationPitch: 'Share your theme or photo—we craft it fresh.',
     categorySlug: 'customized-personalized-gifts',
     categoryName: 'Personalized Gifts',
     previewImage: '/images/cat-personalized-gifts.jpg',
-    craftHighlight: 'Sketch / theme to finished art',
+    craftHighlight: 'Theme to finished craft',
     prefillIdea:
       'Here is my custom handmade gift idea! Tell us who it is for, your theme/inspiration, and any favorite shades: ',
   },
@@ -180,8 +175,8 @@ export function InteractiveGiftStudio() {
                 Slow stitches. <span className="italic text-rose">Built around your story.</span>
               </h2>
 
-              <p className="text-xs sm:text-sm text-ink-muted leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                Mass-produced gifts fade fast — we take the slow path, turning milk-cotton yarn, textured craft paper, and your ideas into keepsakes kept for years. Tap what fits your moment:
+              <p className="text-xs sm:text-sm text-ink-muted max-w-xl mx-auto lg:mx-0">
+                Pick a gifting mood below for an instant studio match:
               </p>
             </div>
 
@@ -215,17 +210,13 @@ export function InteractiveGiftStudio() {
 
             {/* Live Recommendation Card */}
             <div className="rounded-2xl bg-gradient-to-br from-[#FAF3F0] via-canvas to-white border border-primary/20 p-4 sm:p-5 flex flex-col sm:flex-row items-center sm:items-start gap-4 transition-all">
-              <div className="relative w-24 h-24 sm:w-28 sm:h-28 shrink-0 rounded-xl overflow-hidden border border-primary/15 bg-white shadow-subtle">
+              <div className="relative w-24 h-28 sm:w-28 sm:h-32 shrink-0 rounded-xl overflow-hidden border border-primary/15 bg-white shadow-subtle">
                 <Image
                   src={activeMood.previewImage}
                   alt={activeMood.recommendationTitle}
                   fill
                   sizes="(max-width: 640px) 96px, 112px"
-                  className={`object-cover ${
-                    activeMood.categorySlug === 'birthday-surprise-card'
-                      ? 'object-[50%_65%]'
-                      : 'object-center'
-                  }`}
+                  className="object-cover object-center"
                 />
               </div>
 

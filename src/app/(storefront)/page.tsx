@@ -8,19 +8,13 @@ import {
   MessageCircle,
   Truck,
   Flower2,
-  Clock,
   Instagram,
-  CheckCircle2,
   Package,
-  Scissors,
-  Palette,
-  Gift,
   ShieldCheck,
   Star,
   Users,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
-import { ProductCard } from '@/components/storefront/ProductCard';
 import { FAQAccordion, FAQItem } from '@/components/storefront/FAQAccordion';
 import { DEFAULT_WHATSAPP_NUMBER, getCustomOrderInquiryLink } from '@/lib/whatsapp';
 import { getProductsAsync } from '@/lib/products-store';
@@ -28,7 +22,7 @@ import { getCategoriesAsync } from '@/lib/categories-store';
 import { getSettingsAsync } from '@/lib/settings-store';
 import { getReviewsAsync } from '@/lib/reviews-store';
 import { HappyFamilySection } from '@/components/storefront/HappyFamilySection';
-import { InteractiveGiftStudio } from '@/components/storefront/InteractiveGiftStudio';
+import { ShoppableCatalogShelf } from '@/components/storefront/ShoppableCatalogShelf';
 import { InteractiveOrderJourney } from '@/components/storefront/InteractiveOrderJourney';
 
 export const dynamic = 'force-dynamic';
@@ -45,85 +39,58 @@ const BRAND_VALUES_MARQUEE = [
 ];
 
 
-const PROCESS_STEPS = [
-  {
-    number: '01',
-    icon: Palette,
-    title: 'Curated Pastel Yarns',
-    description:
-      'We hand-select hypoallergenic milk-cotton threads known for their feather-soft texture and enduring pastel luster.',
-  },
-  {
-    number: '02',
-    icon: Scissors,
-    title: 'Stitch-by-Stitch Craft',
-    description:
-      'Every petal, leaf, and stem is patiently crocheted stitch by stitch with delicate handwork.',
-  },
-  {
-    number: '03',
-    icon: Flower2,
-    title: 'Floral Architecture',
-    description:
-      'Blooms are balanced into lasting arrangements, secured with natural jute twine and timeless aesthetics.',
-  },
-  {
-    number: '04',
-    icon: Gift,
-    title: 'Boutique Unboxing',
-    description:
-      'Wrapped in signature kraft paper, tied with satin ribbon, and accompanied by your personalised message note.',
-  },
-];
-
 const FAQ_ITEMS: FAQItem[] = [
   {
-    question: 'How long do Bloomora handmade flowers last?',
+    question: 'How long do handmade crochet flowers last?',
     answer:
-      'Forever! Unlike fresh-cut flowers that wither in days, our crochet blossoms are handcrafted from premium milk-cotton yarn that never fades, wilts, or requires water.',
+      'Forever—crafted from soft milk-cotton yarn that never wilts, fades, or needs water.',
   },
   {
-    question: 'How are orders and custom gifts coordinated?',
+    question: 'How are orders & custom ideas coordinated?',
     answer:
-      'Once you submit your order or custom gift idea, our studio shares confirmation details and live progress updates with you directly on WhatsApp (+91 8271735190) before gift wrapping is sealed.',
+      'We share photos and updates directly with you on WhatsApp (+91 8271735190) before gift wrapping.',
   },
   {
-    question: 'Can I request a custom color palette or flower type?',
+    question: 'Can I request custom colors, flowers, or ideas?',
     answer:
-      'Absolutely! We love crafting bespoke commissions. Simply visit our Custom Orders page or message us directly on WhatsApp (+91 8271735190) with your ideas or reference photos.',
+      'Yes! Share any reference photo or idea on Custom Orders or WhatsApp and we crochet it fresh.',
   },
   {
-    question: 'What is your return and cancellation policy?',
+    question: 'What is your return & replacement policy?',
     answer:
-      'Because every piece is meticulously handmade, orders are strictly non-refundable once crafting begins. If any item arrives damaged, notify us on WhatsApp within 24 hours with photos for an immediate replacement.',
+      'Custom pieces are non-refundable once crafting starts, with free replacement if damaged in transit.',
   },
   {
-    question: 'What payment options do you support?',
+    question: 'Which UPI payment apps are supported?',
     answer:
-      'We support all UPI payment apps including Google Pay, PhonePe, Paytm, and BHIM. Once your order is created, you are redirected to WhatsApp with your itemized receipt to confirm payment.',
+      'Google Pay, PhonePe, Paytm, and BHIM are supported via WhatsApp order confirmation.',
   },
 ];
 
 const STUDIO_MOMENTS = [
   {
     id: 'sm-1',
-    imageUrl: '/images/bloomora-hero-bouquet.jpg',
-    caption: 'Lilac & pink handcrafted keepsake bouquet with wooden crochet hook.',
+    imageUrl: '/images/cat-personalized-gifts.jpg',
+    label: 'Keepsake Hampers',
+    caption: 'Bespoke gift hamper box tied with blush satin ribbon and crochet heart.',
   },
   {
     id: 'sm-2',
-    imageUrl: '/images/bloomora-hero-artisan-workbench.jpg',
-    caption: 'Handmade crafting table stitch-by-stitch with soft milk-cotton yarn.',
+    imageUrl: '/images/cat-handmade-flower.jpg',
+    label: 'Potted Blooms',
+    caption: 'Handcrafted sunflower in terracotta pot and blush tulip basket.',
   },
   {
     id: 'sm-3',
-    imageUrl: '/images/bloomora-hero-handcrafted.jpg',
-    caption: 'Handcrafted with Love — everlasting crochet floral creations.',
+    imageUrl: '/images/cat-birthday-surprise-card.jpg',
+    label: 'Pop-Up Cards',
+    caption: 'Deckle-edge cotton birthday card with 3D crochet daisies and wax-seal envelope.',
   },
   {
     id: 'sm-4',
-    imageUrl: '/images/cat-customized-bouquet.jpg',
-    caption: 'Customised blush bouquet prepared with satin ribbon and kraft wrapping.',
+    imageUrl: '/images/cat-handmade-keychain.jpg',
+    label: 'Bag Charms',
+    caption: 'Strawberry, daisy, and lilac heart crochet keychains on natural linen.',
   },
 ];
 
@@ -135,8 +102,6 @@ export default async function HomePage() {
     getReviewsAsync(true),
     getCategoriesAsync(true),
   ]);
-  const featured = allPublished.filter((p) => p.isFeatured);
-  const featuredProducts = (featured.length > 0 ? featured : allPublished).slice(0, 8);
 
   // Art-directed responsive hero banner: 16:9 full-width landscape on desktop/Windows, 9:16 tall portrait on mobile
   const heroCommonProps = {
@@ -338,9 +303,7 @@ export default async function HomePage() {
                       alt={cat.name}
                       fill
                       sizes="(max-width: 640px) 96px, 112px"
-                      className={`object-cover transition-transform duration-500 ease-out group-hover:scale-105 ${
-                        cat.slug === 'birthday-surprise-card' ? 'object-[50%_65%]' : 'object-center'
-                      }`}
+                      className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
                     />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center text-rose/70">
@@ -370,306 +333,240 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 4. FEATURED COLLECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 w-full">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border-subtle pb-4">
-          <div className="space-y-1 text-center sm:text-left">
-            <span className="text-xs uppercase font-bold tracking-widest text-rose">
-              Signature Works
-            </span>
-            <h2 className="font-serif text-2xl sm:text-4xl text-ink font-normal">
-              Featured Creations
-            </h2>
-            <p className="text-xs sm:text-sm text-ink-muted">
-              Hand-crocheted favorites cherished by thoughtful gifting lovers everywhere.
-            </p>
-          </div>
+      {/* 4. SHOPPABLE CATEGORY SHELF (Mobile App 2-Column Filterable Grid) */}
+      <ShoppableCatalogShelf products={allPublished} categories={categories} />
 
-          <Link href="/shop" className="w-full sm:w-auto sm:shrink-0">
-            <Button variant="outline" size="sm" className="w-full sm:w-auto">
-              <span>View All Creations</span>
-              <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-            </Button>
+      {/* 5. APP PROMO BANNERS (Flush Equal-Height Split Cards) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-5">
+          <Link
+            href="/shop?category=handmade-keychain"
+            className="group relative h-44 sm:h-56 rounded-2xl overflow-hidden border border-border-subtle shadow-subtle block"
+          >
+            <Image
+              src="/images/cat-handmade-keychain.jpg"
+              alt="Handmade crochet bag charms and keychains"
+              fill
+              sizes="(max-width: 640px) 100vw, 50vw"
+              className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#2A181B]/80 via-[#2A181B]/45 to-transparent" />
+            <div className="relative h-full p-5 sm:p-6 flex flex-col justify-between text-white max-w-[75%]">
+              <span className="inline-block w-fit px-2.5 py-0.5 rounded-full bg-white/20 backdrop-blur-xs text-[10px] font-bold uppercase tracking-widest">
+                Starting ₹149
+              </span>
+              <div className="space-y-2">
+                <h3 className="font-serif text-xl sm:text-2xl font-normal leading-tight">
+                  Cute Pocket Charms
+                </h3>
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#FAD7DC]">
+                  <span>Shop Keychains</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                </span>
+              </div>
+            </div>
+          </Link>
+
+          <Link
+            href="/custom-orders"
+            className="group relative h-44 sm:h-56 rounded-2xl overflow-hidden border border-border-subtle shadow-subtle block"
+          >
+            <Image
+              src="/images/cat-personalized-gifts.jpg"
+              alt="Custom handmade keepsake gift box"
+              fill
+              sizes="(max-width: 640px) 100vw, 50vw"
+              className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#2A181B]/80 via-[#2A181B]/45 to-transparent" />
+            <div className="relative h-full p-5 sm:p-6 flex flex-col justify-between text-white max-w-[75%]">
+              <span className="inline-block w-fit px-2.5 py-0.5 rounded-full bg-white/20 backdrop-blur-xs text-[10px] font-bold uppercase tracking-widest">
+                Your Idea • Our Craft
+              </span>
+              <div className="space-y-2">
+                <h3 className="font-serif text-xl sm:text-2xl font-normal leading-tight">
+                  Customise Any Gift
+                </h3>
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#FAD7DC]">
+                  <span>Start Custom Order</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                </span>
+              </div>
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      {/* 6. SHOP BY OCCASION (Straight 2x2 Mobile / 4x1 Desktop Visual Strip) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 w-full">
+        <div className="flex items-end justify-between gap-3">
+          <div>
+            <span className="text-[11px] uppercase font-bold tracking-widest text-rose">
+              Curated Edits
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl text-ink font-normal leading-tight">
+              Shop by Occasion
+            </h2>
+          </div>
+          <Link
+            href="/custom-orders"
+            className="text-xs sm:text-sm font-semibold text-primary hover:underline shrink-0"
+          >
+            Custom Ideas →
           </Link>
         </div>
 
-        {featuredProducts.length > 0 ? (
-          <div
-            className={`flex overflow-x-auto snap-x snap-mandatory gap-3 sm:gap-5 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:overflow-visible scrollbar-none ${
-              featuredProducts.length <= 2
-                ? 'sm:grid-cols-2 max-w-3xl mx-auto'
-                : featuredProducts.length === 3
-                  ? 'sm:grid-cols-2 lg:grid-cols-3'
-                  : 'sm:grid-cols-2 lg:grid-cols-4'
-            }`}
-          >
-            {featuredProducts.map((product) => (
-              <div key={product.id} className="w-[250px] sm:w-auto shrink-0 sm:shrink snap-start flex">
-                <div className="w-full">
-                  <ProductCard product={product} />
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
+          {[
+            {
+              title: 'Birthday Cards',
+              tag: 'Pop-Up Memories',
+              image: '/images/cat-birthday-surprise-card.jpg',
+              href: '/shop?category=birthday-surprise-card',
+            },
+            {
+              title: 'Love & Anniversaries',
+              tag: 'Forever Bouquets',
+              image: '/images/cat-customized-bouquet.jpg',
+              href: '/shop?category=customized-bouquet',
+            },
+            {
+              title: 'Desk & Cheer Up',
+              tag: 'Potted Blooms',
+              image: '/images/cat-handmade-flower.jpg',
+              href: '/shop?category=handmade-flower',
+            },
+            {
+              title: 'Festive & Seasonal',
+              tag: 'Decor & Hampers',
+              image: '/images/cat-seasonable-handmade.jpg',
+              href: '/shop?category=seasonable-handmade-products',
+            },
+          ].map((occ) => (
+            <Link
+              key={occ.title}
+              href={occ.href}
+              className="group relative block aspect-[3/4] rounded-2xl overflow-hidden border border-border-subtle shadow-subtle bg-canvas"
+            >
+              <Image
+                src={occ.image}
+                alt={occ.title}
+                fill
+                sizes="(max-width: 1024px) 50vw, 25vw"
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#1E1214]/85 via-[#1E1214]/35 to-transparent" />
+              <div className="absolute bottom-3 left-3 right-3 text-white space-y-0.5">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-[#FAD7DC]">
+                  {occ.tag}
+                </p>
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="font-serif text-sm sm:text-base font-medium leading-tight">
+                    {occ.title}
+                  </h3>
+                  <ArrowRight className="w-3.5 h-3.5 shrink-0 transition-transform group-hover:translate-x-1" />
                 </div>
               </div>
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
-            {[
-              {
-                title: 'Everlasting Pastel Bouquet',
-                subtitle: 'Custom flowers, stems & ribbon palette',
-                image: '/images/cat-customized-bouquet.jpg',
-                imagePosition: 'object-center',
-                href: '/custom-orders?category=customized-bouquet',
-                cta: 'Customise Bouquet',
-              },
-              {
-                title: 'Handmade Birthday Surprise Card',
-                subtitle: 'Pop-up memory flaps & personal wishes',
-                image: '/images/cat-birthday-surprise-card.jpg',
-                imagePosition: 'object-[50%_65%]',
-                href: '/custom-orders?category=birthday-surprise-card',
-                cta: 'Design a Card',
-              },
-              {
-                title: 'Your Idea → Handmade Reality',
-                subtitle: 'Bring any concept and we craft it fresh',
-                image: '/images/cat-personalized-gifts.jpg',
-                imagePosition: 'object-center',
-                href: '/custom-orders?category=customized-personalized-gifts',
-                cta: 'Pitch Your Idea',
-              },
-            ].map((item) => (
-              <Link
-                key={item.title}
-                href={item.href}
-                className="group bg-surface rounded-2xl border border-border-subtle overflow-hidden shadow-subtle hover:shadow-craft hover:border-primary/40 transition-all flex sm:flex-col"
-              >
-                <div className="relative w-28 sm:w-full aspect-square sm:aspect-[4/3] shrink-0 overflow-hidden bg-canvas">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 640px) 112px, 33vw"
-                    className={`object-cover group-hover:scale-105 transition-transform duration-500 ${item.imagePosition ?? 'object-center'}`}
-                  />
-                </div>
-                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-2">
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-rose">
-                      Made to Order
-                    </span>
-                    <h3 className="font-serif text-base sm:text-lg font-semibold text-ink leading-snug group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-ink-muted leading-relaxed">{item.subtitle}</p>
-                  </div>
-                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary pt-1">
-                    <span>{item.cta}</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
-      </section>
-
-      {/* 5. ATELIER PHILOSOPHY & INTERACTIVE GIFT IDEA FINDER */}
-      <InteractiveGiftStudio />
-
-      {/* 6. OUR HAPPY FAMILY (Real Unboxings, Photos, Videos & Stories) */}
-      <HappyFamilySection initialReviews={reviews} />
-
-      {/* 7. THE ART OF HANDMADE */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 w-full">
-        <div className="text-center space-y-1.5 max-w-xl mx-auto">
-          <span className="text-xs uppercase font-bold tracking-widest text-rose">
-            Craftsmanship
-          </span>
-          <h2 className="font-serif text-2xl sm:text-4xl text-ink font-normal">
-            The Art of Handmade
-          </h2>
-          <p className="text-xs sm:text-sm text-ink-muted">
-            From yarn skein to your doorstep, every step is executed with precision and intention.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
-          {PROCESS_STEPS.map((step) => {
-            const Icon = step.icon;
-            return (
-              <div
-                key={step.number}
-                className="bg-surface rounded-2xl border border-border-subtle p-4 sm:p-6 space-y-2.5 shadow-subtle"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-serif text-2xl font-bold text-blush-dark">
-                    {step.number}
-                  </span>
-                  <div className="w-9 h-9 rounded-full bg-blush/40 flex items-center justify-center text-rose">
-                    <Icon className="w-4 h-4" />
-                  </div>
-                </div>
-
-                <h3 className="font-serif text-base font-semibold text-ink">{step.title}</h3>
-                <p className="text-xs text-ink-muted leading-relaxed">{step.description}</p>
-              </div>
-            );
-          })}
+            </Link>
+          ))}
         </div>
       </section>
 
-      {/* 8. WHY EVERLASTING BLOOMS? (Editorial Comparison Matrix) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 w-full">
-        <div className="text-center space-y-1.5 max-w-xl mx-auto">
-          <span className="text-xs uppercase font-bold tracking-widest text-rose">
-            Thoughtful Gifting
-          </span>
-          <h2 className="font-serif text-2xl sm:text-4xl text-ink font-normal">
-            Why Handmade Flowers?
-          </h2>
-          <p className="text-xs sm:text-sm text-ink-muted">
-            The enduring emotional difference between commercial cut flowers and Bloomora handcrafted keepsakes.
-          </p>
-        </div>
-
-        <div className="bg-surface rounded-3xl border border-border-subtle p-6 sm:p-8 lg:p-10 shadow-subtle overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 divide-y md:divide-y-0 md:divide-x divide-border-subtle/80">
-            {/* Bloomora Column */}
-            <div className="space-y-5 md:pr-6">
-              <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-full bg-blush flex items-center justify-center text-rose shrink-0">
-                  <Sparkles className="w-4 h-4" />
-                </div>
-                <div>
-                  <h3 className="font-serif text-xl font-bold text-ink">Bloomora Handmade Blooms</h3>
-                  <p className="text-xs text-rose font-medium">Endless Memories & Emotion</p>
-                </div>
-              </div>
-
-              <ul className="space-y-3.5 text-xs sm:text-sm text-ink-muted">
-                <li className="flex items-start gap-2.5">
-                  <span className="text-rose font-bold text-base leading-none">✓</span>
-                  <div>
-                    <strong className="text-ink font-semibold">Forever Lifespan:</strong> Hand-crocheted from milk-cotton yarn that never fades, withers, or sheds.
-                  </div>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="text-rose font-bold text-base leading-none">✓</span>
-                  <div>
-                    <strong className="text-ink font-semibold">Zero Maintenance:</strong> Requires no water changes, pruning, or sunlight. Sits pretty on any desk.
-                  </div>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="text-rose font-bold text-base leading-none">✓</span>
-                  <div>
-                    <strong className="text-ink font-semibold">100% Hypoallergenic:</strong> Completely pollen-free and pet-safe for sensitive recipients.
-                  </div>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="text-rose font-bold text-base leading-none">✓</span>
-                  <div>
-                    <strong className="text-ink font-semibold">Slow Craftsmanship:</strong> 4–6 hours of patient needlework and heartfelt human energy in each piece.
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            {/* Standard Fresh Cut Flowers Column */}
-            <div className="space-y-5 pt-6 md:pt-0 md:pl-6 opacity-75">
-              <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-full bg-canvas flex items-center justify-center text-ink-muted shrink-0">
-                  <Clock className="w-4 h-4" />
-                </div>
-                <div>
-                  <h3 className="font-serif text-xl font-bold text-ink-muted">Standard Cut Flowers</h3>
-                  <p className="text-xs text-ink-muted font-medium">Temporary & Disposable</p>
-                </div>
-              </div>
-
-              <ul className="space-y-3.5 text-xs sm:text-sm text-ink-muted">
-                <li className="flex items-start gap-2.5">
-                  <span className="text-ink-muted font-bold text-base leading-none">✕</span>
-                  <div>
-                    <strong className="text-ink font-semibold">Withers in 3–5 Days:</strong> Petals drop, turn brown, and end up in the trash bin quickly.
-                  </div>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="text-ink-muted font-bold text-base leading-none">✕</span>
-                  <div>
-                    <strong className="text-ink font-semibold">Daily Care Hassle:</strong> Stagnant water trimming and mess on table surfaces.
-                  </div>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="text-ink-muted font-bold text-base leading-none">✕</span>
-                  <div>
-                    <strong className="text-ink font-semibold">Pollen & Allergens:</strong> Can trigger sneezing or allergic reactions indoors.
-                  </div>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="text-ink-muted font-bold text-base leading-none">✕</span>
-                  <div>
-                    <strong className="text-ink font-semibold">Fast Commercial Waste:</strong> Mass commercial farming with heavy transit emissions.
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 9. CUSTOM ORDERS & COMMISSIONS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="relative rounded-3xl bg-blush/30 border border-border-subtle p-6 sm:p-10 overflow-hidden">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-10">
-            <div className="max-w-2xl space-y-3 sm:space-y-4 text-center lg:text-left mx-auto lg:mx-0">
-              <span className="text-xs uppercase font-bold tracking-widest text-rose">
-                Bespoke Gifting
-              </span>
-              <h2 className="font-serif text-2xl sm:text-4xl text-ink font-normal leading-tight">
-                Have something special in mind?
-              </h2>
-              <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-                Tell us your idea, and let&apos;s create something meaningful together. We customize colors, bouquet sizes, flower combinations, and personalized tags.
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-end gap-3 shrink-0 w-full lg:w-auto">
-              <Link href="/custom-orders" className="w-full sm:w-auto">
-                <Button variant="primary" size="md" className="w-full sm:w-auto whitespace-nowrap">
-                  <span>Create Your Custom Gift</span>
-                  <ArrowRight className="w-4 h-4 ml-1.5" />
-                </Button>
-              </Link>
-
-              <Link
-                href={customWhatsAppUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto"
-              >
-                <Button variant="outline" size="md" className="w-full sm:w-auto whitespace-nowrap">
-                  <MessageCircle className="w-4 h-4 mr-1.5 text-whatsapp fill-whatsapp" />
-                  <span>Discuss on WhatsApp</span>
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 10. INTERACTIVE HOW TO ORDER STUDIO JOURNEY */}
+      {/* 7. COMPACT 3-TAB CUSTOM STUDIO */}
       <InteractiveOrderJourney />
 
-      {/* 11. INSTAGRAM / SOCIAL GALLERY */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-5 w-full">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+      {/* 8. WHY HANDMADE BLOOMS (Straight Aligned Split Strip — Zero Stagger) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="bg-surface rounded-2xl border border-border-subtle p-4 sm:p-7 shadow-subtle">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center">
+            {/* Straight Flush 2-Photo Pair */}
+            <div className="lg:col-span-5 grid grid-cols-2 gap-2.5 sm:gap-3">
+              <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-canvas border border-border-subtle">
+                <Image
+                  src="/images/cat-handmade-flower.jpg"
+                  alt="Everlasting crochet sunflower and blush tulip pots"
+                  fill
+                  sizes="(max-width: 1024px) 45vw, 20vw"
+                  className="object-cover object-center"
+                />
+              </div>
+              <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-canvas border border-border-subtle">
+                <Image
+                  src="/images/cat-customized-bouquet.jpg"
+                  alt="Handmade pastel rose and tulip bouquet"
+                  fill
+                  sizes="(max-width: 1024px) 45vw, 20vw"
+                  className="object-cover object-center"
+                />
+              </div>
+            </div>
+
+            {/* Aligned Highlights & Direct Action */}
+            <div className="lg:col-span-7 space-y-4">
+              <div className="space-y-1">
+                <span className="text-[11px] uppercase font-bold tracking-widest text-rose">
+                  Why Crochet Blooms
+                </span>
+                <h2 className="font-serif text-2xl sm:text-3xl text-ink font-normal leading-tight">
+                  Beauty that stays, <span className="italic text-rose">never fades.</span>
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2.5">
+                {[
+                  { title: 'Lasts Forever', hint: 'Never wilts or fades' },
+                  { title: 'Zero Watering', hint: 'No daily care needed' },
+                  { title: 'Allergy & Pet Safe', hint: '100% milk-cotton yarn' },
+                  { title: 'Made to Order', hint: 'Any palette or wish' },
+                ].map((perk) => (
+                  <div
+                    key={perk.title}
+                    className="rounded-xl bg-canvas border border-border-subtle/80 p-3 space-y-0.5"
+                  >
+                    <p className="font-serif text-sm font-semibold text-ink">
+                      <span className="text-rose mr-1">✓</span>
+                      {perk.title}
+                    </p>
+                    <p className="text-[11px] text-ink-muted">{perk.hint}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                <Link href="/custom-orders">
+                  <Button variant="primary" size="sm">
+                    <span>Create Custom Gift</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+                  </Button>
+                </Link>
+                <Link
+                  href={customWhatsAppUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="outline" size="sm">
+                    <MessageCircle className="w-3.5 h-3.5 mr-1.5 text-whatsapp fill-whatsapp" />
+                    <span>WhatsApp Studio</span>
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 9. OUR HAPPY FAMILY (Compact Review Strip or Cards) */}
+      <HappyFamilySection initialReviews={reviews} />
+
+      {/* 10. STUDIO GALLERY */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 w-full">
+        <div className="flex items-end justify-between gap-3">
           <div>
-            <span className="text-xs uppercase font-bold tracking-widest text-rose">
-              Studio Moments
+            <span className="text-[11px] uppercase font-bold tracking-widest text-rose">
+              Visual Lookbook
             </span>
-            <h2 className="font-serif text-xl sm:text-3xl text-ink font-normal">
-              Follow Our Journey @bloomora.creation
+            <h2 className="font-serif text-xl sm:text-3xl text-ink font-normal leading-tight">
+              @bloomora.creation
             </h2>
           </div>
 
@@ -677,23 +574,23 @@ export default async function HomePage() {
             href="https://instagram.com/bloomora.creation"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto"
+            className="shrink-0"
           >
-            <Button variant="outline" size="sm" className="gap-2 w-full sm:w-auto">
-              <Instagram className="w-4 h-4 text-rose" />
-              <span>Follow on Instagram</span>
+            <Button variant="outline" size="sm" className="gap-1.5">
+              <Instagram className="w-3.5 h-3.5 text-rose" />
+              <span>Follow</span>
             </Button>
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4">
           {STUDIO_MOMENTS.map((post) => (
             <Link
               key={post.id}
               href="https://instagram.com/bloomora.creation"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative block aspect-square rounded-2xl overflow-hidden bg-canvas border border-border-subtle shadow-subtle"
+              className="group relative block aspect-[4/5] rounded-2xl overflow-hidden bg-canvas border border-border-subtle shadow-subtle"
             >
               <Image
                 src={post.imageUrl}
@@ -702,26 +599,25 @@ export default async function HomePage() {
                 sizes="(max-width: 640px) 50vw, 25vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-ink/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center p-3 text-center">
-                <Instagram className="w-6 h-6 text-white" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent" />
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
+                <span className="text-xs font-semibold tracking-wide">{post.label}</span>
+                <Instagram className="w-4 h-4 opacity-85 group-hover:scale-110 transition-transform" />
               </div>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* 12. FAQ ACCORDION */}
+      {/* 11. FAQ ACCORDION */}
       <section className="max-w-3xl mx-auto px-4 sm:px-6 space-y-4 sm:space-y-5 w-full">
-        <div className="text-center space-y-1.5">
+        <div className="text-center space-y-1">
           <span className="text-xs uppercase font-bold tracking-widest text-rose">
-            Got Questions?
+            Quick Answers
           </span>
           <h2 className="font-serif text-2xl sm:text-4xl text-ink font-normal">
             Frequently Asked Questions
           </h2>
-          <p className="text-xs sm:text-sm text-ink-muted">
-            Everything you need to know about our handcrafted blooms and custom orders.
-          </p>
         </div>
 
         <FAQAccordion items={FAQ_ITEMS} />

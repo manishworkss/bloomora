@@ -57,79 +57,77 @@ export function HappyFamilySection({ initialReviews }: HappyFamilySectionProps) 
   const fiveStarCount = reviews.filter((r) => r.rating === 5).length;
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 w-full">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-5 w-full">
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-border-subtle pb-5">
-        <div className="space-y-1.5 text-center md:text-left">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blush/40 border border-border-subtle text-[11px] font-semibold text-rose uppercase tracking-wider">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-border-subtle pb-4">
+        <div className="space-y-1">
+          <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-rose uppercase tracking-widest">
             <Heart className="w-3.5 h-3.5 fill-rose" />
-            <span>Customer Reviews • Photos & Video Unboxings</span>
+            <span>Community Stories</span>
           </div>
-          <h2 className="font-serif text-2xl sm:text-4xl text-ink font-normal">
-            Our Happy Family & Reviews
+          <h2 className="font-serif text-2xl sm:text-3xl text-ink font-normal">
+            Our Happy Family
           </h2>
-          <p className="text-xs sm:text-sm text-ink-muted max-w-xl mx-auto md:mx-0">
-            Real client reviews, unboxing videos, and keepsake photos from happy Bloomora gifting moments.
-          </p>
         </div>
 
-        <div className="flex items-center gap-2.5 justify-center md:justify-end flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap">
           <Button
             variant="primary"
             size="sm"
             onClick={() => setIsModalOpen(true)}
-            className="gap-1.5 shadow-craft font-semibold text-xs"
+            className="gap-1.5 font-semibold text-xs"
           >
             <PlusCircle className="w-3.5 h-3.5" />
-            <span>Add Your Review & Media</span>
+            <span>Add Review</span>
           </Button>
 
           <Link href="/happy-family">
             <Button variant="outline" size="sm" className="gap-1.5 text-xs">
               <Users className="w-3.5 h-3.5 text-rose" />
-              <span>View All Reviews ({reviews.length})</span>
-              <ArrowRight className="w-3 h-3 ml-0.5" />
+              <span>Gallery ({reviews.length})</span>
+              <ArrowRight className="w-3 h-3" />
             </Button>
           </Link>
         </div>
       </div>
 
       {reviews.length === 0 ? (
-        /* Empty State: Prompt real customers to submit */
-        <div className="py-12 sm:py-16 text-center bg-surface rounded-3xl border border-border-subtle p-8 sm:p-12 space-y-5 max-w-2xl mx-auto shadow-subtle">
-          <div className="w-14 h-14 rounded-full bg-blush/50 text-rose flex items-center justify-center mx-auto">
-            <Heart className="w-7 h-7 fill-rose" />
+        /* Compact Mobile-Friendly Review Strip */
+        <div className="bg-surface rounded-2xl border border-border-subtle p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xs">
+          <div className="flex items-center gap-3.5">
+            <div className="w-11 h-11 rounded-full bg-blush/50 text-rose flex items-center justify-center shrink-0">
+              <Heart className="w-5 h-5 fill-rose" />
+            </div>
+            <div>
+              <p className="font-serif text-base sm:text-lg font-semibold text-ink">
+                Received a Bloomora gift?
+              </p>
+              <p className="text-xs text-ink-muted">
+                Share an unboxing photo or video with our community.
+              </p>
+            </div>
           </div>
 
-          <div className="space-y-2">
-            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-ink">
-              Be the First to Share Your Bloomora Story!
-            </h3>
-            <p className="text-xs sm:text-sm text-ink-muted leading-relaxed max-w-lg mx-auto">
-              Every handcrafted flower and keepsake bouquet is made with slow needlecraft and love. Have you received a Bloomora creation? Click below to share your authentic review, photos, or unboxing video!
-            </p>
-          </div>
-
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="flex items-center gap-2.5 shrink-0">
             <Button
               variant="primary"
-              size="md"
+              size="sm"
               onClick={() => setIsModalOpen(true)}
-              className="gap-2 shadow-craft w-full sm:w-auto font-semibold"
+              className="gap-1.5 font-semibold flex-1 sm:flex-initial"
             >
-              <PlusCircle className="w-4 h-4" />
-              <span>Share Your Review & Unboxing</span>
+              <PlusCircle className="w-3.5 h-3.5" />
+              <span>Share Unboxing</span>
             </Button>
 
             <Link
               href="https://instagram.com/bloomora.creation"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto"
+              className="flex-1 sm:flex-initial"
             >
-              <Button variant="outline" size="md" className="gap-2 w-full sm:w-auto">
-                <Instagram className="w-4 h-4 text-rose" />
-                <span>Tag @bloomora.creation</span>
+              <Button variant="outline" size="sm" className="gap-1.5 w-full">
+                <Instagram className="w-3.5 h-3.5 text-rose" />
+                <span>Instagram</span>
               </Button>
             </Link>
           </div>
