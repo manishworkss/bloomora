@@ -6,7 +6,6 @@ import {
   ShoppingBag,
   Clock,
   Package,
-  Truck,
   AlertTriangle,
   ArrowRight,
   TrendingUp,
@@ -66,7 +65,7 @@ export default function AdminDashboardPage() {
             Bloomora Studio Dashboard
           </h1>
           <p className="text-xs text-ink-muted">
-            Track customer orders, manage catalog inventory, and coordinate Vadodara deliveries.
+            Track customer orders, manage catalog inventory, and coordinate custom commissions.
           </p>
         </div>
 
@@ -95,7 +94,7 @@ export default function AdminDashboardPage() {
       <div className="bg-blush/25 border border-border-subtle rounded-2xl p-5 space-y-3">
         <div className="flex items-center gap-2 text-rose font-semibold text-xs uppercase tracking-wider">
           <HelpCircle className="w-4 h-4" />
-          <span>Simple Order Workflow (Vadodara Local Fulfillment)</span>
+          <span>Simple Order Workflow</span>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 text-xs">
           <div className="p-3 rounded-xl bg-surface border border-border-subtle space-y-1">
@@ -111,8 +110,8 @@ export default function AdminDashboardPage() {
             <p className="text-[11px] text-ink-muted">Knit flowers & pack with handwritten card.</p>
           </div>
           <div className="p-3 rounded-xl bg-surface border border-border-subtle space-y-1">
-            <span className="font-bold text-rose">4. Local Dispatch</span>
-            <p className="text-[11px] text-ink-muted">Deliver across Vadodara PINs (Flat ₹50).</p>
+            <span className="font-bold text-rose">4. Gift Wrap</span>
+            <p className="text-[11px] text-ink-muted">Share final photo preview &amp; wrap neatly.</p>
           </div>
           <div className="p-3 rounded-xl bg-surface border border-border-subtle space-y-1">
             <span className="font-bold text-emerald-700">5. Delivered ✓</span>
@@ -194,10 +193,10 @@ export default function AdminDashboardPage() {
         <div className="flex items-center justify-between border-b border-border-subtle/80 pb-4">
           <div>
             <h2 className="font-serif text-lg font-bold text-ink">Recent Customer Orders</h2>
-            <p className="text-xs text-ink-muted">Live fulfillment pipeline across Vadodara</p>
+            <p className="text-xs text-ink-muted">Live order pipeline</p>
           </div>
           <Link href="/admin/orders" className="text-xs font-semibold text-rose hover:underline flex items-center gap-1">
-            <span>View All & Dispatch</span>
+            <span>View All Orders</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -213,7 +212,7 @@ export default function AdminDashboardPage() {
                 <tr className="border-b border-border-subtle text-ink-muted uppercase tracking-wider font-semibold text-[10px]">
                   <th className="pb-3 pr-4">Order Ref</th>
                   <th className="pb-3 px-4">Customer & Phone</th>
-                  <th className="pb-3 px-4">Vadodara Area / PIN</th>
+                  <th className="pb-3 px-4">Address / PIN</th>
                   <th className="pb-3 px-4">Items</th>
                   <th className="pb-3 px-4">Total</th>
                   <th className="pb-3 px-4">Status</th>
@@ -242,9 +241,9 @@ export default function AdminDashboardPage() {
                       {ord.orderStatus === 'PENDING' && <Badge variant="amber">Awaiting Confirm</Badge>}
                       {ord.orderStatus === 'CONFIRMED' && <Badge variant="amber">Confirmed</Badge>}
                       {ord.orderStatus === 'PROCESSING' && <Badge variant="terracotta">In Crafting</Badge>}
-                      {ord.orderStatus === 'READY_FOR_DELIVERY' && <Badge variant="terracotta">Ready</Badge>}
-                      {ord.orderStatus === 'OUT_FOR_DELIVERY' && <Badge variant="sage">On Delivery</Badge>}
-                      {ord.orderStatus === 'DELIVERED' && <Badge variant="sage">Delivered</Badge>}
+                      {ord.orderStatus === 'READY_FOR_DELIVERY' && <Badge variant="terracotta">Wrapped</Badge>}
+                      {ord.orderStatus === 'OUT_FOR_DELIVERY' && <Badge variant="sage">Dispatched</Badge>}
+                      {ord.orderStatus === 'DELIVERED' && <Badge variant="sage">Completed</Badge>}
                     </td>
                     <td className="py-3.5 pl-4 text-right">
                       <div className="flex items-center justify-end gap-2">
@@ -285,12 +284,12 @@ export default function AdminDashboardPage() {
           <p className="text-xs text-ink-muted">Add new creations, edit prices, and manage real-time stock levels.</p>
         </Link>
 
-        <Link href="/admin/delivery-zones" className="p-5 rounded-2xl bg-surface border border-border-subtle shadow-subtle hover:border-primary/50 transition-all space-y-2 block">
+        <Link href="/admin/reviews" className="p-5 rounded-2xl bg-surface border border-border-subtle shadow-subtle hover:border-primary/50 transition-all space-y-2 block">
           <div className="w-8 h-8 rounded-lg bg-blush flex items-center justify-center text-rose">
-            <Truck className="w-4 h-4" />
+            <Star className="w-4 h-4" />
           </div>
-          <h3 className="font-serif text-base font-bold text-ink">Vadodara PIN Coverage</h3>
-          <p className="text-xs text-ink-muted">Manage 17 active Vadodara postal codes and courier flat rates.</p>
+          <h3 className="font-serif text-base font-bold text-ink">Happy Family &amp; Reviews</h3>
+          <p className="text-xs text-ink-muted">Curate customer stories, unboxing photos, and verified buyer testimonials.</p>
         </Link>
 
         <Link href="/admin/settings" className="p-5 rounded-2xl bg-surface border border-border-subtle shadow-subtle hover:border-primary/50 transition-all space-y-2 block">

@@ -17,7 +17,7 @@ export const WhatsAppConcierge: React.FC = () => {
   const bottomOffsetClass = isProductDetail ? 'bottom-20 lg:bottom-6' : 'bottom-5 sm:bottom-6';
 
   const conciergeUrl = `https://wa.me/${DEFAULT_WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    "Hi Bloomora! 🌸 I'm looking for gift recommendations in Vadodara. Can you help me pick the perfect handmade creation?"
+    "Hi Bloomora! 🌸 I'm looking for handmade gift recommendations. Can you help me pick the perfect creation?"
   )}`;
 
   return (

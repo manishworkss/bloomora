@@ -199,7 +199,7 @@ export const CartDrawer: React.FC = () => {
                       </span>
                     </div>
                     <p className="text-[11px] text-ink-muted flex items-center gap-1">
-                      <span>🌸 Vadodara local delivery calculated at checkout</span>
+                      <span>🌸 Handcrafted to order • Order coordinated cleanly via WhatsApp</span>
                     </p>
                   </div>
 

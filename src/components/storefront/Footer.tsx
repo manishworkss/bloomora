@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Instagram, MessageCircle, MapPin, Heart, ShieldCheck } from 'lucide-react';
+import { Instagram, MessageCircle, Sparkles, Heart, ShieldCheck } from 'lucide-react';
 import { DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp';
 import { getCategoriesAsync } from '@/lib/categories-store';
 
@@ -30,7 +30,7 @@ export async function Footer() {
             </Link>
 
             <p className="text-sm text-ink-muted leading-relaxed">
-              Little Creations. Endless Emotions. Each floral bouquet, keychain, and potted flower is thoughtfully hand-knitted and assembled with care in Vadodara, Gujarat.
+              Little Creations. Endless Emotions. Each floral bouquet, keychain, and potted flower is thoughtfully hand-knitted and assembled with care.
             </p>
 
             <div className="flex items-center gap-3 pt-2">
@@ -85,13 +85,13 @@ export async function Footer() {
             </ul>
           </div>
 
-          {/* Customer Care & Delivery */}
+          {/* Customer Care */}
           <div className="space-y-4">
-            <h4 className="font-serif text-base font-semibold text-ink">Local Care & Delivery</h4>
+            <h4 className="font-serif text-base font-semibold text-ink">Customer Care</h4>
             <ul className="space-y-2.5 text-sm text-ink-muted">
               <li className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                <span>Serving all areas across Vadodara, Gujarat</span>
+                <Sparkles className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                <span>Custom gift orders &amp; handwritten notes</span>
               </li>
               <li>
                 <Link href="/orders/track" className="hover:text-primary transition-colors">
@@ -100,7 +100,7 @@ export async function Footer() {
               </li>
               <li>
                 <Link href="/about" className="hover:text-primary transition-colors">
-                  About Bloomora Studio
+                  About Bloomora
                 </Link>
               </li>
               <li>
@@ -113,7 +113,7 @@ export async function Footer() {
                   href="/admin/login"
                   className="hover:text-primary transition-colors inline-flex items-center gap-1.5 text-xs font-semibold text-rose"
                 >
-                  <span>Artisan Studio Admin</span>
+                  <span>Studio Admin</span>
                   <span className="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-blush text-rose">Portal ↗</span>
                 </Link>
               </li>
@@ -130,7 +130,7 @@ export async function Footer() {
               </li>
               <li>
                 <Link href="/policies/shipping" className="hover:text-primary transition-colors">
-                  Delivery & Fulfillment Rules
+                  Crafting &amp; Order Guide
                 </Link>
               </li>
               <li>
@@ -167,7 +167,7 @@ export async function Footer() {
           <p className="flex items-center gap-1">
             <span>Handmade with</span>
             <Heart className="w-3.5 h-3.5 fill-primary text-primary" />
-            <span>in Vadodara, Gujarat.</span>
+            <span>by Bloomora.</span>
           </p>
         </div>
       </div>

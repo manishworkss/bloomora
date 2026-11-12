@@ -62,10 +62,10 @@ function LoginForm() {
           </div>
           <div className="space-y-1">
             <h1 className="font-serif text-2xl sm:text-3xl font-bold text-ink">
-              Artisan Studio Sign In
+              Bloomora Studio Sign In
             </h1>
             <p className="text-xs text-ink-muted">
-              Vadodara Handcrafted Studio • Administrative Portal
+              Bloomora Handcrafted Creations • Administrative Portal
             </p>
           </div>
         </div>

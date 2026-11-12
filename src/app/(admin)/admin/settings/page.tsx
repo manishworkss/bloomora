@@ -7,8 +7,7 @@ import { Button } from '@/components/ui/Button';
 export default function AdminSettingsPage() {
   const [whatsappNumber, setWhatsappNumber] = useState('918271735190');
   const [instagramHandle, setInstagramHandle] = useState('bloomora.creation');
-  const [heroBadgeText, setHeroBadgeText] = useState("Vadodara's Artisan Studio • Slow Handcrafted Blooms");
-  const [deliveryFee, setDeliveryFee] = useState('50');
+  const [heroBadgeText, setHeroBadgeText] = useState('Bloomora • Slow Handcrafted Blooms');
 
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -24,7 +23,6 @@ export default function AdminSettingsPage() {
           if (s.whatsappNumber) setWhatsappNumber(s.whatsappNumber);
           if (s.instagramHandle) setInstagramHandle(s.instagramHandle);
           if (s.heroBadgeText) setHeroBadgeText(s.heroBadgeText);
-          if (s.deliveryFee !== undefined) setDeliveryFee(String(s.deliveryFee));
         }
       })
       .catch((err) => console.error('Failed to load settings:', err))
@@ -44,7 +42,7 @@ export default function AdminSettingsPage() {
           whatsappNumber,
           instagramHandle,
           heroBadgeText,
-          deliveryFee: Number(deliveryFee) || 50,
+          deliveryFee: 0,
         }),
       });
 
@@ -170,28 +168,6 @@ export default function AdminSettingsPage() {
               onChange={(e) => setHeroBadgeText(e.target.value)}
               className="w-full px-4 py-2.5 rounded-lg bg-canvas border border-border-subtle text-sm text-ink focus:outline-none focus:ring-2 focus:ring-primary"
             />
-          </div>
-        </div>
-
-        {/* Local Delivery Flat Fee */}
-        <div className="space-y-4 pt-4 border-t border-border-subtle/80">
-          <h3 className="font-serif text-base font-bold text-ink border-b border-border-subtle/80 pb-3">
-            Local Vadodara Delivery Fee
-          </h3>
-
-          <div className="space-y-1.5 max-w-xs">
-            <label className="text-xs font-semibold text-ink uppercase tracking-wider">
-              Flat Courier Fee (₹ INR)
-            </label>
-            <input
-              type="number"
-              required
-              min={0}
-              value={deliveryFee}
-              onChange={(e) => setDeliveryFee(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-lg bg-canvas border border-border-subtle text-sm text-ink focus:outline-none focus:ring-2 focus:ring-primary font-mono"
-            />
-            <p className="text-[11px] text-ink-muted">Standard rate applied to all 17 Vadodara PIN codes at checkout.</p>
           </div>
         </div>
 

@@ -8,7 +8,6 @@ import {
   AlertCircle,
   Clock,
   Package,
-  Truck,
   CheckCircle2,
   Search,
   ExternalLink,
@@ -24,9 +23,9 @@ const ORDER_STEPS: { key: OrderStatus; label: string; actionText?: string; nextS
   { key: 'PENDING', label: '1. Received', actionText: 'Confirm Order ✓', nextStatus: 'CONFIRMED' },
   { key: 'CONFIRMED', label: '2. Confirmed', actionText: 'Start Crafting 🧶', nextStatus: 'PROCESSING' },
   { key: 'PROCESSING', label: '3. In Crafting', actionText: 'Mark Ready 📦', nextStatus: 'READY_FOR_DELIVERY' },
-  { key: 'READY_FOR_DELIVERY', label: '4. Ready for Dispatch', actionText: 'Dispatch Rider 🚚', nextStatus: 'OUT_FOR_DELIVERY' },
-  { key: 'OUT_FOR_DELIVERY', label: '5. Out for Delivery', actionText: 'Mark Delivered 🌸', nextStatus: 'DELIVERED' },
-  { key: 'DELIVERED', label: '6. Delivered', actionText: undefined, nextStatus: undefined },
+  { key: 'READY_FOR_DELIVERY', label: '4. Ready & Wrapped', actionText: 'Mark Dispatched 📦', nextStatus: 'OUT_FOR_DELIVERY' },
+  { key: 'OUT_FOR_DELIVERY', label: '5. Dispatched', actionText: 'Mark Completed 🌸', nextStatus: 'DELIVERED' },
+  { key: 'DELIVERED', label: '6. Completed', actionText: undefined, nextStatus: undefined },
 ];
 
 export default function AdminOrdersPage() {
@@ -100,16 +99,11 @@ export default function AdminOrdersPage() {
             <span>Fulfillment Pipeline</span>
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl font-bold text-ink">
-            Customer Orders & Dispatch Manager
+            Customer Orders &amp; Studio Pipeline
           </h1>
           <p className="text-xs text-ink-muted">
-            Accept orders, track preparation progress, coordinate Vadodara delivery riders, and message customers.
+            Accept orders, track crafting progress, gift-wrapping, and message customers on WhatsApp.
           </p>
-        </div>
-
-        <div className="px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800 flex items-center gap-2">
-          <Truck className="w-4 h-4 text-emerald-600" />
-          <span>Vadodara Local Flat Rate ₹50 Active</span>
         </div>
       </div>
 
@@ -121,8 +115,8 @@ export default function AdminOrdersPage() {
             { id: 'PENDING', label: 'Received' },
             { id: 'CONFIRMED', label: 'Confirmed' },
             { id: 'PROCESSING', label: 'In Crafting' },
-            { id: 'OUT_FOR_DELIVERY', label: 'Out for Delivery' },
-            { id: 'DELIVERED', label: 'Delivered' },
+            { id: 'OUT_FOR_DELIVERY', label: 'Dispatched' },
+            { id: 'DELIVERED', label: 'Completed' },
           ].map((f) => (
             <button
               key={f.id}
@@ -207,9 +201,9 @@ export default function AdminOrdersPage() {
                       <option value="PENDING">1. PENDING (Order Received)</option>
                       <option value="CONFIRMED">2. CONFIRMED (Payment Verified)</option>
                       <option value="PROCESSING">3. PROCESSING (In Crafting)</option>
-                      <option value="READY_FOR_DELIVERY">4. READY (Packed in Box)</option>
-                      <option value="OUT_FOR_DELIVERY">5. OUT FOR DELIVERY (Rider En Route)</option>
-                      <option value="DELIVERED">6. DELIVERED (Received with Smiles)</option>
+                      <option value="READY_FOR_DELIVERY">4. READY (Gift Wrapped)</option>
+                      <option value="OUT_FOR_DELIVERY">5. DISPATCHED (Sent Out)</option>
+                      <option value="DELIVERED">6. COMPLETED (Received with Smiles)</option>
                       <option value="CANCELLED">CANCELLED</option>
                     </select>
                   </div>
@@ -248,7 +242,7 @@ export default function AdminOrdersPage() {
                     <p className="font-bold text-ink text-sm">{order.customerName}</p>
                     <p className="text-ink-muted font-mono">{order.customerPhone}</p>
                     <p className="text-ink-muted pt-1 leading-relaxed">
-                      {order.deliveryAddress}, Vadodara PIN {order.postalCode}
+                      {order.deliveryAddress}, PIN {order.postalCode}
                     </p>
                   </div>
 
@@ -263,7 +257,7 @@ export default function AdminOrdersPage() {
                       ))}
                     </div>
                     <p className="text-rose font-bold text-sm pt-2">
-                      Total: {formatINR(order.grandTotal)} (Includes ₹{order.deliveryFee || 50} Vadodara delivery)
+                      Total: {formatINR(order.grandTotal)}
                     </p>
                   </div>
 
@@ -291,7 +285,7 @@ export default function AdminOrdersPage() {
                       {/* WhatsApp Customer Update */}
                       <Link
                         href={`https://wa.me/91${order.customerPhone}?text=${encodeURIComponent(
-                          `Hi ${order.customerName}! 🌸 This is Bloomora updating you on your handcrafted order ${order.orderNumber}. Your order status is now: ${order.orderStatus}. Thank you for supporting slow handmade craft in Vadodara!`
+                          `Hi ${order.customerName}! 🌸 This is Bloomora updating you on your handcrafted order ${order.orderNumber}. Your order status is now: ${order.orderStatus}. Thank you for supporting handmade craft!`
                         )}`}
                         target="_blank"
                         rel="noopener noreferrer"

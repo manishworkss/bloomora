@@ -145,7 +145,7 @@ export function CustomerReviewModal({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           customerName,
-          customerLocation: customerLocation || 'Vadodara, Gujarat',
+          customerLocation: customerLocation || 'Verified Buyer',
           customerPhone,
           rating,
           title,
@@ -291,7 +291,7 @@ export function CustomerReviewModal({
                     required
                     value={customerLocation}
                     onChange={(e) => setCustomerLocation(e.target.value)}
-                    placeholder="e.g. Alkapuri, Vadodara"
+                    placeholder="e.g. Mumbai / Bangalore / City"
                     className="w-full px-3.5 py-2.5 rounded-xl bg-canvas border border-border-subtle text-sm text-ink focus:outline-none focus:ring-2 focus:ring-primary"
                   />
                 </div>

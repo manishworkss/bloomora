@@ -149,7 +149,7 @@ const SEED_CATEGORY_GROUPS: SeedCategoryGroup[] = [
         title: 'Artisan Hook & Floral Charm Duo',
         shortDescription: 'Custom two-charm pairing in neutral cream and berry tones.',
         fullDescription:
-          'Crafted to order in your choice of two colours from our Vadodara studio yarn wall, complete with handwritten craft tag.',
+          'Crafted to order in your choice of two colours from our yarn palette, complete with handwritten craft tag.',
         basePrice: 399,
         compareAtPrice: 469,
         productType: 'MADE_TO_ORDER',
@@ -204,7 +204,7 @@ const SEED_CATEGORY_GROUPS: SeedCategoryGroup[] = [
         title: 'Signature Blush Rose & Tulip Bouquet',
         shortDescription: 'Hand-crocheted roses, tulips & lavender in cream satin wrap.',
         fullDescription:
-          'Our flagship Vadodara bouquet combining spiral blush roses, plump tulips, chamomile sprigs, and sage eucalyptus wrapped in crisp Korean paper with a blush satin bow.',
+          'Our flagship bouquet combining spiral blush roses, plump tulips, chamomile sprigs, and sage eucalyptus wrapped in crisp Korean paper with a blush satin bow.',
         basePrice: 1299,
         compareAtPrice: 1599,
         productType: 'MADE_TO_ORDER',
@@ -909,7 +909,7 @@ const SEED_CATEGORY_GROUPS: SeedCategoryGroup[] = [
         title: '"Handcrafted With Love" Luxury Gift Wrap',
         shortDescription: 'Curated lilac plush wrap + dried gypsophila tag + message envelope.',
         fullDescription:
-          'Everything wrapped studio-ready for surprise doorstep delivery anywhere in Vadodara with zero extra wrapping needed.',
+          'Everything wrapped keepsake-ready with signature kraft paper, satin ribbon, and handwritten note — zero extra wrapping needed.',
         basePrice: 1399,
         productType: 'MADE_TO_ORDER',
         preparationDays: 3,

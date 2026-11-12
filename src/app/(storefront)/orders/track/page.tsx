@@ -12,8 +12,8 @@ const STEPS = [
   { key: 'PENDING', label: 'Order Received', desc: 'Awaiting payment verification' },
   { key: 'CONFIRMED', label: 'Confirmed', desc: 'Accepted by creator' },
   { key: 'PROCESSING', label: 'Handcrafting & Packing', desc: 'Items being crafted with love' },
-  { key: 'READY_FOR_DELIVERY', label: 'Ready for Dispatch', desc: 'Packaged in gift box' },
-  { key: 'OUT_FOR_DELIVERY', label: 'Out for Delivery', desc: 'Local rider en route in Vadodara' },
+  { key: 'READY_FOR_DELIVERY', label: 'Gift Wrapped & Ready', desc: 'Packaged in keepsake gift box' },
+  { key: 'OUT_FOR_DELIVERY', label: 'Dispatched', desc: 'Your creation is on its way' },
   { key: 'DELIVERED', label: 'Delivered', desc: 'Received with smiles' },
 ];
 
@@ -183,7 +183,7 @@ function OrderTrackingContent() {
                 Recipient: {order.customerName} ({order.customerPhoneMasked})
               </p>
               <p className="text-ink-muted">
-                Delivery: {order.deliveryAddress}, Vadodara PIN {order.postalCode}
+                Address: {order.deliveryAddress} ({order.postalCode})
               </p>
             </div>
 
@@ -211,7 +211,7 @@ export default function OrderTrackingPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
       <div className="text-center space-y-3 max-w-xl mx-auto">
         <span className="text-xs uppercase font-bold tracking-widest text-rose">
-          Vadodara Fulfillment Tracker
+          Order Progress Tracker
         </span>
         <h1 className="font-serif text-3xl sm:text-5xl font-bold text-ink">
           Track Your Handmade Order

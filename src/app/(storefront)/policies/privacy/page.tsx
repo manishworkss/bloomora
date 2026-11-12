@@ -4,7 +4,7 @@ import { ArrowLeft, Shield } from 'lucide-react';
 
 export const metadata = {
   title: 'Privacy Policy | Bloomora Handcrafted Creations',
-  description: 'How Bloomora handles customer contact and delivery information in Vadodara, Gujarat.',
+  description: 'How Bloomora handles customer contact and order information safely.',
 };
 
 export default function PrivacyPolicyPage() {
@@ -26,7 +26,7 @@ export default function PrivacyPolicyPage() {
           Privacy Policy
         </h1>
         <p className="text-xs text-ink-muted">
-          Last updated: November 2026 • Bloomora Studio, Vadodara, Gujarat
+          Last updated: November 2026 • Bloomora
         </p>
       </div>
 
@@ -34,14 +34,14 @@ export default function PrivacyPolicyPage() {
         <section className="space-y-2">
           <h2 className="font-serif text-lg font-bold text-ink">1. Information We Collect</h2>
           <p>
-            When you place an order or make a custom enquiry with Bloomora, we collect only the details necessary to fulfill your handcrafted gift: recipient name, delivery address, 6-digit Vadodara PIN code, and WhatsApp contact phone number.
+            When you place an order or make a custom enquiry with Bloomora, we collect only the details necessary to craft and fulfill your handmade gift: recipient name, contact address, 6-digit PIN code, and WhatsApp phone number.
           </p>
         </section>
 
         <section className="space-y-2">
           <h2 className="font-serif text-lg font-bold text-ink">2. How We Use Your Data</h2>
           <p>
-            Your information is strictly used for order fulfillment, local courier dispatch across Vadodara, and WhatsApp communication regarding payment confirmation and transit updates. We never sell, share, or market your personal information to third parties.
+            Your information is strictly used for order crafting, gift preparation, and WhatsApp communication regarding payment confirmation and order updates. We never sell, share, or market your personal information to third parties.
           </p>
         </section>
 

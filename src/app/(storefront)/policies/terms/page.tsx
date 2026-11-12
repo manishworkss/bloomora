@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 
 export const metadata = {
   title: 'Terms of Service | Bloomora Handcrafted Creations',
-  description: 'Terms and conditions governing orders and custom commissions at Bloomora, Vadodara.',
+  description: 'Terms and conditions governing orders and custom commissions at Bloomora.',
 };
 
 export default function TermsPage() {
@@ -26,7 +26,7 @@ export default function TermsPage() {
           Terms of Service
         </h1>
         <p className="text-xs text-ink-muted">
-          Last updated: November 2026 • Bloomora Studio, Vadodara, Gujarat
+          Last updated: November 2026 • Bloomora
         </p>
       </div>
 
@@ -46,16 +46,16 @@ export default function TermsPage() {
         </section>
 
         <section className="space-y-2">
-          <h2 className="font-serif text-lg font-bold text-ink">3. Delivery & Fulfillment</h2>
+          <h2 className="font-serif text-lg font-bold text-ink">3. Order Coordination</h2>
           <p>
-            Delivery is available across all 17 serviceable PIN codes in Vadodara city (390001–390025). Delivery timing and dispatch coordination are arranged directly with the customer via WhatsApp once crafting and gift wrapping are complete.
+            Once crafting and gift wrapping are complete, our studio shares photo confirmation and coordinates handover or dispatch directly with you via WhatsApp.
           </p>
         </section>
 
         <section className="space-y-2">
           <h2 className="font-serif text-lg font-bold text-ink">4. Non-Refundable Policy</h2>
           <p>
-            Because every item is handmade to order, all sales are strictly non-refundable. If any item arrives damaged during courier transit, report it with photos to our WhatsApp within 24 hours of delivery for an immediate free replacement.
+            Because every item is handmade to order, all sales are strictly non-refundable. If any item arrives damaged, report it with photos to our WhatsApp within 24 hours for an immediate replacement.
           </p>
         </section>
       </div>

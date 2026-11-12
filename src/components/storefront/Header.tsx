@@ -408,7 +408,7 @@ export const Header: React.FC = () => {
                 onClick={() => setMobileMenuOpen(false)}
                 className="block text-sm font-semibold text-ink hover:text-primary py-2.5 border-b border-border-subtle/50"
               >
-                Contact & Vadodara Delivery
+                Contact Us
               </Link>
 
               <Link
@@ -423,7 +423,7 @@ export const Header: React.FC = () => {
               <div className="pt-4">
                 <Link
                   href={`https://wa.me/${DEFAULT_WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                    "Hi Bloomora! 🌸 I would like to place an order in Vadodara."
+                    "Hi Bloomora! 🌸 I would like to place an order."
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"

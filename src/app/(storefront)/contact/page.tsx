@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { MessageCircle, Instagram, MapPin, Send } from 'lucide-react';
+import { MessageCircle, Instagram, Sparkles, Send } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { DEFAULT_WHATSAPP_NUMBER, buildWhatsAppLink } from '@/lib/whatsapp';
 
@@ -44,10 +44,10 @@ export default function ContactPage() {
           We&apos;d Love to Hear From You
         </span>
         <h1 className="font-serif text-3xl sm:text-5xl font-bold text-ink">
-          Contact Bloomora Studio
+          Contact Bloomora
         </h1>
         <p className="text-sm text-ink-muted leading-relaxed">
-          Have questions about a custom bouquet, order delivery in Vadodara, or want to discuss a personalized idea? Reach out to us directly!
+          Have questions about a custom bouquet, an existing creation, or want to discuss a personalized gift idea? Reach out to us directly!
         </p>
       </div>
 
@@ -88,11 +88,11 @@ export default function ContactPage() {
 
           <div className="p-6 rounded-xl bg-surface border border-border-subtle shadow-craft space-y-2">
             <div className="w-10 h-10 rounded-full bg-sage/20 text-sage flex items-center justify-center">
-              <MapPin className="w-5 h-5" />
+              <Sparkles className="w-5 h-5" />
             </div>
-            <h3 className="font-serif text-base font-bold text-ink">Studio Location</h3>
+            <h3 className="font-serif text-base font-bold text-ink">Custom Gift Consultations</h3>
             <p className="text-xs text-ink-muted">
-              Handcrafted in <strong>Vadodara, Gujarat</strong>. Serving all local PIN codes (390001–390025).
+              Personal WhatsApp guidance for colour palettes, custom commissions, and handwritten gift notes.
             </p>
           </div>
         </div>

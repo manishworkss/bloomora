@@ -69,7 +69,7 @@ export function HappyFamilySection({ initialReviews }: HappyFamilySectionProps) 
             Our Happy Family & Reviews
           </h2>
           <p className="text-xs sm:text-sm text-ink-muted max-w-xl mx-auto md:mx-0">
-            Real client reviews, unboxing videos, and keepsake photos from homes across Vadodara.
+            Real client reviews, unboxing videos, and keepsake photos from happy Bloomora gifting moments.
           </p>
         </div>
 
@@ -106,7 +106,7 @@ export function HappyFamilySection({ initialReviews }: HappyFamilySectionProps) 
               Be the First to Share Your Bloomora Story!
             </h3>
             <p className="text-xs sm:text-sm text-ink-muted leading-relaxed max-w-lg mx-auto">
-              Every handcrafted flower and keepsake bouquet is made with slow needlecraft and love in Vadodara. Have you received a Bloomora creation? Click below to share your authentic review, photos, or unboxing video!
+              Every handcrafted flower and keepsake bouquet is made with slow needlecraft and love. Have you received a Bloomora creation? Click below to share your authentic review, photos, or unboxing video!
             </p>
           </div>
 

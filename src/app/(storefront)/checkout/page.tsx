@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  Truck,
   MessageCircle,
   MapPin,
   ShoppingBag,
@@ -16,12 +15,6 @@ import { useCart, getCartItemKey, formatCartLineExtras } from '@/context/CartCon
 import { formatINR } from '@/lib/formatters';
 import { Button } from '@/components/ui/Button';
 import { buildWhatsAppLink } from '@/lib/whatsapp';
-
-const VADODARA_PINS = [
-  '390001', '390002', '390004', '390007', '390008', '390010',
-  '390011', '390012', '390015', '390018', '390019', '390020',
-  '390021', '390022', '390023', '390024', '390025',
-];
 
 function normalizeIndianPhone(input: string): string {
   const digits = input.replace(/\D/g, '');
@@ -38,29 +31,13 @@ export default function CheckoutPage() {
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [landmark, setLandmark] = useState('');
-  const [postalCode, setPostalCode] = useState('390001');
+  const [postalCode, setPostalCode] = useState('');
   const [notes, setNotes] = useState('');
-  const [deliveryFee, setDeliveryFee] = useState(50);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderCompleted, setOrderCompleted] = useState<any>(null);
 
-  useEffect(() => {
-    fetch('/api/store/settings')
-      .then((r) => r.json())
-      .then((data) => {
-        if (data.success && typeof data.settings?.deliveryFee === 'number') {
-          setDeliveryFee(data.settings.deliveryFee);
-        }
-      })
-      .catch(() => {});
-  }, []);
-
-  const grandTotal = subtotal + deliveryFee;
-
-  const isVadodaraPin =
-    postalCode.length === 6 &&
-    (VADODARA_PINS.includes(postalCode) || postalCode.startsWith('390'));
+  const grandTotal = subtotal;
 
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -73,8 +50,8 @@ export default function CheckoutPage() {
       setErrorMsg('Please enter a valid 10-digit Indian mobile number.');
       return;
     }
-    if (!/^390\d{3}$/.test(postalCode.trim())) {
-      setErrorMsg('Currently we deliver across Vadodara PIN codes starting with 390.');
+    if (!/^[0-9]{6}$/.test(postalCode.trim())) {
+      setErrorMsg('Please enter a valid 6-digit PIN code.');
       return;
     }
 
@@ -114,7 +91,7 @@ export default function CheckoutPage() {
       if (!res.ok || !data.success || !data.data?.orderNumber) {
         setErrorMsg(
           data?.error?.message ||
-            'Please verify your delivery details and mobile number, then try again.'
+            'Please verify your contact details and mobile number, then try again.'
         );
         setIsSubmitting(false);
         return;
@@ -122,8 +99,6 @@ export default function CheckoutPage() {
 
       const finalOrderNumber = data.data.orderNumber;
       const lookupToken = data.data.lookupToken;
-      const finalDeliveryFee =
-        typeof data.data.deliveryFee === 'number' ? data.data.deliveryFee : deliveryFee;
       const finalGrandTotal =
         typeof data.data.grandTotal === 'number' ? data.data.grandTotal : grandTotal;
 
@@ -137,7 +112,7 @@ export default function CheckoutPage() {
         .join('\n');
 
       // WhatsApp Message
-      const message = `Hi Bloomora! 👋🌸\nI have placed an order on your website!\n\n🛍️ *Order Ref:* ${finalOrderNumber}\n\n*Items Ordered:*\n${itemsSummary}\n\n📦 *Delivery Address:*\n${name}\nPhone: ${cleanPhone}\n${address}\nLandmark: ${landmark || 'N/A'}\nVadodara PIN: ${postalCode}\nSpecial Notes: ${notes || 'None'}\n\n💵 *Total Amount:* ${formatINR(finalGrandTotal)} (Includes ₹${finalDeliveryFee} Vadodara delivery)\n\nPlease share your UPI QR so I can complete payment and you can start handcrafting! 💖`;
+      const message = `Hi Bloomora! 👋🌸\nI have placed an order on your website!\n\n🛍️ *Order Ref:* ${finalOrderNumber}\n\n*Items Ordered:*\n${itemsSummary}\n\n📋 *Customer Details:*\n${name}\nPhone: ${cleanPhone}\n${address}\nLandmark: ${landmark || 'N/A'}\nPIN Code: ${postalCode}\nSpecial Notes: ${notes || 'None'}\n\n💵 *Total Amount:* ${formatINR(finalGrandTotal)}\n\nPlease share your UPI QR so I can complete payment and you can start handcrafting! 💖`;
 
       const whatsappUrl = buildWhatsAppLink({ message });
 
@@ -241,21 +216,21 @@ export default function CheckoutPage() {
           Bloomora Checkout
         </span>
         <h1 className="font-serif text-3xl sm:text-4xl font-bold text-ink">
-          Delivery Details & Order Review
+          Order Details &amp; Review
         </h1>
         <p className="text-sm text-ink-muted">
-          Providing local delivery across all Vadodara postal codes. Order confirms directly via WhatsApp.
+          Handcrafted with care. Orders confirm directly with our studio on WhatsApp.
         </p>
       </div>
 
       <form onSubmit={handlePlaceOrder} className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-        {/* Left Form: Delivery Address */}
+        {/* Left Form: Customer & Recipient Details */}
         <div className="lg:col-span-7 space-y-6">
           <div className="bg-surface p-6 sm:p-8 rounded-2xl border border-border-subtle shadow-craft space-y-5">
             <div className="flex items-center gap-2 border-b border-border-subtle/80 pb-3">
               <MapPin className="w-4 h-4 text-primary" />
               <h3 className="font-serif text-lg font-bold text-ink">
-                Vadodara Delivery Address
+                Recipient &amp; Contact Details
               </h3>
             </div>
 
@@ -276,7 +251,7 @@ export default function CheckoutPage() {
 
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-ink uppercase tracking-wider">
-                  Mobile Number (For Delivery Call) <span className="text-primary">*</span>
+                  WhatsApp / Mobile Number <span className="text-primary">*</span>
                 </label>
                 <input
                   type="tel"
@@ -319,7 +294,7 @@ export default function CheckoutPage() {
 
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-ink uppercase tracking-wider">
-                  Vadodara PIN Code <span className="text-primary">*</span>
+                  PIN Code <span className="text-primary">*</span>
                 </label>
                 <input
                   type="text"
@@ -327,23 +302,11 @@ export default function CheckoutPage() {
                   maxLength={6}
                   value={postalCode}
                   onChange={(e) => setPostalCode(e.target.value.replace(/\D/g, ''))}
-                  placeholder="e.g. 390021"
+                  placeholder="6-digit PIN code"
                   className="w-full px-4 py-2.5 rounded-lg bg-canvas border border-border-subtle text-sm text-ink focus:outline-none focus:ring-2 focus:ring-primary font-mono"
                 />
               </div>
             </div>
-
-            {/* PIN validation note */}
-            {isVadodaraPin ? (
-              <div className="p-3 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 flex items-center gap-2">
-                <Truck className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Vadodara PIN verified: Flat local courier delivery of {formatINR(deliveryFee)} applied.</span>
-              </div>
-            ) : (
-              <div className="p-3 rounded-lg bg-amber-50 border border-amber-200 text-xs text-amber-900">
-                ⚠️ We currently deliver within Vadodara (PIN codes starting with 390...). Please confirm your PIN code.
-              </div>
-            )}
 
             {errorMsg && (
               <div
@@ -357,7 +320,7 @@ export default function CheckoutPage() {
 
             <div className="space-y-1.5">
               <label className="text-xs font-semibold text-ink uppercase tracking-wider">
-                Gift Note / Delivery Instructions (Optional)
+                Gift Note / Special Instructions (Optional)
               </label>
               <input
                 type="text"
@@ -414,8 +377,8 @@ export default function CheckoutPage() {
                 <span>{formatINR(subtotal)}</span>
               </div>
               <div className="flex justify-between text-ink-muted">
-                <span>Vadodara Delivery</span>
-                <span>{formatINR(deliveryFee)}</span>
+                <span>Handcrafted Gift Wrap</span>
+                <span className="text-sage font-medium">Complimentary</span>
               </div>
               <div className="flex justify-between text-base font-bold text-ink pt-2 border-t border-border-subtle/80">
                 <span>Grand Total</span>

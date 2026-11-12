@@ -29,7 +29,6 @@ export async function GET() {
     {
       status,
       brand: 'Bloomora',
-      city: 'Vadodara, Gujarat',
       whatsapp: '+91 8271735190',
       database: {
         mode: isCloud ? 'supabase' : 'local-json',

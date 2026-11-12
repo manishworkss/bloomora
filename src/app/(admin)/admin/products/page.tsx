@@ -979,7 +979,7 @@ function AdminProductsContent() {
                   type="text"
                   value={shortDescription}
                   onChange={(e) => setShortDescription(e.target.value)}
-                  placeholder="Soft milk-cotton yarn stitched with love in Vadodara."
+                  placeholder="Soft milk-cotton yarn stitched stitch by stitch with care."
                   className="w-full px-3.5 py-2 rounded-lg bg-canvas border border-border-subtle text-xs text-ink focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>

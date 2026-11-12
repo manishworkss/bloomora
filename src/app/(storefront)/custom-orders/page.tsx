@@ -174,7 +174,7 @@ function CustomOrdersContent() {
             </div>
             <h3 className="font-serif text-2xl font-bold text-ink">Opening WhatsApp...</h3>
             <p className="text-sm text-ink-muted max-w-md mx-auto">
-              Your custom idea has been saved. If WhatsApp didn&apos;t open automatically, click below to chat directly with our Vadodara studio.
+              Your custom idea has been saved. If WhatsApp didn&apos;t open automatically, click below to chat directly with our studio.
             </p>
             <div className="pt-2">
               <Link

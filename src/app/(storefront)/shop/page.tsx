@@ -251,7 +251,7 @@ function ShopContent() {
             <h2 className="font-serif text-xl sm:text-2xl text-ink">{activeCategoryObj.name}</h2>
             <p className="text-xs sm:text-sm text-ink-muted max-w-2xl leading-relaxed">
               {activeCategoryObj.description ||
-                'Handcrafted to order in our Vadodara studio with your favorite palette and personal note.'}
+                'Handcrafted to order with your favorite yarn palette and personal note.'}
             </p>
           </div>
           <Link
@@ -293,7 +293,7 @@ function ShopContent() {
               ? 'You have an idea — we have the creativity to turn it into a handmade keepsake! Tell us what you imagine and we will design it from scratch.'
               : activeCategoryObj && activeCategoryObj.id !== 'all'
                 ? 'Pieces in this category are lovingly crafted to order. Tell us your preferred theme, colors, or personal touch and we will bring it to life.'
-                : 'Try resetting your keywords or commission a bespoke handcrafted gift created specially for you in Vadodara.'}
+                : 'Try resetting your keywords or commission a bespoke handcrafted gift created specially for you.'}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
             <Link
@@ -391,7 +391,7 @@ export default function ShopPage() {
           Handmade Creations
         </h1>
         <p className="text-xs sm:text-sm text-ink-muted max-w-2xl mx-auto sm:mx-0">
-          Handmade keychains, customized bouquets, handmade flowers, seasonal crafts, birthday surprise cards &amp; bespoke personalized gifts crafted with love in Vadodara.
+          Handmade keychains, customized bouquets, handmade flowers, seasonal crafts, birthday surprise cards &amp; bespoke personalized gifts crafted with love by Bloomora.
         </p>
       </div>
 

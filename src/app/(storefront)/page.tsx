@@ -29,6 +29,7 @@ import { getSettingsAsync } from '@/lib/settings-store';
 import { getReviewsAsync } from '@/lib/reviews-store';
 import { HappyFamilySection } from '@/components/storefront/HappyFamilySection';
 import { InteractiveGiftStudio } from '@/components/storefront/InteractiveGiftStudio';
+import { InteractiveOrderJourney } from '@/components/storefront/InteractiveOrderJourney';
 
 export const dynamic = 'force-dynamic';
 
@@ -39,7 +40,7 @@ const BRAND_VALUES_MARQUEE = [
   'Personalised Gifting',
   'Crafted with Care',
   '100% Slow Crochet',
-  'Vadodara Artisan Studio',
+  'Handcrafted Keepsakes',
   'Everlasting Memories',
 ];
 
@@ -57,7 +58,7 @@ const PROCESS_STEPS = [
     icon: Scissors,
     title: 'Stitch-by-Stitch Craft',
     description:
-      'Every petal, leaf, and stem is patiently crocheted with delicate needlework in our Vadodara studio.',
+      'Every petal, leaf, and stem is patiently crocheted stitch by stitch with delicate handwork.',
   },
   {
     number: '03',
@@ -75,29 +76,6 @@ const PROCESS_STEPS = [
   },
 ];
 
-const ORDER_STEPS = [
-  {
-    step: '1',
-    title: 'Explore the Collection',
-    desc: 'Browse handmade keychains, customized bouquets, handmade flowers, seasonal crafts, and birthday surprise cards.',
-  },
-  {
-    step: '2',
-    title: 'Bring Your Idea, We Bring Creativity',
-    desc: 'Pick a favorite design or share a custom gift idea — we turn it into handmade magic.',
-  },
-  {
-    step: '3',
-    title: 'Add Personal Touches',
-    desc: 'Include a custom gift message for your recipient in Vadodara.',
-  },
-  {
-    step: '4',
-    title: 'Delivered with Love',
-    desc: 'Receive your handcrafted treasure safely across all Vadodara PIN codes.',
-  },
-];
-
 const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'How long do Bloomora handmade flowers last?',
@@ -105,9 +83,9 @@ const FAQ_ITEMS: FAQItem[] = [
       'Forever! Unlike fresh-cut flowers that wither in days, our crochet blossoms are handcrafted from premium milk-cotton yarn that never fades, wilts, or requires water.',
   },
   {
-    question: 'Do you deliver all across Vadodara?',
+    question: 'How are orders and custom gifts coordinated?',
     answer:
-      'Yes, we deliver across all 17 Vadodara PIN codes (390001 through 390025) with a flat ₹50 local courier fee. We coordinate delivery directly with you on WhatsApp once your handcrafted creation is wrapped.',
+      'Once you submit your order or custom gift idea, our studio shares confirmation details and live progress updates with you directly on WhatsApp (+91 8271735190) before gift wrapping is sealed.',
   },
   {
     question: 'Can I request a custom color palette or flower type?',
@@ -117,7 +95,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: 'What is your return and cancellation policy?',
     answer:
-      'Because every piece is meticulously handmade, orders are strictly non-refundable once dispatched. In the rare event of transit damage, notify us on WhatsApp within 24 hours with photos for an immediate replacement.',
+      'Because every piece is meticulously handmade, orders are strictly non-refundable once crafting begins. If any item arrives damaged, notify us on WhatsApp within 24 hours with photos for an immediate replacement.',
   },
   {
     question: 'What payment options do you support?',
@@ -135,7 +113,7 @@ const STUDIO_MOMENTS = [
   {
     id: 'sm-2',
     imageUrl: '/images/bloomora-hero-artisan-workbench.jpg',
-    caption: 'Artisan crafting table stitch-by-stitch with soft milk-cotton yarn in Vadodara.',
+    caption: 'Handmade crafting table stitch-by-stitch with soft milk-cotton yarn.',
   },
   {
     id: 'sm-3',
@@ -144,8 +122,8 @@ const STUDIO_MOMENTS = [
   },
   {
     id: 'sm-4',
-    imageUrl: '/images/bloomora-hero-bouquet.jpg',
-    caption: 'Customised color palette prepared for delivery across Vadodara.',
+    imageUrl: '/images/cat-customized-bouquet.jpg',
+    caption: 'Customised blush bouquet prepared with satin ribbon and kraft wrapping.',
   },
 ];
 
@@ -162,7 +140,7 @@ export default async function HomePage() {
 
   // Art-directed responsive hero banner: 16:9 full-width landscape on desktop/Windows, 9:16 tall portrait on mobile
   const heroCommonProps = {
-    alt: 'Bloomora Handcrafted Crochet Bouquets & Memory Keepsake Scrapbooks — Crafted in Vadodara',
+    alt: 'Bloomora Handcrafted Crochet Bouquets & Memory Keepsake Scrapbooks',
     sizes: '100vw',
     priority: true,
   };
@@ -258,7 +236,7 @@ export default async function HomePage() {
                   ))}
                 </div>
                 <span>
-                  <strong className="text-white font-semibold">500+ smiles</strong> delivered across Vadodara
+                  <strong className="text-white font-semibold">500+ handcrafted gifts</strong> loved forever
                 </span>
               </div>
             </div>
@@ -282,9 +260,9 @@ export default async function HomePage() {
                 </p>
               </div>
               <div className="px-2">
-                <p className="font-serif text-base sm:text-xl font-bold text-ink">Vadodara</p>
+                <p className="font-serif text-base sm:text-xl font-bold text-ink">Bespoke</p>
                 <p className="text-[9px] sm:text-[11px] uppercase tracking-wider text-ink-muted mt-0.5">
-                  City Delivery
+                  Made to Order
                 </p>
               </div>
             </div>
@@ -403,7 +381,7 @@ export default async function HomePage() {
               Featured Creations
             </h2>
             <p className="text-xs sm:text-sm text-ink-muted">
-              Hand-crocheted favorites cherished by gifting lovers across Vadodara.
+              Hand-crocheted favorites cherished by thoughtful gifting lovers everywhere.
             </p>
           </div>
 
@@ -680,35 +658,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 10. HOW TO ORDER (4-Step Responsive Guide) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 w-full">
-        <div className="text-center space-y-1.5 max-w-xl mx-auto">
-          <span className="text-xs uppercase font-bold tracking-widest text-rose">
-            Simple & Transparent
-          </span>
-          <h2 className="font-serif text-2xl sm:text-4xl text-ink font-normal">
-            How to Order
-          </h2>
-          <p className="text-xs sm:text-sm text-ink-muted">
-            Easy guest checkout with WhatsApp assisted coordination.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
-          {ORDER_STEPS.map((item) => (
-            <div
-              key={item.step}
-              className="p-4 sm:p-6 rounded-2xl bg-surface border border-border-subtle space-y-2.5"
-            >
-              <div className="w-7 h-7 rounded-full bg-rose text-white flex items-center justify-center text-xs font-bold font-serif">
-                {item.step}
-              </div>
-              <h3 className="font-serif text-base font-semibold text-ink">{item.title}</h3>
-              <p className="text-xs text-ink-muted leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* 10. INTERACTIVE HOW TO ORDER STUDIO JOURNEY */}
+      <InteractiveOrderJourney />
 
       {/* 11. INSTAGRAM / SOCIAL GALLERY */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-5 w-full">
@@ -769,7 +720,7 @@ export default async function HomePage() {
             Frequently Asked Questions
           </h2>
           <p className="text-xs sm:text-sm text-ink-muted">
-            Everything you need to know about our handcrafted blooms and Vadodara deliveries.
+            Everything you need to know about our handcrafted blooms and custom orders.
           </p>
         </div>
 

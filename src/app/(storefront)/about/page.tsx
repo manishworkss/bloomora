@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Heart, Instagram, Sparkles, MessageCircle, MapPin } from 'lucide-react';
+import { Heart, Instagram, Sparkles, MessageCircle, Gift } from 'lucide-react';
 import { DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp';
 import { Button } from '@/components/ui/Button';
 
@@ -17,7 +17,7 @@ export default function AboutPage() {
           Crafting Warmth at Bloomora
         </h1>
         <p className="text-base text-ink-muted leading-relaxed">
-          Welcome to <strong className="text-ink">Bloomora — Handcrafted Creations</strong>. We are an artisan studio based in Vadodara, Gujarat, devoted to creating emotional, handcrafted keepsakes.
+          Welcome to <strong className="text-ink">Bloomora — Handcrafted Creations</strong>. We are a slow-craft studio devoted to creating emotional, handcrafted keepsakes.
         </p>
       </div>
 
@@ -68,11 +68,11 @@ export default function AboutPage() {
 
         <div className="p-6 rounded-xl bg-surface border border-border-subtle space-y-2 text-center">
           <div className="w-10 h-10 rounded-full bg-sage/20 text-sage flex items-center justify-center mx-auto">
-            <MapPin className="w-5 h-5" />
+            <Gift className="w-5 h-5" />
           </div>
-          <h3 className="font-serif text-lg font-bold text-ink">Rooted in Vadodara</h3>
+          <h3 className="font-serif text-lg font-bold text-ink">Made for Memories</h3>
           <p className="text-xs text-ink-muted">
-            Proudly based in Vadodara, Gujarat, with personalized doorstep delivery across the city.
+            Custom colour palettes, signature kraft wrapping, and handwritten note tags on every order.
           </p>
         </div>
       </div>

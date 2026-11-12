@@ -62,7 +62,7 @@ export default function AdminReviewsPage() {
   // Manual Review Modal State
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [formName, setFormName] = useState('');
-  const [formLocation, setFormLocation] = useState('Vadodara, Gujarat');
+  const [formLocation, setFormLocation] = useState('');
   const [formPhone, setFormPhone] = useState('');
   const [formRating, setFormRating] = useState(5);
   const [formTitle, setFormTitle] = useState('');
@@ -190,7 +190,7 @@ export default function AdminReviewsPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           customerName: formName.trim(),
-          customerLocation: formLocation.trim() || 'Vadodara, Gujarat',
+          customerLocation: formLocation.trim() || 'Verified Buyer',
           customerPhone: formPhone.trim() || undefined,
           rating: formRating,
           title: formTitle.trim() || undefined,
@@ -298,7 +298,7 @@ export default function AdminReviewsPage() {
             Total Stories
           </span>
           <p className="font-serif text-2xl sm:text-3xl font-bold text-ink">{reviews.length}</p>
-          <span className="text-[10px] text-ink-muted">Across Vadodara & Gujarat</span>
+          <span className="text-[10px] text-ink-muted">Published &amp; awaiting review</span>
         </div>
 
         <div className="bg-surface rounded-2xl border border-border-subtle p-4 space-y-1 shadow-subtle">
@@ -736,7 +736,7 @@ export default function AdminReviewsPage() {
                   <label className="text-xs font-semibold text-ink">Locality / City</label>
                   <input
                     type="text"
-                    placeholder="e.g. Alkapuri, Vadodara"
+                    placeholder="e.g. Mumbai / Bangalore / City"
                     value={formLocation}
                     onChange={(e) => setFormLocation(e.target.value)}
                     className="w-full px-3 py-2 rounded-xl border border-border-subtle text-xs bg-canvas text-ink focus:outline-none focus:ring-1 focus:ring-primary"

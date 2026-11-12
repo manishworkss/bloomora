@@ -67,7 +67,7 @@ function mapSupabaseReview(row: any): CustomerReview {
   return {
     id: row.id,
     customerName: row.customer_name,
-    customerLocation: row.customer_location || 'Vadodara, Gujarat',
+    customerLocation: row.customer_location || 'Verified Buyer',
     customerPhone: row.customer_phone || undefined,
     rating: Number(row.rating || 5),
     title: row.title || undefined,

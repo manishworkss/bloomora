@@ -96,10 +96,10 @@ export async function POST(request: Request) {
       categoryId: categoryId || '',
       title,
       slug,
-      shortDescription: shortDescription || `${title} crafted with care in Vadodara.`,
+      shortDescription: shortDescription || `${title} crafted with care by Bloomora.`,
       fullDescription:
         fullDescription ||
-        `${title} is handmade with soft milk-cotton yarn and assembled with care in Vadodara, Gujarat.`,
+        `${title} is handmade with soft milk-cotton yarn and assembled stitch by stitch with genuine care.`,
       basePrice: Number(basePrice),
       compareAtPrice: compareAtPrice ? Number(compareAtPrice) : undefined,
       productType: productType === 'MADE_TO_ORDER' ? 'MADE_TO_ORDER' : 'READY_MADE',

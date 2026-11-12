@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
 
     const review = await saveReviewAsync({
       customerName,
-      customerLocation: customerLocation || 'Vadodara, Gujarat',
+      customerLocation: customerLocation || 'Verified Buyer',
       customerPhone,
       rating: Number(rating) || 5,
       title,

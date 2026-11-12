@@ -8,7 +8,6 @@ import {
   LayoutDashboard,
   Package,
   ShoppingBag,
-  MapPin,
   MessageSquare,
   Settings,
   ExternalLink,
@@ -24,7 +23,6 @@ const ADMIN_LINKS = [
   { href: '/admin/products', label: 'Product Catalog', icon: Package },
   { href: '/admin/reviews', label: 'Reviews & Stories', icon: Star },
   { href: '/admin/enquiries', label: 'Custom Enquiries', icon: MessageSquare },
-  { href: '/admin/delivery-zones', label: 'Vadodara Zones & PINs', icon: MapPin },
   { href: '/admin/settings', label: 'Site & WhatsApp Settings', icon: Settings },
 ];
 
@@ -182,7 +180,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <div className="flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span className="text-xs font-semibold text-ink">
-              Bloomora Studio Management • Vadodara, Gujarat
+              Bloomora Studio Management
             </span>
             <span className="hidden lg:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>

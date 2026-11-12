@@ -2,9 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { nanoid } from 'nanoid';
 import { saveOrderAsync } from '@/lib/orders-store';
-import { getSettingsAsync } from '@/lib/settings-store';
 import { getProductsAsync } from '@/lib/products-store';
-import { getDeliveryZonesAsync } from '@/lib/delivery-zones-store';
 import { resolveAuthoritativeOrderPricing } from '@/lib/gift-addons';
 import { Order } from '@/types';
 
@@ -16,9 +14,9 @@ const checkoutSchema = z.object({
     name: z.string().min(2, 'Name must be at least 2 characters'),
     phone: z.string().regex(/^[0-9]{10}$/, 'Must be a 10-digit Indian phone number'),
     email: z.string().email().optional().or(z.literal('')),
-    deliveryAddress: z.string().min(5, 'Delivery address is required'),
+    deliveryAddress: z.string().min(5, 'Address is required'),
     landmark: z.string().optional(),
-    postalCode: z.string().regex(/^390\d{3}$/, 'Only Vadodara PIN codes (390xxx) are serviceable at launch'),
+    postalCode: z.string().regex(/^\d{6}$/, 'Please provide a valid 6-digit PIN code'),
     deliveryInstructions: z.string().optional(),
   }),
   items: z
@@ -59,37 +57,15 @@ export async function POST(request: NextRequest) {
 
     const { customer, items, paymentMethod } = validated.data;
 
-    const [settings, catalogProducts, deliveryZones] = await Promise.all([
-      getSettingsAsync(),
-      getProductsAsync(true),
-      getDeliveryZonesAsync(),
-    ]);
-
-    const fallbackDeliveryFee =
-      typeof settings.deliveryFee === 'number' && settings.deliveryFee >= 0
-        ? settings.deliveryFee
-        : 50.0;
+    const catalogProducts = await getProductsAsync(true);
 
     const pricing = resolveAuthoritativeOrderPricing({
       inputs: items,
       catalogProducts,
-      deliveryZones,
+      deliveryZones: [],
       postalCode: customer.postalCode,
-      fallbackDeliveryFee,
+      fallbackDeliveryFee: 0,
     });
-
-    if (pricing.inactiveZonePin) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: {
-            code: 'ZONE_UNAVAILABLE',
-            message: `Delivery is currently paused for PIN ${pricing.inactiveZonePin}. Please contact us on WhatsApp to arrange studio pickup or special courier.`,
-          },
-        },
-        { status: 400 }
-      );
-    }
 
     if (pricing.unknownProductIds.length > 0 || pricing.items.length === 0) {
       return NextResponse.json(

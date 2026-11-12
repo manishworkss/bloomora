@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ShoppingBag, ArrowRight, Trash2, Plus, Minus, MessageCircle, Flower2 } from 'lucide-react';
@@ -11,18 +11,6 @@ import { getOrderInquiryLink } from '@/lib/whatsapp';
 
 export default function CartPage() {
   const { items, subtotal, totalItems, updateQuantity, removeItem } = useCart();
-  const [deliveryFee, setDeliveryFee] = useState(50);
-
-  useEffect(() => {
-    fetch('/api/store/settings')
-      .then((r) => r.json())
-      .then((data) => {
-        if (data.success && typeof data.settings?.deliveryFee === 'number') {
-          setDeliveryFee(data.settings.deliveryFee);
-        }
-      })
-      .catch(() => {});
-  }, []);
 
   if (items.length === 0) {
     return (
@@ -33,7 +21,7 @@ export default function CartPage() {
         <div className="space-y-2">
           <h1 className="font-serif text-3xl font-bold text-ink">Your Shopping Bag is Empty</h1>
           <p className="text-sm text-ink-muted">
-            Looking for a handmade bouquet, flower pot, or delicate keychain? Explore our handcrafted collections made with love in Vadodara.
+            Looking for a handmade bouquet, flower pot, or delicate keychain? Explore our handcrafted collections made with love by Bloomora.
           </p>
         </div>
         <div className="pt-2">
@@ -170,8 +158,8 @@ export default function CartPage() {
               <span className="font-medium text-ink">{formatINR(subtotal)}</span>
             </div>
             <div className="flex justify-between text-ink-muted">
-              <span>Vadodara Delivery</span>
-              <span className="text-xs font-semibold text-sage">Calculated at Checkout ({formatINR(deliveryFee)})</span>
+              <span>Handcrafted Gift Wrap</span>
+              <span className="text-xs font-semibold text-sage">Complimentary</span>
             </div>
             <div className="flex justify-between text-base font-bold text-ink pt-3 border-t border-border-subtle">
               <span>Estimated Total</span>

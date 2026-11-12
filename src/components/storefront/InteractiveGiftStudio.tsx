@@ -123,7 +123,7 @@ export function InteractiveGiftStudio() {
             <div className="relative aspect-[4/3] lg:aspect-[5/4] rounded-2xl overflow-hidden bg-canvas border border-border-subtle w-full">
               <Image
                 src="/images/bloomora-hero-artisan-workbench.jpg"
-                alt="Bloomora handmade crafting table in Vadodara"
+                alt="Bloomora handmade crochet workbench"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 42vw"
@@ -135,7 +135,7 @@ export function InteractiveGiftStudio() {
               <div className="absolute inset-x-3 bottom-3 rounded-xl bg-white/95 backdrop-blur-md px-3.5 py-2.5 border border-white/70 shadow-subtle flex items-center justify-between gap-3">
                 <div className="min-w-0">
                   <p className="text-[10px] font-bold uppercase tracking-wider text-rose">
-                    Vadodara Studio Craft
+                    Bloomora Studio Craft
                   </p>
                   <p className="text-xs font-semibold text-ink truncate">
                     {activeMood.craftHighlight}
@@ -181,7 +181,7 @@ export function InteractiveGiftStudio() {
               </h2>
 
               <p className="text-xs sm:text-sm text-ink-muted leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                Mass-produced gifts fade fast — we take the slow path in Vadodara, turning milk-cotton yarn, textured craft paper, and your ideas into keepsakes kept for years. Tap what fits your moment:
+                Mass-produced gifts fade fast — we take the slow path, turning milk-cotton yarn, textured craft paper, and your ideas into keepsakes kept for years. Tap what fits your moment:
               </p>
             </div>
 
@@ -264,7 +264,7 @@ export function InteractiveGiftStudio() {
 
             {/* Secondary Story Link */}
             <div className="pt-1 border-t border-border-subtle/70 flex flex-wrap items-center justify-between gap-2 text-xs text-ink-muted">
-              <span>Want to know how Bloomora started in Vadodara?</span>
+              <span>Want to know the story behind Bloomora?</span>
               <Link
                 href="/about"
                 className="inline-flex items-center gap-1.5 font-semibold text-ink hover:text-primary transition-colors"

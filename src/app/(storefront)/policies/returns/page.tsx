@@ -53,12 +53,12 @@ export default function ReturnsPolicyPage() {
         <section className="space-y-3">
           <h2 className="font-serif text-xl font-bold text-ink">3. Transit Damage & Replacement Guarantee</h2>
           <p>
-            We take utmost care packaging your items safely. In the rare event that an item arrives visibly damaged during local Vadodara transit:
+            We take utmost care packaging your items safely. In the rare event that an item arrives visibly damaged:
           </p>
           <ul className="list-disc pl-5 space-y-1.5">
-            <li>Contact us on WhatsApp within <strong>24 hours</strong> of delivery.</li>
+            <li>Contact us on WhatsApp within <strong>24 hours</strong> of receiving your order.</li>
             <li>Provide clear photos or an unboxing video showing the damaged portion and packaging.</li>
-            <li>Upon verification, we will happily handcraft and dispatch a <strong>free replacement</strong> for you immediately.</li>
+            <li>Upon verification, we will happily handcraft a <strong>free replacement</strong> for you immediately.</li>
           </ul>
         </section>
 

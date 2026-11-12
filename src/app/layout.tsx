@@ -5,18 +5,18 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001'),
   title: 'Bloomora | Handcrafted Creations • Little Creations. Endless Emotions.',
   description:
-    'Handmade keychains, customized crochet bouquets, handmade flowers, seasonal handcrafted decor, birthday surprise cards, and personalized gifts crafted with love in Vadodara, Gujarat by Bloomora.',
+    'Handmade keychains, customized crochet bouquets, handmade flowers, seasonal handcrafted decor, birthday surprise cards, and personalized gifts crafted with love by Bloomora.',
   keywords: [
     'bloomora',
     'bloomora creation',
-    'bloomora vadodara',
+    'handmade gifts',
     'handmade keychain',
     'customized bouquet',
     'handmade flower',
     'seasonable handmade products',
     'birthday surprise card',
     'customized personalized gifts',
-    'vadodara gifts',
+    'crochet flowers',
   ],
   authors: [{ name: 'Bloomora' }],
   icons: {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Bloomora | Handcrafted Creations',
     description:
-      'Artisanal handmade gifts, keychains, and floral creations in Vadodara, Gujarat.',
+      'Handcrafted gifts, keychains, and everlasting crochet floral creations by Bloomora.',
     siteName: 'Bloomora',
     locale: 'en_IN',
     type: 'website',

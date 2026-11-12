@@ -75,7 +75,7 @@ export default function HappyFamilyPage() {
         </h1>
 
         <p className="text-xs sm:text-base text-ink-muted leading-relaxed">
-          Behind every handmade creation is a genuine emotion. Explore real unboxing videos, client photos, and heartfelt reviews from our cherished community across Vadodara.
+          Behind every handmade creation is a genuine emotion. Explore real unboxing videos, client photos, and heartfelt reviews from our cherished Bloomora community.
         </p>
 
         <div className="pt-2 flex items-center justify-center gap-3">
@@ -165,7 +165,7 @@ export default function HappyFamilyPage() {
             No Stories Published Yet — Be the Very First!
           </h2>
           <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
-            Have you received a Bloomora handmade bouquet, smiling sunflower desk pot, or flower keychain in Vadodara? Click below to share your unboxing video, photo, and review.
+            Have you received a Bloomora handmade bouquet, smiling sunflower desk pot, or flower keychain? Click below to share your unboxing video, photo, and review.
           </p>
           <div className="pt-2">
             <Button

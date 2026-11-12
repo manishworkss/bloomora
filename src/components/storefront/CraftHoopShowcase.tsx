@@ -125,7 +125,7 @@ export const CraftHoopShowcase: React.FC = () => {
           <span>Never Withers</span>
         </motion.div>
 
-        {/* Tactile Swing Tag 3: Artisan Studio Seal */}
+        {/* Tactile Swing Tag 3: Studio Craft Seal */}
         <motion.div
           whileHover={{ scale: 1.03 }}
           transition={{ duration: 0.25 }}
@@ -136,7 +136,7 @@ export const CraftHoopShowcase: React.FC = () => {
           </div>
           <div className="min-w-0 pr-1 text-left">
             <div className="flex items-center gap-1">
-              <p className="text-[11px] sm:text-xs font-bold text-ink truncate">Handmade in Vadodara</p>
+              <p className="text-[11px] sm:text-xs font-bold text-ink truncate">100% Handcrafted</p>
               <span className="text-[10px] text-rose font-serif">✦</span>
             </div>
             <p className="text-[9px] sm:text-[10px] text-ink-muted truncate">100% Slow Craft • Zero Machines</p>

@@ -7,7 +7,6 @@ import { useParams, notFound } from 'next/navigation';
 import {
   ShoppingBag,
   MessageCircle,
-  Truck,
   ShieldCheck,
   Clock,
   ChevronRight,
@@ -242,7 +241,7 @@ export default function ProductDetailPage() {
               <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-blush/30 via-canvas to-surface text-rose p-8 text-center select-none">
                 <Flower2 className="w-16 h-16 text-rose/60 mb-3 stroke-[1.5]" />
                 <p className="font-serif text-lg text-ink font-semibold">{product.title}</p>
-                <p className="text-xs text-ink-muted mt-1">Handcrafted with care in Vadodara</p>
+                <p className="text-xs text-ink-muted mt-1">Handcrafted with care by Bloomora</p>
               </div>
             )}
 
@@ -500,14 +499,14 @@ export default function ProductDetailPage() {
             </div>
           </div>
 
-          {/* Local Guarantees & Vadodara Delivery Banner */}
+          {/* Studio Craftsmanship & Gift Wrap Guarantees */}
           <div className="space-y-3 bg-surface p-5 rounded-xl border border-border-subtle">
             <div className="flex items-start gap-3">
-              <Truck className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+              <Gift className="w-5 h-5 text-primary shrink-0 mt-0.5" />
               <div className="text-xs space-y-0.5">
-                <p className="font-semibold text-ink">Delivering Across All of Vadodara</p>
+                <p className="font-semibold text-ink">Signature Keepsake Gift Wrap</p>
                 <p className="text-ink-muted">
-                  Safe doorstep delivery across all Vadodara postal codes. Free delivery consultation on WhatsApp.
+                  Tied in signature kraft paper and satin ribbon with a complimentary handwritten wish card &amp; WhatsApp preview.
                 </p>
               </div>
             </div>

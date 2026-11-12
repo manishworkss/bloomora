@@ -10,18 +10,12 @@ const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://bloomora.in').rep
 const STORE_JSON_LD = {
   '@context': 'https://schema.org',
   '@type': 'Store',
-  name: 'Bloomora Studio',
+  name: 'Bloomora',
   description:
-    'Handcrafted crochet keychains, customized bouquets, handmade forever flowers, birthday surprise cards, seasonal collections, and personalized keepsake gifts made in Vadodara.',
+    'Handcrafted crochet keychains, customized bouquets, handmade forever flowers, birthday surprise cards, seasonal collections, and personalized keepsake gifts.',
   url: SITE_URL,
   telephone: '+91-8271735190',
   priceRange: '₹₹',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Vadodara',
-    addressRegion: 'Gujarat',
-    addressCountry: 'IN',
-  },
   sameAs: ['https://wa.me/918271735190'],
 };
 
